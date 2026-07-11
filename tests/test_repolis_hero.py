@@ -120,13 +120,13 @@ class RepolisHeroTests(unittest.TestCase):
 
     def test_readme_distinguishes_reference_variants_and_flagship(self) -> None:
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
-        reference = readme.index("### 1. Reference")
-        variants = readme.index("### 2. Sculpt DNA Variants — Intermediate Exploration")
-        flagship = readme.index("### 3. Flagship: Repolis Living Archive")
+        flagship = readme.index("## 03 · Flagship: Repolis Living Archive")
+        reference = readme.index("01 · Reference")
+        variants = readme.index("02 · Sculpt DNA variants — intermediate")
+        self.assertLess(flagship, reference)
         self.assertLess(reference, variants)
-        self.assertLess(variants, flagship)
         self.assertIn(
-            "They are **not** presented as the final visual-quality output.",
+            "**01 Reference** → **02 Sculpt DNA variants** → **03 Flagship above**",
             readme,
         )
 

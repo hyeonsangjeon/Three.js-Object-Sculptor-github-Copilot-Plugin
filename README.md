@@ -8,29 +8,7 @@ Our original capability is **Sculpt DNA**: a semantic parameter layer that varie
 
 Its **Coverage Curator** generates a larger safe candidate pool and uses a deterministic centroid-extreme plus greedy max-min heuristic to select a broadly separated representative family. This prevents README contact sheets, product families, and art-direction reviews from showing three nearly identical random samples without claiming an expensive global combinatorial optimum.
 
-## Repolis Pipeline
-
-**Reference** → **Sculpt DNA variants** → **Flagship: Repolis Living Archive**
-
-The middle contact sheet is design-space exploration, not the finished asset. Coverage Curator generated 24 constraint-safe candidates and selected three broadly separated variants. The final flagship then received object-specific geometry, PBR, lighting, camera, interaction, optimization, and eight evidence-backed sculpt-pass reviews.
-
-### 1. Reference
-
-![Gemini-generated Repolis Tree reference](assets/repolis-tree-reference.jpeg)
-
-The source establishes the identity contract: monumental Y-shaped trunk, gold energy network, amber/cyan canopy, constellation ornaments, and a luminous night landmark.
-
-### 2. Sculpt DNA Variants — Intermediate Exploration
-
-![Three procedural Repolis Tree Sculpt DNA variants](assets/repolis-tree-sculpt-dna-result.png)
-
-These candidates test palette and repetition ranges while preserving component IDs, parent links, sockets, attachment roots, and review targets. They are **not** presented as the final visual-quality output.
-
-[Evidence-backed base spec](examples/repolis-tree/object-sculpt-spec.json) ·
-[Coverage Curator manifest](examples/showcase/variants/tree/sculpt-dna-manifest.json) ·
-[Variant renderer](examples/showcase/showcase.js)
-
-### 3. Flagship: Repolis Living Archive
+## 03 · Flagship: Repolis Living Archive
 
 [Open the interactive Repolis Tree demo](https://hyeonsangjeon.github.io/Three.js-Object-Sculptor-github-Copilot-Plugin/)
 
@@ -46,6 +24,29 @@ The interactive page imports the same reusable output intended for the Repolis a
 - [TypeScript declarations](examples/repolis-hero/repolis-output/createRepolisHero.d.ts)
 - [Runtime profile](examples/repolis-hero/repolis-output/repolis-hero-profile.json)
 - [Pass-by-pass visual evidence](examples/repolis-hero/evidence/)
+
+## How It Was Built
+
+**01 Reference** → **02 Sculpt DNA variants** → **03 Flagship above**
+
+<table>
+  <tr>
+    <th>01 · Reference</th>
+    <th>02 · Sculpt DNA variants — intermediate</th>
+  </tr>
+  <tr>
+    <td><img src="assets/repolis-tree-reference.jpeg" alt="Gemini-generated Repolis Tree reference"></td>
+    <td><img src="assets/repolis-tree-sculpt-dna-result.png" alt="Three intermediate procedural Repolis Tree Sculpt DNA variants"></td>
+  </tr>
+</table>
+
+The reference establishes the identity contract: monumental Y-shaped trunk, gold energy network, amber/cyan canopy, constellation ornaments, and a luminous night landmark.
+
+The middle contact sheet is design-space exploration, not the finished asset. Coverage Curator generated 24 constraint-safe candidates and selected three broadly separated variants while preserving component IDs, parent links, sockets, attachment roots, and review targets. The flagship above then received object-specific geometry, PBR, lighting, camera, interaction, optimization, and eight evidence-backed sculpt-pass reviews.
+
+[Evidence-backed base spec](examples/repolis-tree/object-sculpt-spec.json) ·
+[Coverage Curator manifest](examples/showcase/variants/tree/sculpt-dna-manifest.json) ·
+[Variant renderer](examples/showcase/showcase.js)
 
 ## Additional Demo Families
 
