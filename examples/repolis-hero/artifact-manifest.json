@@ -12,7 +12,7 @@
     "chrome": "Google Chrome"
   },
   "runtimeStats": {
-    "generationMs": 83.19999998807907,
+    "generationMs": 94.59999999403954,
     "macroBranches": 15,
     "secondaryBranches": 56,
     "fineBranches": 112,
@@ -24,7 +24,7 @@
     "stage": "full"
   },
   "sourceSha256": {
-    "index.html": "4d2ab0b350734f34f7bba4792b635fc79723be48757bd5015a068e056c37427f",
+    "index.html": "f497aa1f0c40ab127b6107255ace03777ad8120b0235c6d65b3774ef617deb95",
     "main.js": "c416bd62dd587e25f1a3a1692acca34a469d18fd8c861178de2f851f7c06fde3",
     "style.css": "8b6d750509d7744091551ba6893c03ec8d6178d758e270d05c2856225887b977",
     "repolis-output/createRepolisHero.js": "65bd7fc76013ee0f11898174095556d581be64ea8f15e76e090fb8955a17d0e3",
@@ -32,19 +32,19 @@
     "../repolis-tree/object-sculpt-spec.json": "973c8a52903ddc986f88b185ea3cc5731fab5c64279738e9c2e5ab969b7ac1fb"
   },
   "outputSha256": {
-    "../../assets/repolis-tree-hero.png": "cee016058076cbad5eeab9900b279a686811a78faf70ff321bb5c512412dee39",
-    "../../assets/repolis-tree-hero.gif": "04cdcc7287e3a66c8bd243f96fe63e3a0f8931efbf3e91549ac559057787e578",
-    "evidence/blockout.webp": "38cbc12919e9fb426f6ad9e55bd31aef9f256ab7fb474251e5a2995e56bb5a0f",
-    "evidence/blockout-comparison.webp": "a67b8a89d174ec9ecab36671c763493d242b0bf5fd839949820ad8e952e75bd2",
-    "evidence/structural-pass.webp": "c283a8840acdc70422879af729a992b88c2077e89de291075c47813c6343847f",
-    "evidence/structural-pass-comparison.webp": "6975ea82aee2146134db48544de662da6639186ce6fcec4e3e217a3837d3608f",
-    "evidence/form-refinement.webp": "b9ec0c3def2e31068e565d508736ecc226f21ee1a4d1f3a3053023a22dd3f8e4",
-    "evidence/form-refinement-comparison.webp": "7287c39b4facb4f134510f924eeca17ddb11ebf68f0bc19e02cf8eb709ea69fa",
-    "evidence/material-pass.webp": "e1133a8e8029e87b3bbaa6d9a7467dea96ae8fedb90f6f3b52a393a8da153c2c",
-    "evidence/material-pass-comparison.webp": "1fd75950d508b853970283ad0185e89f75f353abff81f939cc79ff9f983089c6",
-    "evidence/surface-pass.webp": "484d43dbb555d705cd479a05ab93d0cf59e071b97946d7ab2107f597597e27e1",
-    "evidence/surface-pass-comparison.webp": "cba1878805b77815059de0ad100d99cb79e4376b6170f6692302ad27c383f0f0",
-    "evidence/final.webp": "11fb41936f186e852c34dbbe1de16a133ff55293c1d6a2080b43af69f08346e6",
-    "evidence/final-comparison.webp": "c7a04a5a367870b4acd29647a5f377e27cfe861f0c77d1d4627e145171c937dc"
+    "../../assets/repolis-tree-hero.png": "a6d4ae2b595ff7772c3ce21626926eb0b7348877f9d295d58a8bcb4edf2817c6",
+    "../../assets/repolis-tree-hero.gif": "83bdc252a4b964105759157c591a6897cd59136343a80b99d6413de8492a2d3e",
+    "evidence/blockout.webp": "70d3ead420da12617d87f008f5ce15555480d70209916e3260ea68ab47a95149",
+    "evidence/blockout-comparison.webp": "bbbc4a73a55e36c8d326b007f1b293cb15a2087648ccf840807ec8ad9111c049",
+    "evidence/structural-pass.webp": "d42a568e1174c176b170f81f939067b50c8f14ef350897eb9a65b5509558f215",
+    "evidence/structural-pass-comparison.webp": "0d082f08eb626f3b9a5f02b0b40a777f63de8bcd09ae3b45a949a0867b86fc6c",
+    "evidence/form-refinement.webp": "2146d627a28509ffc5460207721b9f4fa496df7062d97e208d18dc224ca39e35",
+    "evidence/form-refinement-comparison.webp": "fc07dc5d7c49378f778c314d7766302e6965174f004692a9cee55422e1bad0a5",
+    "evidence/material-pass.webp": "7a8018d9a1ad5f3befcf83ed3699f312326c7d49512174a3c554fe6d4f400752",
+    "evidence/material-pass-comparison.webp": "50e7acf974333d9788d3bb5f918d317183140b2cc5d677c866abce7feaeb94f6",
+    "evidence/surface-pass.webp": "aee5c1950af857f9c3e0acd7129a3b75d55e44ff7142906c8be6b93de20dae86",
+    "evidence/surface-pass-comparison.webp": "6cec6945d927963d3aa12aa4c928f47a849c0c2fbbc32e87499436d7f67e1e14",
+    "evidence/final.webp": "c810a56d9b5e0e8b809588042bbd6a02f97e9c2ce93cb8d2e6a93b9b030c298b",
+    "evidence/final-comparison.webp": "78adb335ae34627692ad081de29a58a0dbdc5fc09fc8546ee21fdccab9ced9fc"
   }
 }

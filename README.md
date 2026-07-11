@@ -253,16 +253,13 @@ copilot plugin install "$(pwd)"
 copilot plugin list
 ```
 
-Install from the private GitHub repository with authenticated `gh` cloning:
+Install directly from GitHub:
 
 ```bash
-mkdir -p "$HOME/plugins"
-gh repo clone hyeonsangjeon/Three.js-Object-Sculptor-github-Copilot-Plugin \
-  "$HOME/plugins/threejs-sculpt-dna"
-copilot plugin install "$HOME/plugins/threejs-sculpt-dna"
+copilot plugin install hyeonsangjeon/Three.js-Object-Sculptor-github-Copilot-Plugin
 ```
 
-Direct `copilot plugin install OWNER/REPO` currently performs an unauthenticated clone for private repositories, so use the authenticated local-clone flow above.
+Copilot currently warns that direct repository installs will eventually move to marketplace-only distribution, but the public repository install is supported today.
 
 Start a new Copilot CLI session, then verify the skills:
 
