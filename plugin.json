@@ -1,0 +1,26 @@
+{
+  "name": "threejs-sculpt-dna",
+  "description": "Reconstruct object images as quality-gated procedural Three.js models, then generate constraint-safe deterministic asset families.",
+  "version": "0.2.0",
+  "author": {
+    "name": "hyeonsangjeon",
+    "email": "wingnut0310@gmail.com",
+    "url": "https://github.com/hyeonsangjeon"
+  },
+  "homepage": "https://github.com/hyeonsangjeon/Three.js-Object-Sculptor-github-Copilot-Plugin",
+  "repository": "https://github.com/hyeonsangjeon/Three.js-Object-Sculptor-github-Copilot-Plugin",
+  "license": "MIT",
+  "category": "Developer Tools",
+  "keywords": [
+    "threejs",
+    "procedural-3d",
+    "image-analysis",
+    "object-reconstruction",
+    "asset-variants",
+    "webgpu"
+  ],
+  "skills": [
+    "./skills/object-to-threejs-procedural/",
+    "./skills/sculpt-dna-variants/"
+  ]
+}

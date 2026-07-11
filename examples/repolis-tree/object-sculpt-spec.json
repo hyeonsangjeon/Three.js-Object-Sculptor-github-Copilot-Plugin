@@ -1,0 +1,3982 @@
+{
+  "targetName": "Repolis Tree",
+  "targetId": "repolis-tree",
+  "schemaVersion": "2.0",
+  "terminologyProfile": {
+    "domain": "real-time procedural Three.js asset",
+    "geometryTerms": [
+      "silhouette",
+      "topology",
+      "primitive",
+      "bevel",
+      "chamfer",
+      "taper",
+      "bend",
+      "boolean cut",
+      "edge loop",
+      "surface normal",
+      "displacement"
+    ],
+    "materialTerms": [
+      "albedo",
+      "baseColor",
+      "roughness",
+      "metalness",
+      "normal map",
+      "bump map",
+      "ambient occlusion",
+      "cavity dirt",
+      "edge wear",
+      "clearcoat"
+    ],
+    "lightingTerms": [
+      "key light",
+      "fill light",
+      "rim light",
+      "HDRI/environment reflection",
+      "contact shadow"
+    ],
+    "descriptionRule": "Use measurable 3D graphics terms. Avoid vague words unless they are paired with concrete geometry/material/shader parameters."
+  },
+  "sourceImage": "assets/repolis-tree-reference.jpeg",
+  "suitability": "conditional",
+  "scores": {
+    "object_isolation": 1,
+    "silhouette_readability": 3,
+    "depth_inference": 2,
+    "primitive_decomposition": 3,
+    "material_procedurality": 3,
+    "occlusion_risk": 2,
+    "interaction_fit": 3
+  },
+  "preSpecAssessment": {
+    "objectClass": {
+      "primaryType": "stylized botanical-like hero landmark",
+      "formLanguage": [
+        "monumental organic trunk with a broad Y-shaped fork",
+        "radial branch fans framing a luminous central axis",
+        "warm gold and cool cyan bioluminescent accents",
+        "constellation-like points and code glyph ornamentation",
+        "dense but perforated crown with readable negative spaces"
+      ],
+      "structureKind": [
+        "rooted central trunk",
+        "three-level articulated branch hierarchy",
+        "instanced leaf clusters",
+        "curve-swept emissive sap and glyph lines"
+      ],
+      "motionPotential": [
+        "slow branch sway from root pivots",
+        "leaf shimmer and visibility cycling",
+        "gold energy pulse along trunk-to-tip paths",
+        "constellation-node flicker"
+      ],
+      "materialFamilies": [
+        "warm dark-brown bark with carved grooves",
+        "gold emissive energy channels",
+        "amber translucent leaves",
+        "cyan emissive leaves and constellation nodes"
+      ],
+      "notes": "The target is the central luminous tree, not the surrounding GitHub village, mountains, people, signs, or star field. Reconstruct it as a stylized real-time hero prop rather than an exact scene copy."
+    },
+    "complexity": {
+      "tier": "complex",
+      "scores": {
+        "silhouetteComplexity": 3,
+        "componentCount": 3,
+        "hierarchyDepth": 3,
+        "repetitionDensity": 3,
+        "materialLayerCount": 3,
+        "localDetailDensity": 3,
+        "occlusionRisk": 2,
+        "actionReadinessNeed": 2
+      },
+      "estimatedCounts": {
+        "macroComponents": 3,
+        "mesoComponents": 10,
+        "microFeatureGroups": 7,
+        "materialLayers": 4,
+        "repetitionSystems": 3
+      },
+      "reasoning": [
+        "The tree occupies the central upper half of the frame and its trunk fork, roots, and main bough flow are readable despite the surrounding village.",
+        "The identity depends on multiple coupled systems: broad crown silhouette, tapered branching hierarchy, carved bark, emissive gold paths, mixed amber/cyan foliage, and constellation ornaments.",
+        "Rear branches and exact branch depth are ambiguous in the single frontal illustration, so the implementation should use a plausible radial depth distribution rather than claim exact reconstruction.",
+        "Repeated leaves and luminous nodes require deterministic instancing and LOD; individual leaves should not become separate draw calls."
+      ]
+    },
+    "specDepthDecision": {
+      "requiredDepth": "complex",
+      "minimumComponentLevels": [
+        "macro",
+        "meso",
+        "micro"
+      ],
+      "needsRepetitionSystems": true,
+      "needsMaterialLocalOverrides": true,
+      "needsMultipleReviewViews": true,
+      "needsActionReadyHierarchy": true,
+      "rationale": "A shallow trunk-plus-spheres model would lose the reference identity. The spec needs separate trunk/crown masses, at least three branch levels, repeated leaf and constellation systems, local emissive overlays, and four review viewpoints."
+    },
+    "unknownsToResolveBeforeImplementation": [],
+    "sourceImage": "assets/repolis-tree-reference.jpeg"
+  },
+  "qualityContract": {
+    "qualityBar": "complex",
+    "definitionOfDone": [
+      "At the reference camera, the tree reads as a monumental golden code-tree before the surrounding village is added.",
+      "The main trunk rises from a broad root flare, splits into a wide Y, and supports left, center, and right branch fans with visible sky gaps.",
+      "Gold energy channels remain bright and spatially attached to bark under neutral and reference lighting without making the bark itself black.",
+      "Amber and cyan leaf clusters plus constellation nodes form a luminous crown while preserving the major branch silhouette.",
+      "The asset exposes branch pivots, effect sockets, collider proxies, and deterministic repetition systems for animation and Sculpt DNA variants."
+    ],
+    "minimumSpecDepth": {
+      "macroComponents": 3,
+      "mesoComponents": 8,
+      "microFeatureGroups": 5,
+      "materialLayers": 3,
+      "repetitionSystems": 1,
+      "reviewViewpoints": 4
+    },
+    "featureGroups": [
+      {
+        "id": "forked-trunk-silhouette",
+        "name": "Forked trunk, root flare, and crown silhouette",
+        "required": true,
+        "qualityCriteria": [
+          "The trunk is approximately one third of total tree height before the first major fork.",
+          "Left and right crown masses span roughly 1.4 times the visible tree height.",
+          "Major negative spaces remain visible between the center spire and side branch fans."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "single vertical cylinder with a spherical canopy",
+          "fork starts too high or side crowns collapse inward",
+          "dense leaves erase the branch-fan silhouette"
+        ]
+      },
+      {
+        "id": "radial-branch-hierarchy",
+        "name": "Radial branch hierarchy and embedded joints",
+        "required": true,
+        "qualityCriteria": [
+          "Left, center, and right primary boughs emerge from named sockets on the trunk fork.",
+          "Secondary branches taper from root to tip and overlap their parent at every joint.",
+          "Rear branches add depth without changing the frontal identity."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "floating branch roots",
+          "uniform branch radii or evenly spaced radial spokes",
+          "all branch levels merged into an inert mesh"
+        ]
+      },
+      {
+        "id": "gold-energy-network",
+        "name": "Gold energy and code-glyph network",
+        "required": true,
+        "qualityCriteria": [
+          "Warm emissive paths originate near the root core and split along the same hierarchy as the bark branches.",
+          "Energy lines remain narrow enough to reveal bark albedo and roughness.",
+          "Glyph marks follow branch tangents instead of floating as screen-space text."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "trunk reads as black because emission is the only visible surface response",
+          "glow blooms into a flat white silhouette",
+          "code glyphs detach from the curved branch surface"
+        ]
+      },
+      {
+        "id": "dual-color-leaf-canopy",
+        "name": "Amber and cyan leaf canopy",
+        "required": true,
+        "qualityCriteria": [
+          "Leaf clusters are distributed along outer and upper branch tips rather than filling the trunk interior.",
+          "Amber is dominant while cyan accents occupy a smaller, intentionally uneven share.",
+          "Leaf cards vary in orientation, scale, emission, and visibility while preserving deterministic seeds."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "one opaque canopy blob",
+          "cyan and amber distributed as uniform noise",
+          "leaf density hides all major boughs"
+        ]
+      },
+      {
+        "id": "constellation-crown-ornaments",
+        "name": "Constellation crown and hanging light ornaments",
+        "required": true,
+        "qualityCriteria": [
+          "A small number of cyan and warm-white nodes form readable linked constellations around the upper crown.",
+          "Short hanging light strands descend from selected side branches.",
+          "Ornaments use effect sockets and instancing instead of being baked into bark textures."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "random sparkles with no grouped paths",
+          "ornaments dominate the branch silhouette",
+          "lights float without branch attachment"
+        ]
+      }
+    ],
+    "visualDeltaChecks": [
+      "root-flare width and trunk-height-to-crown-width delta",
+      "first-fork height and left/center/right branch-fan angle delta",
+      "gold energy width, bloom, and branch-following continuity delta",
+      "amber-to-cyan leaf ratio and crown negative-space delta",
+      "constellation-node grouping and hanging-light placement delta",
+      "bark midtone visibility under neutral and reference lighting delta"
+    ],
+    "antiShallowSpecRules": [
+      "Do not proceed to code if qualityContract.qualityBar is unassessed.",
+      "Do not proceed to code if the spec only contains a root component for a moderate or complex object.",
+      "Do not proceed to code if required featureGroups are not represented by componentTree, materials, or repetitionSystems.",
+      "Do not proceed to code if visible local features are described only in prose and not attached to components/materials/evidenceRefs.",
+      "Do not proceed past structural-pass if attached child parts lack attachment.parentSocket, localStart, localEnd, embedDepth/overlap, and gapTolerance.",
+      "Do not pass material look-dev when albedo is reused as roughness, height, normal, or AO.",
+      "Do not pass material look-dev without macro, meso, and micro surface frequency bands for close-up materials.",
+      "Do not pass reference-fidelity material look-dev from a source image without usable referencePbr maps or an explicit documented limitation.",
+      "Do not patch a spec with extracted PBR maps when extraction confidence is below the target threshold unless the user explicitly accepts lower fidelity.",
+      "Do not allow foliage or bloom to hide the three primary branch fans.",
+      "Do not model the village, GitHub logos, signs, or people as part of the tree asset.",
+      "Do not treat the baked gold glow in the illustration as bark albedo; author bark and emission as separate material/effect systems."
+    ]
+  },
+  "qualityTargets": {
+    "targetFidelity": 0.78,
+    "mustMatch": [
+      "broad Y-shaped trunk and three primary branch fans",
+      "warm bark remains readable beneath separate gold emission",
+      "amber-dominant leaf crown with sparse cyan accents",
+      "constellation nodes and hanging lights attached to outer branches",
+      "root flare and central energy path remain visible at the reference camera"
+    ],
+    "niceToHave": [
+      "branch-following decorative code glyphs",
+      "subtle rear branch depth and parallax",
+      "animated energy pulse and leaf shimmer",
+      "distant village-compatible LOD silhouette"
+    ],
+    "fpsTarget": 60,
+    "reviewViewpoints": [
+      "reference-front",
+      "three-quarter-left",
+      "right-side-silhouette",
+      "canopy-upward-close-up"
+    ]
+  },
+  "selfCorrectLoop": {
+    "enabled": true,
+    "visualAcceptance": {
+      "reviewer": "ai-vision",
+      "threshold": 0.7,
+      "comparisonArtifactRequired": true,
+      "layerScoresRequired": true,
+      "codePixelDiffIsAcceptanceAuthority": false,
+      "scoringRule": "AI vision must inspect a side-by-side reference/render sheet and score the current pass from 0 to 1. Pixel-diff code may assist diagnostics but cannot approve a pass.",
+      "requiredLayerScores": [
+        "silhouetteProportion",
+        "componentStructure",
+        "formDetail",
+        "materialSurface",
+        "lightingCamera"
+      ],
+      "featureReviewPolicy": {
+        "enabled": true,
+        "reviewUnit": "semantic-subsystem",
+        "maxCriticalFeaturesPerPass": 5,
+        "maxImportantFeaturesPerPass": 3,
+        "criticalDefaultThreshold": 0.8,
+        "importantAverageThreshold": 0.65,
+        "adaptiveEscalation": true,
+        "singleImagePairOnly": true,
+        "selectionRule": "Choose only the most visually salient, identity-defining, user-prioritized, or high-risk semantic systems. Group repeated parts instead of reviewing every mesh. AI vision scores every selected feature from the same full reference/render pair."
+      }
+    },
+    "reviewAfterPasses": [
+      "blockout",
+      "structural-pass",
+      "form-refinement",
+      "material-pass",
+      "surface-pass",
+      "lighting-pass",
+      "interaction-pass",
+      "optimization-pass"
+    ],
+    "allowedActions": [
+      "continue",
+      "refine-spec",
+      "refine-code",
+      "request-input",
+      "stop"
+    ],
+    "specRefineTriggers": [
+      "missing component",
+      "wrong primitive family",
+      "wrong proportions",
+      "material layer under-specified",
+      "local feature not traceable to viewEvidence",
+      "reference ambiguity discovered during implementation"
+    ],
+    "codeRefineTriggers": [
+      "spec is adequate but generated geometry/material does not match",
+      "browser render differs from reference",
+      "performance budget exceeded",
+      "lighting hides geometry or material response"
+    ],
+    "stopCriteria": [
+      "target fidelity reached or user accepts current approximation",
+      "remaining gaps require new reference images or manual art"
+    ],
+    "screenshotPolicy": {
+      "requiredForPasses": [
+        "blockout",
+        "structural-pass",
+        "form-refinement",
+        "material-pass",
+        "surface-pass",
+        "lighting-pass",
+        "interaction-pass"
+      ],
+      "preferredCapture": "in-app-browser-screenshot",
+      "fallbackCapture": "user-supplied-screenshot-path",
+      "minimumEvidence": "Each visual pass needs a reference image, rendered screenshot, side-by-side comparison sheet, AI vision score, layer scores, and critique before choosing continue.",
+      "reviewPairRule": "Compare the same camera/viewpoint whenever possible; do not judge a front reference against a random render angle.",
+      "acceptanceAuthority": "AI vision review of the comparison sheet. Code-generated pixel similarity is not sufficient evidence."
+    }
+  },
+  "featureReviewTargets": [
+    {
+      "id": "forked-trunk-silhouette",
+      "name": "Forked trunk and crown silhouette",
+      "tier": "critical",
+      "passIds": [
+        "blockout"
+      ],
+      "minimumScore": 0.8,
+      "mustPass": true,
+      "componentRefs": [
+        "root",
+        "crown-left",
+        "crown-right"
+      ],
+      "evidenceRefs": [
+        "full-object"
+      ]
+    },
+    {
+      "id": "root-flare-first-fork",
+      "name": "Root flare and first-fork height",
+      "tier": "critical",
+      "passIds": [
+        "blockout",
+        "form-refinement"
+      ],
+      "minimumScore": 0.78,
+      "mustPass": true,
+      "componentRefs": [
+        "root",
+        "root-buttress-left",
+        "root-buttress-right"
+      ],
+      "evidenceRefs": [
+        "trunk-fork",
+        "root-ground"
+      ]
+    },
+    {
+      "id": "radial-branch-hierarchy",
+      "name": "Left, center, and right branch fans",
+      "tier": "critical",
+      "passIds": [
+        "structural-pass",
+        "form-refinement"
+      ],
+      "minimumScore": 0.8,
+      "mustPass": true,
+      "componentRefs": [
+        "branch-left-primary",
+        "branch-center-spire",
+        "branch-right-primary",
+        "branch-left-outer",
+        "branch-right-outer"
+      ],
+      "evidenceRefs": [
+        "trunk-fork",
+        "upper-canopy"
+      ]
+    },
+    {
+      "id": "gold-energy-network",
+      "name": "Gold branch-following energy network",
+      "tier": "critical",
+      "passIds": [
+        "material-pass",
+        "surface-pass",
+        "lighting-pass"
+      ],
+      "minimumScore": 0.8,
+      "mustPass": true,
+      "componentRefs": [
+        "energy-core",
+        "root",
+        "branch-left-primary",
+        "branch-right-primary"
+      ],
+      "evidenceRefs": [
+        "trunk-fork",
+        "upper-canopy"
+      ]
+    },
+    {
+      "id": "dual-color-leaf-canopy",
+      "name": "Amber and cyan leaf canopy",
+      "tier": "critical",
+      "passIds": [
+        "material-pass",
+        "surface-pass"
+      ],
+      "minimumScore": 0.75,
+      "mustPass": true,
+      "componentRefs": [
+        "crown-left",
+        "crown-right"
+      ],
+      "evidenceRefs": [
+        "left-canopy",
+        "right-canopy",
+        "upper-canopy"
+      ]
+    },
+    {
+      "id": "bark-midtone-readability",
+      "name": "Warm bark midtone readability",
+      "tier": "critical",
+      "passIds": [
+        "material-pass",
+        "lighting-pass"
+      ],
+      "minimumScore": 0.78,
+      "mustPass": true,
+      "componentRefs": [
+        "root",
+        "branch-center-spire"
+      ],
+      "evidenceRefs": [
+        "trunk-fork"
+      ]
+    },
+    {
+      "id": "constellation-ornaments",
+      "name": "Constellation nodes and hanging lights",
+      "tier": "important",
+      "passIds": [
+        "structural-pass",
+        "material-pass",
+        "lighting-pass"
+      ],
+      "minimumScore": 0.68,
+      "mustPass": false,
+      "componentRefs": [
+        "branch-left-outer",
+        "branch-right-outer"
+      ],
+      "evidenceRefs": [
+        "left-canopy",
+        "right-canopy"
+      ]
+    },
+    {
+      "id": "branch-action-readiness",
+      "name": "Branch pivots and effect sockets",
+      "tier": "important",
+      "passIds": [
+        "interaction-pass"
+      ],
+      "minimumScore": 0.7,
+      "mustPass": false,
+      "componentRefs": [
+        "branch-left-primary",
+        "branch-center-spire",
+        "branch-right-primary",
+        "energy-core"
+      ],
+      "evidenceRefs": [
+        "trunk-fork"
+      ]
+    }
+  ],
+  "sculptPipeline": {
+    "passGateMode": "locked-sequential",
+    "passOrder": [
+      "blockout",
+      "structural-pass",
+      "form-refinement",
+      "material-pass",
+      "surface-pass",
+      "lighting-pass",
+      "interaction-pass",
+      "optimization-pass"
+    ],
+    "currentPass": "blockout",
+    "completedPasses": [],
+    "lastCompletedPass": "",
+    "blockedReason": "blockout requires a browser screenshot and self-correction review before structural-pass unlocks",
+    "nextRequiredEvidence": [
+      "blockout browser render screenshot from the GitHub Copilot in-app Browser",
+      "side-by-side reference/render comparison sheet",
+      "AI vision score >= 0.7 with layer scores and mismatch critique",
+      "critical semantic feature scores from the same image pair meeting their individual thresholds",
+      "reviewHistory entry for blockout with action=continue"
+    ]
+  },
+  "lookDevTargets": {
+    "qualityPriority": "balanced",
+    "materialPass": {
+      "albedoPaletteRequired": true,
+      "roughnessVariationRequired": true,
+      "normalOrBumpRequired": true,
+      "localOverridesRequired": true,
+      "minimumTextureResolution": 1024,
+      "preferredTextureResolution": 2048,
+      "independentMapChannels": [
+        "albedo",
+        "roughness",
+        "height",
+        "normal",
+        "ambient-occlusion"
+      ],
+      "requiredSurfaceFrequencyBands": [
+        "macro",
+        "meso",
+        "micro"
+      ],
+      "geometryReliefRequiredWhenSilhouetteAffected": true,
+      "referencePbrExtraction": {
+        "requiredWhenSourceImagePresent": false,
+        "targetThreshold": 0.7,
+        "stopOnLowConfidence": true,
+        "script": "../../scripts/extract_reference_pbr.py",
+        "acceptedLimitation": "The stylized source bakes bloom, emission, and scene lighting into the pixels. Use procedural bark and emissive materials; treat any extraction only as palette evidence."
+      },
+      "mustAvoid": [
+        "single flat albedo per material",
+        "uniform roughness",
+        "albedo texture reused as roughness/height/normal/AO",
+        "single-frequency random noise",
+        "plastic-looking smooth bark, stone, cloth, foliage, or aged material",
+        "local color/detail described only in prose without material masks",
+        "claiming exact PBR recovery when confidence is below the target threshold"
+      ]
+    },
+    "lightingPass": {
+      "requiredTerms": [
+        "key light",
+        "fill light",
+        "rim or environment light",
+        "exposure",
+        "tone mapping",
+        "background",
+        "contact shadow"
+      ],
+      "mustAvoid": [
+        "ambient-only lighting",
+        "flat value range",
+        "missing contact shadow",
+        "reference lighting copied without separating material readability"
+      ]
+    },
+    "screenshotReview": [
+      "Compare albedo palette and local color zones.",
+      "Compare roughness/normal/bump response under light.",
+      "Compare cavity dirt, edge wear, stains, moss, scratches, or other local masks.",
+      "Compare key/fill/rim structure, exposure, tone mapping, background, and contact shadows.",
+      "Capture a neutral-light render to verify material readability without reference lighting.",
+      "Capture a grazing-light close-up to expose flat normals, uniform roughness, tiling, and plastic highlights.",
+      "Capture a reference-matched render from the same camera framing as the source."
+    ]
+  },
+  "actionReadiness": {
+    "contract": "Every macro/meso component should be generated as a stable named Object3D pivot node with a mesh child, action metadata, optional sockets, collider proxy, and destruction metadata.",
+    "defaultRigType": "action-ready-static-rig",
+    "rootMotionNode": "root",
+    "requiredComponentFields": [
+      "id",
+      "parent",
+      "transform",
+      "attachment for child appendages, connectors, limbs, tubes, handles, legs, horns, wings, branches, or cables",
+      "actionProfile.animationRole",
+      "actionProfile.pivot",
+      "actionProfile.collider",
+      "actionProfile.destruction"
+    ],
+    "transformChannels": [
+      "translate",
+      "rotate",
+      "scale",
+      "bend",
+      "twist",
+      "detach",
+      "visibility",
+      "material-state"
+    ],
+    "authoringRules": [
+      "Do not collapse independently movable parts into one mesh.",
+      "Put transforms on component pivot groups, not only on raw meshes.",
+      "For attached child parts, put the pivot at the semantic root/socket and build visible geometry from localStart to localEnd.",
+      "Represent hinge, socket, detachable, and breakable intent even when no animation is implemented yet.",
+      "Use simplified collider proxies for runtime physics instead of visual mesh colliders by default."
+    ],
+    "destructionPolicy": {
+      "defaultBreakable": false,
+      "fractureGroupNaming": "Use stable semantic names such as body-shell, left-hinge, glass-panel, branch-segment.",
+      "debrisStrategy": "Prefer detachable component groups and a small number of procedural fragments over random mesh explosion."
+    }
+  },
+  "assumptions": [
+    "Only the central tree is reconstructed; village buildings, logos, text signs, people, mountains, and sky are excluded.",
+    "Rear branch depth is inferred as a shallow radial fan because the source provides one frontal illustration.",
+    "Small branch text is treated as abstract code-like glyph marks rather than exact readable copy.",
+    "Amber foliage occupies about 75 percent of emissive leaves and cyan foliage about 25 percent.",
+    "The final prop is stylized and browser-real-time; it does not claim botanical or physical-lighting accuracy."
+  ],
+  "coordinateFrame": {
+    "front": "+Z faces the reference camera",
+    "up": "+Y follows the trunk from root flare to crown",
+    "scaleReference": "12 world units from ground contact to highest branch tip"
+  },
+  "silhouette": {
+    "boundingShape": "wide luminous crown over a tapered trunk; crown width about 1.4 times total tree height",
+    "aspectRatios": [
+      "tree height 12 units",
+      "crown width 16.5 units",
+      "root flare width 4.2 units",
+      "first major fork at 4.2 units above ground"
+    ],
+    "symmetry": "approximately bilateral at macro scale with intentionally asymmetric branch and leaf distribution",
+    "dominantCurves": [
+      "trunk centerline bends slightly right before splitting into a broad Y",
+      "left and right primary boughs arc upward and outward",
+      "center spire narrows through two fork levels",
+      "root buttresses sweep outward and down into the ground"
+    ],
+    "negativeSpaces": [
+      "inverted triangular gap between left primary bough and center spire",
+      "smaller vertical gap between center and right primary bough",
+      "perforated crown edge with star-field visible between leaf clusters"
+    ],
+    "landmarks": [
+      "bright root energy core",
+      "broad first fork",
+      "tall center spire",
+      "left cyan constellation arc",
+      "right cyan leaf cluster",
+      "gold hanging light strands"
+    ]
+  },
+  "viewEvidence": [
+    {
+      "id": "full-object",
+      "view": "primary",
+      "imageRegion": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 1.0,
+        "height": 1.0,
+        "units": "normalized"
+      },
+      "observations": [
+        "Tree dominates the central frame and extends from village ground to near the top edge.",
+        "Crown is wider than it is tall and uses warm gold as the dominant luminous color.",
+        "Surrounding village elements overlap only the lowest roots and should not be included."
+      ],
+      "confidence": 0.92
+    },
+    {
+      "id": "trunk-fork",
+      "view": "reference-front",
+      "imageRegion": {
+        "x": 0.35,
+        "y": 0.15,
+        "width": 0.31,
+        "height": 0.61,
+        "units": "normalized"
+      },
+      "observations": [
+        "Warm brown trunk remains visible between bright gold channels.",
+        "Primary fork opens around one third of the tree height.",
+        "Fine code-like marks follow branch tangents."
+      ],
+      "confidence": 0.9
+    },
+    {
+      "id": "upper-canopy",
+      "view": "reference-front",
+      "imageRegion": {
+        "x": 0.18,
+        "y": 0.0,
+        "width": 0.65,
+        "height": 0.45,
+        "units": "normalized"
+      },
+      "observations": [
+        "Amber leaves dominate upper branch tips.",
+        "Cyan nodes and short connecting lines form sparse constellation groups.",
+        "Leaf density remains low enough to expose the branch network."
+      ],
+      "confidence": 0.86
+    },
+    {
+      "id": "left-canopy",
+      "view": "reference-front",
+      "imageRegion": {
+        "x": 0.16,
+        "y": 0.02,
+        "width": 0.33,
+        "height": 0.44,
+        "units": "normalized"
+      },
+      "observations": [
+        "Left crown sweeps farther horizontally than the right.",
+        "Cyan constellation accents cluster near the outer upper-left branches.",
+        "Several short warm hanging-light strands descend below the outer bough."
+      ],
+      "confidence": 0.82
+    },
+    {
+      "id": "right-canopy",
+      "view": "reference-front",
+      "imageRegion": {
+        "x": 0.53,
+        "y": 0.02,
+        "width": 0.31,
+        "height": 0.45,
+        "units": "normalized"
+      },
+      "observations": [
+        "Right crown is slightly more upright and compact.",
+        "Cyan leaf accents are concentrated near upper-right tips.",
+        "Gold branch emission traces the inner edge of major boughs."
+      ],
+      "confidence": 0.82
+    },
+    {
+      "id": "root-ground",
+      "view": "reference-front",
+      "imageRegion": {
+        "x": 0.39,
+        "y": 0.54,
+        "width": 0.25,
+        "height": 0.24,
+        "units": "normalized"
+      },
+      "observations": [
+        "Root flare spreads into at least four visible buttresses.",
+        "The brightest energy source sits at the root center and fades upward.",
+        "Village paths occlude some root tips, so hidden continuation is inferred."
+      ],
+      "confidence": 0.72
+    }
+  ],
+  "componentTree": [
+    {
+      "id": "root",
+      "name": "Repolis trunk core",
+      "level": "macro",
+      "role": "body",
+      "importance": 1.0,
+      "confidence": 0.9,
+      "primitive": "cylinder",
+      "geometryDescriptor": {
+        "topologyIntent": "tapered trunk with enough radial and height segments for root flare and carved energy channels",
+        "edgeTreatment": {
+          "type": "organic bevel",
+          "bevelRadius": 0.08,
+          "segments": 3
+        },
+        "deformationStack": [
+          "lower flare",
+          "subtle rightward bend",
+          "asymmetric longitudinal ridges"
+        ],
+        "uvStrategy": "cylindrical projection with world-scale bark continuity",
+        "normalStrategy": "smooth vertex normals plus independent bark normal map"
+      },
+      "parent": null,
+      "attachment": null,
+      "dimensions": {
+        "width": 1.8,
+        "height": 7.2,
+        "depth": 1.6,
+        "units": "world",
+        "confidence": 0.86
+      },
+      "transform": {
+        "position": [
+          0,
+          3.6,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "root",
+        "pivot": {
+          "mode": "base",
+          "localPosition": [
+            0,
+            -3.6,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.95
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [
+          {
+            "id": "left-fork",
+            "localPosition": [
+              -0.25,
+              0.6,
+              0
+            ],
+            "localRotation": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "id": "right-fork",
+            "localPosition": [
+              0.25,
+              0.6,
+              0
+            ],
+            "localRotation": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "id": "center-spire",
+            "localPosition": [
+              0,
+              0.8,
+              0
+            ],
+            "localRotation": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "id": "root-left",
+            "localPosition": [
+              -0.5,
+              -3.1,
+              0.1
+            ],
+            "localRotation": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "id": "root-right",
+            "localPosition": [
+              0.5,
+              -3.1,
+              0.1
+            ],
+            "localRotation": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "id": "energy-core",
+            "localPosition": [
+              0,
+              -3.0,
+              0.42
+            ],
+            "localRotation": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "collider": {
+          "type": "capsule",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1.2,
+            3.6,
+            1.1
+          ],
+          "isTrigger": false
+        },
+        "constraints": [
+          "root pivot remains at ground contact"
+        ],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "trunk-core",
+          "seamRefs": [
+            "first-fork"
+          ],
+          "detachableFragments": [],
+          "breakImpulse": 0,
+          "debrisMaterial": "bark"
+        }
+      },
+      "material": "bark",
+      "materialLayers": [
+        "bark",
+        "gold-energy"
+      ],
+      "deformations": [
+        "root flare expands lower 18 percent",
+        "centerline bends 0.25 units toward +X"
+      ],
+      "joints": [
+        "left-fork",
+        "right-fork",
+        "center-spire"
+      ],
+      "seams": [
+        "first-fork",
+        "root-energy-channel"
+      ],
+      "localFeatures": [
+        {
+          "id": "root-flare",
+          "type": "raised ridge",
+          "placement": "lowest 1.4 units",
+          "size": "4.2 unit total span",
+          "geometryEffect": "silhouette-visible buttresses",
+          "materialEffect": "gold contact glow",
+          "confidence": 0.82
+        },
+        {
+          "id": "gold-sap-channels",
+          "type": "recessed emissive groove",
+          "placement": "front-facing trunk and forks",
+          "size": "0.04-0.12 unit width",
+          "geometryEffect": "shallow inset curves",
+          "materialEffect": "gold-energy overlay",
+          "confidence": 0.9
+        },
+        {
+          "id": "code-glyph-grooves",
+          "type": "carved line",
+          "placement": "selected trunk and branch tangents",
+          "size": "small abstract marks",
+          "geometryEffect": "decal or shallow groove",
+          "materialEffect": "low-intensity gold edge",
+          "confidence": 0.7
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.34,
+        "microRoughness": 0.62,
+        "bumpAmplitude": 0.08,
+        "normalPattern": "vertical bark plates with fork-following flow",
+        "displacementPattern": "low-frequency root and ridge breakup",
+        "occlusionPattern": "dark branch sockets and deep bark fissures",
+        "edgeWearPattern": "warm polished ridge tops",
+        "notes": "Bark must retain warm midtones beneath emission."
+      },
+      "evidenceRefs": [
+        "full-object",
+        "trunk-fork",
+        "root-ground"
+      ],
+      "details": [
+        "hero trunk",
+        "separate bark and emission systems"
+      ],
+      "fidelityTier": "blockout"
+    },
+    {
+      "id": "crown-left",
+      "name": "Left crown mass",
+      "level": "macro",
+      "role": "crown",
+      "importance": 0.9,
+      "confidence": 0.8,
+      "primitive": "ellipsoid",
+      "geometryDescriptor": {
+        "topologyIntent": "temporary perforated blockout mass later replaced by instanced leaves",
+        "edgeTreatment": {
+          "type": "soft",
+          "bevelRadius": 0.2,
+          "segments": 2
+        },
+        "deformationStack": [
+          "flatten lower edge",
+          "extend outer-left lobe"
+        ],
+        "uvStrategy": "object-space procedural",
+        "normalStrategy": "smooth"
+      },
+      "parent": "root",
+      "attachment": {
+        "parentId": "root",
+        "parentSocket": "left-fork",
+        "localStart": [
+          -0.25,
+          0.6,
+          0
+        ],
+        "localEnd": [
+          -3.7,
+          5.2,
+          -0.1
+        ],
+        "contactType": "overlap",
+        "overlap": 0.25,
+        "gapTolerance": 0.05,
+        "evidenceRefs": [
+          "left-canopy"
+        ]
+      },
+      "dimensions": {
+        "width": 8.5,
+        "height": 4.8,
+        "depth": 3.2,
+        "units": "world",
+        "confidence": 0.78
+      },
+      "transform": {
+        "position": [
+          -3.5,
+          5.0,
+          -0.2
+        ],
+        "rotation": [
+          0,
+          0,
+          -0.08
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "deformable",
+        "pivot": {
+          "mode": "socket",
+          "localPosition": [
+            -0.25,
+            0.6,
+            0
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "confidence": 0.78
+        },
+        "transformChannels": {
+          "rotate": true,
+          "bend": true,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "sphere",
+          "offset": [
+            -3.25,
+            4.4,
+            -0.2
+          ],
+          "scale": [
+            4.2,
+            2.4,
+            1.6
+          ],
+          "isTrigger": false
+        },
+        "constraints": [
+          "sway under 4 degrees"
+        ],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "left-crown",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0,
+          "debrisMaterial": "amber-leaf"
+        }
+      },
+      "material": "amber-leaf",
+      "materialLayers": [
+        "amber-leaf",
+        "cyan-leaf"
+      ],
+      "deformations": [
+        "three overlapping crown lobes",
+        "irregular perforated edge"
+      ],
+      "joints": [
+        "left-fork"
+      ],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "left-cyan-constellation",
+          "type": "raised light nodes",
+          "placement": "outer upper-left crown",
+          "size": "grouped 0.05-0.12 unit points",
+          "geometryEffect": "instanced nodes and thin links",
+          "materialEffect": "cyan emission",
+          "confidence": 0.82
+        },
+        {
+          "id": "left-hanging-lights",
+          "type": "hanging strand",
+          "placement": "lower outer-left branches",
+          "size": "0.4-1.2 unit drops",
+          "geometryEffect": "thin curves with point nodes",
+          "materialEffect": "warm gold emission",
+          "confidence": 0.75
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.1,
+        "microRoughness": 0.35,
+        "bumpAmplitude": 0.01,
+        "normalPattern": "leaf veins",
+        "displacementPattern": "",
+        "occlusionPattern": "cluster self-shadow",
+        "edgeWearPattern": "",
+        "notes": "Blockout material remains translucent enough to show branch gaps."
+      },
+      "evidenceRefs": [
+        "full-object",
+        "left-canopy",
+        "upper-canopy"
+      ],
+      "details": [
+        "dominant horizontal crown extension"
+      ],
+      "fidelityTier": "blockout"
+    },
+    {
+      "id": "crown-right",
+      "name": "Right crown mass",
+      "level": "macro",
+      "role": "crown",
+      "importance": 0.9,
+      "confidence": 0.8,
+      "primitive": "ellipsoid",
+      "geometryDescriptor": {
+        "topologyIntent": "temporary perforated blockout mass later replaced by instanced leaves",
+        "edgeTreatment": {
+          "type": "soft",
+          "bevelRadius": 0.2,
+          "segments": 2
+        },
+        "deformationStack": [
+          "raise upper-right lobe",
+          "tighten outer edge"
+        ],
+        "uvStrategy": "object-space procedural",
+        "normalStrategy": "smooth"
+      },
+      "parent": "root",
+      "attachment": {
+        "parentId": "root",
+        "parentSocket": "right-fork",
+        "localStart": [
+          0.25,
+          0.6,
+          0
+        ],
+        "localEnd": [
+          3.5,
+          5.4,
+          0.1
+        ],
+        "contactType": "overlap",
+        "overlap": 0.25,
+        "gapTolerance": 0.05,
+        "evidenceRefs": [
+          "right-canopy"
+        ]
+      },
+      "dimensions": {
+        "width": 7.8,
+        "height": 5.0,
+        "depth": 3.3,
+        "units": "world",
+        "confidence": 0.78
+      },
+      "transform": {
+        "position": [
+          3.4,
+          5.1,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0.06
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "deformable",
+        "pivot": {
+          "mode": "socket",
+          "localPosition": [
+            0.25,
+            0.6,
+            0
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "confidence": 0.78
+        },
+        "transformChannels": {
+          "rotate": true,
+          "bend": true,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "sphere",
+          "offset": [
+            3.15,
+            4.5,
+            0
+          ],
+          "scale": [
+            3.9,
+            2.5,
+            1.65
+          ],
+          "isTrigger": false
+        },
+        "constraints": [
+          "sway under 4 degrees"
+        ],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "right-crown",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0,
+          "debrisMaterial": "amber-leaf"
+        }
+      },
+      "material": "amber-leaf",
+      "materialLayers": [
+        "amber-leaf",
+        "cyan-leaf"
+      ],
+      "deformations": [
+        "upright upper lobe",
+        "asymmetric outer perforations"
+      ],
+      "joints": [
+        "right-fork"
+      ],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "right-cyan-leaf-patch",
+          "type": "local color cluster",
+          "placement": "upper-right tips",
+          "size": "roughly 20 percent of right crown leaves",
+          "geometryEffect": "instanced cards",
+          "materialEffect": "cyan emission",
+          "confidence": 0.82
+        },
+        {
+          "id": "right-gold-edge",
+          "type": "emissive ridge",
+          "placement": "inner right bough edges",
+          "size": "narrow branch-following paths",
+          "geometryEffect": "curve sweep",
+          "materialEffect": "gold emission",
+          "confidence": 0.8
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.1,
+        "microRoughness": 0.35,
+        "bumpAmplitude": 0.01,
+        "normalPattern": "leaf veins",
+        "displacementPattern": "",
+        "occlusionPattern": "cluster self-shadow",
+        "edgeWearPattern": "",
+        "notes": "Keep right crown slightly more compact than left."
+      },
+      "evidenceRefs": [
+        "full-object",
+        "right-canopy",
+        "upper-canopy"
+      ],
+      "details": [
+        "upright and compact crown balance"
+      ],
+      "fidelityTier": "blockout"
+    },
+    {
+      "id": "branch-left-primary",
+      "name": "Left primary bough",
+      "level": "meso",
+      "role": "branch",
+      "importance": 0.95,
+      "confidence": 0.88,
+      "primitive": "cylinder",
+      "geometryDescriptor": {
+        "topologyIntent": "root-to-tip tapered branch with curved centerline refinement",
+        "edgeTreatment": {
+          "type": "organic",
+          "bevelRadius": 0.05,
+          "segments": 2
+        },
+        "deformationStack": [
+          "upward arc",
+          "minor forward sweep"
+        ],
+        "uvStrategy": "branch-aligned cylindrical",
+        "normalStrategy": "smooth plus bark normal"
+      },
+      "parent": "root",
+      "attachment": {
+        "parentId": "root",
+        "parentSocket": "left-fork",
+        "localStart": [
+          -0.25,
+          0.6,
+          0
+        ],
+        "localEnd": [
+          -3.7,
+          5.25,
+          0.25
+        ],
+        "baseRadius": 0.62,
+        "endRadius": 0.23,
+        "contactType": "embedded",
+        "embedDepth": 0.35,
+        "gapTolerance": 0.03,
+        "evidenceRefs": [
+          "trunk-fork",
+          "left-canopy"
+        ]
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "articulated",
+        "pivot": {
+          "mode": "socket",
+          "localPosition": [
+            -0.25,
+            0.6,
+            0
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "confidence": 0.9
+        },
+        "transformChannels": {
+          "rotate": true,
+          "bend": true,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [
+          {
+            "id": "left-outer",
+            "localPosition": [
+              -2.25,
+              3.15,
+              0.1
+            ],
+            "localRotation": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "id": "left-rear",
+            "localPosition": [
+              -1.2,
+              2.5,
+              -0.2
+            ],
+            "localRotation": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "collider": {
+          "type": "capsule",
+          "offset": [
+            -1.725,
+            2.325,
+            0.125
+          ],
+          "scale": [
+            0.55,
+            2.9,
+            0.55
+          ],
+          "isTrigger": false
+        },
+        "constraints": [
+          "sway under 7 degrees"
+        ],
+        "destruction": {
+          "breakable": true,
+          "fractureGroup": "left-primary",
+          "seamRefs": [
+            "left-fork"
+          ],
+          "detachableFragments": [
+            "branch-left-outer"
+          ],
+          "breakImpulse": 8,
+          "debrisMaterial": "bark"
+        }
+      },
+      "material": "bark",
+      "materialLayers": [
+        "bark",
+        "gold-energy"
+      ],
+      "deformations": [
+        "taper 0.62 to 0.23",
+        "curve upward"
+      ],
+      "joints": [
+        "left-fork",
+        "left-outer",
+        "left-rear"
+      ],
+      "seams": [
+        "left-fork"
+      ],
+      "localFeatures": [
+        {
+          "id": "left-primary-energy",
+          "type": "emissive groove",
+          "placement": "upper-facing branch side",
+          "size": "0.06 unit average width",
+          "geometryEffect": "shallow curve",
+          "materialEffect": "gold emission",
+          "confidence": 0.84
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.3,
+        "microRoughness": 0.6,
+        "bumpAmplitude": 0.06,
+        "normalPattern": "branch-aligned bark",
+        "displacementPattern": "subtle taper ridges",
+        "occlusionPattern": "socket cavity",
+        "edgeWearPattern": "warm ridge tops",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "trunk-fork",
+        "left-canopy"
+      ],
+      "details": [
+        "primary left silhouette branch"
+      ],
+      "fidelityTier": "structural-pass"
+    },
+    {
+      "id": "branch-right-primary",
+      "name": "Right primary bough",
+      "level": "meso",
+      "role": "branch",
+      "importance": 0.95,
+      "confidence": 0.88,
+      "primitive": "cylinder",
+      "geometryDescriptor": {
+        "topologyIntent": "root-to-tip tapered branch with curved centerline refinement",
+        "edgeTreatment": {
+          "type": "organic",
+          "bevelRadius": 0.05,
+          "segments": 2
+        },
+        "deformationStack": [
+          "upward arc",
+          "minor rear sweep"
+        ],
+        "uvStrategy": "branch-aligned cylindrical",
+        "normalStrategy": "smooth plus bark normal"
+      },
+      "parent": "root",
+      "attachment": {
+        "parentId": "root",
+        "parentSocket": "right-fork",
+        "localStart": [
+          0.25,
+          0.6,
+          0
+        ],
+        "localEnd": [
+          3.55,
+          5.35,
+          0.15
+        ],
+        "baseRadius": 0.6,
+        "endRadius": 0.22,
+        "contactType": "embedded",
+        "embedDepth": 0.35,
+        "gapTolerance": 0.03,
+        "evidenceRefs": [
+          "trunk-fork",
+          "right-canopy"
+        ]
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "articulated",
+        "pivot": {
+          "mode": "socket",
+          "localPosition": [
+            0.25,
+            0.6,
+            0
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "confidence": 0.9
+        },
+        "transformChannels": {
+          "rotate": true,
+          "bend": true,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [
+          {
+            "id": "right-outer",
+            "localPosition": [
+              2.2,
+              3.2,
+              0.1
+            ],
+            "localRotation": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "id": "right-rear",
+            "localPosition": [
+              1.1,
+              2.45,
+              -0.25
+            ],
+            "localRotation": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "collider": {
+          "type": "capsule",
+          "offset": [
+            1.65,
+            2.375,
+            0.075
+          ],
+          "scale": [
+            0.52,
+            2.9,
+            0.52
+          ],
+          "isTrigger": false
+        },
+        "constraints": [
+          "sway under 7 degrees"
+        ],
+        "destruction": {
+          "breakable": true,
+          "fractureGroup": "right-primary",
+          "seamRefs": [
+            "right-fork"
+          ],
+          "detachableFragments": [
+            "branch-right-outer"
+          ],
+          "breakImpulse": 8,
+          "debrisMaterial": "bark"
+        }
+      },
+      "material": "bark",
+      "materialLayers": [
+        "bark",
+        "gold-energy"
+      ],
+      "deformations": [
+        "taper 0.60 to 0.22",
+        "curve upward"
+      ],
+      "joints": [
+        "right-fork",
+        "right-outer",
+        "right-rear"
+      ],
+      "seams": [
+        "right-fork"
+      ],
+      "localFeatures": [
+        {
+          "id": "right-primary-energy",
+          "type": "emissive groove",
+          "placement": "inner branch edge",
+          "size": "0.05 unit average width",
+          "geometryEffect": "shallow curve",
+          "materialEffect": "gold emission",
+          "confidence": 0.84
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.3,
+        "microRoughness": 0.6,
+        "bumpAmplitude": 0.06,
+        "normalPattern": "branch-aligned bark",
+        "displacementPattern": "subtle taper ridges",
+        "occlusionPattern": "socket cavity",
+        "edgeWearPattern": "warm ridge tops",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "trunk-fork",
+        "right-canopy"
+      ],
+      "details": [
+        "primary right silhouette branch"
+      ],
+      "fidelityTier": "structural-pass"
+    },
+    {
+      "id": "branch-center-spire",
+      "name": "Center spire",
+      "level": "meso",
+      "role": "branch",
+      "importance": 0.92,
+      "confidence": 0.84,
+      "primitive": "cylinder",
+      "geometryDescriptor": {
+        "topologyIntent": "tall tapered center branch with two implied sub-forks",
+        "edgeTreatment": {
+          "type": "organic",
+          "bevelRadius": 0.04,
+          "segments": 2
+        },
+        "deformationStack": [
+          "gentle right bend",
+          "narrow terminal fork"
+        ],
+        "uvStrategy": "branch-aligned cylindrical",
+        "normalStrategy": "smooth plus bark normal"
+      },
+      "parent": "root",
+      "attachment": {
+        "parentId": "root",
+        "parentSocket": "center-spire",
+        "localStart": [
+          0,
+          0.8,
+          0
+        ],
+        "localEnd": [
+          0.35,
+          7.1,
+          -0.1
+        ],
+        "baseRadius": 0.52,
+        "endRadius": 0.14,
+        "contactType": "embedded",
+        "embedDepth": 0.32,
+        "gapTolerance": 0.03,
+        "evidenceRefs": [
+          "trunk-fork",
+          "upper-canopy"
+        ]
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "articulated",
+        "pivot": {
+          "mode": "socket",
+          "localPosition": [
+            0,
+            0.8,
+            0
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "confidence": 0.86
+        },
+        "transformChannels": {
+          "rotate": true,
+          "bend": true,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [
+          {
+            "id": "spire-tip",
+            "localPosition": [
+              0.35,
+              7.1,
+              -0.1
+            ],
+            "localRotation": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "collider": {
+          "type": "capsule",
+          "offset": [
+            0.175,
+            3.15,
+            -0.05
+          ],
+          "scale": [
+            0.45,
+            3.16,
+            0.45
+          ],
+          "isTrigger": false
+        },
+        "constraints": [
+          "sway under 5 degrees"
+        ],
+        "destruction": {
+          "breakable": true,
+          "fractureGroup": "center-spire",
+          "seamRefs": [
+            "center-fork"
+          ],
+          "detachableFragments": [],
+          "breakImpulse": 9,
+          "debrisMaterial": "bark"
+        }
+      },
+      "material": "bark",
+      "materialLayers": [
+        "bark",
+        "gold-energy"
+      ],
+      "deformations": [
+        "taper 0.52 to 0.14",
+        "two subtle fork bulges"
+      ],
+      "joints": [
+        "center-spire"
+      ],
+      "seams": [
+        "center-fork"
+      ],
+      "localFeatures": [
+        {
+          "id": "spire-glyph-band",
+          "type": "carved line",
+          "placement": "front-facing middle third",
+          "size": "thin abstract code marks",
+          "geometryEffect": "decal or inset",
+          "materialEffect": "soft gold emission",
+          "confidence": 0.68
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.28,
+        "microRoughness": 0.58,
+        "bumpAmplitude": 0.05,
+        "normalPattern": "vertical bark",
+        "displacementPattern": "narrow ridges",
+        "occlusionPattern": "fork cavities",
+        "edgeWearPattern": "warm ridges",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "trunk-fork",
+        "upper-canopy"
+      ],
+      "details": [
+        "highest branch landmark"
+      ],
+      "fidelityTier": "structural-pass"
+    },
+    {
+      "id": "branch-left-outer",
+      "name": "Left outer fan branch",
+      "level": "meso",
+      "role": "branch",
+      "importance": 0.8,
+      "confidence": 0.75,
+      "primitive": "cylinder",
+      "parent": "branch-left-primary",
+      "attachment": {
+        "parentId": "branch-left-primary",
+        "parentSocket": "left-outer",
+        "localStart": [
+          -2.25,
+          3.15,
+          0.1
+        ],
+        "localEnd": [
+          -5.1,
+          5.1,
+          0.35
+        ],
+        "baseRadius": 0.3,
+        "endRadius": 0.08,
+        "contactType": "embedded",
+        "embedDepth": 0.2,
+        "gapTolerance": 0.03,
+        "evidenceRefs": [
+          "left-canopy"
+        ]
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "articulated",
+        "pivot": {
+          "mode": "socket",
+          "localPosition": [
+            -2.25,
+            3.15,
+            0.1
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "confidence": 0.75
+        },
+        "transformChannels": {
+          "rotate": true,
+          "bend": true,
+          "visibility": true
+        },
+        "sockets": [
+          {
+            "id": "left-lights",
+            "localPosition": [
+              -4.1,
+              4.55,
+              0.25
+            ],
+            "localRotation": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "collider": {
+          "type": "capsule",
+          "offset": [
+            -1.4,
+            0.95,
+            0.12
+          ],
+          "scale": [
+            0.25,
+            1.8,
+            0.25
+          ],
+          "isTrigger": false
+        },
+        "constraints": [
+          "sway under 10 degrees"
+        ],
+        "destruction": {
+          "breakable": true,
+          "fractureGroup": "left-outer",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 5,
+          "debrisMaterial": "bark"
+        }
+      },
+      "material": "bark",
+      "materialLayers": [
+        "bark",
+        "gold-energy"
+      ],
+      "deformations": [
+        "outer horizontal sweep",
+        "strong taper"
+      ],
+      "joints": [
+        "left-outer"
+      ],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "left-outer-light-sockets",
+          "type": "socket cluster",
+          "placement": "outer half",
+          "size": "six to ten effect anchors",
+          "geometryEffect": "named sockets",
+          "materialEffect": "none",
+          "confidence": 0.72
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.25,
+        "microRoughness": 0.55,
+        "bumpAmplitude": 0.04,
+        "normalPattern": "fine bark",
+        "displacementPattern": "",
+        "occlusionPattern": "joint cavity",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "left-canopy"
+      ],
+      "details": [
+        "widest left silhouette reach"
+      ],
+      "fidelityTier": "structural-pass"
+    },
+    {
+      "id": "branch-right-outer",
+      "name": "Right outer fan branch",
+      "level": "meso",
+      "role": "branch",
+      "importance": 0.8,
+      "confidence": 0.75,
+      "primitive": "cylinder",
+      "parent": "branch-right-primary",
+      "attachment": {
+        "parentId": "branch-right-primary",
+        "parentSocket": "right-outer",
+        "localStart": [
+          2.2,
+          3.2,
+          0.1
+        ],
+        "localEnd": [
+          4.8,
+          5.25,
+          0.25
+        ],
+        "baseRadius": 0.28,
+        "endRadius": 0.08,
+        "contactType": "embedded",
+        "embedDepth": 0.2,
+        "gapTolerance": 0.03,
+        "evidenceRefs": [
+          "right-canopy"
+        ]
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "articulated",
+        "pivot": {
+          "mode": "socket",
+          "localPosition": [
+            2.2,
+            3.2,
+            0.1
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ],
+          "confidence": 0.75
+        },
+        "transformChannels": {
+          "rotate": true,
+          "bend": true,
+          "visibility": true
+        },
+        "sockets": [
+          {
+            "id": "right-lights",
+            "localPosition": [
+              3.9,
+              4.65,
+              0.2
+            ],
+            "localRotation": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "collider": {
+          "type": "capsule",
+          "offset": [
+            1.3,
+            1.0,
+            0.08
+          ],
+          "scale": [
+            0.24,
+            1.7,
+            0.24
+          ],
+          "isTrigger": false
+        },
+        "constraints": [
+          "sway under 10 degrees"
+        ],
+        "destruction": {
+          "breakable": true,
+          "fractureGroup": "right-outer",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 5,
+          "debrisMaterial": "bark"
+        }
+      },
+      "material": "bark",
+      "materialLayers": [
+        "bark",
+        "gold-energy"
+      ],
+      "deformations": [
+        "outer upward sweep",
+        "strong taper"
+      ],
+      "joints": [
+        "right-outer"
+      ],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "right-cyan-sockets",
+          "type": "socket cluster",
+          "placement": "outer upper half",
+          "size": "cyan leaf and node anchors",
+          "geometryEffect": "named sockets",
+          "materialEffect": "none",
+          "confidence": 0.76
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.25,
+        "microRoughness": 0.55,
+        "bumpAmplitude": 0.04,
+        "normalPattern": "fine bark",
+        "displacementPattern": "",
+        "occlusionPattern": "joint cavity",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "right-canopy"
+      ],
+      "details": [
+        "compact right silhouette reach"
+      ],
+      "fidelityTier": "structural-pass"
+    },
+    {
+      "id": "branch-left-rear",
+      "name": "Left rear depth branch",
+      "level": "meso",
+      "role": "branch",
+      "importance": 0.62,
+      "confidence": 0.55,
+      "primitive": "cylinder",
+      "parent": "branch-left-primary",
+      "attachment": {
+        "parentId": "branch-left-primary",
+        "parentSocket": "left-rear",
+        "localStart": [
+          -1.2,
+          2.5,
+          -0.2
+        ],
+        "localEnd": [
+          -3.2,
+          4.7,
+          -1.65
+        ],
+        "baseRadius": 0.24,
+        "endRadius": 0.07,
+        "contactType": "embedded",
+        "embedDepth": 0.16,
+        "gapTolerance": 0.04,
+        "evidenceRefs": [
+          "upper-canopy"
+        ]
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "articulated",
+        "pivot": {
+          "mode": "socket",
+          "localPosition": [
+            -1.2,
+            2.5,
+            -0.2
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.58
+        },
+        "transformChannels": {
+          "rotate": true,
+          "bend": true,
+          "visibility": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "capsule",
+          "offset": [
+            -1,
+            1.1,
+            -0.72
+          ],
+          "scale": [
+            0.2,
+            1.45,
+            0.2
+          ],
+          "isTrigger": false
+        },
+        "constraints": [
+          "rear depth remains under 2 units"
+        ],
+        "destruction": {
+          "breakable": true,
+          "fractureGroup": "left-rear",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 4,
+          "debrisMaterial": "bark"
+        }
+      },
+      "material": "bark",
+      "materialLayers": [
+        "bark"
+      ],
+      "deformations": [
+        "rearward arc"
+      ],
+      "joints": [
+        "left-rear"
+      ],
+      "seams": [],
+      "localFeatures": [],
+      "surfaceDetail": {
+        "macroRoughness": 0.22,
+        "microRoughness": 0.5,
+        "bumpAmplitude": 0.035,
+        "normalPattern": "fine bark",
+        "displacementPattern": "",
+        "occlusionPattern": "rear shadow",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "upper-canopy"
+      ],
+      "details": [
+        "inferred depth branch"
+      ],
+      "fidelityTier": "structural-pass"
+    },
+    {
+      "id": "branch-right-rear",
+      "name": "Right rear depth branch",
+      "level": "meso",
+      "role": "branch",
+      "importance": 0.62,
+      "confidence": 0.55,
+      "primitive": "cylinder",
+      "parent": "branch-right-primary",
+      "attachment": {
+        "parentId": "branch-right-primary",
+        "parentSocket": "right-rear",
+        "localStart": [
+          1.1,
+          2.45,
+          -0.25
+        ],
+        "localEnd": [
+          3.0,
+          4.8,
+          -1.55
+        ],
+        "baseRadius": 0.23,
+        "endRadius": 0.07,
+        "contactType": "embedded",
+        "embedDepth": 0.16,
+        "gapTolerance": 0.04,
+        "evidenceRefs": [
+          "upper-canopy"
+        ]
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "articulated",
+        "pivot": {
+          "mode": "socket",
+          "localPosition": [
+            1.1,
+            2.45,
+            -0.25
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.58
+        },
+        "transformChannels": {
+          "rotate": true,
+          "bend": true,
+          "visibility": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "capsule",
+          "offset": [
+            0.95,
+            1.18,
+            -0.65
+          ],
+          "scale": [
+            0.2,
+            1.45,
+            0.2
+          ],
+          "isTrigger": false
+        },
+        "constraints": [
+          "rear depth remains under 2 units"
+        ],
+        "destruction": {
+          "breakable": true,
+          "fractureGroup": "right-rear",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 4,
+          "debrisMaterial": "bark"
+        }
+      },
+      "material": "bark",
+      "materialLayers": [
+        "bark"
+      ],
+      "deformations": [
+        "rearward arc"
+      ],
+      "joints": [
+        "right-rear"
+      ],
+      "seams": [],
+      "localFeatures": [],
+      "surfaceDetail": {
+        "macroRoughness": 0.22,
+        "microRoughness": 0.5,
+        "bumpAmplitude": 0.035,
+        "normalPattern": "fine bark",
+        "displacementPattern": "",
+        "occlusionPattern": "rear shadow",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "upper-canopy"
+      ],
+      "details": [
+        "inferred depth branch"
+      ],
+      "fidelityTier": "structural-pass"
+    },
+    {
+      "id": "root-buttress-left",
+      "name": "Left root buttress",
+      "level": "meso",
+      "role": "root",
+      "importance": 0.82,
+      "confidence": 0.7,
+      "primitive": "curve-sweep",
+      "parent": "root",
+      "attachment": {
+        "parentId": "root",
+        "parentSocket": "root-left",
+        "localStart": [
+          -0.5,
+          -3.1,
+          0.1
+        ],
+        "localEnd": [
+          -2.7,
+          -3.65,
+          0.75
+        ],
+        "baseRadius": 0.48,
+        "endRadius": 0.12,
+        "contactType": "embedded",
+        "embedDepth": 0.25,
+        "gapTolerance": 0.03,
+        "evidenceRefs": [
+          "root-ground"
+        ]
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static",
+        "pivot": {
+          "mode": "socket",
+          "localPosition": [
+            -0.5,
+            -3.1,
+            0.1
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.72
+        },
+        "transformChannels": {
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "capsule",
+          "offset": [
+            -1.1,
+            -0.28,
+            0.32
+          ],
+          "scale": [
+            0.4,
+            1.3,
+            0.4
+          ],
+          "isTrigger": false
+        },
+        "constraints": [
+          "tip remains at ground plane"
+        ],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "root-system",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0,
+          "debrisMaterial": "bark"
+        }
+      },
+      "material": "bark",
+      "materialLayers": [
+        "bark",
+        "gold-energy"
+      ],
+      "deformations": [
+        "flatten toward ground",
+        "outward curve"
+      ],
+      "joints": [
+        "root-left"
+      ],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "left-root-glow",
+          "type": "emissive groove",
+          "placement": "upper ridge",
+          "size": "narrow path",
+          "geometryEffect": "curve",
+          "materialEffect": "gold fade",
+          "confidence": 0.65
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.4,
+        "microRoughness": 0.68,
+        "bumpAmplitude": 0.09,
+        "normalPattern": "root-aligned bark",
+        "displacementPattern": "ground-contact ridges",
+        "occlusionPattern": "strong contact AO",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "root-ground"
+      ],
+      "details": [
+        "ground silhouette anchor"
+      ],
+      "fidelityTier": "structural-pass"
+    },
+    {
+      "id": "root-buttress-right",
+      "name": "Right root buttress",
+      "level": "meso",
+      "role": "root",
+      "importance": 0.82,
+      "confidence": 0.7,
+      "primitive": "curve-sweep",
+      "parent": "root",
+      "attachment": {
+        "parentId": "root",
+        "parentSocket": "root-right",
+        "localStart": [
+          0.5,
+          -3.1,
+          0.1
+        ],
+        "localEnd": [
+          2.55,
+          -3.62,
+          0.7
+        ],
+        "baseRadius": 0.46,
+        "endRadius": 0.12,
+        "contactType": "embedded",
+        "embedDepth": 0.25,
+        "gapTolerance": 0.03,
+        "evidenceRefs": [
+          "root-ground"
+        ]
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static",
+        "pivot": {
+          "mode": "socket",
+          "localPosition": [
+            0.5,
+            -3.1,
+            0.1
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.72
+        },
+        "transformChannels": {
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "capsule",
+          "offset": [
+            1.02,
+            -0.26,
+            0.3
+          ],
+          "scale": [
+            0.4,
+            1.25,
+            0.4
+          ],
+          "isTrigger": false
+        },
+        "constraints": [
+          "tip remains at ground plane"
+        ],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "root-system",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0,
+          "debrisMaterial": "bark"
+        }
+      },
+      "material": "bark",
+      "materialLayers": [
+        "bark",
+        "gold-energy"
+      ],
+      "deformations": [
+        "flatten toward ground",
+        "outward curve"
+      ],
+      "joints": [
+        "root-right"
+      ],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "right-root-glow",
+          "type": "emissive groove",
+          "placement": "upper ridge",
+          "size": "narrow path",
+          "geometryEffect": "curve",
+          "materialEffect": "gold fade",
+          "confidence": 0.65
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.4,
+        "microRoughness": 0.68,
+        "bumpAmplitude": 0.09,
+        "normalPattern": "root-aligned bark",
+        "displacementPattern": "ground-contact ridges",
+        "occlusionPattern": "strong contact AO",
+        "edgeWearPattern": "",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "root-ground"
+      ],
+      "details": [
+        "ground silhouette anchor"
+      ],
+      "fidelityTier": "structural-pass"
+    },
+    {
+      "id": "energy-core",
+      "name": "Central gold energy conduit",
+      "level": "meso",
+      "role": "effect-emitter",
+      "importance": 0.96,
+      "confidence": 0.88,
+      "primitive": "tube",
+      "parent": "root",
+      "attachment": {
+        "parentId": "root",
+        "parentSocket": "energy-core",
+        "localStart": [
+          0,
+          -3.0,
+          0.42
+        ],
+        "localEnd": [
+          0.12,
+          3.9,
+          0.48
+        ],
+        "baseRadius": 0.16,
+        "endRadius": 0.07,
+        "contactType": "surface-contact",
+        "overlap": 0.08,
+        "gapTolerance": 0.02,
+        "evidenceRefs": [
+          "root-ground",
+          "trunk-fork"
+        ]
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "effect-emitter",
+        "pivot": {
+          "mode": "socket",
+          "localPosition": [
+            0,
+            -3.0,
+            0.42
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.9
+        },
+        "transformChannels": {
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [
+          {
+            "id": "pulse-origin",
+            "localPosition": [
+              0,
+              -3.0,
+              0.42
+            ],
+            "localRotation": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "id": "pulse-split",
+            "localPosition": [
+              0.05,
+              1.7,
+              0.45
+            ],
+            "localRotation": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "collider": {
+          "type": "trigger",
+          "offset": [
+            0,
+            0.45,
+            0.45
+          ],
+          "scale": [
+            0.25,
+            3.45,
+            0.25
+          ],
+          "isTrigger": true
+        },
+        "constraints": [
+          "attached to front bark surface"
+        ],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "energy-network",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0,
+          "debrisMaterial": "gold-energy"
+        }
+      },
+      "material": "gold-energy",
+      "materialLayers": [
+        "gold-energy"
+      ],
+      "deformations": [
+        "slight lateral meander",
+        "fork into primary branches during form refinement"
+      ],
+      "joints": [
+        "energy-core"
+      ],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "root-energy-bloom",
+          "type": "raised light core",
+          "placement": "lowest 1.2 units",
+          "size": "0.3 unit center fading outward",
+          "geometryEffect": "tube plus sprite halo",
+          "materialEffect": "high gold emission",
+          "confidence": 0.9
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.05,
+        "microRoughness": 0.1,
+        "bumpAmplitude": 0.0,
+        "normalPattern": "",
+        "displacementPattern": "",
+        "occlusionPattern": "",
+        "edgeWearPattern": "",
+        "notes": "Emission intensity decreases from root to crown and must not flatten bark contrast."
+      },
+      "evidenceRefs": [
+        "root-ground",
+        "trunk-fork",
+        "upper-canopy"
+      ],
+      "details": [
+        "animated pulse path"
+      ],
+      "fidelityTier": "structural-pass"
+    }
+  ],
+  "materials": [
+    {
+      "id": "bark",
+      "name": "Warm carved bark",
+      "qualityTier": "hero",
+      "type": "physical",
+      "shaderModel": "MeshPhysicalMaterial",
+      "baseColor": "#4A2B18",
+      "color": "#4A2B18",
+      "albedo": {
+        "dominant": "#4A2B18",
+        "secondary": [
+          "#2B170F",
+          "#6F4324",
+          "#9A6333"
+        ],
+        "samplingNotes": "Preserve warm brown midtones; do not sample the darkest baked shadows as base albedo."
+      },
+      "colorVariation": {
+        "palette": [
+          "#2B170F",
+          "#4A2B18",
+          "#6F4324",
+          "#9A6333"
+        ],
+        "pattern": "vertical bark plates and warm ridge tops",
+        "amplitude": 0.24,
+        "heightCorrelation": 0.48
+      },
+      "textureResolution": 2048,
+      "textureProjection": {
+        "mode": "cylindrical",
+        "repeat": [
+          2.0,
+          5.0
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "0.25 world-unit bark plates remain consistent across trunk and branch taper."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 1.8,
+          "amplitude": 0.34,
+          "role": "broad trunk value and root-flare breakup"
+        },
+        {
+          "id": "meso",
+          "frequency": 14.0,
+          "amplitude": 0.2,
+          "role": "longitudinal plates and carved channels"
+        },
+        {
+          "id": "micro",
+          "frequency": 72.0,
+          "amplitude": 0.055,
+          "role": "fine pore and highlight breakup"
+        }
+      ],
+      "roughness": {
+        "base": 0.68,
+        "variation": 0.16,
+        "map": "independent-bark-roughness-field",
+        "localResponse": "rough cavities, smoother warm ridge tops, slightly polished energy-channel edges"
+      },
+      "metalness": {
+        "base": 0.0,
+        "variation": 0.0
+      },
+      "normal": {
+        "pattern": "independent vertical bark height field",
+        "strength": 0.58,
+        "scale": 28.0,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "fine bark pores",
+        "amplitude": 0.045,
+        "scale": 64.0
+      },
+      "displacement": {
+        "pattern": "low-frequency root and plate relief",
+        "amplitude": 0.06,
+        "scale": 4.0,
+        "silhouetteAffects": true
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.42,
+        "contactShadowBias": 0.5,
+        "notes": "Concentrate AO inside branch sockets, root contacts, and carved grooves."
+      },
+      "wear": {
+        "edgeWear": 0.1,
+        "scratches": [
+          "sparse branch-aligned shallow marks"
+        ],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.12,
+        "cavityBias": 0.7,
+        "color": "#1B100B"
+      },
+      "emissive": {
+        "color": "#6B2A0A",
+        "intensity": 0.14
+      },
+      "clearcoat": {
+        "base": 0.04
+      },
+      "opacity": {
+        "base": 1.0
+      },
+      "localOverrides": [
+        {
+          "id": "root-warmth",
+          "region": "lowest 1.5 units",
+          "changes": "raise albedo warmth and lower roughness by 0.08 near gold core",
+          "strength": 0.45,
+          "evidenceRefs": [
+            "root-ground"
+          ]
+        },
+        {
+          "id": "fork-cavities",
+          "region": "first and second branch forks",
+          "changes": "deepen AO and darken albedo without reaching black",
+          "strength": 0.5,
+          "evidenceRefs": [
+            "trunk-fork"
+          ]
+        }
+      ],
+      "shaderNotes": [
+        "Keep bark and gold emission separate.",
+        "Use warm fill light so shaded bark remains above near-black.",
+        "Use triplanar fallback at branch forks to avoid cylindrical seams."
+      ],
+      "notes": "The prior dark-tree failure is explicitly rejected: bark must remain readable under neutral lighting."
+    },
+    {
+      "id": "gold-energy",
+      "name": "Golden code energy",
+      "qualityTier": "hero",
+      "type": "physical-emissive",
+      "shaderModel": "MeshPhysicalMaterial plus bloom-ready emissive output",
+      "baseColor": "#D27A20",
+      "color": "#D27A20",
+      "albedo": {
+        "dominant": "#D27A20",
+        "secondary": [
+          "#FFB23F",
+          "#FFD477",
+          "#FFF2B0"
+        ],
+        "samplingNotes": "Core approaches warm white; edges remain orange-gold."
+      },
+      "colorVariation": {
+        "palette": [
+          "#D27A20",
+          "#FFB23F",
+          "#FFD477",
+          "#FFF2B0"
+        ],
+        "pattern": "root-to-tip pulse gradient",
+        "amplitude": 0.32,
+        "heightCorrelation": 0.2
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "curve-distance",
+        "repeat": [
+          1.0,
+          6.0
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "pulse spacing remains stable along each spline."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 1.0,
+          "amplitude": 0.28,
+          "role": "root-to-tip intensity envelope"
+        },
+        {
+          "id": "meso",
+          "frequency": 8.0,
+          "amplitude": 0.12,
+          "role": "flow pulses and glyph grouping"
+        },
+        {
+          "id": "micro",
+          "frequency": 48.0,
+          "amplitude": 0.035,
+          "role": "subtle edge scintillation"
+        }
+      ],
+      "roughness": {
+        "base": 0.28,
+        "variation": 0.08,
+        "map": "independent-energy-roughness-field",
+        "localResponse": "slightly smoother bright core"
+      },
+      "metalness": {
+        "base": 0.0,
+        "variation": 0.0
+      },
+      "normal": {
+        "pattern": "very shallow independent flow ripples",
+        "strength": 0.08,
+        "scale": 20.0,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "none",
+        "amplitude": 0.0,
+        "scale": 1.0
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0.0,
+        "scale": 1.0,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.04,
+        "contactShadowBias": 0.05,
+        "notes": "Energy is self-luminous; avoid dirty AO."
+      },
+      "wear": {
+        "edgeWear": 0.0,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.0,
+        "cavityBias": 0.0,
+        "color": "#5A2605"
+      },
+      "emissive": {
+        "color": "#FFD477",
+        "intensity": 4.2
+      },
+      "clearcoat": {
+        "base": 0.18
+      },
+      "opacity": {
+        "base": 1.0
+      },
+      "localOverrides": [
+        {
+          "id": "root-core",
+          "region": "root energy origin",
+          "changes": "raise emission to warm white and broaden halo",
+          "strength": 0.9,
+          "evidenceRefs": [
+            "root-ground"
+          ]
+        },
+        {
+          "id": "tip-fade",
+          "region": "outer branch tips",
+          "changes": "reduce emission by 35 percent and narrow path width",
+          "strength": 0.55,
+          "evidenceRefs": [
+            "upper-canopy"
+          ]
+        }
+      ],
+      "shaderNotes": [
+        "Use additive bloom only after tone mapping is stable.",
+        "Clamp bloom so branch and bark edges remain readable.",
+        "Animate pulse in material state rather than changing geometry."
+      ],
+      "notes": "Identity-defining effect material."
+    },
+    {
+      "id": "amber-leaf",
+      "name": "Amber luminous leaves",
+      "qualityTier": "hero",
+      "type": "thin-translucent",
+      "shaderModel": "MeshPhysicalMaterial with alpha cards or thin extruded leaves",
+      "baseColor": "#F2A545",
+      "color": "#F2A545",
+      "albedo": {
+        "dominant": "#F2A545",
+        "secondary": [
+          "#D87927",
+          "#FFC867",
+          "#FFF0B4"
+        ],
+        "samplingNotes": "Warm amber dominates the crown with pale gold tips."
+      },
+      "colorVariation": {
+        "palette": [
+          "#D87927",
+          "#F2A545",
+          "#FFC867",
+          "#FFF0B4"
+        ],
+        "pattern": "cluster and height-based hue variation",
+        "amplitude": 0.28,
+        "heightCorrelation": 0.18
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "planar-per-leaf",
+        "repeat": [
+          1.0,
+          1.0
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "one leaf texture per card with deterministic atlas rotation."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 1.4,
+          "amplitude": 0.22,
+          "role": "cluster-level brightness variation"
+        },
+        {
+          "id": "meso",
+          "frequency": 10.0,
+          "amplitude": 0.1,
+          "role": "central vein and lobe variation"
+        },
+        {
+          "id": "micro",
+          "frequency": 52.0,
+          "amplitude": 0.025,
+          "role": "subtle thin-surface highlight breakup"
+        }
+      ],
+      "roughness": {
+        "base": 0.48,
+        "variation": 0.14,
+        "map": "independent-leaf-roughness-field",
+        "localResponse": "smoother central vein and brighter thin edges"
+      },
+      "metalness": {
+        "base": 0.0,
+        "variation": 0.0
+      },
+      "normal": {
+        "pattern": "central vein and shallow side veins",
+        "strength": 0.24,
+        "scale": 18.0,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "leaf vein microrelief",
+        "amplitude": 0.012,
+        "scale": 32.0
+      },
+      "displacement": {
+        "pattern": "slight leaf curl",
+        "amplitude": 0.018,
+        "scale": 2.0,
+        "silhouetteAffects": true
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.12,
+        "contactShadowBias": 0.18,
+        "notes": "Cluster AO only; leaf faces remain luminous."
+      },
+      "wear": {
+        "edgeWear": 0.0,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.0,
+        "cavityBias": 0.0,
+        "color": "#6E2B12"
+      },
+      "emissive": {
+        "color": "#FFC867",
+        "intensity": 1.8
+      },
+      "transmission": {
+        "base": 0.08
+      },
+      "opacity": {
+        "base": 0.92
+      },
+      "alpha": {
+        "cutoff": 0.35
+      },
+      "doubleSided": true,
+      "localOverrides": [
+        {
+          "id": "pale-tip",
+          "region": "upper and outer leaf tips",
+          "changes": "shift toward pale gold and raise emission",
+          "strength": 0.35,
+          "evidenceRefs": [
+            "upper-canopy"
+          ]
+        }
+      ],
+      "shaderNotes": [
+        "Use deterministic instancing.",
+        "Avoid one opaque canopy mesh.",
+        "Limit overdraw with alpha cutoff and LOD."
+      ],
+      "notes": "Approximately 75 percent of luminous foliage."
+    },
+    {
+      "id": "cyan-leaf",
+      "name": "Cyan constellation leaves",
+      "qualityTier": "hero",
+      "type": "thin-emissive",
+      "shaderModel": "MeshPhysicalMaterial with emissive thin cards and point-node companions",
+      "baseColor": "#38CDE0",
+      "color": "#38CDE0",
+      "albedo": {
+        "dominant": "#38CDE0",
+        "secondary": [
+          "#1A8FA8",
+          "#5EF7FF",
+          "#B6FFFF"
+        ],
+        "samplingNotes": "Cyan remains a sparse accent rather than replacing amber."
+      },
+      "colorVariation": {
+        "palette": [
+          "#1A8FA8",
+          "#38CDE0",
+          "#5EF7FF",
+          "#B6FFFF"
+        ],
+        "pattern": "constellation-group variation",
+        "amplitude": 0.3,
+        "heightCorrelation": 0.2
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "planar-per-leaf",
+        "repeat": [
+          1.0,
+          1.0
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "one leaf texture per card with deterministic atlas rotation."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 1.2,
+          "amplitude": 0.2,
+          "role": "constellation-group intensity"
+        },
+        {
+          "id": "meso",
+          "frequency": 9.0,
+          "amplitude": 0.09,
+          "role": "leaf vein and node variation"
+        },
+        {
+          "id": "micro",
+          "frequency": 48.0,
+          "amplitude": 0.02,
+          "role": "edge scintillation"
+        }
+      ],
+      "roughness": {
+        "base": 0.38,
+        "variation": 0.1,
+        "map": "independent-cyan-leaf-roughness-field",
+        "localResponse": "slightly smoother node-facing surfaces"
+      },
+      "metalness": {
+        "base": 0.0,
+        "variation": 0.0
+      },
+      "normal": {
+        "pattern": "central vein",
+        "strength": 0.18,
+        "scale": 18.0,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "fine vein",
+        "amplitude": 0.008,
+        "scale": 30.0
+      },
+      "displacement": {
+        "pattern": "slight leaf curl",
+        "amplitude": 0.014,
+        "scale": 2.0,
+        "silhouetteAffects": true
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.08,
+        "contactShadowBias": 0.12,
+        "notes": "Keep cyan accents bright and clean."
+      },
+      "wear": {
+        "edgeWear": 0.0,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.0,
+        "cavityBias": 0.0,
+        "color": "#07333A"
+      },
+      "emissive": {
+        "color": "#5EF7FF",
+        "intensity": 2.4
+      },
+      "transmission": {
+        "base": 0.1
+      },
+      "opacity": {
+        "base": 0.94
+      },
+      "alpha": {
+        "cutoff": 0.35
+      },
+      "doubleSided": true,
+      "localOverrides": [
+        {
+          "id": "constellation-node",
+          "region": "selected cyan leaf clusters",
+          "changes": "replace leaf card with brighter sphere node and thin connecting segment",
+          "strength": 0.3,
+          "evidenceRefs": [
+            "left-canopy",
+            "right-canopy"
+          ]
+        }
+      ],
+      "shaderNotes": [
+        "Keep cyan coverage under one quarter of luminous foliage.",
+        "Use a separate seed from amber leaves.",
+        "Group nodes into semantic constellations rather than uniform random scatter."
+      ],
+      "notes": "Sparse identity accent."
+    }
+  ],
+  "sculptDNA": {
+    "schemaVersion": "1.0",
+    "enabled": true,
+    "strategy": "constraint-aware semantic variation",
+    "parameters": [
+      {
+        "id": "bark-roughness",
+        "label": "bark roughness",
+        "target": {
+          "kind": "material",
+          "id": "bark",
+          "path": "roughness.base"
+        },
+        "operation": "set",
+        "distribution": "triangular",
+        "range": {
+          "min": 0.56,
+          "max": 0.8
+        },
+        "precision": 4,
+        "semanticEffects": [
+          "highlight width",
+          "surface age",
+          "material readability"
+        ]
+      },
+      {
+        "id": "bark-dominant-palette",
+        "label": "bark dominant palette color",
+        "target": {
+          "kind": "material",
+          "id": "bark",
+          "path": "colorVariation.palette.0"
+        },
+        "operation": "set",
+        "distribution": "choice",
+        "choices": [
+          "#2B170F",
+          "#4A2B18",
+          "#6F4324",
+          "#9A6333"
+        ],
+        "semanticEffects": [
+          "palette family",
+          "local albedo variation"
+        ]
+      },
+      {
+        "id": "gold-energy-roughness",
+        "label": "gold-energy roughness",
+        "target": {
+          "kind": "material",
+          "id": "gold-energy",
+          "path": "roughness.base"
+        },
+        "operation": "set",
+        "distribution": "triangular",
+        "range": {
+          "min": 0.16,
+          "max": 0.4
+        },
+        "precision": 4,
+        "semanticEffects": [
+          "highlight width",
+          "surface age",
+          "material readability"
+        ]
+      },
+      {
+        "id": "gold-energy-dominant-palette",
+        "label": "gold-energy dominant palette color",
+        "target": {
+          "kind": "material",
+          "id": "gold-energy",
+          "path": "colorVariation.palette.0"
+        },
+        "operation": "set",
+        "distribution": "choice",
+        "choices": [
+          "#D27A20",
+          "#FFB23F",
+          "#FFD477",
+          "#FFF2B0"
+        ],
+        "semanticEffects": [
+          "palette family",
+          "local albedo variation"
+        ]
+      },
+      {
+        "id": "amber-leaf-roughness",
+        "label": "amber-leaf roughness",
+        "target": {
+          "kind": "material",
+          "id": "amber-leaf",
+          "path": "roughness.base"
+        },
+        "operation": "set",
+        "distribution": "triangular",
+        "range": {
+          "min": 0.36,
+          "max": 0.6
+        },
+        "precision": 4,
+        "semanticEffects": [
+          "highlight width",
+          "surface age",
+          "material readability"
+        ]
+      },
+      {
+        "id": "amber-leaf-dominant-palette",
+        "label": "amber-leaf dominant palette color",
+        "target": {
+          "kind": "material",
+          "id": "amber-leaf",
+          "path": "colorVariation.palette.0"
+        },
+        "operation": "set",
+        "distribution": "choice",
+        "choices": [
+          "#D87927",
+          "#F2A545",
+          "#FFC867",
+          "#FFF0B4"
+        ],
+        "semanticEffects": [
+          "palette family",
+          "local albedo variation"
+        ]
+      },
+      {
+        "id": "cyan-leaf-roughness",
+        "label": "cyan-leaf roughness",
+        "target": {
+          "kind": "material",
+          "id": "cyan-leaf",
+          "path": "roughness.base"
+        },
+        "operation": "set",
+        "distribution": "triangular",
+        "range": {
+          "min": 0.26,
+          "max": 0.5
+        },
+        "precision": 4,
+        "semanticEffects": [
+          "highlight width",
+          "surface age",
+          "material readability"
+        ]
+      },
+      {
+        "id": "cyan-leaf-dominant-palette",
+        "label": "cyan-leaf dominant palette color",
+        "target": {
+          "kind": "material",
+          "id": "cyan-leaf",
+          "path": "colorVariation.palette.0"
+        },
+        "operation": "set",
+        "distribution": "choice",
+        "choices": [
+          "#1A8FA8",
+          "#38CDE0",
+          "#5EF7FF",
+          "#B6FFFF"
+        ],
+        "semanticEffects": [
+          "palette family",
+          "local albedo variation"
+        ]
+      },
+      {
+        "id": "amber-leaf-clusters-count",
+        "label": "amber-leaf-clusters repetition count",
+        "target": {
+          "kind": "repetition",
+          "id": "amber-leaf-clusters",
+          "path": "count"
+        },
+        "operation": "set",
+        "distribution": "triangular",
+        "range": {
+          "min": 416,
+          "max": 624
+        },
+        "precision": 0,
+        "semanticEffects": [
+          "repetition density",
+          "draw-call and triangle budget"
+        ]
+      },
+      {
+        "id": "cyan-leaf-accents-count",
+        "label": "cyan-leaf-accents repetition count",
+        "target": {
+          "kind": "repetition",
+          "id": "cyan-leaf-accents",
+          "path": "count"
+        },
+        "operation": "set",
+        "distribution": "triangular",
+        "range": {
+          "min": 90,
+          "max": 134
+        },
+        "precision": 0,
+        "semanticEffects": [
+          "repetition density",
+          "draw-call and triangle budget"
+        ]
+      },
+      {
+        "id": "constellation-nodes-count",
+        "label": "constellation-nodes repetition count",
+        "target": {
+          "kind": "repetition",
+          "id": "constellation-nodes",
+          "path": "count"
+        },
+        "operation": "set",
+        "distribution": "triangular",
+        "range": {
+          "min": 26,
+          "max": 38
+        },
+        "precision": 0,
+        "semanticEffects": [
+          "repetition density",
+          "draw-call and triangle budget"
+        ]
+      },
+      {
+        "id": "hanging-light-strands-count",
+        "label": "hanging-light-strands repetition count",
+        "target": {
+          "kind": "repetition",
+          "id": "hanging-light-strands",
+          "path": "count"
+        },
+        "operation": "set",
+        "distribution": "triangular",
+        "range": {
+          "min": 14,
+          "max": 22
+        },
+        "precision": 0,
+        "semanticEffects": [
+          "repetition density",
+          "draw-call and triangle budget"
+        ]
+      }
+    ],
+    "constraints": [],
+    "invariants": [
+      "component-ids",
+      "parent-links",
+      "material-refs",
+      "socket-ids",
+      "fracture-groups",
+      "attachment-roots",
+      "build-pass-order",
+      "feature-review-targets"
+    ],
+    "variantPolicy": {
+      "defaultCount": 4,
+      "defaultSeed": 1337,
+      "maxAttemptsPerVariant": 64,
+      "resetReviewEvidence": true
+    },
+    "authoringRule": "These controls are conservative starters. Rename them in object language, add coupling groups for dependent proportions, and add ratio/range constraints before generating a production family."
+  },
+  "repetitionSystems": [
+    {
+      "id": "amber-leaf-clusters",
+      "name": "Amber leaf clusters",
+      "primitive": "plane-card",
+      "componentRefs": [
+        "branch-left-primary",
+        "branch-right-primary",
+        "branch-center-spire",
+        "branch-left-outer",
+        "branch-right-outer"
+      ],
+      "material": "amber-leaf",
+      "count": 520,
+      "seed": 41017,
+      "distribution": "branch-tip weighted with 18 percent positional jitter and 35 percent scale variation",
+      "constraints": [
+        "exclude inner trunk cylinder",
+        "preserve named negative-space wedges",
+        "instance by LOD tier"
+      ]
+    },
+    {
+      "id": "cyan-leaf-accents",
+      "name": "Cyan leaf accent clusters",
+      "primitive": "plane-card",
+      "componentRefs": [
+        "branch-left-outer",
+        "branch-right-outer",
+        "branch-center-spire"
+      ],
+      "material": "cyan-leaf",
+      "count": 112,
+      "seed": 91031,
+      "distribution": "clustered blue-noise near outer and upper tips",
+      "constraints": [
+        "target 18-25 percent of luminous foliage",
+        "avoid uniform checkerboard mixing"
+      ]
+    },
+    {
+      "id": "constellation-nodes",
+      "name": "Constellation nodes and links",
+      "primitive": "instanced-cluster",
+      "componentRefs": [
+        "branch-left-outer",
+        "branch-right-outer",
+        "branch-center-spire"
+      ],
+      "material": "cyan-leaf",
+      "count": 32,
+      "seed": 7321,
+      "distribution": "six semantic groups with two to seven nodes each",
+      "constraints": [
+        "connect only nodes in the same group",
+        "maximum link length 1.2 units",
+        "attach group roots to branch sockets"
+      ]
+    },
+    {
+      "id": "hanging-light-strands",
+      "name": "Warm hanging light strands",
+      "primitive": "curve-sweep",
+      "componentRefs": [
+        "branch-left-outer",
+        "branch-right-outer"
+      ],
+      "material": "gold-energy",
+      "count": 18,
+      "seed": 2718,
+      "distribution": "selected lower branch sockets with 0.4-1.2 unit drop",
+      "constraints": [
+        "no strand intersects trunk",
+        "vary length and node count",
+        "keep below crown silhouette"
+      ]
+    }
+  ],
+  "buildPasses": [
+    {
+      "id": "blockout",
+      "goal": "Match the root flare, first-fork height, and wide left/right crown silhouette without relying on bloom.",
+      "componentRefs": [
+        "root",
+        "crown-left",
+        "crown-right"
+      ],
+      "acceptance": [
+        "Trunk height, crown width, and first-fork placement match the reference-front evidence.",
+        "Bark blockout remains warm brown rather than black.",
+        "AI vision silhouette and root-flare targets pass."
+      ]
+    },
+    {
+      "id": "structural-pass",
+      "goal": "Build the three primary branch fans, outer/rear branches, buttress roots, and central energy conduit.",
+      "componentRefs": [
+        "root",
+        "crown-left",
+        "crown-right",
+        "branch-left-primary",
+        "branch-right-primary",
+        "branch-center-spire",
+        "branch-left-outer",
+        "branch-right-outer",
+        "branch-left-rear",
+        "branch-right-rear",
+        "root-buttress-left",
+        "root-buttress-right",
+        "energy-core"
+      ],
+      "acceptance": [
+        "All branch and root attachments overlap named sockets with no visible gaps.",
+        "Left, center, and right branch fans preserve the reference negative spaces.",
+        "Constellation and hanging-light systems have named effect sockets.",
+        "AI vision branch-hierarchy target passes."
+      ]
+    },
+    {
+      "id": "form-refinement",
+      "goal": "Replace straight branch cylinders with tapered curved sweeps, root-flare deformation, and branch-surface glyph channels.",
+      "componentRefs": [
+        "root",
+        "branch-left-primary",
+        "branch-right-primary",
+        "branch-center-spire",
+        "branch-left-outer",
+        "branch-right-outer",
+        "branch-left-rear",
+        "branch-right-rear",
+        "root-buttress-left",
+        "root-buttress-right",
+        "energy-core"
+      ],
+      "acceptance": [
+        "Primary boughs curve and taper continuously from embedded roots to tips.",
+        "Root buttresses contact the ground plane.",
+        "Gold channels and abstract glyph grooves follow surface tangents.",
+        "AI vision root-flare and branch-form targets pass."
+      ]
+    },
+    {
+      "id": "material-pass",
+      "goal": "Establish readable warm bark, controlled gold emission, amber foliage, and sparse cyan accents.",
+      "componentRefs": [
+        "root",
+        "crown-left",
+        "crown-right",
+        "energy-core"
+      ],
+      "acceptance": [
+        "Bark retains visible warm midtones under neutral lighting.",
+        "Gold emission is authored separately and does not flatten bark into a black silhouette.",
+        "Amber remains dominant and cyan coverage stays below one quarter of luminous foliage.",
+        "Independent roughness, normal, AO, and emissive responses are present.",
+        "AI vision bark, energy, and dual-color canopy targets pass."
+      ]
+    },
+    {
+      "id": "surface-pass",
+      "goal": "Add bark plates, carved channels, deterministic leaf cards, constellation links, and hanging-light strands.",
+      "componentRefs": [
+        "root",
+        "crown-left",
+        "crown-right",
+        "branch-left-primary",
+        "branch-right-primary",
+        "branch-center-spire",
+        "branch-left-outer",
+        "branch-right-outer",
+        "energy-core"
+      ],
+      "acceptance": [
+        "Bark detail survives grazing light without obvious tiling.",
+        "Instanced leaves preserve branch visibility and named negative spaces.",
+        "Constellation groups and hanging lights remain branch-attached.",
+        "AI vision energy and canopy targets pass."
+      ]
+    },
+    {
+      "id": "lighting-pass",
+      "goal": "Balance neutral material readability with the moonlit cyan-and-gold reference mood.",
+      "componentRefs": [
+        "root",
+        "crown-left",
+        "crown-right",
+        "energy-core"
+      ],
+      "acceptance": [
+        "Warm bark reads in neutral, grazing, and reference-match views.",
+        "Bloom preserves gold path width and leaf silhouettes.",
+        "Cool environment rim separates outer crown edges.",
+        "Ground contact shadow anchors the root flare.",
+        "AI vision bark, energy, and ornament targets pass."
+      ]
+    },
+    {
+      "id": "interaction-pass",
+      "goal": "Expose branch sway pivots, energy pulse sockets, leaf shimmer controls, colliders, and semantic fracture groups.",
+      "componentRefs": [
+        "root",
+        "branch-left-primary",
+        "branch-right-primary",
+        "branch-center-spire",
+        "branch-left-outer",
+        "branch-right-outer",
+        "energy-core"
+      ],
+      "acceptance": [
+        "Primary branches rotate from fork sockets.",
+        "Energy pulse travels from root origin through named split sockets.",
+        "Leaf and ornament visibility/material states are independently controllable.",
+        "Collider proxies do not use high-detail visual meshes.",
+        "AI vision and runtime metadata review pass."
+      ]
+    },
+    {
+      "id": "optimization-pass",
+      "goal": "Instance repeated foliage and ornaments, add LODs, and keep the hero silhouette within the browser budget.",
+      "componentRefs": [
+        "root",
+        "crown-left",
+        "crown-right",
+        "branch-left-primary",
+        "branch-right-primary",
+        "branch-center-spire",
+        "branch-left-outer",
+        "branch-right-outer",
+        "branch-left-rear",
+        "branch-right-rear",
+        "root-buttress-left",
+        "root-buttress-right",
+        "energy-core"
+      ],
+      "acceptance": [
+        "Near LOD stays under 180k triangles and 90 draw calls.",
+        "Far LOD preserves trunk fork, crown width, and gold energy read.",
+        "Repeated leaves, nodes, and hanging lights use instancing or batched geometry.",
+        "Target 45 FPS at hero view and 60 FPS at far LOD."
+      ]
+    }
+  ],
+  "visualEvidence": [],
+  "reviewHistory": [],
+  "lodPlan": [
+    {
+      "tier": "near",
+      "distance": 0,
+      "strategy": "full component tree and material layers"
+    },
+    {
+      "tier": "far",
+      "distance": 30,
+      "strategy": "merge static components and reduce local feature geometry"
+    }
+  ],
+  "performanceBudget": {
+    "qualityPriority": "balanced",
+    "targetTriangles": 180000,
+    "maxDrawCalls": 90,
+    "textureSize": 2048,
+    "fpsTarget": 45,
+    "optimizationPolicy": "Preserve the fork silhouette, bark midtones, gold energy continuity, and dual-color canopy before reducing hidden branch or leaf detail."
+  },
+  "lightingFromPhoto": [
+    "Key light: warm gold emissive contribution from root and branch channels, strongest near the trunk center; use emission for glow but not as the only bark illumination.",
+    "Fill light: soft cool-blue hemisphere fill from the night sky at low intensity so shaded bark remains warm brown instead of black.",
+    "Rim/environment light: cyan-blue back and side rim from the star field to separate outer leaves and branch tips.",
+    "Exposure and tone mapping: ACES Filmic tone mapping with exposure near 1.0; tune bloom threshold above bark values and below gold/cyan emission peaks.",
+    "Background: deep navy-to-indigo gradient or environment map with restrained stars; keep background luminance below the tree crown.",
+    "Contact shadow: soft ground shadow and local AO under the root flare, branch sockets, and overlapping leaf clusters."
+  ],
+  "proceduralStrategy": [
+    "Block out the trunk, first fork, and two crown masses before enabling any emission.",
+    "Generate every branch from attachment localStart to localEnd with taper and parent overlap.",
+    "Replace straight structural cylinders with deterministic Catmull-Rom or cubic Bezier curve sweeps during form refinement.",
+    "Keep bark PBR and gold emissive channels independent so neutral lighting can reveal the wood surface.",
+    "Instance amber leaves, cyan accents, constellation nodes, and hanging lights with separate deterministic seeds.",
+    "Reserve cyan accents for grouped identity landmarks; do not distribute them as uniform random noise.",
+    "Drive energy pulses through named root, fork, and branch-tip sockets.",
+    "Optimize repetition and rear depth only after reference-front silhouette and material readability pass."
+  ],
+  "animationAnchors": [
+    "root base pivot supports whole-tree placement and slow global sway",
+    "left-fork, right-fork, and center-spire sockets drive independent primary branch sway",
+    "pulse-origin and pulse-split sockets drive root-to-crown energy animation",
+    "left-lights and right-lights sockets anchor hanging ornament strands",
+    "leaf repetition systems expose seeded shimmer, visibility, and emission phase controls"
+  ],
+  "destructionAnchors": [
+    "primary branch fracture groups use named fork seams rather than random whole-tree explosion",
+    "outer branches can detach without merging crown repetition buffers into the trunk",
+    "root system and central energy conduit remain non-breakable by default",
+    "leaf and constellation debris use lightweight instanced fragments"
+  ],
+  "risks": [
+    "Single frontal artwork does not reveal exact rear branch topology.",
+    "Baked bloom and scene lighting prevent exact physical material extraction.",
+    "Small branch glyphs are not reliably legible and are treated as abstract code-like marks.",
+    "Dense transparent leaf cards can create overdraw unless instanced and LOD-controlled.",
+    "Reference village scale is illustrative; final world-unit scale must be calibrated in the target scene."
+  ]
+}

@@ -1,0 +1,210 @@
+{
+  "targetName": "Repolis Tree",
+  "sourceImage": "assets/repolis-tree-reference.jpeg",
+  "preSpecAssessment": {
+    "objectClass": {
+      "primaryType": "stylized botanical-like hero landmark",
+      "formLanguage": [
+        "monumental organic trunk with a broad Y-shaped fork",
+        "radial branch fans framing a luminous central axis",
+        "warm gold and cool cyan bioluminescent accents",
+        "constellation-like points and code glyph ornamentation",
+        "dense but perforated crown with readable negative spaces"
+      ],
+      "structureKind": [
+        "rooted central trunk",
+        "three-level articulated branch hierarchy",
+        "instanced leaf clusters",
+        "curve-swept emissive sap and glyph lines"
+      ],
+      "motionPotential": [
+        "slow branch sway from root pivots",
+        "leaf shimmer and visibility cycling",
+        "gold energy pulse along trunk-to-tip paths",
+        "constellation-node flicker"
+      ],
+      "materialFamilies": [
+        "warm dark-brown bark with carved grooves",
+        "gold emissive energy channels",
+        "amber translucent leaves",
+        "cyan emissive leaves and constellation nodes"
+      ],
+      "notes": "The target is the central luminous tree, not the surrounding GitHub village, mountains, people, signs, or star field. Reconstruct it as a stylized real-time hero prop rather than an exact scene copy."
+    },
+    "complexity": {
+      "tier": "complex",
+      "scores": {
+        "silhouetteComplexity": 3,
+        "componentCount": 3,
+        "hierarchyDepth": 3,
+        "repetitionDensity": 3,
+        "materialLayerCount": 3,
+        "localDetailDensity": 3,
+        "occlusionRisk": 2,
+        "actionReadinessNeed": 2
+      },
+      "estimatedCounts": {
+        "macroComponents": 3,
+        "mesoComponents": 10,
+        "microFeatureGroups": 7,
+        "materialLayers": 4,
+        "repetitionSystems": 3
+      },
+      "reasoning": [
+        "The tree occupies the central upper half of the frame and its trunk fork, roots, and main bough flow are readable despite the surrounding village.",
+        "The identity depends on multiple coupled systems: broad crown silhouette, tapered branching hierarchy, carved bark, emissive gold paths, mixed amber/cyan foliage, and constellation ornaments.",
+        "Rear branches and exact branch depth are ambiguous in the single frontal illustration, so the implementation should use a plausible radial depth distribution rather than claim exact reconstruction.",
+        "Repeated leaves and luminous nodes require deterministic instancing and LOD; individual leaves should not become separate draw calls."
+      ]
+    },
+    "specDepthDecision": {
+      "requiredDepth": "complex",
+      "minimumComponentLevels": [
+        "macro",
+        "meso",
+        "micro"
+      ],
+      "needsRepetitionSystems": true,
+      "needsMaterialLocalOverrides": true,
+      "needsMultipleReviewViews": true,
+      "needsActionReadyHierarchy": true,
+      "rationale": "A shallow trunk-plus-spheres model would lose the reference identity. The spec needs separate trunk/crown masses, at least three branch levels, repeated leaf and constellation systems, local emissive overlays, and four review viewpoints."
+    },
+    "unknownsToResolveBeforeImplementation": [],
+    "sourceImage": "assets/repolis-tree-reference.jpeg"
+  },
+  "qualityContract": {
+    "qualityBar": "complex",
+    "definitionOfDone": [
+      "At the reference camera, the tree reads as a monumental golden code-tree before the surrounding village is added.",
+      "The main trunk rises from a broad root flare, splits into a wide Y, and supports left, center, and right branch fans with visible sky gaps.",
+      "Gold energy channels remain bright and spatially attached to bark under neutral and reference lighting without making the bark itself black.",
+      "Amber and cyan leaf clusters plus constellation nodes form a luminous crown while preserving the major branch silhouette.",
+      "The asset exposes branch pivots, effect sockets, collider proxies, and deterministic repetition systems for animation and Sculpt DNA variants."
+    ],
+    "minimumSpecDepth": {
+      "macroComponents": 3,
+      "mesoComponents": 8,
+      "microFeatureGroups": 5,
+      "materialLayers": 3,
+      "repetitionSystems": 1,
+      "reviewViewpoints": 4
+    },
+    "featureGroups": [
+      {
+      "id": "forked-trunk-silhouette",
+      "name": "Forked trunk, root flare, and crown silhouette",
+        "required": true,
+        "qualityCriteria": [
+          "The trunk is approximately one third of total tree height before the first major fork.",
+          "Left and right crown masses span roughly 1.4 times the visible tree height.",
+          "Major negative spaces remain visible between the center spire and side branch fans."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "single vertical cylinder with a spherical canopy",
+          "fork starts too high or side crowns collapse inward",
+          "dense leaves erase the branch-fan silhouette"
+        ]
+      },
+      {
+        "id": "radial-branch-hierarchy",
+        "name": "Radial branch hierarchy and embedded joints",
+        "required": true,
+        "qualityCriteria": [
+          "Left, center, and right primary boughs emerge from named sockets on the trunk fork.",
+          "Secondary branches taper from root to tip and overlap their parent at every joint.",
+          "Rear branches add depth without changing the frontal identity."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "floating branch roots",
+          "uniform branch radii or evenly spaced radial spokes",
+          "all branch levels merged into an inert mesh"
+        ]
+      },
+      {
+        "id": "gold-energy-network",
+        "name": "Gold energy and code-glyph network",
+        "required": true,
+        "qualityCriteria": [
+          "Warm emissive paths originate near the root core and split along the same hierarchy as the bark branches.",
+          "Energy lines remain narrow enough to reveal bark albedo and roughness.",
+          "Glyph marks follow branch tangents instead of floating as screen-space text."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "trunk reads as black because emission is the only visible surface response",
+          "glow blooms into a flat white silhouette",
+          "code glyphs detach from the curved branch surface"
+        ]
+      },
+      {
+        "id": "dual-color-leaf-canopy",
+        "name": "Amber and cyan leaf canopy",
+        "required": true,
+        "qualityCriteria": [
+          "Leaf clusters are distributed along outer and upper branch tips rather than filling the trunk interior.",
+          "Amber is dominant while cyan accents occupy a smaller, intentionally uneven share.",
+          "Leaf cards vary in orientation, scale, emission, and visibility while preserving deterministic seeds."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "one opaque canopy blob",
+          "cyan and amber distributed as uniform noise",
+          "leaf density hides all major boughs"
+        ]
+      },
+      {
+        "id": "constellation-crown-ornaments",
+        "name": "Constellation crown and hanging light ornaments",
+        "required": true,
+        "qualityCriteria": [
+          "A small number of cyan and warm-white nodes form readable linked constellations around the upper crown.",
+          "Short hanging light strands descend from selected side branches.",
+          "Ornaments use effect sockets and instancing instead of being baked into bark textures."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "random sparkles with no grouped paths",
+          "ornaments dominate the branch silhouette",
+          "lights float without branch attachment"
+        ]
+      }
+    ],
+    "visualDeltaChecks": [
+      "root-flare width and trunk-height-to-crown-width delta",
+      "first-fork height and left/center/right branch-fan angle delta",
+      "gold energy width, bloom, and branch-following continuity delta",
+      "amber-to-cyan leaf ratio and crown negative-space delta",
+      "constellation-node grouping and hanging-light placement delta",
+      "bark midtone visibility under neutral and reference lighting delta"
+    ],
+    "antiShallowSpecRules": [
+      "Do not proceed to code if qualityContract.qualityBar is unassessed.",
+      "Do not proceed to code if the spec only contains a root component for a moderate or complex object.",
+      "Do not proceed to code if required featureGroups are not represented by componentTree, materials, or repetitionSystems.",
+      "Do not proceed to code if visible local features are described only in prose and not attached to components/materials/evidenceRefs.",
+      "Do not proceed past structural-pass if attached child parts lack attachment.parentSocket, localStart, localEnd, embedDepth/overlap, and gapTolerance.",
+      "Do not pass material look-dev when albedo is reused as roughness, height, normal, or AO.",
+      "Do not pass material look-dev without macro, meso, and micro surface frequency bands for close-up materials.",
+      "Do not pass reference-fidelity material look-dev from a source image without usable referencePbr maps or an explicit documented limitation.",
+      "Do not patch a spec with extracted PBR maps when extraction confidence is below the target threshold unless the user explicitly accepts lower fidelity."
+      ,
+      "Do not allow foliage or bloom to hide the three primary branch fans.",
+      "Do not model the village, GitHub logos, signs, or people as part of the tree asset.",
+      "Do not treat the baked gold glow in the illustration as bark albedo; author bark and emission as separate material/effect systems."
+    ]
+  },
+  "authoringInstruction": "Fill observed object class, complexity reasoning, featureGroups, visualDeltaChecks, and unknowns before generating or implementing ObjectSculptSpec."
+}
