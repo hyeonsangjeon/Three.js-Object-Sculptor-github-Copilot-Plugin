@@ -9,8 +9,8 @@
     "materials": "runtime-generated independent albedo, roughness, height, normal, and ambient-occlusion channels",
     "textureResolution": 512,
     "repetition": [
-      "52-76 tire tread blocks with equal cadence on all four wheels",
-      "63-72 body studs from curated DNA",
+      "64-76 tire tread blocks with equal cadence on all four wheels",
+      "60-81 body studs from curated DNA",
       "4-5 roof lamps from curated DNA",
       "20 panel fasteners",
       "wheel hub spokes"
@@ -26,7 +26,9 @@
     "hingedPanels": [
       "hood-pivot",
       "left-door-pivot",
+      "left-rear-door-pivot",
       "right-door-pivot",
+      "right-rear-door-pivot",
       "tailgate-pivot"
     ],
     "roofSockets": 3,
@@ -39,5 +41,6 @@
     "brick-offroad-v002",
     "brick-offroad-v003"
   ],
+  "baseConfiguration": "brick-offroad-base exactly mirrors the base ObjectSculptSpec palettes, roughness values, and repetition counts",
   "variantControls": "brick-variant-config.json is validated against the production ObjectSculptSpec variants"
 }

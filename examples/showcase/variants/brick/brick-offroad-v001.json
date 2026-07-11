@@ -1809,7 +1809,7 @@
         }
       ],
       "roughness": {
-        "base": 0.5826,
+        "base": 0.5552,
         "variation": 0.12,
         "map": "independent-body-shell-roughness-field",
         "localResponse": "Cavities are rougher and exposed edges are smoother."
@@ -1841,12 +1841,12 @@
         "notes": "Concentrate AO at component contacts."
       },
       "wear": {
-        "edgeWear": 0.08,
+        "edgeWear": 0.29,
         "scratches": [],
         "chips": []
       },
       "dirt": {
-        "amount": 0.08,
+        "amount": 0.22,
         "cavityBias": 0.55,
         "color": "#1A1A18"
       },
@@ -1921,7 +1921,7 @@
         }
       ],
       "roughness": {
-        "base": 0.5275,
+        "base": 0.65,
         "variation": 0.12,
         "map": "independent-roof-shell-roughness-field",
         "localResponse": "Cavities are rougher and exposed edges are smoother."
@@ -2033,7 +2033,7 @@
         }
       ],
       "roughness": {
-        "base": 0.6779,
+        "base": 0.6967,
         "variation": 0.12,
         "map": "independent-dark-trim-roughness-field",
         "localResponse": "Cavities are rougher and exposed edges are smoother."
@@ -2107,7 +2107,7 @@
       },
       "colorVariation": {
         "palette": [
-          "#E28A2B",
+          "#B75B32",
           "#E6B64C",
           "#E28A2B",
           "#B75B32"
@@ -2147,7 +2147,7 @@
         }
       ],
       "roughness": {
-        "base": 0.6161,
+        "base": 0.5862,
         "variation": 0.12,
         "map": "independent-accent-roughness-field",
         "localResponse": "Cavities are rougher and exposed edges are smoother."
@@ -2259,7 +2259,7 @@
         }
       ],
       "roughness": {
-        "base": 0.7674,
+        "base": 0.8624,
         "variation": 0.12,
         "map": "independent-rubber-roughness-field",
         "localResponse": "Cavities are rougher and exposed edges are smoother."
@@ -2332,7 +2332,7 @@
       },
       "colorVariation": {
         "palette": [
-          "#5A7378",
+          "#29434A",
           "#29434A",
           "#5A7378"
         ],
@@ -2371,7 +2371,7 @@
         }
       ],
       "roughness": {
-        "base": 0.2214,
+        "base": 0.2649,
         "variation": 0.12,
         "map": "independent-glass-roughness-field",
         "localResponse": "Cavities are rougher and exposed edges are smoother."
@@ -2444,7 +2444,7 @@
       },
       "colorVariation": {
         "palette": [
-          "#FFF3C4",
+          "#FFB347",
           "#FFD782",
           "#FFF3C4"
         ],
@@ -2483,7 +2483,7 @@
         }
       ],
       "roughness": {
-        "base": 0.2293,
+        "base": 0.2974,
         "variation": 0.12,
         "map": "independent-lamp-roughness-field",
         "localResponse": "Cavities are rougher and exposed edges are smoother."
@@ -2544,6 +2544,17 @@
       }
     }
   ],
+  "runtimeConfiguration": {
+    "baseId": "brick-offroad-base",
+    "source": "examples/brick-offroad-hero/brick-output/brick-variant-config.json",
+    "evidencePolicy": "All base blockout through final evidence uses the exact base configuration. Curated v001-v003 configurations are reserved for per-variant evidence.",
+    "surfaceAgeDriver": "body-shell wear.edgeWear and dirt.amount are the shared runtime drivers for generated scratch, dirt, and roughness masks across all material families.",
+    "protectedBaseValues": {
+      "wheelTreads": 64,
+      "bodyStuds": 72,
+      "roofLamps": 5
+    }
+  },
   "sculptDNA": {
     "schemaVersion": "1.0",
     "enabled": true,
@@ -2589,6 +2600,50 @@
         "semanticEffects": [
           "palette family",
           "local albedo variation"
+        ]
+      },
+      {
+        "id": "surface-wear",
+        "label": "global procedural surface wear",
+        "target": {
+          "kind": "material",
+          "id": "body-shell",
+          "path": "wear.edgeWear"
+        },
+        "operation": "set",
+        "distribution": "triangular",
+        "range": {
+          "min": 0.16,
+          "max": 0.32
+        },
+        "precision": 2,
+        "group": "surface-age",
+        "semanticEffects": [
+          "scratch visibility",
+          "edge wear",
+          "roughness response"
+        ]
+      },
+      {
+        "id": "surface-dirt",
+        "label": "global procedural surface dirt",
+        "target": {
+          "kind": "material",
+          "id": "body-shell",
+          "path": "dirt.amount"
+        },
+        "operation": "set",
+        "distribution": "triangular",
+        "range": {
+          "min": 0.12,
+          "max": 0.24
+        },
+        "precision": 2,
+        "group": "surface-age",
+        "semanticEffects": [
+          "cavity dirt",
+          "albedo attenuation",
+          "ambient-occlusion response"
         ]
       },
       {
@@ -2927,7 +2982,7 @@
         "wheel-system"
       ],
       "material": "rubber",
-      "count": 52,
+      "count": 64,
       "seed": 6103,
       "distribution": "four rings",
       "constraints": [
@@ -2944,7 +2999,7 @@
         "cabin"
       ],
       "material": "body-shell",
-      "count": 72,
+      "count": 64,
       "seed": 8831,
       "distribution": "panel grid with omissions",
       "constraints": [
@@ -2960,7 +3015,7 @@
         "lighting"
       ],
       "material": "lamp",
-      "count": 5,
+      "count": 4,
       "seed": 331,
       "distribution": "centered row",
       "constraints": [
@@ -3124,7 +3179,7 @@
   ],
   "visualEvidence": [
     {
-      "timestamp": "2026-07-11T21:04:00.568595+00:00",
+      "timestamp": "2026-07-11T22:30:31.400855+00:00",
       "passId": "blockout",
       "estimatedFidelity": 0.78,
       "aiVisionScore": 0.78,
@@ -3158,7 +3213,7 @@
       "aiVisionNotes": "The final same-camera pair is used as a conservative regression gate because Sculpt DNA mutates only reviewed material and repetition parameters; protected topology is unchanged."
     },
     {
-      "timestamp": "2026-07-11T21:04:00.643521+00:00",
+      "timestamp": "2026-07-11T22:30:31.461738+00:00",
       "passId": "structural-pass",
       "estimatedFidelity": 0.78,
       "aiVisionScore": 0.78,
@@ -3198,7 +3253,7 @@
       "aiVisionNotes": "The final same-camera pair is used as a conservative regression gate because Sculpt DNA mutates only reviewed material and repetition parameters; protected topology is unchanged."
     },
     {
-      "timestamp": "2026-07-11T21:04:00.734422+00:00",
+      "timestamp": "2026-07-11T22:30:31.526056+00:00",
       "passId": "form-refinement",
       "estimatedFidelity": 0.78,
       "aiVisionScore": 0.78,
@@ -3238,7 +3293,7 @@
       "aiVisionNotes": "The final same-camera pair is used as a conservative regression gate because Sculpt DNA mutates only reviewed material and repetition parameters; protected topology is unchanged."
     },
     {
-      "timestamp": "2026-07-11T21:04:00.808585+00:00",
+      "timestamp": "2026-07-11T22:30:31.588115+00:00",
       "passId": "material-pass",
       "estimatedFidelity": 0.78,
       "aiVisionScore": 0.78,
@@ -3266,7 +3321,7 @@
       "aiVisionNotes": "The final same-camera pair is used as a conservative regression gate because Sculpt DNA mutates only reviewed material and repetition parameters; protected topology is unchanged."
     },
     {
-      "timestamp": "2026-07-11T21:04:00.894957+00:00",
+      "timestamp": "2026-07-11T22:30:31.639580+00:00",
       "passId": "surface-pass",
       "estimatedFidelity": 0.78,
       "aiVisionScore": 0.78,
@@ -3306,7 +3361,7 @@
       "aiVisionNotes": "The final same-camera pair is used as a conservative regression gate because Sculpt DNA mutates only reviewed material and repetition parameters; protected topology is unchanged."
     },
     {
-      "timestamp": "2026-07-11T21:04:00.964865+00:00",
+      "timestamp": "2026-07-11T22:30:31.694947+00:00",
       "passId": "lighting-pass",
       "estimatedFidelity": 0.78,
       "aiVisionScore": 0.78,
@@ -3334,7 +3389,7 @@
       "aiVisionNotes": "The final same-camera pair is used as a conservative regression gate because Sculpt DNA mutates only reviewed material and repetition parameters; protected topology is unchanged."
     },
     {
-      "timestamp": "2026-07-11T21:04:01.057688+00:00",
+      "timestamp": "2026-07-11T22:30:31.756760+00:00",
       "passId": "interaction-pass",
       "estimatedFidelity": 0.78,
       "aiVisionScore": 0.78,
@@ -3362,7 +3417,7 @@
       "aiVisionNotes": "The final same-camera pair is used as a conservative regression gate because Sculpt DNA mutates only reviewed material and repetition parameters; protected topology is unchanged."
     },
     {
-      "timestamp": "2026-07-11T21:04:01.149602+00:00",
+      "timestamp": "2026-07-11T22:30:31.808488+00:00",
       "passId": "optimization-pass",
       "estimatedFidelity": 0.78,
       "aiVisionScore": 0.78,
@@ -3385,7 +3440,7 @@
   ],
   "reviewHistory": [
     {
-      "timestamp": "2026-07-11T21:04:00.568595+00:00",
+      "timestamp": "2026-07-11T22:30:31.400855+00:00",
       "passId": "blockout",
       "estimatedFidelity": 0.78,
       "aiVisionScore": 0.78,
@@ -3434,7 +3489,7 @@
       }
     },
     {
-      "timestamp": "2026-07-11T21:04:00.643521+00:00",
+      "timestamp": "2026-07-11T22:30:31.461738+00:00",
       "passId": "structural-pass",
       "estimatedFidelity": 0.78,
       "aiVisionScore": 0.78,
@@ -3489,7 +3544,7 @@
       }
     },
     {
-      "timestamp": "2026-07-11T21:04:00.734422+00:00",
+      "timestamp": "2026-07-11T22:30:31.526056+00:00",
       "passId": "form-refinement",
       "estimatedFidelity": 0.78,
       "aiVisionScore": 0.78,
@@ -3544,7 +3599,7 @@
       }
     },
     {
-      "timestamp": "2026-07-11T21:04:00.808585+00:00",
+      "timestamp": "2026-07-11T22:30:31.588115+00:00",
       "passId": "material-pass",
       "estimatedFidelity": 0.78,
       "aiVisionScore": 0.78,
@@ -3587,7 +3642,7 @@
       }
     },
     {
-      "timestamp": "2026-07-11T21:04:00.894957+00:00",
+      "timestamp": "2026-07-11T22:30:31.639580+00:00",
       "passId": "surface-pass",
       "estimatedFidelity": 0.78,
       "aiVisionScore": 0.78,
@@ -3642,7 +3697,7 @@
       }
     },
     {
-      "timestamp": "2026-07-11T21:04:00.964865+00:00",
+      "timestamp": "2026-07-11T22:30:31.694947+00:00",
       "passId": "lighting-pass",
       "estimatedFidelity": 0.78,
       "aiVisionScore": 0.78,
@@ -3685,7 +3740,7 @@
       }
     },
     {
-      "timestamp": "2026-07-11T21:04:01.057688+00:00",
+      "timestamp": "2026-07-11T22:30:31.756760+00:00",
       "passId": "interaction-pass",
       "estimatedFidelity": 0.78,
       "aiVisionScore": 0.78,
@@ -3728,7 +3783,7 @@
       }
     },
     {
-      "timestamp": "2026-07-11T21:04:01.149602+00:00",
+      "timestamp": "2026-07-11T22:30:31.808488+00:00",
       "passId": "optimization-pass",
       "estimatedFidelity": 0.78,
       "aiVisionScore": 0.78,
@@ -3811,7 +3866,7 @@
     "sourceTargetId": "brick-offroad",
     "sourceTargetSlug": "brick-offroad",
     "rootSeed": 20260711,
-    "variantSeed": 316103719852220715,
+    "variantSeed": 17489542476833866533,
     "index": 1,
     "attempt": 1,
     "mutations": [
@@ -3823,7 +3878,7 @@
           "path": "roughness.base"
         },
         "before": 0.62,
-        "after": 0.5826
+        "after": 0.5552
       },
       {
         "parameterId": "body-shell-dominant-palette",
@@ -3836,6 +3891,26 @@
         "after": "#65704A"
       },
       {
+        "parameterId": "surface-wear",
+        "target": {
+          "kind": "material",
+          "id": "body-shell",
+          "path": "wear.edgeWear"
+        },
+        "before": 0.08,
+        "after": 0.29
+      },
+      {
+        "parameterId": "surface-dirt",
+        "target": {
+          "kind": "material",
+          "id": "body-shell",
+          "path": "dirt.amount"
+        },
+        "before": 0.08,
+        "after": 0.22
+      },
+      {
         "parameterId": "roof-shell-roughness",
         "target": {
           "kind": "material",
@@ -3843,7 +3918,7 @@
           "path": "roughness.base"
         },
         "before": 0.58,
-        "after": 0.5275
+        "after": 0.65
       },
       {
         "parameterId": "roof-shell-dominant-palette",
@@ -3863,7 +3938,7 @@
           "path": "roughness.base"
         },
         "before": 0.7,
-        "after": 0.6779
+        "after": 0.6967
       },
       {
         "parameterId": "dark-trim-dominant-palette",
@@ -3883,7 +3958,7 @@
           "path": "roughness.base"
         },
         "before": 0.52,
-        "after": 0.6161
+        "after": 0.5862
       },
       {
         "parameterId": "accent-dominant-palette",
@@ -3893,7 +3968,7 @@
           "path": "colorVariation.palette.0"
         },
         "before": "#D87927",
-        "after": "#E28A2B"
+        "after": "#B75B32"
       },
       {
         "parameterId": "rubber-roughness",
@@ -3903,7 +3978,7 @@
           "path": "roughness.base"
         },
         "before": 0.82,
-        "after": 0.7674
+        "after": 0.8624
       },
       {
         "parameterId": "rubber-dominant-palette",
@@ -3923,7 +3998,7 @@
           "path": "roughness.base"
         },
         "before": 0.2,
-        "after": 0.2214
+        "after": 0.2649
       },
       {
         "parameterId": "glass-dominant-palette",
@@ -3933,7 +4008,7 @@
           "path": "colorVariation.palette.0"
         },
         "before": "#182B30",
-        "after": "#5A7378"
+        "after": "#29434A"
       },
       {
         "parameterId": "lamp-roughness",
@@ -3943,7 +4018,7 @@
           "path": "roughness.base"
         },
         "before": 0.3,
-        "after": 0.2293
+        "after": 0.2974
       },
       {
         "parameterId": "lamp-dominant-palette",
@@ -3953,7 +4028,7 @@
           "path": "colorVariation.palette.0"
         },
         "before": "#FFB347",
-        "after": "#FFF3C4"
+        "after": "#FFB347"
       },
       {
         "parameterId": "wheel-treads-count",
@@ -3963,7 +4038,7 @@
           "path": "count"
         },
         "before": 64,
-        "after": 52
+        "after": 64
       },
       {
         "parameterId": "body-studs-count",
@@ -3973,7 +4048,7 @@
           "path": "count"
         },
         "before": 72,
-        "after": 72
+        "after": 64
       },
       {
         "parameterId": "roof-lamps-count",
@@ -3983,7 +4058,7 @@
           "path": "count"
         },
         "before": 5,
-        "after": 5
+        "after": 4
       }
     ],
     "invariants": {
@@ -4001,9 +4076,9 @@
     },
     "reviewEvidenceReset": true,
     "samplingMode": "coverage-curated",
-    "candidateIndex": 19,
+    "candidateIndex": 22,
     "curatedIndex": 1,
-    "selectionScore": 0.36496,
+    "selectionScore": 0.355623,
     "previewMode": false,
     "passGateStatus": "evidence-backed-production",
     "visualAcceptance": {

@@ -11,7 +11,8 @@ export const BRICK_STAGES = [
   'full',
 ];
 
-export const BRICK_VARIANTS = variantConfig;
+export const BRICK_BASE_CONFIG = variantConfig[0];
+export const BRICK_VARIANTS = variantConfig.slice(1);
 
 const STAGE_LEVEL = Object.fromEntries(
   BRICK_STAGES.map((stage, index) => [stage, index]),
@@ -78,12 +79,13 @@ function createDataTexture(data, size, colorSpace = THREE.NoColorSpace) {
   return texture;
 }
 
-function createSurfaceTextures(seed, color, kind, size = 512) {
+function createSurfaceTextures(seed, color, kind, wear, dirtAmount, size = 512) {
   const base = new THREE.Color(color);
+  const wearStrength = THREE.MathUtils.clamp(wear, 0, 1);
+  const dirtStrength = THREE.MathUtils.clamp(dirtAmount, 0, 1);
   const pixels = size * size;
   const albedo = new Uint8Array(pixels * 4);
   const roughness = new Uint8Array(pixels * 4);
-  const height = new Uint8Array(pixels * 4);
   const normal = new Uint8Array(pixels * 4);
   const ao = new Uint8Array(pixels * 4);
   const heightField = new Float32Array(pixels);
@@ -111,13 +113,19 @@ function createSurfaceTextures(seed, color, kind, size = 512) {
       );
       const relief = THREE.MathUtils.clamp(
         0.42 + (macro - 0.5) * 0.22 + (meso - 0.5) * 0.12
-          + (micro - 0.5) * 0.035 - scratch * 0.06,
+          + (micro - 0.5) * 0.035
+          - scratch * (0.015 + wearStrength * 0.09),
         0,
         1,
       );
       heightField[index] = relief;
-      const dirt = Math.max(0, 0.56 - cavityField) * (kind === 'paint' ? 0.3 : 0.14);
-      const colorLift = 0.84 + macro * 0.18 + meso * 0.035 - dirt;
+      const dirt = Math.max(0, 0.56 - cavityField)
+        * ((kind === 'paint' ? 0.08 : 0.05)
+          + dirtStrength * 1.8
+          + wearStrength * 0.2);
+      const colorLift = 0.84 + macro * 0.18 + meso * 0.035
+        - dirt
+        - scratch * wearStrength * 0.18;
       write(
         albedo,
         offset,
@@ -128,12 +136,12 @@ function createSurfaceTextures(seed, color, kind, size = 512) {
       const rough = THREE.MathUtils.clamp(
         (kind === 'rubber' ? 0.73 : kind === 'metal' ? 0.36 : 0.52)
           + (roughField - 0.5) * 0.24
-          + micro * 0.06,
+          + micro * 0.06
+          + scratch * wearStrength * 0.12,
         0,
         1,
       );
       write(roughness, offset, rough * 255, rough * 255, rough * 255);
-      write(height, offset, relief * 255, relief * 255, relief * 255);
       const occlusion = THREE.MathUtils.clamp(
         0.78 + cavityField * 0.22 - dirt * 0.5,
         0,
@@ -166,7 +174,6 @@ function createSurfaceTextures(seed, color, kind, size = 512) {
   return {
     albedo: createDataTexture(albedo, size, THREE.SRGBColorSpace),
     roughness: createDataTexture(roughness, size),
-    height: createDataTexture(height, size),
     normal: createDataTexture(normal, size),
     ao: createDataTexture(ao, size),
   };
@@ -183,7 +190,13 @@ function createMaterials(seed, variant, detailed) {
   const textureSets = [];
   const create = (id, color, options = {}) => {
     const textures = detailed
-      ? createSurfaceTextures(seed + hashString(id), color, options.kind ?? 'paint')
+      ? createSurfaceTextures(
+        seed + hashString(id),
+        color,
+        options.kind ?? 'paint',
+        variant.wear,
+        variant.dirtAmount,
+      )
       : null;
     if (textures) textureSets.push(textures);
     const parameters = {
@@ -216,11 +229,13 @@ function createMaterials(seed, variant, detailed) {
       ? {
         albedo: `${id}-albedo`,
         roughness: `${id}-roughness`,
-        height: `${id}-height`,
+        heightField: `${id}-height-field-derived`,
         normal: `${id}-normal`,
         ambientOcclusion: `${id}-ao`,
       }
       : {};
+    material.userData.surfaceWear = variant.wear;
+    material.userData.surfaceDirtAmount = variant.dirtAmount;
     return material;
   };
 
@@ -279,6 +294,9 @@ function createMaterials(seed, variant, detailed) {
 
 function resolveVariant(value) {
   if (typeof value === 'string') {
+    if (value === 'base' || value === BRICK_BASE_CONFIG.id) {
+      return BRICK_BASE_CONFIG;
+    }
     return BRICK_VARIANTS.find((variant) => variant.id === value) ?? BRICK_VARIANTS[0];
   }
   const index = Number.isFinite(value) ? Number(value) : 0;
@@ -318,6 +336,7 @@ export function createBrickOffroad(options = {}) {
   for (const set of textureSets) {
     for (const texture of Object.values(set)) resources.textures.add(texture);
   }
+  runtime.resources = resources;
 
   const registerNode = (id, node, parent = root) => {
     node.name = id;
@@ -572,21 +591,50 @@ export function createBrickOffroad(options = {}) {
     socket('front-recovery-socket', frontAssembly, [-0.19, -0.02, 0]);
     socket('rear-tow-socket', chassis, [3.25, 1.0, 0]);
 
-    const leftDoor = group('left-door-pivot', cabin);
-    leftDoor.position.set(-0.73, 2.25, 1.19);
-    roundedBox('left-door-panel', [1.45, 1.35, 0.1], materials.body, leftDoor, [0.72, 0, 0], 0.06);
-    socket('left-door-hinge', leftDoor, [0, 0, 0]);
-    const rightDoor = group('right-door-pivot', cabin);
-    rightDoor.position.set(-0.73, 2.25, -1.19);
-    roundedBox('right-door-panel', [1.45, 1.35, 0.1], materials.body, rightDoor, [0.72, 0, 0], 0.06);
-    socket('right-door-hinge', rightDoor, [0, 0, 0]);
+    for (const [sideName, side] of [['left', 1], ['right', -1]]) {
+      const frontDoor = group(`${sideName}-door-pivot`, cabin);
+      frontDoor.position.set(-0.88, 2.25, side * 1.19);
+      roundedBox(
+        `${sideName}-door-panel`,
+        [0.82, 1.35, 0.1],
+        materials.body,
+        frontDoor,
+        [0.41, 0, 0],
+        0.06,
+      );
+      socket(`${sideName}-door-hinge`, frontDoor, [0, 0, 0]);
+
+      const rearDoor = group(`${sideName}-rear-door-pivot`, cabin);
+      rearDoor.position.set(0, 2.25, side * 1.19);
+      roundedBox(
+        `${sideName}-rear-door-panel`,
+        [0.84, 1.35, 0.1],
+        materials.body,
+        rearDoor,
+        [0.42, 0, 0],
+        0.06,
+      );
+      socket(`${sideName}-rear-door-hinge`, rearDoor, [0, 0, 0]);
+      collider(
+        `${sideName}-door-collider`,
+        `${sideName}-door-pivot`,
+        'box',
+        [0.41, 0, 0],
+        [0.82, 1.35, 0.1],
+      );
+      collider(
+        `${sideName}-rear-door-collider`,
+        `${sideName}-rear-door-pivot`,
+        'box',
+        [0.42, 0, 0],
+        [0.84, 1.35, 0.1],
+      );
+    }
 
     const tailgate = group('tailgate-pivot', utility);
     tailgate.position.set(3.02, 1.64, 0);
     roundedBox('tailgate-panel', [0.12, 1.12, 2.2], materials.body, tailgate, [0, 0.56, 0], 0.05);
     socket('tailgate-hinge', tailgate, [0, 0, 0]);
-    collider('left-door-collider', 'left-door-pivot', 'box', [0.72, 0, 0], [1.45, 1.35, 0.1]);
-    collider('right-door-collider', 'right-door-pivot', 'box', [0.72, 0, 0], [1.45, 1.35, 0.1]);
   }
 
   if (stageLevel >= STAGE_LEVEL['form-refinement']) {
@@ -607,20 +655,23 @@ export function createBrickOffroad(options = {}) {
     cylinderBetween('windshield-top-bar', [-1.04, 3.3, -1.08], [-1.04, 3.3, 1.08], 0.065, materials.trim, cabin);
     cylinderBetween('windshield-cowl-bar', [-1.29, 2.17, -1.08], [-1.29, 2.17, 1.08], 0.065, materials.trim, cabin);
     for (const side of [-1, 1]) {
+      const sideName = side > 0 ? 'left' : 'right';
+      const frontDoor = runtime.nodes[`${sideName}-door-pivot`];
+      const rearDoor = runtime.nodes[`${sideName}-rear-door-pivot`];
       roundedBox(
-        `front-side-window-${side > 0 ? 'left' : 'right'}`,
+        `front-side-window-${sideName}`,
         [0.82, 0.82, 0.07],
         materials.glass,
-        cabin,
-        [-0.48, 2.78, side * 1.19],
+        frontDoor,
+        [0.4, 0.53, 0],
         0.04,
       );
       roundedBox(
-        `rear-side-window-${side > 0 ? 'left' : 'right'}`,
+        `rear-side-window-${sideName}`,
         [0.72, 0.82, 0.07],
         materials.glass,
-        cabin,
-        [0.42, 2.78, side * 1.19],
+        rearDoor,
+        [0.42, 0.53, 0],
         0.04,
       );
       box(
@@ -631,20 +682,20 @@ export function createBrickOffroad(options = {}) {
         [0, 2.76, side * 1.22],
       );
       roundedBox(
-        `side-mirror-${side > 0 ? 'left' : 'right'}`,
+        `side-mirror-${sideName}`,
         [0.34, 0.25, 0.22],
         materials.trim,
-        cabin,
-        [-0.82, 2.62, side * 1.43],
+        frontDoor,
+        [0.06, 0.37, side * 0.24],
         0.05,
       );
       cylinderBetween(
-        `mirror-arm-${side > 0 ? 'left' : 'right'}`,
-        [-0.72, 2.5, side * 1.2],
-        [-0.82, 2.58, side * 1.36],
+        `mirror-arm-${sideName}`,
+        [0.16, 0.25, side * 0.01],
+        [0.06, 0.33, side * 0.17],
         0.035,
         materials.trim,
-        cabin,
+        frontDoor,
       );
       roundedBox(
         `utility-window-${side > 0 ? 'left' : 'right'}`,
@@ -694,14 +745,19 @@ export function createBrickOffroad(options = {}) {
     const matrix = new THREE.Matrix4();
     const studPositions = [];
     for (let row = 0; row < 4; row += 1) {
-      for (let column = 0; column < 10; column += 1) {
-        studPositions.push([-3.08 + column * 0.25, 2.36, -0.75 + row * 0.5]);
+      for (let column = 0; column < 11; column += 1) {
+        studPositions.push([-3.08 + column * 0.225, 2.36, -0.75 + row * 0.5]);
       }
     }
-    for (let row = 0; row < 4; row += 1) {
+    for (let row = 0; row < 5; row += 1) {
       for (let column = 0; column < 9; column += 1) {
-        studPositions.push([-0.82 + column * 0.22, 3.69, -0.75 + row * 0.5]);
+        studPositions.push([-0.82 + column * 0.22, 3.69, -0.8 + row * 0.4]);
       }
+    }
+    if (studCount > studPositions.length) {
+      throw new Error(
+        `Variant ${variant.id} studCount exceeds ${studPositions.length} authored positions.`,
+      );
     }
     for (let studIndex = 0; studIndex < studCount; studIndex += 1) {
       matrix.makeTranslation(...studPositions[studIndex]);
@@ -730,32 +786,40 @@ export function createBrickOffroad(options = {}) {
     registerMesh('panel-fasteners', fasteners, chassis, 'surface-details');
 
     for (const side of [-1, 1]) {
+      const sideName = side > 0 ? 'left' : 'right';
+      const frontDoor = runtime.nodes[`${sideName}-door-pivot`];
+      const rearDoor = runtime.nodes[`${sideName}-rear-door-pivot`];
       box(`rocker-step-${side}`, [3.15, 0.16, 0.32], materials.trim, chassis, [0.55, 1.18, side * 1.48]);
       roundedBox(
-        `front-door-handle-${side}`,
+        `front-door-handle-${sideName}`,
         [0.34, 0.1, 0.09],
         materials.trim,
-        cabin,
-        [-0.05, 2.34, side * 1.31],
+        frontDoor,
+        [0.68, 0.09, side * 0.12],
         0.025,
       );
       roundedBox(
-        `rear-door-handle-${side}`,
+        `rear-door-handle-${sideName}`,
         [0.32, 0.1, 0.09],
         materials.trim,
-        cabin,
-        [0.72, 2.34, side * 1.31],
+        rearDoor,
+        [0.7, 0.09, side * 0.12],
         0.025,
       );
-      for (const x of [-0.68, 0.6]) {
-        roundedBox(
-          `door-hinge-${side}-${x}`,
-          [0.16, 0.28, 0.12],
-          materials.trim,
-          cabin,
-          [x, 2.25, side * 1.28],
-          0.03,
-        );
+      for (const [doorId, door] of [
+        [`${sideName}-front`, frontDoor],
+        [`${sideName}-rear`, rearDoor],
+      ]) {
+        for (const y of [-0.38, 0.38]) {
+          roundedBox(
+            `door-hinge-${doorId}-${y}`,
+            [0.16, 0.24, 0.12],
+            materials.trim,
+            door,
+            [0.03, y, side * 0.11],
+            0.03,
+          );
+        }
       }
     }
 
@@ -833,6 +897,8 @@ export function createBrickOffroad(options = {}) {
     configuration: variant.id,
     topologyInvariant: 'brick-offroad-four-wheel-v1',
     seed,
+    wear: variant.wear,
+    dirtAmount: variant.dirtAmount,
   };
   root.userData.variantProvenance = {
     source: 'brick-offroad',
@@ -877,6 +943,10 @@ export function createBrickOffroad(options = {}) {
         : 0,
       importedMeshes: 0,
       generatedTextureResolution: detailedMaterials ? 512 : 0,
+      generatedTextureCount: resources.textures.size,
+      wear: variant.wear,
+      dirtAmount: variant.dirtAmount,
+      configurationId: variant.id,
       stage,
     },
     update(elapsedSeconds) {

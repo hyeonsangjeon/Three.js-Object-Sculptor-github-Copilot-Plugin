@@ -287,6 +287,10 @@ body.ready #loading {
   pointer-events: none;
 }
 
+html[data-capture="true"] #loading {
+  display: none;
+}
+
 html[data-ui="hidden"] .intro,
 html[data-ui="hidden"] .controls,
 html[data-ui="hidden"] .variant-panel,

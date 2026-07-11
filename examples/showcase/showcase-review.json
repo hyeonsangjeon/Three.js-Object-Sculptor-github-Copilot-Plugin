@@ -1,6 +1,6 @@
 {
   "reviewType": "readme-showcase-family",
-  "reviewedAt": "2026-07-11",
+  "reviewedAt": "2026-07-12",
   "renderer": "examples/showcase/showcase.js",
   "viewport": [1200, 675],
   "families": [
@@ -34,17 +34,17 @@
       "passGateStatus": "evidence-backed-production",
       "coverageCurator": {
         "poolSize": 24,
-        "selectedCandidateIndexes": [19, 8, 14],
-        "coverageScore": 0.540837
+        "selectedCandidateIndexes": [22, 19, 6],
+        "coverageScore": 0.499511
       },
       "scores": {
         "silhouetteProportion": 0.83,
         "componentStructure": 0.83,
         "formDetail": 0.81,
-        "materialSurface": 0.8,
+        "materialSurface": 0.79,
         "lightingCamera": 0.82
       },
-      "notes": "The production flagship and all three curated variants now have fresh same-camera evidence. They preserve exactly four wheels, vehicle-specific body hierarchy, generated PBR separation, action-ready runtime contracts, and the photographed expedition identity."
+      "notes": "The regenerated contact sheet uses the current production candidates [22, 19, 6]. Fresh same-camera evidence preserves exactly four wheels, vehicle-specific body hierarchy, generated PBR separation, declared wear/dirt controls, action-ready runtime contracts, and the photographed expedition identity."
     },
     {
       "id": "seoul-challenge",

@@ -1,13 +1,236 @@
 {
   "schemaVersion": "1.0",
   "sourceSpec": "object-sculpt-spec.json",
-  "sourceSpecSha256": "b83335e75c1c9e8ada1e6f8995969491f6beae19ad68e763e43a932b6992f06c",
+  "sourceSpecSha256": "594a5839e1a499d577b008de83e7460d88838c08176ab6496d7421918707a48e",
   "rootSeed": 20260711,
   "count": 3,
   "variants": [
     {
       "variantId": "brick-offroad-v001",
       "path": "brick-offroad-v001.json",
+      "variantSeed": 17489542476833866533,
+      "attempt": 1,
+      "mutations": [
+        {
+          "parameterId": "body-shell-roughness",
+          "target": {
+            "kind": "material",
+            "id": "body-shell",
+            "path": "roughness.base"
+          },
+          "before": 0.62,
+          "after": 0.5552
+        },
+        {
+          "parameterId": "body-shell-dominant-palette",
+          "target": {
+            "kind": "material",
+            "id": "body-shell",
+            "path": "colorVariation.palette.0"
+          },
+          "before": "#65704A",
+          "after": "#65704A"
+        },
+        {
+          "parameterId": "surface-wear",
+          "target": {
+            "kind": "material",
+            "id": "body-shell",
+            "path": "wear.edgeWear"
+          },
+          "before": 0.08,
+          "after": 0.29
+        },
+        {
+          "parameterId": "surface-dirt",
+          "target": {
+            "kind": "material",
+            "id": "body-shell",
+            "path": "dirt.amount"
+          },
+          "before": 0.08,
+          "after": 0.22
+        },
+        {
+          "parameterId": "roof-shell-roughness",
+          "target": {
+            "kind": "material",
+            "id": "roof-shell",
+            "path": "roughness.base"
+          },
+          "before": 0.58,
+          "after": 0.65
+        },
+        {
+          "parameterId": "roof-shell-dominant-palette",
+          "target": {
+            "kind": "material",
+            "id": "roof-shell",
+            "path": "colorVariation.palette.0"
+          },
+          "before": "#D8D8D2",
+          "after": "#ECECE6"
+        },
+        {
+          "parameterId": "dark-trim-roughness",
+          "target": {
+            "kind": "material",
+            "id": "dark-trim",
+            "path": "roughness.base"
+          },
+          "before": 0.7,
+          "after": 0.6967
+        },
+        {
+          "parameterId": "dark-trim-dominant-palette",
+          "target": {
+            "kind": "material",
+            "id": "dark-trim",
+            "path": "colorVariation.palette.0"
+          },
+          "before": "#171A19",
+          "after": "#3E4543"
+        },
+        {
+          "parameterId": "accent-roughness",
+          "target": {
+            "kind": "material",
+            "id": "accent",
+            "path": "roughness.base"
+          },
+          "before": 0.52,
+          "after": 0.5862
+        },
+        {
+          "parameterId": "accent-dominant-palette",
+          "target": {
+            "kind": "material",
+            "id": "accent",
+            "path": "colorVariation.palette.0"
+          },
+          "before": "#D87927",
+          "after": "#B75B32"
+        },
+        {
+          "parameterId": "rubber-roughness",
+          "target": {
+            "kind": "material",
+            "id": "rubber",
+            "path": "roughness.base"
+          },
+          "before": 0.82,
+          "after": 0.8624
+        },
+        {
+          "parameterId": "rubber-dominant-palette",
+          "target": {
+            "kind": "material",
+            "id": "rubber",
+            "path": "colorVariation.palette.0"
+          },
+          "before": "#111311",
+          "after": "#111311"
+        },
+        {
+          "parameterId": "glass-roughness",
+          "target": {
+            "kind": "material",
+            "id": "glass",
+            "path": "roughness.base"
+          },
+          "before": 0.2,
+          "after": 0.2649
+        },
+        {
+          "parameterId": "glass-dominant-palette",
+          "target": {
+            "kind": "material",
+            "id": "glass",
+            "path": "colorVariation.palette.0"
+          },
+          "before": "#182B30",
+          "after": "#29434A"
+        },
+        {
+          "parameterId": "lamp-roughness",
+          "target": {
+            "kind": "material",
+            "id": "lamp",
+            "path": "roughness.base"
+          },
+          "before": 0.3,
+          "after": 0.2974
+        },
+        {
+          "parameterId": "lamp-dominant-palette",
+          "target": {
+            "kind": "material",
+            "id": "lamp",
+            "path": "colorVariation.palette.0"
+          },
+          "before": "#FFB347",
+          "after": "#FFB347"
+        },
+        {
+          "parameterId": "wheel-treads-count",
+          "target": {
+            "kind": "repetition",
+            "id": "wheel-treads",
+            "path": "count"
+          },
+          "before": 64,
+          "after": 64
+        },
+        {
+          "parameterId": "body-studs-count",
+          "target": {
+            "kind": "repetition",
+            "id": "body-studs",
+            "path": "count"
+          },
+          "before": 72,
+          "after": 64
+        },
+        {
+          "parameterId": "roof-lamps-count",
+          "target": {
+            "kind": "repetition",
+            "id": "roof-lamps",
+            "path": "count"
+          },
+          "before": 5,
+          "after": 4
+        }
+      ],
+      "invariants": {
+        "ok": true,
+        "checked": [
+          "component-ids",
+          "parent-links",
+          "material-refs",
+          "socket-ids",
+          "fracture-groups",
+          "attachment-roots",
+          "build-pass-order",
+          "feature-review-targets"
+        ]
+      },
+      "reviewEvidenceReset": true,
+      "samplingMode": "coverage-curated",
+      "candidateIndex": 22,
+      "curatedIndex": 1,
+      "selectionScore": 0.355623,
+      "previewMode": false,
+      "passGateStatus": "evidence-backed-production",
+      "visualEvidence": {
+        "aiVisionScore": 0.78,
+        "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-1.webp",
+        "comparisonImage": "examples/brick-offroad-hero/evidence/variant-1-comparison.webp"
+      }
+    },
+    {
+      "variantId": "brick-offroad-v002",
+      "path": "brick-offroad-v002.json",
       "variantSeed": 316103719852220715,
       "attempt": 1,
       "mutations": [
@@ -32,6 +255,26 @@
           "after": "#65704A"
         },
         {
+          "parameterId": "surface-wear",
+          "target": {
+            "kind": "material",
+            "id": "body-shell",
+            "path": "wear.edgeWear"
+          },
+          "before": 0.08,
+          "after": 0.21
+        },
+        {
+          "parameterId": "surface-dirt",
+          "target": {
+            "kind": "material",
+            "id": "body-shell",
+            "path": "dirt.amount"
+          },
+          "before": 0.08,
+          "after": 0.15
+        },
+        {
           "parameterId": "roof-shell-roughness",
           "target": {
             "kind": "material",
@@ -39,7 +282,7 @@
             "path": "roughness.base"
           },
           "before": 0.58,
-          "after": 0.5275
+          "after": 0.5977
         },
         {
           "parameterId": "roof-shell-dominant-palette",
@@ -49,7 +292,7 @@
             "path": "colorVariation.palette.0"
           },
           "before": "#D8D8D2",
-          "after": "#ECECE6"
+          "after": "#D8D8D2"
         },
         {
           "parameterId": "dark-trim-roughness",
@@ -59,7 +302,7 @@
             "path": "roughness.base"
           },
           "before": 0.7,
-          "after": 0.6779
+          "after": 0.7164
         },
         {
           "parameterId": "dark-trim-dominant-palette",
@@ -69,7 +312,7 @@
             "path": "colorVariation.palette.0"
           },
           "before": "#171A19",
-          "after": "#3E4543"
+          "after": "#2A2F2E"
         },
         {
           "parameterId": "accent-roughness",
@@ -79,7 +322,7 @@
             "path": "roughness.base"
           },
           "before": 0.52,
-          "after": 0.6161
+          "after": 0.4674
         },
         {
           "parameterId": "accent-dominant-palette",
@@ -89,7 +332,7 @@
             "path": "colorVariation.palette.0"
           },
           "before": "#D87927",
-          "after": "#E28A2B"
+          "after": "#E6B64C"
         },
         {
           "parameterId": "rubber-roughness",
@@ -99,7 +342,7 @@
             "path": "roughness.base"
           },
           "before": 0.82,
-          "after": 0.7674
+          "after": 0.8414
         },
         {
           "parameterId": "rubber-dominant-palette",
@@ -109,7 +352,7 @@
             "path": "colorVariation.palette.0"
           },
           "before": "#111311",
-          "after": "#111311"
+          "after": "#363C36"
         },
         {
           "parameterId": "glass-roughness",
@@ -119,7 +362,7 @@
             "path": "roughness.base"
           },
           "before": 0.2,
-          "after": 0.2214
+          "after": 0.1293
         },
         {
           "parameterId": "glass-dominant-palette",
@@ -139,7 +382,7 @@
             "path": "roughness.base"
           },
           "before": 0.3,
-          "after": 0.2293
+          "after": 0.1994
         },
         {
           "parameterId": "lamp-dominant-palette",
@@ -159,7 +402,7 @@
             "path": "count"
           },
           "before": 64,
-          "after": 52
+          "after": 76
         },
         {
           "parameterId": "body-studs-count",
@@ -169,7 +412,7 @@
             "path": "count"
           },
           "before": 72,
-          "after": 72
+          "after": 81
         },
         {
           "parameterId": "roof-lamps-count",
@@ -198,20 +441,20 @@
       "reviewEvidenceReset": true,
       "samplingMode": "coverage-curated",
       "candidateIndex": 19,
-      "curatedIndex": 1,
-      "selectionScore": 0.36496,
+      "curatedIndex": 2,
+      "selectionScore": 0.571666,
       "previewMode": false,
       "passGateStatus": "evidence-backed-production",
       "visualEvidence": {
-        "aiVisionScore": 0.78,
-        "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-1.webp",
-        "comparisonImage": "examples/brick-offroad-hero/evidence/variant-1-comparison.webp"
+        "aiVisionScore": 0.76,
+        "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-2.webp",
+        "comparisonImage": "examples/brick-offroad-hero/evidence/variant-2-comparison.webp"
       }
     },
     {
-      "variantId": "brick-offroad-v002",
-      "path": "brick-offroad-v002.json",
-      "variantSeed": 2808576818592334290,
+      "variantId": "brick-offroad-v003",
+      "path": "brick-offroad-v003.json",
+      "variantSeed": 923074270697732028,
       "attempt": 1,
       "mutations": [
         {
@@ -222,7 +465,7 @@
             "path": "roughness.base"
           },
           "before": 0.62,
-          "after": 0.659
+          "after": 0.582
         },
         {
           "parameterId": "body-shell-dominant-palette",
@@ -232,7 +475,27 @@
             "path": "colorVariation.palette.0"
           },
           "before": "#65704A",
-          "after": "#4C5937"
+          "after": "#65704A"
+        },
+        {
+          "parameterId": "surface-wear",
+          "target": {
+            "kind": "material",
+            "id": "body-shell",
+            "path": "wear.edgeWear"
+          },
+          "before": 0.08,
+          "after": 0.27
+        },
+        {
+          "parameterId": "surface-dirt",
+          "target": {
+            "kind": "material",
+            "id": "body-shell",
+            "path": "dirt.amount"
+          },
+          "before": 0.08,
+          "after": 0.2
         },
         {
           "parameterId": "roof-shell-roughness",
@@ -242,7 +505,7 @@
             "path": "roughness.base"
           },
           "before": 0.58,
-          "after": 0.5
+          "after": 0.6146
         },
         {
           "parameterId": "roof-shell-dominant-palette",
@@ -252,7 +515,7 @@
             "path": "colorVariation.palette.0"
           },
           "before": "#D8D8D2",
-          "after": "#BFC2BC"
+          "after": "#D8D8D2"
         },
         {
           "parameterId": "dark-trim-roughness",
@@ -262,7 +525,7 @@
             "path": "roughness.base"
           },
           "before": 0.7,
-          "after": 0.6935
+          "after": 0.7608
         },
         {
           "parameterId": "dark-trim-dominant-palette",
@@ -282,7 +545,7 @@
             "path": "roughness.base"
           },
           "before": 0.52,
-          "after": 0.4248
+          "after": 0.6072
         },
         {
           "parameterId": "accent-dominant-palette",
@@ -292,7 +555,7 @@
             "path": "colorVariation.palette.0"
           },
           "before": "#D87927",
-          "after": "#E28A2B"
+          "after": "#B75B32"
         },
         {
           "parameterId": "rubber-roughness",
@@ -302,7 +565,7 @@
             "path": "roughness.base"
           },
           "before": 0.82,
-          "after": 0.7748
+          "after": 0.8654
         },
         {
           "parameterId": "rubber-dominant-palette",
@@ -322,7 +585,7 @@
             "path": "roughness.base"
           },
           "before": 0.2,
-          "after": 0.2545
+          "after": 0.2269
         },
         {
           "parameterId": "glass-dominant-palette",
@@ -332,7 +595,7 @@
             "path": "colorVariation.palette.0"
           },
           "before": "#182B30",
-          "after": "#29434A"
+          "after": "#182B30"
         },
         {
           "parameterId": "lamp-roughness",
@@ -342,7 +605,7 @@
             "path": "roughness.base"
           },
           "before": 0.3,
-          "after": 0.3053
+          "after": 0.2423
         },
         {
           "parameterId": "lamp-dominant-palette",
@@ -372,210 +635,7 @@
             "path": "count"
           },
           "before": 72,
-          "after": 63
-        },
-        {
-          "parameterId": "roof-lamps-count",
-          "target": {
-            "kind": "repetition",
-            "id": "roof-lamps",
-            "path": "count"
-          },
-          "before": 5,
-          "after": 4
-        }
-      ],
-      "invariants": {
-        "ok": true,
-        "checked": [
-          "component-ids",
-          "parent-links",
-          "material-refs",
-          "socket-ids",
-          "fracture-groups",
-          "attachment-roots",
-          "build-pass-order",
-          "feature-review-targets"
-        ]
-      },
-      "reviewEvidenceReset": true,
-      "samplingMode": "coverage-curated",
-      "candidateIndex": 8,
-      "curatedIndex": 2,
-      "selectionScore": 0.586049,
-      "previewMode": false,
-      "passGateStatus": "evidence-backed-production",
-      "visualEvidence": {
-        "aiVisionScore": 0.76,
-        "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-2.webp",
-        "comparisonImage": "examples/brick-offroad-hero/evidence/variant-2-comparison.webp"
-      }
-    },
-    {
-      "variantId": "brick-offroad-v003",
-      "path": "brick-offroad-v003.json",
-      "variantSeed": 2111178937863530321,
-      "attempt": 1,
-      "mutations": [
-        {
-          "parameterId": "body-shell-roughness",
-          "target": {
-            "kind": "material",
-            "id": "body-shell",
-            "path": "roughness.base"
-          },
-          "before": 0.62,
-          "after": 0.6379
-        },
-        {
-          "parameterId": "body-shell-dominant-palette",
-          "target": {
-            "kind": "material",
-            "id": "body-shell",
-            "path": "colorVariation.palette.0"
-          },
-          "before": "#65704A",
-          "after": "#8C9570"
-        },
-        {
-          "parameterId": "roof-shell-roughness",
-          "target": {
-            "kind": "material",
-            "id": "roof-shell",
-            "path": "roughness.base"
-          },
-          "before": 0.58,
-          "after": 0.5967
-        },
-        {
-          "parameterId": "roof-shell-dominant-palette",
-          "target": {
-            "kind": "material",
-            "id": "roof-shell",
-            "path": "colorVariation.palette.0"
-          },
-          "before": "#D8D8D2",
-          "after": "#D8D8D2"
-        },
-        {
-          "parameterId": "dark-trim-roughness",
-          "target": {
-            "kind": "material",
-            "id": "dark-trim",
-            "path": "roughness.base"
-          },
-          "before": 0.7,
-          "after": 0.7056
-        },
-        {
-          "parameterId": "dark-trim-dominant-palette",
-          "target": {
-            "kind": "material",
-            "id": "dark-trim",
-            "path": "colorVariation.palette.0"
-          },
-          "before": "#171A19",
-          "after": "#171A19"
-        },
-        {
-          "parameterId": "accent-roughness",
-          "target": {
-            "kind": "material",
-            "id": "accent",
-            "path": "roughness.base"
-          },
-          "before": 0.52,
-          "after": 0.563
-        },
-        {
-          "parameterId": "accent-dominant-palette",
-          "target": {
-            "kind": "material",
-            "id": "accent",
-            "path": "colorVariation.palette.0"
-          },
-          "before": "#D87927",
-          "after": "#E6B64C"
-        },
-        {
-          "parameterId": "rubber-roughness",
-          "target": {
-            "kind": "material",
-            "id": "rubber",
-            "path": "roughness.base"
-          },
-          "before": 0.82,
-          "after": 0.9126
-        },
-        {
-          "parameterId": "rubber-dominant-palette",
-          "target": {
-            "kind": "material",
-            "id": "rubber",
-            "path": "colorVariation.palette.0"
-          },
-          "before": "#111311",
-          "after": "#222622"
-        },
-        {
-          "parameterId": "glass-roughness",
-          "target": {
-            "kind": "material",
-            "id": "glass",
-            "path": "roughness.base"
-          },
-          "before": 0.2,
-          "after": 0.1008
-        },
-        {
-          "parameterId": "glass-dominant-palette",
-          "target": {
-            "kind": "material",
-            "id": "glass",
-            "path": "colorVariation.palette.0"
-          },
-          "before": "#182B30",
-          "after": "#29434A"
-        },
-        {
-          "parameterId": "lamp-roughness",
-          "target": {
-            "kind": "material",
-            "id": "lamp",
-            "path": "roughness.base"
-          },
-          "before": 0.3,
-          "after": 0.2676
-        },
-        {
-          "parameterId": "lamp-dominant-palette",
-          "target": {
-            "kind": "material",
-            "id": "lamp",
-            "path": "colorVariation.palette.0"
-          },
-          "before": "#FFB347",
-          "after": "#FFF3C4"
-        },
-        {
-          "parameterId": "wheel-treads-count",
-          "target": {
-            "kind": "repetition",
-            "id": "wheel-treads",
-            "path": "count"
-          },
-          "before": 64,
-          "after": 52
-        },
-        {
-          "parameterId": "body-studs-count",
-          "target": {
-            "kind": "repetition",
-            "id": "body-studs",
-            "path": "count"
-          },
-          "before": 72,
-          "after": 63
+          "after": 60
         },
         {
           "parameterId": "roof-lamps-count",
@@ -603,9 +663,9 @@
       },
       "reviewEvidenceReset": true,
       "samplingMode": "coverage-curated",
-      "candidateIndex": 14,
+      "candidateIndex": 6,
       "curatedIndex": 3,
-      "selectionScore": 0.51774,
+      "selectionScore": 0.459116,
       "previewMode": false,
       "passGateStatus": "evidence-backed-production",
       "visualEvidence": {
@@ -618,13 +678,15 @@
   "samplingMode": "coverage-curated",
   "poolSize": 24,
   "selectedCandidateIndexes": [
+    22,
     19,
-    8,
-    14
+    6
   ],
   "parameterIds": [
     "body-shell-roughness",
     "body-shell-dominant-palette",
+    "surface-wear",
+    "surface-dirt",
     "roof-shell-roughness",
     "roof-shell-dominant-palette",
     "dark-trim-roughness",
@@ -641,7 +703,7 @@
     "body-studs-count",
     "roof-lamps-count"
   ],
-  "coverageScore": 0.540837,
+  "coverageScore": 0.499511,
   "selectionStrategy": "centroid-extreme then greedy max-min normalized parameter distance",
   "previewMode": false,
   "passGateStatus": "evidence-backed-production",

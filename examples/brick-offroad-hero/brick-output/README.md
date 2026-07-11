@@ -18,6 +18,6 @@ explorer.update(performance.now() * 0.001);
 
 Live `Object3D` references stay in `result.runtime`; `root.userData` contains only serializable IDs and provenance. The factory exposes four wheel pivots, two steering pivots, four suspension anchors, hinged hood/doors/tailgate, roof sockets, collider metadata, and semantic destruction groups.
 
-`brick-variant-config.json` mirrors every material and repetition mutation from the three production ObjectSculptSpec variants. The capture manifest hashes that config, all three variant specs, and their production manifest.
+`brick-variant-config.json` starts with an exact base ObjectSculptSpec configuration, followed by every material and repetition mutation from the three production variants. Base stage/final evidence uses the base configuration; variant evidence uses only v001-v003.
 
 Call `explorer.dispose()` after removing the asset.

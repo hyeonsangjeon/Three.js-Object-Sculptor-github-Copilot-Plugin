@@ -9,6 +9,7 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
+from sculpt_pass_orchestrator import next_required_evidence
 from visual_feature_gate import feature_gate_failures
 
 
@@ -114,19 +115,25 @@ def pass_acceptance(spec: dict, pass_id: str) -> list[str]:
     return []
 
 
-def pass_specific_evidence(pass_id: str) -> list[str]:
+def pass_specific_evidence(spec: dict, pass_id: str) -> list[str]:
     if pass_id in {"structural-pass", "form-refinement"}:
         return [
             "attachment contracts for child appendages/connectors",
             "no floating child roots/joints in the browser screenshot",
         ]
     if pass_id == "material-pass":
+        minimum_resolution = (
+            spec.get("lookDevTargets", {})
+            .get("materialPass", {})
+            .get("minimumTextureResolution", 1024)
+        )
         return [
             "reference-derived albedo palette with dominant, secondary, and accent colors",
             "independent albedo, roughness, height/normal, and AO maps",
-            "macro, meso, and micro surface-frequency response at 1024px or higher",
+            f"macro, meso, and micro surface-frequency response at {minimum_resolution}px or higher",
             "local material masks: AO, dirt, wear, stains, moss, chips, scratches, wetness, or equivalent",
             "neutral, grazing-light close-up, and reference-matched browser screenshots",
+            "AI vision comparison sheet score meeting the visual acceptance threshold",
         ]
     if pass_id == "surface-pass":
         return [
@@ -174,17 +181,7 @@ def sync_pipeline(spec: dict) -> None:
             else:
                 break
     current = "complete" if len(completed) >= len(ids) else ids[len(completed)]
-    required = [] if current == "complete" else pass_acceptance(spec, current)
-    required.extend(pass_specific_evidence(current))
-    if current in VISUAL_PASS_IDS:
-        required.extend(
-            [
-                "browser render screenshot from the GitHub Copilot in-app Browser",
-                "single side-by-side full reference/render comparison sheet",
-                "all critical semantic feature scores at or above their thresholds",
-                "self-correction review appended with action=continue before the next pass",
-            ]
-        )
+    required = next_required_evidence(spec, current)
     pipeline = spec.setdefault("sculptPipeline", {})
     if not isinstance(pipeline, dict):
         pipeline = {}

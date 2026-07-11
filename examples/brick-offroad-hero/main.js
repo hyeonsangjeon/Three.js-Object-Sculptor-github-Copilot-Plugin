@@ -4,6 +4,7 @@ import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 import {
+  BRICK_BASE_CONFIG,
   BRICK_STAGES,
   BRICK_VARIANTS,
   createBrickOffroad,
@@ -13,13 +14,21 @@ const query = new URLSearchParams(window.location.search);
 if (query.get('ui') === '0') document.documentElement.dataset.ui = 'hidden';
 const requestedStage = query.get('stage');
 const stage = BRICK_STAGES.includes(requestedStage) ? requestedStage : 'full';
-const requestedVariant = Number.parseInt(query.get('variant') ?? '0', 10);
-let activeVariant = Number.isFinite(requestedVariant)
-  ? ((requestedVariant % BRICK_VARIANTS.length) + BRICK_VARIANTS.length)
-    % BRICK_VARIANTS.length
-  : 0;
+const requestedVariantValue = query.get('variant') ?? '0';
+const requestedVariant = Number.parseInt(requestedVariantValue, 10);
+let activeVariant = requestedVariantValue === 'base'
+  ? 'base'
+  : Number.isFinite(requestedVariant)
+    ? ((requestedVariant % BRICK_VARIANTS.length) + BRICK_VARIANTS.length)
+      % BRICK_VARIANTS.length
+    : 0;
+const captureMode = query.get('capture') === '1';
+if (captureMode) document.documentElement.dataset.capture = 'true';
+let canonicalElapsed = Number.parseFloat(query.get('time') ?? '1.25');
+if (!Number.isFinite(canonicalElapsed)) canonicalElapsed = 1.25;
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-let autoRotate = query.get('motion') !== '0' && !reducedMotion;
+let autoRotate = query.get('motion') !== '0' && !reducedMotion && !captureMode;
+let elapsed = captureMode ? canonicalElapsed : 0;
 
 const sceneContainer = document.querySelector('#scene');
 const renderer = new THREE.WebGLRenderer({
@@ -127,6 +136,11 @@ const motionButton = document.querySelector('#toggle-motion');
 let explorer = null;
 
 function updateLabels() {
+  if (activeVariant === 'base') {
+    variantName.textContent = BRICK_BASE_CONFIG.label;
+    variantIndex.textContent = 'BASE SPEC';
+    return;
+  }
   variantName.textContent = BRICK_VARIANTS[activeVariant].label;
   variantIndex.textContent = `${String(activeVariant + 1).padStart(2, '0')} / ${String(BRICK_VARIANTS.length).padStart(2, '0')}`;
 }
@@ -148,7 +162,9 @@ function rebuildExplorer() {
   });
   explorer.root.rotation.y = -0.04;
   scene.add(explorer.root);
-  generationLabel.textContent = `${explorer.stats.generationMs.toFixed(0)} ms generation`;
+  generationLabel.textContent = captureMode
+    ? 'Canonical capture · 1.25 s'
+    : `${explorer.stats.generationMs.toFixed(0)} ms generation`;
   geometryLabel.textContent = `${explorer.stats.triangles.toLocaleString()} triangles · ${explorer.stats.wheels} wheels`;
   updateLabels();
   window.__BRICK_HERO__ = explorer;
@@ -177,7 +193,9 @@ document.querySelector('#reset-view').addEventListener('click', () => {
 });
 
 document.querySelector('#next-variant').addEventListener('click', () => {
-  activeVariant = (activeVariant + 1) % BRICK_VARIANTS.length;
+  activeVariant = activeVariant === 'base'
+    ? 0
+    : (activeVariant + 1) % BRICK_VARIANTS.length;
   rebuildExplorer();
 });
 
@@ -202,14 +220,28 @@ window.__setBrickReferenceView = () => {
   setReferenceView();
   renderFrame();
 };
+window.__setBrickCaptureTime = (value = 1.25) => {
+  canonicalElapsed = value;
+  elapsed = value;
+  explorer.update(value);
+  controls.update();
+  renderFrame();
+};
+window.__setDoorPose = (angle = 0) => {
+  const front = explorer.runtime.nodes['left-door-pivot'];
+  const rear = explorer.runtime.nodes['left-rear-door-pivot'];
+  front.rotation.y = -angle;
+  rear.rotation.y = -angle;
+  front.updateMatrixWorld(true);
+  rear.updateMatrixWorld(true);
+  renderFrame();
+};
 
 const clock = new THREE.Clock();
-let elapsed = 0;
 let renderedFrames = 0;
 function render() {
-  requestAnimationFrame(render);
   const delta = Math.min(clock.getDelta(), 0.05);
-  elapsed += delta;
+  elapsed = captureMode ? canonicalElapsed : elapsed + delta;
   controls.update();
   explorer.update(elapsed);
   if (autoRotate) explorer.root.rotation.y += delta * 0.08;
@@ -219,6 +251,7 @@ function render() {
     document.body.classList.add('ready');
     window.__BRICK_READY__ = true;
   }
+  if (!captureMode || renderedFrames < 4) requestAnimationFrame(render);
 }
 render();
 

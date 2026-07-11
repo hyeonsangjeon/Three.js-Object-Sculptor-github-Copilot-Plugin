@@ -1,7 +1,9 @@
 from __future__ import annotations
 
+from copy import deepcopy
 import json
 from hashlib import sha256
+import sys
 import unittest
 from pathlib import Path
 
@@ -9,6 +11,17 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 HERO = ROOT / "examples" / "brick-offroad-hero"
 FACTORY = HERO / "brick-output" / "createBrickOffroad.js"
+SCRIPTS = ROOT / "scripts"
+sys.path.insert(0, str(SCRIPTS))
+
+from append_sculpt_review import (  # noqa: E402
+    pass_specific_evidence as append_evidence,
+    sync_pipeline as append_sync_pipeline,
+)
+from sculpt_pass_orchestrator import (  # noqa: E402
+    next_required_evidence,
+    pass_specific_evidence as orchestrator_evidence,
+)
 
 
 class BrickOffroadHeroTests(unittest.TestCase):
@@ -24,8 +37,8 @@ class BrickOffroadHeroTests(unittest.TestCase):
             "['rear-left', 2.12, 1]",
             "['rear-right', 2.12, -1]",
             "`${id}-wheel-pivot`",
-            "left-door-pivot",
-            "right-door-pivot",
+            "`${sideName}-door-pivot`",
+            "`${sideName}-rear-door-pivot`",
             "hood-pivot",
             "tailgate-pivot",
             "roof-cargo-socket",
@@ -35,6 +48,7 @@ class BrickOffroadHeroTests(unittest.TestCase):
             "tailgate.position.set(3.02, 1.64, 0)",
             "socket('tailgate-hinge', tailgate, [0, 0, 0])",
             "object.isInstancedMesh ? object.count : 1",
+            "variant.wear",
             "importedMeshes: 0",
         ):
             self.assertIn(required, source)
@@ -75,6 +89,7 @@ class BrickOffroadHeroTests(unittest.TestCase):
                 HERO / "brick-output" / "brick-variant-config.json"
             ).read_text(encoding="utf-8")
         )
+        base_config, *variant_config = config
         variant_dir = ROOT / "examples" / "showcase" / "variants" / "brick"
         material_fields = {
             "body-shell": ("body", "bodyRoughness"),
@@ -90,7 +105,41 @@ class BrickOffroadHeroTests(unittest.TestCase):
             "body-studs": "studCount",
             "roof-lamps": "roofLampCount",
         }
-        for index, runtime_variant in enumerate(config, start=1):
+        base_spec = json.loads(
+            (
+                ROOT / "examples" / "brick-offroad" / "object-sculpt-spec.json"
+            ).read_text(encoding="utf-8")
+        )
+        base_materials = {item["id"]: item for item in base_spec["materials"]}
+        self.assertEqual(base_config["id"], "brick-offroad-base")
+        for material_id, (color_field, roughness_field) in material_fields.items():
+            self.assertEqual(
+                base_config[color_field],
+                base_materials[material_id]["colorVariation"]["palette"][0],
+            )
+            self.assertEqual(
+                base_config[roughness_field],
+                base_materials[material_id]["roughness"]["base"],
+            )
+        self.assertEqual(
+            base_config["wear"],
+            base_materials["body-shell"]["wear"]["edgeWear"],
+        )
+        self.assertEqual(
+            base_config["dust"],
+            base_materials["body-shell"]["dirt"]["color"],
+        )
+        self.assertEqual(
+            base_config["dirtAmount"],
+            base_materials["body-shell"]["dirt"]["amount"],
+        )
+        base_repetition = {
+            item["id"]: item["count"] for item in base_spec["repetitionSystems"]
+        }
+        for repetition_id, field in repetition_fields.items():
+            self.assertEqual(base_config[field], base_repetition[repetition_id])
+
+        for index, runtime_variant in enumerate(variant_config, start=1):
             spec_path = variant_dir / f"brick-offroad-v{index:03d}.json"
             spec = json.loads(spec_path.read_text(encoding="utf-8"))
             with self.subTest(variant=runtime_variant["id"]):
@@ -113,6 +162,18 @@ class BrickOffroadHeroTests(unittest.TestCase):
                         runtime_variant[field], repetition[repetition_id]
                     )
                 self.assertEqual(runtime_variant["treadCount"] % 4, 0)
+                self.assertEqual(
+                    runtime_variant["wear"],
+                    materials["body-shell"]["wear"]["edgeWear"],
+                )
+                self.assertEqual(
+                    runtime_variant["dirtAmount"],
+                    materials["body-shell"]["dirt"]["amount"],
+                )
+                self.assertEqual(
+                    runtime_variant["dust"],
+                    materials["body-shell"]["dirt"]["color"],
+                )
 
     def test_spec_and_curated_variants_are_evidence_backed_production(self) -> None:
         base = json.loads(
@@ -130,6 +191,27 @@ class BrickOffroadHeroTests(unittest.TestCase):
         )
         self.assertTrue(
             all(item["textureResolution"] == 512 for item in base["materials"])
+        )
+        material_probe = deepcopy(base)
+        material_probe["reviewHistory"] = material_probe["reviewHistory"][:3]
+        append_sync_pipeline(material_probe)
+        self.assertEqual(
+            material_probe["sculptPipeline"]["currentPass"],
+            "material-pass",
+        )
+        self.assertEqual(
+            material_probe["sculptPipeline"]["nextRequiredEvidence"],
+            next_required_evidence(material_probe, "material-pass"),
+        )
+        self.assertEqual(
+            append_evidence(base, "material-pass"),
+            orchestrator_evidence(base, "material-pass"),
+        )
+        self.assertTrue(
+            any(
+                "512px" in item
+                for item in append_evidence(base, "material-pass")
+            )
         )
 
         variant_dir = ROOT / "examples" / "showcase" / "variants" / "brick"
@@ -167,9 +249,42 @@ class BrickOffroadHeroTests(unittest.TestCase):
         for relative, expected in manifest["outputSha256"].items():
             with self.subTest(output=relative):
                 self.assertEqual(digest((HERO / relative).resolve()), expected)
+        self.assertIn(
+            "../../assets/brick-offroad-sculpt-dna-result.png",
+            manifest["outputSha256"],
+        )
         self.assertEqual(manifest["capture"]["frames"], 24)
         self.assertEqual(manifest["capture"]["fps"], 6)
         self.assertEqual(manifest["capture"]["rotationSeconds"], 4)
+        self.assertEqual(manifest["capture"]["variant"], "brick-offroad-base")
+        self.assertTrue(manifest["capture"]["deterministic"])
+        self.assertEqual(manifest["capture"]["canonicalElapsed"], 1.25)
+        self.assertEqual(
+            manifest["baseConfiguration"]["id"], "brick-offroad-base"
+        )
+        self.assertEqual(
+            manifest["runtimeStats"]["configurationId"], "brick-offroad-base"
+        )
+        self.assertEqual(manifest["runtimeStats"]["generatedTextureCount"], 48)
+        self.assertEqual(manifest["runtimeStats"]["wear"], 0.08)
+        self.assertTrue(manifest["lifecycleCheck"]["complete"])
+        self.assertEqual(
+            manifest["lifecycleCheck"]["counts"],
+            manifest["lifecycleCheck"]["disposed"],
+        )
+        self.assertEqual(manifest["lifecycleCheck"]["counts"]["textures"], 48)
+        self.assertTrue(
+            all(item["allParented"] for item in manifest["doorArticulation"])
+        )
+        self.assertTrue(
+            all(item["childMoved"] for item in manifest["doorArticulation"])
+        )
+        self.assertTrue(
+            all(
+                len([child for child in item["childIds"] if "hinge" in child]) >= 3
+                for item in manifest["doorArticulation"]
+            )
+        )
         self.assertEqual(
             {item["id"] for item in manifest["variantStats"]},
             {
@@ -189,6 +304,25 @@ class BrickOffroadHeroTests(unittest.TestCase):
                     HERO / "brick-output" / "brick-variant-config.json"
                 ).read_text(encoding="utf-8")
             )
+            if item["id"] != "brick-offroad-base"
+        }
+        expected_wear = {
+            item["id"]: item["wear"]
+            for item in json.loads(
+                (
+                    HERO / "brick-output" / "brick-variant-config.json"
+                ).read_text(encoding="utf-8")
+            )
+            if item["id"] != "brick-offroad-base"
+        }
+        expected_dirt = {
+            item["id"]: item["dirtAmount"]
+            for item in json.loads(
+                (
+                    HERO / "brick-output" / "brick-variant-config.json"
+                ).read_text(encoding="utf-8")
+            )
+            if item["id"] != "brick-offroad-base"
         }
         for item in manifest["variantStats"]:
             stats = item["stats"]
@@ -201,6 +335,8 @@ class BrickOffroadHeroTests(unittest.TestCase):
                 expected_counts[item["id"]],
             )
             self.assertEqual(stats["treadsPerWheel"] * 4, stats["treadInstances"])
+            self.assertEqual(stats["wear"], expected_wear[item["id"]])
+            self.assertEqual(stats["dirtAmount"], expected_dirt[item["id"]])
         for relative in (
             "../showcase/variants/brick/brick-offroad-v001.json",
             "../showcase/variants/brick/brick-offroad-v002.json",
@@ -208,7 +344,9 @@ class BrickOffroadHeroTests(unittest.TestCase):
             "../showcase/variants/brick/sculpt-dna-manifest.json",
             "brick-output/brick-variant-config.json",
             "scripts/capture.mjs",
+            "../../scripts/append_sculpt_review.py",
             "../../scripts/make_visual_comparison_sheet.py",
+            "../../scripts/sculpt_pass_orchestrator.py",
         ):
             self.assertIn(relative, manifest["sourceSha256"])
         self.assertEqual(
@@ -218,7 +356,8 @@ class BrickOffroadHeroTests(unittest.TestCase):
         self.assertLess((ROOT / "assets" / "brick-offroad-hero.png").stat().st_size, 1_500_000)
         self.assertLess((ROOT / "assets" / "brick-offroad-hero.gif").stat().st_size, 5_000_000)
         evidence = list((HERO / "evidence").glob("*.webp"))
-        self.assertEqual(len(evidence), 18)
+        self.assertEqual(len(evidence), 19)
+        self.assertTrue((HERO / "evidence" / "door-articulation.webp").exists())
         self.assertLess(sum(path.stat().st_size for path in evidence), 3_000_000)
 
     def test_capture_is_portable_and_preflights_before_overwrite(self) -> None:
@@ -233,6 +372,14 @@ class BrickOffroadHeroTests(unittest.TestCase):
         )
         self.assertIn('shutil.which("ffmpeg")', comparison)
         self.assertIn('"-frames:v"', comparison)
+        self.assertIn("capture=1", capture)
+        self.assertIn("deterministicFrameSha256", capture)
+        factory = FACTORY.read_text(encoding="utf-8")
+        self.assertNotIn("height: createDataTexture", factory)
+        self.assertNotIn("write(height", factory)
+        readme = (HERO / "README.md").read_text(encoding="utf-8")
+        for dependency in ("Python 3", "ffmpeg", "cwebp", "Chrome"):
+            self.assertIn(dependency, readme)
 
     def test_pages_workflow_keeps_repolis_root_and_brick_subroute(self) -> None:
         workflow = (

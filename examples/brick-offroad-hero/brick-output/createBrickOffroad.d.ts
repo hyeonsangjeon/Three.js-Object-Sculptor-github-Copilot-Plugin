@@ -28,6 +28,7 @@ export type BrickVariant = {
   lampRoughness: number;
   dust: string;
   wear: number;
+  dirtAmount: number;
   treadCount: number;
   studCount: number;
   roofLampCount: number;
@@ -51,6 +52,10 @@ export type BrickOffroadStats = {
   roofLampInstances: number;
   importedMeshes: 0;
   generatedTextureResolution: number;
+  generatedTextureCount: number;
+  wear: number;
+  dirtAmount: number;
+  configurationId: string;
   stage: BrickStage;
 };
 
@@ -70,6 +75,12 @@ export type BrickRuntime = {
   wheelPivots: THREE.Group[];
   steeringPivots: THREE.Group[];
   suspensionAnchors: THREE.Group[];
+  resources: {
+    geometries: Set<THREE.BufferGeometry>;
+    materials: Set<THREE.Material>;
+    textures: Set<THREE.Texture>;
+    instancedMeshes: Set<THREE.InstancedMesh>;
+  };
 };
 
 export type BrickOffroadResult = {
@@ -82,5 +93,6 @@ export type BrickOffroadResult = {
 };
 
 export const BRICK_STAGES: BrickStage[];
+export const BRICK_BASE_CONFIG: BrickVariant;
 export const BRICK_VARIANTS: BrickVariant[];
 export function createBrickOffroad(options?: BrickOffroadOptions): BrickOffroadResult;

@@ -2544,6 +2544,17 @@
       }
     }
   ],
+  "runtimeConfiguration": {
+    "baseId": "brick-offroad-base",
+    "source": "examples/brick-offroad-hero/brick-output/brick-variant-config.json",
+    "evidencePolicy": "All base blockout through final evidence uses the exact base configuration. Curated v001-v003 configurations are reserved for per-variant evidence.",
+    "surfaceAgeDriver": "body-shell wear.edgeWear and dirt.amount are the shared runtime drivers for generated scratch, dirt, and roughness masks across all material families.",
+    "protectedBaseValues": {
+      "wheelTreads": 64,
+      "bodyStuds": 72,
+      "roofLamps": 5
+    }
+  },
   "sculptDNA": {
     "schemaVersion": "1.0",
     "enabled": true,
@@ -2589,6 +2600,50 @@
         "semanticEffects": [
           "palette family",
           "local albedo variation"
+        ]
+      },
+      {
+        "id": "surface-wear",
+        "label": "global procedural surface wear",
+        "target": {
+          "kind": "material",
+          "id": "body-shell",
+          "path": "wear.edgeWear"
+        },
+        "operation": "set",
+        "distribution": "triangular",
+        "range": {
+          "min": 0.16,
+          "max": 0.32
+        },
+        "precision": 2,
+        "group": "surface-age",
+        "semanticEffects": [
+          "scratch visibility",
+          "edge wear",
+          "roughness response"
+        ]
+      },
+      {
+        "id": "surface-dirt",
+        "label": "global procedural surface dirt",
+        "target": {
+          "kind": "material",
+          "id": "body-shell",
+          "path": "dirt.amount"
+        },
+        "operation": "set",
+        "distribution": "triangular",
+        "range": {
+          "min": 0.12,
+          "max": 0.24
+        },
+        "precision": 2,
+        "group": "surface-age",
+        "semanticEffects": [
+          "cavity dirt",
+          "albedo attenuation",
+          "ambient-occlusion response"
         ]
       },
       {
@@ -3124,7 +3179,7 @@
   ],
   "visualEvidence": [
     {
-      "timestamp": "2026-07-11T19:34:57.571500+00:00",
+      "timestamp": "2026-07-11T21:42:12.813347+00:00",
       "passId": "blockout",
       "estimatedFidelity": 0.77,
       "aiVisionScore": 0.77,
@@ -3155,10 +3210,10 @@
       "comparisonImage": "examples/brick-offroad-hero/evidence/blockout-comparison.webp",
       "cameraView": "reference-three-quarter",
       "notes": "Pass goal is silhouette and proportion, not final detail.",
-      "aiVisionNotes": "The same-camera pair confirms the identity silhouette and four-wheel system. Remaining deltas are expected blockout omissions rather than a wrong coordinate frame."
+      "aiVisionNotes": "The same-camera pair confirms the identity silhouette and four-wheel system. Remaining deltas are expected blockout omissions rather than a wrong coordinate frame. Review configuration: exact brick-offroad-base palettes, roughness, 64 treads, 72 studs, and 5 roof lamps."
     },
     {
-      "timestamp": "2026-07-11T19:35:33.899073+00:00",
+      "timestamp": "2026-07-11T21:42:12.878643+00:00",
       "passId": "structural-pass",
       "estimatedFidelity": 0.78,
       "aiVisionScore": 0.78,
@@ -3195,10 +3250,10 @@
       "comparisonImage": "examples/brick-offroad-hero/evidence/structural-pass-comparison.webp",
       "cameraView": "reference-three-quarter",
       "notes": "",
-      "aiVisionNotes": "The comparison confirms stable mechanical placement and articulation boundaries. Brick-specific form and rack detail are correctly deferred."
+      "aiVisionNotes": "The comparison confirms stable mechanical placement and articulation boundaries. Brick-specific form and rack detail are correctly deferred. Review configuration: exact brick-offroad-base palettes, roughness, 64 treads, 72 studs, and 5 roof lamps."
     },
     {
-      "timestamp": "2026-07-11T19:35:34.017468+00:00",
+      "timestamp": "2026-07-11T21:42:12.951118+00:00",
       "passId": "form-refinement",
       "estimatedFidelity": 0.8,
       "aiVisionScore": 0.8,
@@ -3241,10 +3296,10 @@
       "comparisonImage": "examples/brick-offroad-hero/evidence/form-refinement-comparison.webp",
       "cameraView": "reference-three-quarter",
       "notes": "",
-      "aiVisionNotes": "The cabin no longer reads as an opaque block. The same-camera pair supports continuation to look development."
+      "aiVisionNotes": "The cabin no longer reads as an opaque block. The same-camera pair supports continuation to look development. Review configuration: exact brick-offroad-base palettes, roughness, 64 treads, 72 studs, and 5 roof lamps."
     },
     {
-      "timestamp": "2026-07-11T19:35:34.142728+00:00",
+      "timestamp": "2026-07-11T21:42:13.010150+00:00",
       "passId": "material-pass",
       "estimatedFidelity": 0.78,
       "aiVisionScore": 0.78,
@@ -3269,10 +3324,10 @@
       "comparisonImage": "examples/brick-offroad-hero/evidence/material-pass-comparison.webp",
       "cameraView": "reference-three-quarter",
       "notes": "",
-      "aiVisionNotes": "Neutralized studio lighting keeps olive panels olive and exposes distinct roughness responses without a global exposure trick."
+      "aiVisionNotes": "Neutralized studio lighting keeps olive panels olive and exposes distinct roughness responses without a global exposure trick. Review configuration: exact brick-offroad-base palettes, roughness, 64 treads, 72 studs, and 5 roof lamps."
     },
     {
-      "timestamp": "2026-07-11T19:35:34.274340+00:00",
+      "timestamp": "2026-07-11T21:42:13.079455+00:00",
       "passId": "surface-pass",
       "estimatedFidelity": 0.8,
       "aiVisionScore": 0.8,
@@ -3307,7 +3362,7 @@
           "id": "roof-rack-cargo-lamps",
           "score": 0.74,
           "visible": true,
-          "notes": "Rails, dark cargo case, light boards, four lamps, and latch form a coherent roof system."
+          "notes": "Rails, dark cargo case, light boards, five lamps, and latch form a coherent roof system."
         }
       ],
       "referenceScreenshot": "assets/brick-offroad-reference.jpeg",
@@ -3315,10 +3370,10 @@
       "comparisonImage": "examples/brick-offroad-hero/evidence/surface-pass-comparison.webp",
       "cameraView": "reference-three-quarter",
       "notes": "",
-      "aiVisionNotes": "The surface pass closes the largest identity gaps from the earlier generic preview while keeping repeated detail batched."
+      "aiVisionNotes": "The surface pass closes the largest identity gaps from the earlier generic preview while keeping repeated detail batched. Review configuration: exact brick-offroad-base palettes, roughness, 64 treads, 72 studs, and 5 roof lamps."
     },
     {
-      "timestamp": "2026-07-11T19:35:34.419124+00:00",
+      "timestamp": "2026-07-11T21:42:13.146289+00:00",
       "passId": "lighting-pass",
       "estimatedFidelity": 0.8,
       "aiVisionScore": 0.8,
@@ -3343,10 +3398,10 @@
       "comparisonImage": "examples/brick-offroad-hero/evidence/final-comparison.webp",
       "cameraView": "reference-three-quarter",
       "notes": "",
-      "aiVisionNotes": "Lighting supports comparison and material inspection rather than masking geometry with bloom or overexposure."
+      "aiVisionNotes": "Lighting supports comparison and material inspection rather than masking geometry with bloom or overexposure. Review configuration: exact brick-offroad-base palettes, roughness, 64 treads, 72 studs, and 5 roof lamps."
     },
     {
-      "timestamp": "2026-07-11T19:35:34.543552+00:00",
+      "timestamp": "2026-07-11T21:42:13.211395+00:00",
       "passId": "interaction-pass",
       "estimatedFidelity": 0.8,
       "aiVisionScore": 0.8,
@@ -3371,10 +3426,10 @@
       "comparisonImage": "examples/brick-offroad-hero/evidence/final-comparison.webp",
       "cameraView": "reference-three-quarter",
       "notes": "",
-      "aiVisionNotes": "The visible component boundaries correspond to live runtime nodes while root serialization remains safe."
+      "aiVisionNotes": "The visible component boundaries correspond to live runtime nodes while root serialization remains safe. Review configuration: exact brick-offroad-base palettes, roughness, 64 treads, 72 studs, and 5 roof lamps."
     },
     {
-      "timestamp": "2026-07-11T19:35:34.652048+00:00",
+      "timestamp": "2026-07-11T21:42:13.273453+00:00",
       "passId": "optimization-pass",
       "estimatedFidelity": 0.81,
       "aiVisionScore": 0.81,
@@ -3392,12 +3447,12 @@
       "comparisonImage": "examples/brick-offroad-hero/evidence/final-comparison.webp",
       "cameraView": "reference-three-quarter",
       "notes": "",
-      "aiVisionNotes": "Optimization preserves every reference-critical system and action boundary while batching the densest repetition systems."
+      "aiVisionNotes": "Optimization preserves every reference-critical system and action boundary while batching the densest repetition systems. Review configuration: exact brick-offroad-base palettes, roughness, 64 treads, 72 studs, and 5 roof lamps."
     }
   ],
   "reviewHistory": [
     {
-      "timestamp": "2026-07-11T19:34:57.571500+00:00",
+      "timestamp": "2026-07-11T21:42:12.813347+00:00",
       "passId": "blockout",
       "estimatedFidelity": 0.77,
       "aiVisionScore": 0.77,
@@ -3424,7 +3479,7 @@
         }
       ],
       "action": "continue",
-      "summary": "Reference-matched blockout establishes the long hood, upright cabin, rear utility mass, raised track, and exactly four wheels.",
+      "summary": "Exact brick-offroad-base evidence: Reference-matched blockout establishes the long hood, upright cabin, rear utility mass, raised track, and exactly four wheels.",
       "matched": [
         "long-wheelbase silhouette",
         "four wheel positions and axle orientation",
@@ -3445,11 +3500,11 @@
         "comparisonImage": "examples/brick-offroad-hero/evidence/blockout-comparison.webp",
         "cameraView": "reference-three-quarter",
         "notes": "Pass goal is silhouette and proportion, not final detail.",
-        "aiVisionNotes": "The same-camera pair confirms the identity silhouette and four-wheel system. Remaining deltas are expected blockout omissions rather than a wrong coordinate frame."
+        "aiVisionNotes": "The same-camera pair confirms the identity silhouette and four-wheel system. Remaining deltas are expected blockout omissions rather than a wrong coordinate frame. Review configuration: exact brick-offroad-base palettes, roughness, 64 treads, 72 studs, and 5 roof lamps."
       }
     },
     {
-      "timestamp": "2026-07-11T19:35:33.899073+00:00",
+      "timestamp": "2026-07-11T21:42:12.878643+00:00",
       "passId": "structural-pass",
       "estimatedFidelity": 0.78,
       "aiVisionScore": 0.78,
@@ -3482,7 +3537,7 @@
         }
       ],
       "action": "continue",
-      "summary": "Structural pass adds grounded arches, axles, shocks, articulated doors/tailgate, bumpers, and stable wheel/steering pivots.",
+      "summary": "Exact brick-offroad-base evidence: Structural pass adds grounded arches, axles, shocks, articulated doors/tailgate, bumpers, and stable wheel/steering pivots.",
       "matched": [
         "four-wheel hierarchy",
         "fender and suspension contact",
@@ -3504,11 +3559,11 @@
         "comparisonImage": "examples/brick-offroad-hero/evidence/structural-pass-comparison.webp",
         "cameraView": "reference-three-quarter",
         "notes": "",
-        "aiVisionNotes": "The comparison confirms stable mechanical placement and articulation boundaries. Brick-specific form and rack detail are correctly deferred."
+        "aiVisionNotes": "The comparison confirms stable mechanical placement and articulation boundaries. Brick-specific form and rack detail are correctly deferred. Review configuration: exact brick-offroad-base palettes, roughness, 64 treads, 72 studs, and 5 roof lamps."
       }
     },
     {
-      "timestamp": "2026-07-11T19:35:34.017468+00:00",
+      "timestamp": "2026-07-11T21:42:12.951118+00:00",
       "passId": "form-refinement",
       "estimatedFidelity": 0.8,
       "aiVisionScore": 0.8,
@@ -3547,7 +3602,7 @@
         }
       ],
       "action": "continue",
-      "summary": "Form refinement replaces opaque cabin blocks with framed glazing, improves roof/fender relationships, and adds grille, lights, mirrors, and panel depth.",
+      "summary": "Exact brick-offroad-base evidence: Form refinement replaces opaque cabin blocks with framed glazing, improves roof/fender relationships, and adds grille, lights, mirrors, and panel depth.",
       "matched": [
         "open windshield and side-window apertures",
         "light roof overhang",
@@ -3570,11 +3625,11 @@
         "comparisonImage": "examples/brick-offroad-hero/evidence/form-refinement-comparison.webp",
         "cameraView": "reference-three-quarter",
         "notes": "",
-        "aiVisionNotes": "The cabin no longer reads as an opaque block. The same-camera pair supports continuation to look development."
+        "aiVisionNotes": "The cabin no longer reads as an opaque block. The same-camera pair supports continuation to look development. Review configuration: exact brick-offroad-base palettes, roughness, 64 treads, 72 studs, and 5 roof lamps."
       }
     },
     {
-      "timestamp": "2026-07-11T19:35:34.142728+00:00",
+      "timestamp": "2026-07-11T21:42:13.010150+00:00",
       "passId": "material-pass",
       "estimatedFidelity": 0.78,
       "aiVisionScore": 0.78,
@@ -3595,7 +3650,7 @@
         }
       ],
       "action": "continue",
-      "summary": "Material pass separates olive paint, light roof, rubber, glass, dark trim, metal, lamps, and seam dirt with independent generated channels.",
+      "summary": "Exact brick-offroad-base evidence: Material pass separates olive paint, light roof, rubber, glass, dark trim, metal, lamps, and seam dirt with independent generated channels.",
       "matched": [
         "olive/light/black palette split",
         "rubber versus painted panel response",
@@ -3617,11 +3672,11 @@
         "comparisonImage": "examples/brick-offroad-hero/evidence/material-pass-comparison.webp",
         "cameraView": "reference-three-quarter",
         "notes": "",
-        "aiVisionNotes": "Neutralized studio lighting keeps olive panels olive and exposes distinct roughness responses without a global exposure trick."
+        "aiVisionNotes": "Neutralized studio lighting keeps olive panels olive and exposes distinct roughness responses without a global exposure trick. Review configuration: exact brick-offroad-base palettes, roughness, 64 treads, 72 studs, and 5 roof lamps."
       }
     },
     {
-      "timestamp": "2026-07-11T19:35:34.274340+00:00",
+      "timestamp": "2026-07-11T21:42:13.079455+00:00",
       "passId": "surface-pass",
       "estimatedFidelity": 0.8,
       "aiVisionScore": 0.8,
@@ -3656,11 +3711,11 @@
           "id": "roof-rack-cargo-lamps",
           "score": 0.74,
           "visible": true,
-          "notes": "Rails, dark cargo case, light boards, four lamps, and latch form a coherent roof system."
+          "notes": "Rails, dark cargo case, light boards, five lamps, and latch form a coherent roof system."
         }
       ],
       "action": "continue",
-      "summary": "Surface pass adds instanced tread blocks and studs, hub spokes, panel fasteners, seams, hinges, handles, roof cargo, lamps, winch, and recovery hooks.",
+      "summary": "Exact brick-offroad-base evidence: Surface pass adds instanced tread blocks and studs, hub spokes, panel fasteners, seams, hinges, handles, roof cargo, lamps, winch, and recovery hooks.",
       "matched": [
         "brick/stud language",
         "tire tread cadence and hubs",
@@ -3681,11 +3736,11 @@
         "comparisonImage": "examples/brick-offroad-hero/evidence/surface-pass-comparison.webp",
         "cameraView": "reference-three-quarter",
         "notes": "",
-        "aiVisionNotes": "The surface pass closes the largest identity gaps from the earlier generic preview while keeping repeated detail batched."
+        "aiVisionNotes": "The surface pass closes the largest identity gaps from the earlier generic preview while keeping repeated detail batched. Review configuration: exact brick-offroad-base palettes, roughness, 64 treads, 72 studs, and 5 roof lamps."
       }
     },
     {
-      "timestamp": "2026-07-11T19:35:34.419124+00:00",
+      "timestamp": "2026-07-11T21:42:13.146289+00:00",
       "passId": "lighting-pass",
       "estimatedFidelity": 0.8,
       "aiVisionScore": 0.8,
@@ -3706,7 +3761,7 @@
         }
       ],
       "action": "continue",
-      "summary": "Neutral studio key, cool fill, soft rim, contact shadows, ACES tone mapping, and restrained exposure preserve material readability.",
+      "summary": "Exact brick-offroad-base evidence: Neutral studio key, cool fill, soft rim, contact shadows, ACES tone mapping, and restrained exposure preserve material readability.",
       "matched": [
         "olive albedo remains green",
         "rubber and metal highlights separate",
@@ -3725,11 +3780,11 @@
         "comparisonImage": "examples/brick-offroad-hero/evidence/final-comparison.webp",
         "cameraView": "reference-three-quarter",
         "notes": "",
-        "aiVisionNotes": "Lighting supports comparison and material inspection rather than masking geometry with bloom or overexposure."
+        "aiVisionNotes": "Lighting supports comparison and material inspection rather than masking geometry with bloom or overexposure. Review configuration: exact brick-offroad-base palettes, roughness, 64 treads, 72 studs, and 5 roof lamps."
       }
     },
     {
-      "timestamp": "2026-07-11T19:35:34.543552+00:00",
+      "timestamp": "2026-07-11T21:42:13.211395+00:00",
       "passId": "interaction-pass",
       "estimatedFidelity": 0.8,
       "aiVisionScore": 0.8,
@@ -3750,7 +3805,7 @@
         }
       ],
       "action": "continue",
-      "summary": "Runtime exposes serializable IDs plus live wheel, steering, suspension, hinge, socket, collider, and destruction references outside userData.",
+      "summary": "Exact brick-offroad-base evidence: Runtime exposes serializable IDs plus live wheel, steering, suspension, hinge, socket, collider, and destruction references outside userData.",
       "matched": [
         "four wheel pivots",
         "two steering pivots",
@@ -3772,11 +3827,11 @@
         "comparisonImage": "examples/brick-offroad-hero/evidence/final-comparison.webp",
         "cameraView": "reference-three-quarter",
         "notes": "",
-        "aiVisionNotes": "The visible component boundaries correspond to live runtime nodes while root serialization remains safe."
+        "aiVisionNotes": "The visible component boundaries correspond to live runtime nodes while root serialization remains safe. Review configuration: exact brick-offroad-base palettes, roughness, 64 treads, 72 studs, and 5 roof lamps."
       }
     },
     {
-      "timestamp": "2026-07-11T19:35:34.652048+00:00",
+      "timestamp": "2026-07-11T21:42:13.273453+00:00",
       "passId": "optimization-pass",
       "estimatedFidelity": 0.81,
       "aiVisionScore": 0.81,
@@ -3790,7 +3845,7 @@
       },
       "featureReviews": [],
       "action": "continue",
-      "summary": "Final runtime statistics are regenerated from instance-weighted geometry and checked against the committed artifact manifest before release.",
+      "summary": "Exact brick-offroad-base evidence: Final runtime statistics are regenerated from instance-weighted geometry and checked against the committed artifact manifest before release.",
       "matched": [
         "repository media budgets",
         "instanced repeated detail",
@@ -3814,7 +3869,7 @@
         "comparisonImage": "examples/brick-offroad-hero/evidence/final-comparison.webp",
         "cameraView": "reference-three-quarter",
         "notes": "",
-        "aiVisionNotes": "Optimization preserves every reference-critical system and action boundary while batching the densest repetition systems."
+        "aiVisionNotes": "Optimization preserves every reference-critical system and action boundary while batching the densest repetition systems. Review configuration: exact brick-offroad-base palettes, roughness, 64 treads, 72 studs, and 5 roof lamps."
       }
     }
   ],
