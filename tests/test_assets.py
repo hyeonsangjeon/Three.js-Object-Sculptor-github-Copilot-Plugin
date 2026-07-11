@@ -15,18 +15,31 @@ from probe_reference_image import probe  # noqa: E402
 class AssetTests(unittest.TestCase):
     def test_release_images_are_optimized_and_metadata_free(self) -> None:
         expected = {
-            "brick-offroad-reference.jpeg": (1600, 1394),
-            "repolis-tree-reference.jpeg": (1024, 559),
-            "seoul-challenge-reference.jpeg": (1350, 1800),
+            "brick-offroad-reference.jpeg": (1600, 1394, "pass"),
+            "repolis-tree-reference.jpeg": (1024, 559, "pass"),
+            "seoul-challenge-reference.jpeg": (842, 476, "conditional"),
         }
-        for filename, dimensions in expected.items():
+        for filename, (width, height, suitability) in expected.items():
             with self.subTest(filename=filename):
                 path = ROOT / "assets" / filename
                 result = probe(path)
-                self.assertEqual((result["width"], result["height"]), dimensions)
-                self.assertEqual(result["technicalSuitability"], "pass")
+                self.assertEqual((result["width"], result["height"]), (width, height))
+                self.assertEqual(result["technicalSuitability"], suitability)
                 self.assertLess(path.stat().st_size, 750_000)
                 self.assertNotIn(b"Exif\x00\x00", path.read_bytes())
+
+    def test_showcase_renders_have_readme_dimensions(self) -> None:
+        for filename in (
+            "brick-offroad-sculpt-dna-result.png",
+            "repolis-tree-sculpt-dna-result.png",
+            "seoul-challenge-sculpt-dna-result.png",
+        ):
+            with self.subTest(filename=filename):
+                path = ROOT / "assets" / filename
+                result = probe(path)
+                self.assertEqual((result["width"], result["height"]), (1200, 675))
+                self.assertEqual(result["technicalSuitability"], "pass")
+                self.assertLess(path.stat().st_size, 500_000)
 
     def test_inherited_demo_images_are_not_released(self) -> None:
         for filename in (

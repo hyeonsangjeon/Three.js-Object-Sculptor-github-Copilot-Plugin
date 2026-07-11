@@ -136,3 +136,27 @@ Every generated spec gets `variantProvenance` with:
 - whether review evidence was reset
 
 The Three.js factory copies both `sculptDNA` and `variantProvenance` into `root.userData`.
+
+## Coverage Curator
+
+`generate` returns deterministic candidates in seed order. This is useful for batch generation, but a small sample can contain visually similar neighbors.
+
+`curate` uses a deterministic greedy approximation for the presentation problem:
+
+```bash
+python3 ../../scripts/sculpt_dna.py curate object-sculpt-spec.json \
+  --out-dir curated \
+  --count 3 \
+  --pool-size 24 \
+  --seed 1337
+```
+
+The curator:
+
+1. generates a larger pool through the normal constraint and invariant gates
+2. normalizes numeric ranges and categorical choices into one parameter vector
+3. selects an extreme candidate, then greedily maximizes the minimum distance from already selected variants; it does not claim a global combinatorial optimum
+4. renames selected variants into a stable sequential family
+5. records `candidateIndex`, `curatedIndex`, `selectionScore`, `coverageScore`, and the selection strategy
+
+Coverage measures design-space separation, not visual quality. Every curated result still requires fresh browser and AI-vision review.

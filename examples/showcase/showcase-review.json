@@ -1,0 +1,71 @@
+{
+  "reviewType": "readme-showcase-family",
+  "reviewedAt": "2026-07-11",
+  "renderer": "examples/showcase/showcase.js",
+  "viewport": [1200, 675],
+  "families": [
+    {
+      "id": "repolis-tree",
+      "reference": "assets/repolis-tree-reference.jpeg",
+      "render": "assets/repolis-tree-sculpt-dna-result.png",
+      "decision": "document-family-preview",
+      "baseSculptStatus": "complete",
+      "passGateStatus": "pending-per-variant-visual-review",
+      "coverageCurator": {
+        "poolSize": 24,
+        "selectedCandidateIndexes": [10, 17, 12],
+        "coverageScore": 0.484356
+      },
+      "scores": {
+        "silhouetteProportion": 0.72,
+        "componentStructure": 0.73,
+        "formDetail": 0.64,
+        "materialSurface": 0.7,
+        "lightingCamera": 0.75
+      },
+      "notes": "The wide fork, gold energy, amber/cyan canopy, hanging lights, and constellation system remain recognizable. The result is an intentionally simplified variant-family render, not an exact scene match."
+    },
+    {
+      "id": "brick-offroad",
+      "reference": "assets/brick-offroad-reference.jpeg",
+      "render": "assets/brick-offroad-sculpt-dna-result.png",
+      "decision": "document-family-preview",
+      "baseSculptStatus": "preview",
+      "passGateStatus": "pending-per-variant-visual-review",
+      "coverageCurator": {
+        "poolSize": 24,
+        "selectedCandidateIndexes": [19, 8, 14],
+        "coverageScore": 0.543732
+      },
+      "scores": {
+        "silhouetteProportion": 0.76,
+        "componentStructure": 0.78,
+        "formDetail": 0.67,
+        "materialSurface": 0.72,
+        "lightingCamera": 0.74
+      },
+      "notes": "A refine-spec pass corrected the initial six-wheel interpretation to the reference four-wheel topology and restored olive panels, a light roof, roof gear, treads, and lamps."
+    },
+    {
+      "id": "seoul-challenge",
+      "reference": "assets/seoul-challenge-reference.jpeg",
+      "render": "assets/seoul-challenge-sculpt-dna-result.png",
+      "decision": "document-layered-family-preview",
+      "baseSculptStatus": "preview",
+      "passGateStatus": "pending-per-variant-visual-review",
+      "coverageCurator": {
+        "poolSize": 24,
+        "selectedCandidateIndexes": [15, 11, 24],
+        "coverageScore": 0.554063
+      },
+      "scores": {
+        "silhouetteProportion": 0.7,
+        "componentStructure": 0.77,
+        "formDetail": 0.58,
+        "materialSurface": 0.68,
+        "lightingCamera": 0.73
+      },
+      "notes": "The conditional challenge preserves palace, courtyard, tree-belt, city, and mountain ordering. It explicitly avoids claiming exact architectural or geospatial reconstruction from the cropped photograph."
+    }
+  ]
+}

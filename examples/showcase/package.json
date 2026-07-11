@@ -1,0 +1,11 @@
+{
+  "name": "threejs-sculpt-dna-showcase",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "serve": "python3 -m http.server 4173 --bind 127.0.0.1 --directory ."
+  },
+  "dependencies": {
+    "three": "0.180.0"
+  }
+}

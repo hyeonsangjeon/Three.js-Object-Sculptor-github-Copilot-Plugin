@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "1.0",
+  "capture": {
+    "seed": 20260711,
+    "variant": "golden-canopy",
+    "viewport": [
+      1200,
+      675
+    ],
+    "frames": 20,
+    "fps": 10,
+    "chrome": "Google Chrome"
+  },
+  "runtimeStats": {
+    "generationMs": 83.19999998807907,
+    "macroBranches": 15,
+    "secondaryBranches": 56,
+    "fineBranches": 112,
+    "leafInstances": 2600,
+    "mossInstances": 220,
+    "branchVertices": 17761,
+    "glyphInstances": 72,
+    "importedMeshes": 0,
+    "stage": "full"
+  },
+  "sourceSha256": {
+    "index.html": "4d2ab0b350734f34f7bba4792b635fc79723be48757bd5015a068e056c37427f",
+    "main.js": "c416bd62dd587e25f1a3a1692acca34a469d18fd8c861178de2f851f7c06fde3",
+    "style.css": "8b6d750509d7744091551ba6893c03ec8d6178d758e270d05c2856225887b977",
+    "repolis-output/createRepolisHero.js": "65bd7fc76013ee0f11898174095556d581be64ea8f15e76e090fb8955a17d0e3",
+    "repolis-output/repolis-hero-profile.json": "dbd376bb180aae1d1d93ed579ea3a3558cbd8e397f6da9ed853f0b1325916351",
+    "../repolis-tree/object-sculpt-spec.json": "973c8a52903ddc986f88b185ea3cc5731fab5c64279738e9c2e5ab969b7ac1fb"
+  },
+  "outputSha256": {
+    "../../assets/repolis-tree-hero.png": "cee016058076cbad5eeab9900b279a686811a78faf70ff321bb5c512412dee39",
+    "../../assets/repolis-tree-hero.gif": "04cdcc7287e3a66c8bd243f96fe63e3a0f8931efbf3e91549ac559057787e578",
+    "evidence/blockout.webp": "38cbc12919e9fb426f6ad9e55bd31aef9f256ab7fb474251e5a2995e56bb5a0f",
+    "evidence/blockout-comparison.webp": "a67b8a89d174ec9ecab36671c763493d242b0bf5fd839949820ad8e952e75bd2",
+    "evidence/structural-pass.webp": "c283a8840acdc70422879af729a992b88c2077e89de291075c47813c6343847f",
+    "evidence/structural-pass-comparison.webp": "6975ea82aee2146134db48544de662da6639186ce6fcec4e3e217a3837d3608f",
+    "evidence/form-refinement.webp": "b9ec0c3def2e31068e565d508736ecc226f21ee1a4d1f3a3053023a22dd3f8e4",
+    "evidence/form-refinement-comparison.webp": "7287c39b4facb4f134510f924eeca17ddb11ebf68f0bc19e02cf8eb709ea69fa",
+    "evidence/material-pass.webp": "e1133a8e8029e87b3bbaa6d9a7467dea96ae8fedb90f6f3b52a393a8da153c2c",
+    "evidence/material-pass-comparison.webp": "1fd75950d508b853970283ad0185e89f75f353abff81f939cc79ff9f983089c6",
+    "evidence/surface-pass.webp": "484d43dbb555d705cd479a05ab93d0cf59e071b97946d7ab2107f597597e27e1",
+    "evidence/surface-pass-comparison.webp": "cba1878805b77815059de0ad100d99cb79e4376b6170f6692302ad27c383f0f0",
+    "evidence/final.webp": "11fb41936f186e852c34dbbe1de16a133ff55293c1d6a2080b43af69f08346e6",
+    "evidence/final-comparison.webp": "c7a04a5a367870b4acd29647a5f377e27cfe861f0c77d1d4627e145171c937dc"
+  }
+}

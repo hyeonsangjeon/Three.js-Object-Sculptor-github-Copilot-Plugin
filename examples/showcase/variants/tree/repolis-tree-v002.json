@@ -1,6 +1,6 @@
 {
   "targetName": "Repolis Tree",
-  "targetId": "repolis-tree",
+  "targetId": "repolis-tree-v002",
   "schemaVersion": "2.0",
   "terminologyProfile": {
     "domain": "real-time procedural Three.js asset",
@@ -528,20 +528,16 @@
       "interaction-pass",
       "optimization-pass"
     ],
-    "currentPass": "complete",
-    "completedPasses": [
-      "blockout",
-      "structural-pass",
-      "form-refinement",
-      "material-pass",
-      "surface-pass",
-      "lighting-pass",
-      "interaction-pass",
-      "optimization-pass"
-    ],
-    "lastCompletedPass": "optimization-pass",
-    "blockedReason": "all build passes completed",
-    "nextRequiredEvidence": []
+    "currentPass": "blockout",
+    "completedPasses": [],
+    "lastCompletedPass": "",
+    "blockedReason": "Sculpt DNA changed visible geometry or material parameters; this variant needs fresh browser and AI-vision evidence before deeper passes unlock.",
+    "nextRequiredEvidence": [
+      "fresh blockout browser screenshot for this Sculpt DNA variant",
+      "side-by-side comparison against the intended family reference or design target",
+      "AI vision layer and semantic feature scores for this variant",
+      "new reviewHistory entry with action=continue"
+    ]
   },
   "lookDevTargets": {
     "qualityPriority": "balanced",
@@ -2883,7 +2879,7 @@
       },
       "colorVariation": {
         "palette": [
-          "#2B170F",
+          "#4A2B18",
           "#4A2B18",
           "#6F4324",
           "#9A6333"
@@ -2923,7 +2919,7 @@
         }
       ],
       "roughness": {
-        "base": 0.68,
+        "base": 0.666,
         "variation": 0.16,
         "map": "independent-bark-roughness-field",
         "localResponse": "rough cavities, smoother warm ridge tops, slightly polished energy-channel edges"
@@ -3022,7 +3018,7 @@
       },
       "colorVariation": {
         "palette": [
-          "#D27A20",
+          "#FFF2B0",
           "#FFB23F",
           "#FFD477",
           "#FFF2B0"
@@ -3062,7 +3058,7 @@
         }
       ],
       "roughness": {
-        "base": 0.28,
+        "base": 0.3528,
         "variation": 0.08,
         "map": "independent-energy-roughness-field",
         "localResponse": "slightly smoother bright core"
@@ -3199,7 +3195,7 @@
         }
       ],
       "roughness": {
-        "base": 0.48,
+        "base": 0.4782,
         "variation": 0.14,
         "map": "independent-leaf-roughness-field",
         "localResponse": "smoother central vein and brighter thin edges"
@@ -3291,7 +3287,7 @@
       },
       "colorVariation": {
         "palette": [
-          "#1A8FA8",
+          "#B6FFFF",
           "#38CDE0",
           "#5EF7FF",
           "#B6FFFF"
@@ -3331,7 +3327,7 @@
         }
       ],
       "roughness": {
-        "base": 0.38,
+        "base": 0.3508,
         "variation": 0.1,
         "map": "independent-cyan-leaf-roughness-field",
         "localResponse": "slightly smoother node-facing surfaces"
@@ -3692,7 +3688,7 @@
         "branch-right-outer"
       ],
       "material": "amber-leaf",
-      "count": 520,
+      "count": 561,
       "seed": 41017,
       "distribution": "branch-tip weighted with 18 percent positional jitter and 35 percent scale variation",
       "constraints": [
@@ -3711,7 +3707,7 @@
         "branch-center-spire"
       ],
       "material": "cyan-leaf",
-      "count": 112,
+      "count": 103,
       "seed": 91031,
       "distribution": "clustered blue-noise near outer and upper tips",
       "constraints": [
@@ -3729,7 +3725,7 @@
         "branch-center-spire"
       ],
       "material": "cyan-leaf",
-      "count": 32,
+      "count": 28,
       "seed": 7321,
       "distribution": "six semantic groups with two to seven nodes each",
       "constraints": [
@@ -3747,7 +3743,7 @@
         "branch-right-outer"
       ],
       "material": "gold-energy",
-      "count": 18,
+      "count": 16,
       "seed": 2718,
       "distribution": "selected lower branch sockets with 0.4-1.2 unit drop",
       "constraints": [
@@ -3921,657 +3917,8 @@
       ]
     }
   ],
-  "visualEvidence": [
-    {
-      "timestamp": "2026-07-11T12:06:01.818554+00:00",
-      "passId": "blockout",
-      "estimatedFidelity": 0.84,
-      "aiVisionScore": 0.84,
-      "visualAcceptanceThreshold": 0.7,
-      "layerScores": {
-        "silhouetteProportion": 0.86,
-        "componentStructure": 0.82,
-        "formDetail": 0.72,
-        "materialSurface": 0.6,
-        "lightingCamera": 0.78
-      },
-      "featureReviews": [
-        {
-          "id": "forked-trunk-silhouette",
-          "score": 0.86,
-          "visible": true,
-          "notes": "Wide fork and three crown directions are readable."
-        },
-        {
-          "id": "root-flare-first-fork",
-          "score": 0.82,
-          "visible": true,
-          "notes": "Root flare and first-fork height align with the reference identity."
-        }
-      ],
-      "referenceScreenshot": "assets/repolis-tree-reference.jpeg",
-      "renderScreenshot": "examples/repolis-hero/evidence/blockout.webp",
-      "comparisonImage": "examples/repolis-hero/evidence/blockout-comparison.webp",
-      "cameraView": "reference-front",
-      "notes": "UI-hidden 1200x675 browser render.",
-      "aiVisionNotes": "Macro identity passes; meso branches and all look-dev systems remain intentionally deferred."
-    },
-    {
-      "timestamp": "2026-07-11T12:06:16.586328+00:00",
-      "passId": "structural-pass",
-      "estimatedFidelity": 0.86,
-      "aiVisionScore": 0.86,
-      "visualAcceptanceThreshold": 0.7,
-      "layerScores": {
-        "silhouetteProportion": 0.87,
-        "componentStructure": 0.89,
-        "formDetail": 0.8,
-        "materialSurface": 0.62,
-        "lightingCamera": 0.79
-      },
-      "featureReviews": [
-        {
-          "id": "radial-branch-hierarchy",
-          "score": 0.88,
-          "visible": true,
-          "notes": "Left, center, right, rear, and root branch systems remain connected and readable."
-        }
-      ],
-      "referenceScreenshot": "assets/repolis-tree-reference.jpeg",
-      "renderScreenshot": "examples/repolis-hero/evidence/structural-pass.webp",
-      "comparisonImage": "examples/repolis-hero/evidence/structural-pass-comparison.webp",
-      "cameraView": "reference-front",
-      "notes": "UI-hidden 1200x675 browser render.",
-      "aiVisionNotes": "The branch hierarchy is dense without floating roots; tertiary detail remains intentionally deferred."
-    },
-    {
-      "timestamp": "2026-07-11T12:06:45.175803+00:00",
-      "passId": "form-refinement",
-      "estimatedFidelity": 0.88,
-      "aiVisionScore": 0.88,
-      "visualAcceptanceThreshold": 0.7,
-      "layerScores": {
-        "silhouetteProportion": 0.89,
-        "componentStructure": 0.9,
-        "formDetail": 0.89,
-        "materialSurface": 0.65,
-        "lightingCamera": 0.8
-      },
-      "featureReviews": [
-        {
-          "id": "root-flare-first-fork",
-          "score": 0.87,
-          "visible": true,
-          "notes": "Root flare, embedded buttresses, and first fork preserve the landmark silhouette."
-        },
-        {
-          "id": "radial-branch-hierarchy",
-          "score": 0.9,
-          "visible": true,
-          "notes": "Macro-to-fine hierarchy fills the canopy without losing the primary fork structure."
-        }
-      ],
-      "referenceScreenshot": "assets/repolis-tree-reference.jpeg",
-      "renderScreenshot": "examples/repolis-hero/evidence/form-refinement.webp",
-      "comparisonImage": "examples/repolis-hero/evidence/form-refinement-comparison.webp",
-      "cameraView": "reference-front",
-      "notes": "UI-hidden 1200x675 browser render.",
-      "aiVisionNotes": "Curve sweeps, taper, and multi-frequency radial deformation pass; look-dev remains deferred."
-    },
-    {
-      "timestamp": "2026-07-11T12:07:08.333420+00:00",
-      "passId": "material-pass",
-      "estimatedFidelity": 0.85,
-      "aiVisionScore": 0.85,
-      "visualAcceptanceThreshold": 0.7,
-      "layerScores": {
-        "silhouetteProportion": 0.88,
-        "componentStructure": 0.9,
-        "formDetail": 0.88,
-        "materialSurface": 0.86,
-        "lightingCamera": 0.84
-      },
-      "featureReviews": [
-        {
-          "id": "gold-energy-network",
-          "score": 0.86,
-          "visible": true,
-          "notes": "Energy follows trunk and major branches while bark remains readable."
-        },
-        {
-          "id": "dual-color-leaf-canopy",
-          "score": 0.83,
-          "visible": true,
-          "notes": "Amber-dominant canopy retains sparse cyan identity accents."
-        },
-        {
-          "id": "bark-midtone-readability",
-          "score": 0.84,
-          "visible": true,
-          "notes": "Generated PBR and front fill preserve warm bark midtones beneath emission."
-        }
-      ],
-      "referenceScreenshot": "assets/repolis-tree-reference.jpeg",
-      "renderScreenshot": "examples/repolis-hero/evidence/material-pass.webp",
-      "comparisonImage": "examples/repolis-hero/evidence/material-pass-comparison.webp",
-      "cameraView": "reference-front",
-      "notes": "UI-hidden 1200x675 browser render.",
-      "aiVisionNotes": "Material identity passes without imported textures or mesh assets; surface ornaments remain deferred."
-    },
-    {
-      "timestamp": "2026-07-11T12:07:42.879129+00:00",
-      "passId": "surface-pass",
-      "estimatedFidelity": 0.88,
-      "aiVisionScore": 0.88,
-      "visualAcceptanceThreshold": 0.7,
-      "layerScores": {
-        "silhouetteProportion": 0.89,
-        "componentStructure": 0.9,
-        "formDetail": 0.9,
-        "materialSurface": 0.89,
-        "lightingCamera": 0.85
-      },
-      "featureReviews": [
-        {
-          "id": "gold-energy-network",
-          "score": 0.89,
-          "visible": true,
-          "notes": "Gold paths, root core, glyphs, and hanging lights form one coherent network."
-        },
-        {
-          "id": "dual-color-leaf-canopy",
-          "score": 0.87,
-          "visible": true,
-          "notes": "Larger amber and cyan leaf cards create a broad perforated crown."
-        },
-        {
-          "id": "constellation-ornaments",
-          "score": 0.82,
-          "visible": true,
-          "notes": "Cyan nodes and links remain branch-attached and subordinate to the silhouette."
-        }
-      ],
-      "referenceScreenshot": "assets/repolis-tree-reference.jpeg",
-      "renderScreenshot": "examples/repolis-hero/evidence/surface-pass.webp",
-      "comparisonImage": "examples/repolis-hero/evidence/surface-pass-comparison.webp",
-      "cameraView": "reference-front",
-      "notes": "UI-hidden 1200x675 browser render.",
-      "aiVisionNotes": "The final surface systems preserve the tree identity while remaining deterministic and action-ready."
-    },
-    {
-      "timestamp": "2026-07-11T12:08:05.405501+00:00",
-      "passId": "lighting-pass",
-      "estimatedFidelity": 0.89,
-      "aiVisionScore": 0.89,
-      "visualAcceptanceThreshold": 0.7,
-      "layerScores": {
-        "silhouetteProportion": 0.9,
-        "componentStructure": 0.9,
-        "formDetail": 0.9,
-        "materialSurface": 0.89,
-        "lightingCamera": 0.91
-      },
-      "featureReviews": [
-        {
-          "id": "gold-energy-network",
-          "score": 0.9,
-          "visible": true,
-          "notes": "Bloom remains controlled enough to preserve energy path width and bark edges."
-        },
-        {
-          "id": "bark-midtone-readability",
-          "score": 0.87,
-          "visible": true,
-          "notes": "Warm front fill and generated PBR prevent the trunk from collapsing to black."
-        },
-        {
-          "id": "constellation-ornaments",
-          "score": 0.83,
-          "visible": true,
-          "notes": "Cyan ornament groups remain readable against the dark sky."
-        }
-      ],
-      "referenceScreenshot": "assets/repolis-tree-reference.jpeg",
-      "renderScreenshot": "examples/repolis-hero/evidence/final.webp",
-      "comparisonImage": "examples/repolis-hero/evidence/final-comparison.webp",
-      "cameraView": "reference-front",
-      "notes": "Final clean browser render with UI hidden.",
-      "aiVisionNotes": "Lighting separates bark, foliage, energy, and background while retaining the night-reference mood."
-    },
-    {
-      "timestamp": "2026-07-11T12:08:23.702191+00:00",
-      "passId": "interaction-pass",
-      "estimatedFidelity": 0.9,
-      "aiVisionScore": 0.9,
-      "visualAcceptanceThreshold": 0.7,
-      "layerScores": {
-        "silhouetteProportion": 0.9,
-        "componentStructure": 0.92,
-        "formDetail": 0.9,
-        "materialSurface": 0.89,
-        "lightingCamera": 0.9
-      },
-      "featureReviews": [
-        {
-          "id": "branch-action-readiness",
-          "score": 0.92,
-          "visible": true,
-          "notes": "Stable pivot nodes, tip sockets, runtime maps, collider proxies, and semantic destruction groups are present."
-        }
-      ],
-      "referenceScreenshot": "assets/repolis-tree-reference.jpeg",
-      "renderScreenshot": "examples/repolis-hero/evidence/final.webp",
-      "comparisonImage": "examples/repolis-hero/evidence/final-comparison.webp",
-      "cameraView": "reference-front",
-      "notes": "Interaction metadata inspected with the final render.",
-      "aiVisionNotes": "The same detailed render is backed by an action-ready runtime hierarchy rather than one inert merged tree mesh."
-    }
-  ],
-  "reviewHistory": [
-    {
-      "timestamp": "2026-07-11T12:06:01.818554+00:00",
-      "passId": "blockout",
-      "estimatedFidelity": 0.84,
-      "aiVisionScore": 0.84,
-      "visualAcceptanceThreshold": 0.7,
-      "layerScores": {
-        "silhouetteProportion": 0.86,
-        "componentStructure": 0.82,
-        "formDetail": 0.72,
-        "materialSurface": 0.6,
-        "lightingCamera": 0.78
-      },
-      "featureReviews": [
-        {
-          "id": "forked-trunk-silhouette",
-          "score": 0.86,
-          "visible": true,
-          "notes": "Wide fork and three crown directions are readable."
-        },
-        {
-          "id": "root-flare-first-fork",
-          "score": 0.82,
-          "visible": true,
-          "notes": "Root flare and first-fork height align with the reference identity."
-        }
-      ],
-      "action": "continue",
-      "summary": "Macro silhouette, first fork, and root flare pass the blockout gate.",
-      "matched": [
-        "wide Y-shaped trunk",
-        "root flare",
-        "left-center-right crown balance"
-      ],
-      "mismatches": [
-        "fine branch density deferred",
-        "surface identity deferred"
-      ],
-      "specFixes": [],
-      "codeFixes": [],
-      "evidence": [
-        "examples/repolis-hero/evidence/blockout.webp",
-        "examples/repolis-hero/evidence/blockout-comparison.webp"
-      ],
-      "visualEvidence": {
-        "referenceScreenshot": "assets/repolis-tree-reference.jpeg",
-        "renderScreenshot": "examples/repolis-hero/evidence/blockout.webp",
-        "comparisonImage": "examples/repolis-hero/evidence/blockout-comparison.webp",
-        "cameraView": "reference-front",
-        "notes": "UI-hidden 1200x675 browser render.",
-        "aiVisionNotes": "Macro identity passes; meso branches and all look-dev systems remain intentionally deferred."
-      }
-    },
-    {
-      "timestamp": "2026-07-11T12:06:16.586328+00:00",
-      "passId": "structural-pass",
-      "estimatedFidelity": 0.86,
-      "aiVisionScore": 0.86,
-      "visualAcceptanceThreshold": 0.7,
-      "layerScores": {
-        "silhouetteProportion": 0.87,
-        "componentStructure": 0.89,
-        "formDetail": 0.8,
-        "materialSurface": 0.62,
-        "lightingCamera": 0.79
-      },
-      "featureReviews": [
-        {
-          "id": "radial-branch-hierarchy",
-          "score": 0.88,
-          "visible": true,
-          "notes": "Left, center, right, rear, and root branch systems remain connected and readable."
-        }
-      ],
-      "action": "continue",
-      "summary": "Rooted macro and secondary hierarchy passes with embedded branch joints.",
-      "matched": [
-        "15 rooted macro branches",
-        "37 visible secondary branches",
-        "action-ready branch pivots and tip sockets"
-      ],
-      "mismatches": [
-        "fine twigs deferred",
-        "leaf and glyph systems deferred"
-      ],
-      "specFixes": [],
-      "codeFixes": [],
-      "evidence": [
-        "examples/repolis-hero/evidence/structural-pass.webp",
-        "examples/repolis-hero/evidence/structural-pass-comparison.webp"
-      ],
-      "visualEvidence": {
-        "referenceScreenshot": "assets/repolis-tree-reference.jpeg",
-        "renderScreenshot": "examples/repolis-hero/evidence/structural-pass.webp",
-        "comparisonImage": "examples/repolis-hero/evidence/structural-pass-comparison.webp",
-        "cameraView": "reference-front",
-        "notes": "UI-hidden 1200x675 browser render.",
-        "aiVisionNotes": "The branch hierarchy is dense without floating roots; tertiary detail remains intentionally deferred."
-      }
-    },
-    {
-      "timestamp": "2026-07-11T12:06:45.175803+00:00",
-      "passId": "form-refinement",
-      "estimatedFidelity": 0.88,
-      "aiVisionScore": 0.88,
-      "visualAcceptanceThreshold": 0.7,
-      "layerScores": {
-        "silhouetteProportion": 0.89,
-        "componentStructure": 0.9,
-        "formDetail": 0.89,
-        "materialSurface": 0.65,
-        "lightingCamera": 0.8
-      },
-      "featureReviews": [
-        {
-          "id": "root-flare-first-fork",
-          "score": 0.87,
-          "visible": true,
-          "notes": "Root flare, embedded buttresses, and first fork preserve the landmark silhouette."
-        },
-        {
-          "id": "radial-branch-hierarchy",
-          "score": 0.9,
-          "visible": true,
-          "notes": "Macro-to-fine hierarchy fills the canopy without losing the primary fork structure."
-        }
-      ],
-      "action": "continue",
-      "summary": "Gnarled taper, fine twigs, and root forms pass the form-refinement gate.",
-      "matched": [
-        "56 secondary branches",
-        "112 fine branches",
-        "continuous taper and curved centerlines"
-      ],
-      "mismatches": [
-        "PBR and luminous identity deferred"
-      ],
-      "specFixes": [],
-      "codeFixes": [],
-      "evidence": [
-        "examples/repolis-hero/evidence/form-refinement.webp",
-        "examples/repolis-hero/evidence/form-refinement-comparison.webp"
-      ],
-      "visualEvidence": {
-        "referenceScreenshot": "assets/repolis-tree-reference.jpeg",
-        "renderScreenshot": "examples/repolis-hero/evidence/form-refinement.webp",
-        "comparisonImage": "examples/repolis-hero/evidence/form-refinement-comparison.webp",
-        "cameraView": "reference-front",
-        "notes": "UI-hidden 1200x675 browser render.",
-        "aiVisionNotes": "Curve sweeps, taper, and multi-frequency radial deformation pass; look-dev remains deferred."
-      }
-    },
-    {
-      "timestamp": "2026-07-11T12:07:08.333420+00:00",
-      "passId": "material-pass",
-      "estimatedFidelity": 0.85,
-      "aiVisionScore": 0.85,
-      "visualAcceptanceThreshold": 0.7,
-      "layerScores": {
-        "silhouetteProportion": 0.88,
-        "componentStructure": 0.9,
-        "formDetail": 0.88,
-        "materialSurface": 0.86,
-        "lightingCamera": 0.84
-      },
-      "featureReviews": [
-        {
-          "id": "gold-energy-network",
-          "score": 0.86,
-          "visible": true,
-          "notes": "Energy follows trunk and major branches while bark remains readable."
-        },
-        {
-          "id": "dual-color-leaf-canopy",
-          "score": 0.83,
-          "visible": true,
-          "notes": "Amber-dominant canopy retains sparse cyan identity accents."
-        },
-        {
-          "id": "bark-midtone-readability",
-          "score": 0.84,
-          "visible": true,
-          "notes": "Generated PBR and front fill preserve warm bark midtones beneath emission."
-        }
-      ],
-      "action": "continue",
-      "summary": "Generated bark PBR, gold energy, and dual-color foliage pass material look-dev.",
-      "matched": [
-        "independent bark albedo roughness height normal AO",
-        "gold energy separated from bark",
-        "2600 amber and cyan leaves"
-      ],
-      "mismatches": [
-        "moss, code glyphs, constellation links, and hanging lights deferred"
-      ],
-      "specFixes": [],
-      "codeFixes": [],
-      "evidence": [
-        "examples/repolis-hero/evidence/material-pass.webp",
-        "examples/repolis-hero/evidence/material-pass-comparison.webp"
-      ],
-      "visualEvidence": {
-        "referenceScreenshot": "assets/repolis-tree-reference.jpeg",
-        "renderScreenshot": "examples/repolis-hero/evidence/material-pass.webp",
-        "comparisonImage": "examples/repolis-hero/evidence/material-pass-comparison.webp",
-        "cameraView": "reference-front",
-        "notes": "UI-hidden 1200x675 browser render.",
-        "aiVisionNotes": "Material identity passes without imported textures or mesh assets; surface ornaments remain deferred."
-      }
-    },
-    {
-      "timestamp": "2026-07-11T12:07:42.879129+00:00",
-      "passId": "surface-pass",
-      "estimatedFidelity": 0.88,
-      "aiVisionScore": 0.88,
-      "visualAcceptanceThreshold": 0.7,
-      "layerScores": {
-        "silhouetteProportion": 0.89,
-        "componentStructure": 0.9,
-        "formDetail": 0.9,
-        "materialSurface": 0.89,
-        "lightingCamera": 0.85
-      },
-      "featureReviews": [
-        {
-          "id": "gold-energy-network",
-          "score": 0.89,
-          "visible": true,
-          "notes": "Gold paths, root core, glyphs, and hanging lights form one coherent network."
-        },
-        {
-          "id": "dual-color-leaf-canopy",
-          "score": 0.87,
-          "visible": true,
-          "notes": "Larger amber and cyan leaf cards create a broad perforated crown."
-        },
-        {
-          "id": "constellation-ornaments",
-          "score": 0.82,
-          "visible": true,
-          "notes": "Cyan nodes and links remain branch-attached and subordinate to the silhouette."
-        }
-      ],
-      "action": "continue",
-      "summary": "Moss, code glyphs, constellation links, and hanging lights complete the surface identity.",
-      "matched": [
-        "220 moss instances",
-        "72 branch-following code glyphs",
-        "constellation nodes and links",
-        "hanging lights"
-      ],
-      "mismatches": [
-        "reference city excluded from standalone tree asset"
-      ],
-      "specFixes": [],
-      "codeFixes": [],
-      "evidence": [
-        "examples/repolis-hero/evidence/surface-pass.webp",
-        "examples/repolis-hero/evidence/surface-pass-comparison.webp"
-      ],
-      "visualEvidence": {
-        "referenceScreenshot": "assets/repolis-tree-reference.jpeg",
-        "renderScreenshot": "examples/repolis-hero/evidence/surface-pass.webp",
-        "comparisonImage": "examples/repolis-hero/evidence/surface-pass-comparison.webp",
-        "cameraView": "reference-front",
-        "notes": "UI-hidden 1200x675 browser render.",
-        "aiVisionNotes": "The final surface systems preserve the tree identity while remaining deterministic and action-ready."
-      }
-    },
-    {
-      "timestamp": "2026-07-11T12:08:05.405501+00:00",
-      "passId": "lighting-pass",
-      "estimatedFidelity": 0.89,
-      "aiVisionScore": 0.89,
-      "visualAcceptanceThreshold": 0.7,
-      "layerScores": {
-        "silhouetteProportion": 0.9,
-        "componentStructure": 0.9,
-        "formDetail": 0.9,
-        "materialSurface": 0.89,
-        "lightingCamera": 0.91
-      },
-      "featureReviews": [
-        {
-          "id": "gold-energy-network",
-          "score": 0.9,
-          "visible": true,
-          "notes": "Bloom remains controlled enough to preserve energy path width and bark edges."
-        },
-        {
-          "id": "bark-midtone-readability",
-          "score": 0.87,
-          "visible": true,
-          "notes": "Warm front fill and generated PBR prevent the trunk from collapsing to black."
-        },
-        {
-          "id": "constellation-ornaments",
-          "score": 0.83,
-          "visible": true,
-          "notes": "Cyan ornament groups remain readable against the dark sky."
-        }
-      ],
-      "action": "continue",
-      "summary": "ACES tone mapping, restrained bloom, warm key, cool rim, and contact shadows pass lighting look-dev.",
-      "matched": [
-        "bark midtones survive glow",
-        "gold and cyan accents separate",
-        "root contact remains anchored"
-      ],
-      "mismatches": [
-        "standalone asset intentionally omits the reference village illumination"
-      ],
-      "specFixes": [],
-      "codeFixes": [],
-      "evidence": [
-        "examples/repolis-hero/evidence/final.webp",
-        "examples/repolis-hero/evidence/final-comparison.webp"
-      ],
-      "visualEvidence": {
-        "referenceScreenshot": "assets/repolis-tree-reference.jpeg",
-        "renderScreenshot": "examples/repolis-hero/evidence/final.webp",
-        "comparisonImage": "examples/repolis-hero/evidence/final-comparison.webp",
-        "cameraView": "reference-front",
-        "notes": "Final clean browser render with UI hidden.",
-        "aiVisionNotes": "Lighting separates bark, foliage, energy, and background while retaining the night-reference mood."
-      }
-    },
-    {
-      "timestamp": "2026-07-11T12:08:23.702191+00:00",
-      "passId": "interaction-pass",
-      "estimatedFidelity": 0.9,
-      "aiVisionScore": 0.9,
-      "visualAcceptanceThreshold": 0.7,
-      "layerScores": {
-        "silhouetteProportion": 0.9,
-        "componentStructure": 0.92,
-        "formDetail": 0.9,
-        "materialSurface": 0.89,
-        "lightingCamera": 0.9
-      },
-      "featureReviews": [
-        {
-          "id": "branch-action-readiness",
-          "score": 0.92,
-          "visible": true,
-          "notes": "Stable pivot nodes, tip sockets, runtime maps, collider proxies, and semantic destruction groups are present."
-        }
-      ],
-      "action": "continue",
-      "summary": "Runtime pivots, tip sockets, collider proxies, destruction groups, and DNA switching pass interaction readiness.",
-      "matched": [
-        "named branch pivot groups",
-        "tip sockets",
-        "compound collider metadata",
-        "three deterministic DNA variants",
-        "dispose and update lifecycle"
-      ],
-      "mismatches": [
-        "physics engine integration intentionally left to the Repolis host app"
-      ],
-      "specFixes": [],
-      "codeFixes": [],
-      "evidence": [
-        "examples/repolis-hero/evidence/final.webp",
-        "examples/repolis-hero/evidence/final-comparison.webp"
-      ],
-      "visualEvidence": {
-        "referenceScreenshot": "assets/repolis-tree-reference.jpeg",
-        "renderScreenshot": "examples/repolis-hero/evidence/final.webp",
-        "comparisonImage": "examples/repolis-hero/evidence/final-comparison.webp",
-        "cameraView": "reference-front",
-        "notes": "Interaction metadata inspected with the final render.",
-        "aiVisionNotes": "The same detailed render is backed by an action-ready runtime hierarchy rather than one inert merged tree mesh."
-      }
-    },
-    {
-      "timestamp": "2026-07-11T12:08:39.837751+00:00",
-      "passId": "optimization-pass",
-      "estimatedFidelity": 0.91,
-      "aiVisionScore": null,
-      "visualAcceptanceThreshold": 0.7,
-      "layerScores": {},
-      "featureReviews": [],
-      "action": "continue",
-      "summary": "Runtime generation and repetition budgets pass the flagship optimization gate.",
-      "matched": [
-        "89-109ms full generation",
-        "17761 branch vertices",
-        "2600 leaves",
-        "220 moss",
-        "72 glyphs",
-        "zero imported meshes"
-      ],
-      "mismatches": [
-        "host-app GPU timing still depends on target device"
-      ],
-      "specFixes": [],
-      "codeFixes": [],
-      "evidence": [
-        "runtime stats from window.__REPOLIS_HERO__.stats",
-        "examples/repolis-hero/evidence/final.webp"
-      ]
-    }
-  ],
+  "visualEvidence": [],
+  "reviewHistory": [],
   "lodPlan": [
     {
       "tier": "near",
@@ -4629,5 +3976,157 @@
     "Small branch glyphs are not reliably legible and are treated as abstract code-like marks.",
     "Dense transparent leaf cards can create overdraw unless instanced and LOD-controlled.",
     "Reference village scale is illustrative; final world-unit scale must be calibrated in the target scene."
-  ]
+  ],
+  "variantProvenance": {
+    "sculptDNAVersion": "1.0",
+    "variantId": "repolis-tree-v002",
+    "sourceTargetId": "repolis-tree",
+    "sourceTargetSlug": "repolis-tree",
+    "rootSeed": 20260711,
+    "variantSeed": 14224270480395035964,
+    "index": 2,
+    "attempt": 1,
+    "mutations": [
+      {
+        "parameterId": "bark-roughness",
+        "target": {
+          "kind": "material",
+          "id": "bark",
+          "path": "roughness.base"
+        },
+        "before": 0.68,
+        "after": 0.666
+      },
+      {
+        "parameterId": "bark-dominant-palette",
+        "target": {
+          "kind": "material",
+          "id": "bark",
+          "path": "colorVariation.palette.0"
+        },
+        "before": "#2B170F",
+        "after": "#4A2B18"
+      },
+      {
+        "parameterId": "gold-energy-roughness",
+        "target": {
+          "kind": "material",
+          "id": "gold-energy",
+          "path": "roughness.base"
+        },
+        "before": 0.28,
+        "after": 0.3528
+      },
+      {
+        "parameterId": "gold-energy-dominant-palette",
+        "target": {
+          "kind": "material",
+          "id": "gold-energy",
+          "path": "colorVariation.palette.0"
+        },
+        "before": "#D27A20",
+        "after": "#FFF2B0"
+      },
+      {
+        "parameterId": "amber-leaf-roughness",
+        "target": {
+          "kind": "material",
+          "id": "amber-leaf",
+          "path": "roughness.base"
+        },
+        "before": 0.48,
+        "after": 0.4782
+      },
+      {
+        "parameterId": "amber-leaf-dominant-palette",
+        "target": {
+          "kind": "material",
+          "id": "amber-leaf",
+          "path": "colorVariation.palette.0"
+        },
+        "before": "#D87927",
+        "after": "#D87927"
+      },
+      {
+        "parameterId": "cyan-leaf-roughness",
+        "target": {
+          "kind": "material",
+          "id": "cyan-leaf",
+          "path": "roughness.base"
+        },
+        "before": 0.38,
+        "after": 0.3508
+      },
+      {
+        "parameterId": "cyan-leaf-dominant-palette",
+        "target": {
+          "kind": "material",
+          "id": "cyan-leaf",
+          "path": "colorVariation.palette.0"
+        },
+        "before": "#1A8FA8",
+        "after": "#B6FFFF"
+      },
+      {
+        "parameterId": "amber-leaf-clusters-count",
+        "target": {
+          "kind": "repetition",
+          "id": "amber-leaf-clusters",
+          "path": "count"
+        },
+        "before": 520,
+        "after": 561
+      },
+      {
+        "parameterId": "cyan-leaf-accents-count",
+        "target": {
+          "kind": "repetition",
+          "id": "cyan-leaf-accents",
+          "path": "count"
+        },
+        "before": 112,
+        "after": 103
+      },
+      {
+        "parameterId": "constellation-nodes-count",
+        "target": {
+          "kind": "repetition",
+          "id": "constellation-nodes",
+          "path": "count"
+        },
+        "before": 32,
+        "after": 28
+      },
+      {
+        "parameterId": "hanging-light-strands-count",
+        "target": {
+          "kind": "repetition",
+          "id": "hanging-light-strands",
+          "path": "count"
+        },
+        "before": 18,
+        "after": 16
+      }
+    ],
+    "invariants": {
+      "ok": true,
+      "checked": [
+        "component-ids",
+        "parent-links",
+        "material-refs",
+        "socket-ids",
+        "fracture-groups",
+        "attachment-roots",
+        "build-pass-order",
+        "feature-review-targets"
+      ]
+    },
+    "reviewEvidenceReset": true,
+    "samplingMode": "coverage-curated",
+    "candidateIndex": 17,
+    "curatedIndex": 2,
+    "selectionScore": 0.568399,
+    "previewMode": false,
+    "passGateStatus": "base-sculpt-gate-complete"
+  }
 }

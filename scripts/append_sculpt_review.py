@@ -51,7 +51,11 @@ def load_json_argument(value: str | None, label: str) -> object | None:
     if not value:
         return None
     candidate = Path(value).expanduser()
-    text = candidate.read_text(encoding="utf-8") if candidate.is_file() else value
+    try:
+        is_file = candidate.is_file()
+    except OSError:
+        is_file = False
+    text = candidate.read_text(encoding="utf-8") if is_file else value
     try:
         return json.loads(text)
     except json.JSONDecodeError as exc:

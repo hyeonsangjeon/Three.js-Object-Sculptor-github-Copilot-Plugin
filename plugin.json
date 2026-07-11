@@ -1,7 +1,7 @@
 {
   "name": "threejs-sculpt-dna",
   "description": "Reconstruct object images as quality-gated procedural Three.js models, then generate constraint-safe deterministic asset families.",
-  "version": "0.2.0",
+  "version": "0.4.0",
   "author": {
     "name": "hyeonsangjeon",
     "email": "wingnut0310@gmail.com",

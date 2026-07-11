@@ -1,0 +1,489 @@
+{
+  "schemaVersion": "1.0",
+  "sourceSpec": "object-sculpt-spec.json",
+  "sourceSpecSha256": "973c8a52903ddc986f88b185ea3cc5731fab5c64279738e9c2e5ab969b7ac1fb",
+  "rootSeed": 20260711,
+  "count": 3,
+  "variants": [
+    {
+      "variantId": "repolis-tree-v001",
+      "path": "repolis-tree-v001.json",
+      "variantSeed": 14848874945029955226,
+      "attempt": 1,
+      "mutations": [
+        {
+          "parameterId": "bark-roughness",
+          "target": {
+            "kind": "material",
+            "id": "bark",
+            "path": "roughness.base"
+          },
+          "before": 0.68,
+          "after": 0.7378
+        },
+        {
+          "parameterId": "bark-dominant-palette",
+          "target": {
+            "kind": "material",
+            "id": "bark",
+            "path": "colorVariation.palette.0"
+          },
+          "before": "#2B170F",
+          "after": "#6F4324"
+        },
+        {
+          "parameterId": "gold-energy-roughness",
+          "target": {
+            "kind": "material",
+            "id": "gold-energy",
+            "path": "roughness.base"
+          },
+          "before": 0.28,
+          "after": 0.2844
+        },
+        {
+          "parameterId": "gold-energy-dominant-palette",
+          "target": {
+            "kind": "material",
+            "id": "gold-energy",
+            "path": "colorVariation.palette.0"
+          },
+          "before": "#D27A20",
+          "after": "#D27A20"
+        },
+        {
+          "parameterId": "amber-leaf-roughness",
+          "target": {
+            "kind": "material",
+            "id": "amber-leaf",
+            "path": "roughness.base"
+          },
+          "before": 0.48,
+          "after": 0.4329
+        },
+        {
+          "parameterId": "amber-leaf-dominant-palette",
+          "target": {
+            "kind": "material",
+            "id": "amber-leaf",
+            "path": "colorVariation.palette.0"
+          },
+          "before": "#D87927",
+          "after": "#FFF0B4"
+        },
+        {
+          "parameterId": "cyan-leaf-roughness",
+          "target": {
+            "kind": "material",
+            "id": "cyan-leaf",
+            "path": "roughness.base"
+          },
+          "before": 0.38,
+          "after": 0.4038
+        },
+        {
+          "parameterId": "cyan-leaf-dominant-palette",
+          "target": {
+            "kind": "material",
+            "id": "cyan-leaf",
+            "path": "colorVariation.palette.0"
+          },
+          "before": "#1A8FA8",
+          "after": "#1A8FA8"
+        },
+        {
+          "parameterId": "amber-leaf-clusters-count",
+          "target": {
+            "kind": "repetition",
+            "id": "amber-leaf-clusters",
+            "path": "count"
+          },
+          "before": 520,
+          "after": 578
+        },
+        {
+          "parameterId": "cyan-leaf-accents-count",
+          "target": {
+            "kind": "repetition",
+            "id": "cyan-leaf-accents",
+            "path": "count"
+          },
+          "before": 112,
+          "after": 117
+        },
+        {
+          "parameterId": "constellation-nodes-count",
+          "target": {
+            "kind": "repetition",
+            "id": "constellation-nodes",
+            "path": "count"
+          },
+          "before": 32,
+          "after": 35
+        },
+        {
+          "parameterId": "hanging-light-strands-count",
+          "target": {
+            "kind": "repetition",
+            "id": "hanging-light-strands",
+            "path": "count"
+          },
+          "before": 18,
+          "after": 18
+        }
+      ],
+      "invariants": {
+        "ok": true,
+        "checked": [
+          "component-ids",
+          "parent-links",
+          "material-refs",
+          "socket-ids",
+          "fracture-groups",
+          "attachment-roots",
+          "build-pass-order",
+          "feature-review-targets"
+        ]
+      },
+      "reviewEvidenceReset": true,
+      "samplingMode": "coverage-curated",
+      "candidateIndex": 10,
+      "curatedIndex": 1,
+      "selectionScore": 0.329943,
+      "previewMode": false,
+      "passGateStatus": "base-sculpt-gate-complete"
+    },
+    {
+      "variantId": "repolis-tree-v002",
+      "path": "repolis-tree-v002.json",
+      "variantSeed": 14224270480395035964,
+      "attempt": 1,
+      "mutations": [
+        {
+          "parameterId": "bark-roughness",
+          "target": {
+            "kind": "material",
+            "id": "bark",
+            "path": "roughness.base"
+          },
+          "before": 0.68,
+          "after": 0.666
+        },
+        {
+          "parameterId": "bark-dominant-palette",
+          "target": {
+            "kind": "material",
+            "id": "bark",
+            "path": "colorVariation.palette.0"
+          },
+          "before": "#2B170F",
+          "after": "#4A2B18"
+        },
+        {
+          "parameterId": "gold-energy-roughness",
+          "target": {
+            "kind": "material",
+            "id": "gold-energy",
+            "path": "roughness.base"
+          },
+          "before": 0.28,
+          "after": 0.3528
+        },
+        {
+          "parameterId": "gold-energy-dominant-palette",
+          "target": {
+            "kind": "material",
+            "id": "gold-energy",
+            "path": "colorVariation.palette.0"
+          },
+          "before": "#D27A20",
+          "after": "#FFF2B0"
+        },
+        {
+          "parameterId": "amber-leaf-roughness",
+          "target": {
+            "kind": "material",
+            "id": "amber-leaf",
+            "path": "roughness.base"
+          },
+          "before": 0.48,
+          "after": 0.4782
+        },
+        {
+          "parameterId": "amber-leaf-dominant-palette",
+          "target": {
+            "kind": "material",
+            "id": "amber-leaf",
+            "path": "colorVariation.palette.0"
+          },
+          "before": "#D87927",
+          "after": "#D87927"
+        },
+        {
+          "parameterId": "cyan-leaf-roughness",
+          "target": {
+            "kind": "material",
+            "id": "cyan-leaf",
+            "path": "roughness.base"
+          },
+          "before": 0.38,
+          "after": 0.3508
+        },
+        {
+          "parameterId": "cyan-leaf-dominant-palette",
+          "target": {
+            "kind": "material",
+            "id": "cyan-leaf",
+            "path": "colorVariation.palette.0"
+          },
+          "before": "#1A8FA8",
+          "after": "#B6FFFF"
+        },
+        {
+          "parameterId": "amber-leaf-clusters-count",
+          "target": {
+            "kind": "repetition",
+            "id": "amber-leaf-clusters",
+            "path": "count"
+          },
+          "before": 520,
+          "after": 561
+        },
+        {
+          "parameterId": "cyan-leaf-accents-count",
+          "target": {
+            "kind": "repetition",
+            "id": "cyan-leaf-accents",
+            "path": "count"
+          },
+          "before": 112,
+          "after": 103
+        },
+        {
+          "parameterId": "constellation-nodes-count",
+          "target": {
+            "kind": "repetition",
+            "id": "constellation-nodes",
+            "path": "count"
+          },
+          "before": 32,
+          "after": 28
+        },
+        {
+          "parameterId": "hanging-light-strands-count",
+          "target": {
+            "kind": "repetition",
+            "id": "hanging-light-strands",
+            "path": "count"
+          },
+          "before": 18,
+          "after": 16
+        }
+      ],
+      "invariants": {
+        "ok": true,
+        "checked": [
+          "component-ids",
+          "parent-links",
+          "material-refs",
+          "socket-ids",
+          "fracture-groups",
+          "attachment-roots",
+          "build-pass-order",
+          "feature-review-targets"
+        ]
+      },
+      "reviewEvidenceReset": true,
+      "samplingMode": "coverage-curated",
+      "candidateIndex": 17,
+      "curatedIndex": 2,
+      "selectionScore": 0.568399,
+      "previewMode": false,
+      "passGateStatus": "base-sculpt-gate-complete"
+    },
+    {
+      "variantId": "repolis-tree-v003",
+      "path": "repolis-tree-v003.json",
+      "variantSeed": 3130379448230042765,
+      "attempt": 1,
+      "mutations": [
+        {
+          "parameterId": "bark-roughness",
+          "target": {
+            "kind": "material",
+            "id": "bark",
+            "path": "roughness.base"
+          },
+          "before": 0.68,
+          "after": 0.6417
+        },
+        {
+          "parameterId": "bark-dominant-palette",
+          "target": {
+            "kind": "material",
+            "id": "bark",
+            "path": "colorVariation.palette.0"
+          },
+          "before": "#2B170F",
+          "after": "#4A2B18"
+        },
+        {
+          "parameterId": "gold-energy-roughness",
+          "target": {
+            "kind": "material",
+            "id": "gold-energy",
+            "path": "roughness.base"
+          },
+          "before": 0.28,
+          "after": 0.2706
+        },
+        {
+          "parameterId": "gold-energy-dominant-palette",
+          "target": {
+            "kind": "material",
+            "id": "gold-energy",
+            "path": "colorVariation.palette.0"
+          },
+          "before": "#D27A20",
+          "after": "#FFD477"
+        },
+        {
+          "parameterId": "amber-leaf-roughness",
+          "target": {
+            "kind": "material",
+            "id": "amber-leaf",
+            "path": "roughness.base"
+          },
+          "before": 0.48,
+          "after": 0.4976
+        },
+        {
+          "parameterId": "amber-leaf-dominant-palette",
+          "target": {
+            "kind": "material",
+            "id": "amber-leaf",
+            "path": "colorVariation.palette.0"
+          },
+          "before": "#D87927",
+          "after": "#D87927"
+        },
+        {
+          "parameterId": "cyan-leaf-roughness",
+          "target": {
+            "kind": "material",
+            "id": "cyan-leaf",
+            "path": "roughness.base"
+          },
+          "before": 0.38,
+          "after": 0.3017
+        },
+        {
+          "parameterId": "cyan-leaf-dominant-palette",
+          "target": {
+            "kind": "material",
+            "id": "cyan-leaf",
+            "path": "colorVariation.palette.0"
+          },
+          "before": "#1A8FA8",
+          "after": "#1A8FA8"
+        },
+        {
+          "parameterId": "amber-leaf-clusters-count",
+          "target": {
+            "kind": "repetition",
+            "id": "amber-leaf-clusters",
+            "path": "count"
+          },
+          "before": 520,
+          "after": 462
+        },
+        {
+          "parameterId": "cyan-leaf-accents-count",
+          "target": {
+            "kind": "repetition",
+            "id": "cyan-leaf-accents",
+            "path": "count"
+          },
+          "before": 112,
+          "after": 96
+        },
+        {
+          "parameterId": "constellation-nodes-count",
+          "target": {
+            "kind": "repetition",
+            "id": "constellation-nodes",
+            "path": "count"
+          },
+          "before": 32,
+          "after": 37
+        },
+        {
+          "parameterId": "hanging-light-strands-count",
+          "target": {
+            "kind": "repetition",
+            "id": "hanging-light-strands",
+            "path": "count"
+          },
+          "before": 18,
+          "after": 18
+        }
+      ],
+      "invariants": {
+        "ok": true,
+        "checked": [
+          "component-ids",
+          "parent-links",
+          "material-refs",
+          "socket-ids",
+          "fracture-groups",
+          "attachment-roots",
+          "build-pass-order",
+          "feature-review-targets"
+        ]
+      },
+      "reviewEvidenceReset": true,
+      "samplingMode": "coverage-curated",
+      "candidateIndex": 12,
+      "curatedIndex": 3,
+      "selectionScore": 0.424648,
+      "previewMode": false,
+      "passGateStatus": "base-sculpt-gate-complete"
+    }
+  ],
+  "samplingMode": "coverage-curated",
+  "poolSize": 24,
+  "selectedCandidateIndexes": [
+    10,
+    17,
+    12
+  ],
+  "parameterIds": [
+    "bark-roughness",
+    "bark-dominant-palette",
+    "gold-energy-roughness",
+    "gold-energy-dominant-palette",
+    "amber-leaf-roughness",
+    "amber-leaf-dominant-palette",
+    "cyan-leaf-roughness",
+    "cyan-leaf-dominant-palette",
+    "amber-leaf-clusters-count",
+    "cyan-leaf-accents-count",
+    "constellation-nodes-count",
+    "hanging-light-strands-count"
+  ],
+  "coverageScore": 0.484356,
+  "selectionStrategy": "centroid-extreme then greedy max-min normalized parameter distance",
+  "previewMode": false,
+  "passGateStatus": "base-sculpt-gate-complete",
+  "baseCompletedPasses": [
+    "blockout",
+    "structural-pass",
+    "form-refinement",
+    "material-pass",
+    "surface-pass",
+    "lighting-pass",
+    "interaction-pass",
+    "optimization-pass"
+  ],
+  "missingBasePasses": []
+}

@@ -51,6 +51,7 @@ These scripts live at the plugin root, not inside this skill folder. From this `
 - `python3 ../../scripts/append_sculpt_review.py object-sculpt-spec.json --pass-id <pass> --fidelity <0-1> --action <continue|refine-spec|refine-code|request-input|stop> --summary "..." --render-screenshot <path> --comparison-image <path> --ai-vision-score <0-1> --layer-scores-json '{"silhouetteProportion":0.8}' --feature-reviews-json <reviews.json> --ai-vision-notes "..." --camera-view <view> --in-place` records each self-correction review plus global and feature-level AI vision evidence.
 - `python3 ../../scripts/sculpt_dna.py init object-sculpt-spec.json --in-place` adds conservative semantic variant controls after the base structure is meaningful.
 - `python3 ../../scripts/sculpt_dna.py generate object-sculpt-spec.json --out-dir variants --count 4 --seed 1337` creates deterministic, invariant-checked variant specs and resets inherited visual evidence.
+- `python3 ../../scripts/sculpt_dna.py curate object-sculpt-spec.json --out-dir curated --count 3 --pool-size 24 --seed 1337` selects a representative family with broad safe parameter-space coverage.
 
 Prefer this loop for implementation tasks:
 

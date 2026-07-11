@@ -1,0 +1,3084 @@
+{
+  "targetName": "Brick Off-Road Explorer",
+  "targetId": "brick-offroad",
+  "schemaVersion": "2.0",
+  "terminologyProfile": {
+    "domain": "real-time procedural Three.js asset",
+    "geometryTerms": [
+      "silhouette",
+      "topology",
+      "primitive",
+      "bevel",
+      "chamfer",
+      "taper",
+      "bend",
+      "boolean cut",
+      "edge loop",
+      "surface normal",
+      "displacement"
+    ],
+    "materialTerms": [
+      "albedo",
+      "baseColor",
+      "roughness",
+      "metalness",
+      "normal map",
+      "bump map",
+      "ambient occlusion",
+      "cavity dirt",
+      "edge wear",
+      "clearcoat"
+    ],
+    "lightingTerms": [
+      "key light",
+      "fill light",
+      "rim light",
+      "HDRI/environment reflection",
+      "contact shadow"
+    ],
+    "descriptionRule": "Use measurable 3D graphics terms. Avoid vague words unless they are paired with concrete geometry/material/shader parameters."
+  },
+  "sourceImage": "assets/brick-offroad-reference.jpeg",
+  "suitability": "pass",
+  "scores": {
+    "object_isolation": 3,
+    "silhouette_readability": 3,
+    "depth_inference": 2,
+    "primitive_decomposition": 3,
+    "material_procedurality": 3,
+    "occlusion_risk": 1,
+    "interaction_fit": 3
+  },
+  "preSpecAssessment": {
+    "objectClass": {
+      "primaryType": "hard-surface articulated off-road vehicle",
+      "formLanguage": [
+        "procedural real-time reconstruction",
+        "deterministic variant family"
+      ],
+      "structureKind": [
+        "hierarchical components",
+        "repeated systems"
+      ],
+      "motionPotential": [
+        "turntable",
+        "component state variation"
+      ],
+      "materialFamilies": [
+        "Olive body panels",
+        "Light roof panels",
+        "Dark structural trim",
+        "Expedition accent panels",
+        "Tire rubber",
+        "Smoky glazing",
+        "Warm lamps"
+      ],
+      "notes": "Showcase assessment authored from the user-provided reference."
+    },
+    "complexity": {
+      "tier": "complex",
+      "scores": {
+        "silhouetteComplexity": 3,
+        "componentCount": 3,
+        "hierarchyDepth": 2,
+        "repetitionDensity": 3,
+        "materialLayerCount": 3,
+        "localDetailDensity": 2,
+        "occlusionRisk": 2,
+        "actionReadinessNeed": 2
+      },
+      "estimatedCounts": {
+        "macroComponents": 3,
+        "mesoComponents": 6,
+        "microFeatureGroups": 9,
+        "materialLayers": 7,
+        "repetitionSystems": 3
+      },
+      "reasoning": [
+        "The vehicle is isolated and its raised four-wheel chassis, cabin, rear body, and wheel spacing are readable.",
+        "Brick studs, tire treads, and roof lamps are deterministic repetition systems.",
+        "Hidden underbody details are simplified for a browser-real-time showcase."
+      ]
+    },
+    "specDepthDecision": {
+      "requiredDepth": "complex",
+      "minimumComponentLevels": [
+        "macro",
+        "meso",
+        "micro"
+      ],
+      "needsRepetitionSystems": true,
+      "needsMaterialLocalOverrides": true,
+      "needsMultipleReviewViews": true,
+      "needsActionReadyHierarchy": true,
+      "rationale": "The README showcase must expose recognizable structure and controlled variation."
+    },
+    "unknownsToResolveBeforeImplementation": [],
+    "sourceImage": "assets/brick-offroad-reference.jpeg"
+  },
+  "qualityContract": {
+    "qualityBar": "complex",
+    "definitionOfDone": [
+      "The render reads as the same olive raised 4x4 expedition vehicle.",
+      "Three variants preserve four-wheel topology while changing panel palette and repeated-detail density."
+    ],
+    "minimumSpecDepth": {
+      "macroComponents": 3,
+      "mesoComponents": 6,
+      "microFeatureGroups": 9,
+      "materialLayers": 7,
+      "repetitionSystems": 3,
+      "reviewViewpoints": 4
+    },
+    "featureGroups": [
+      {
+        "id": "raised-4x4-silhouette",
+        "name": "Raised four-wheel off-road silhouette",
+        "required": true,
+        "qualityCriteria": [
+          "Raised four-wheel off-road silhouette remains recognizable across variants."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "Raised four-wheel off-road silhouette becomes generic or visually detached."
+        ]
+      },
+      {
+        "id": "four-wheel-system",
+        "name": "Four large tire and hub system",
+        "required": true,
+        "qualityCriteria": [
+          "Four large tire and hub system remains recognizable across variants."
+        ],
+        "evidenceRefs": [
+          "identity-details"
+        ],
+        "failureModes": [
+          "Four large tire and hub system becomes generic or visually detached."
+        ]
+      },
+      {
+        "id": "cabin-hood-bed",
+        "name": "Cabin, hood, and rear utility-bed hierarchy",
+        "required": true,
+        "qualityCriteria": [
+          "Cabin, hood, and rear utility-bed hierarchy remains recognizable across variants."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "Cabin, hood, and rear utility-bed hierarchy becomes generic or visually detached."
+        ]
+      },
+      {
+        "id": "roof-expedition-gear",
+        "name": "Roof rack and lamp bar",
+        "required": false,
+        "qualityCriteria": [
+          "Roof rack and lamp bar remains recognizable across variants."
+        ],
+        "evidenceRefs": [
+          "identity-details"
+        ],
+        "failureModes": [
+          "Roof rack and lamp bar becomes generic or visually detached."
+        ]
+      }
+    ],
+    "visualDeltaChecks": [
+      "silhouette and proportion delta",
+      "component hierarchy delta",
+      "material palette and roughness delta",
+      "repetition density delta"
+    ],
+    "antiShallowSpecRules": [
+      "Do not generate the showcase from a single undifferentiated mesh.",
+      "Do not vary protected component IDs, parent links, or review targets.",
+      "Do not accept variants without fresh visual evidence."
+    ]
+  },
+  "qualityTargets": {
+    "targetFidelity": 0.72,
+    "mustMatch": [
+      "Raised four-wheel off-road silhouette",
+      "Four large tire and hub system",
+      "Cabin, hood, and rear utility-bed hierarchy"
+    ],
+    "niceToHave": [
+      "micro scratches, stains, chips, and dirt masks",
+      "secondary lighting match"
+    ],
+    "fpsTarget": 60,
+    "reviewViewpoints": [
+      "reference-three-quarter",
+      "front",
+      "side",
+      "rear-three-quarter"
+    ]
+  },
+  "selfCorrectLoop": {
+    "enabled": true,
+    "visualAcceptance": {
+      "reviewer": "ai-vision",
+      "threshold": 0.7,
+      "comparisonArtifactRequired": true,
+      "layerScoresRequired": true,
+      "codePixelDiffIsAcceptanceAuthority": false,
+      "scoringRule": "AI vision must inspect a side-by-side reference/render sheet and score the current pass from 0 to 1. Pixel-diff code may assist diagnostics but cannot approve a pass.",
+      "requiredLayerScores": [
+        "silhouetteProportion",
+        "componentStructure",
+        "formDetail",
+        "materialSurface",
+        "lightingCamera"
+      ],
+      "featureReviewPolicy": {
+        "enabled": true,
+        "reviewUnit": "semantic-subsystem",
+        "maxCriticalFeaturesPerPass": 5,
+        "maxImportantFeaturesPerPass": 3,
+        "criticalDefaultThreshold": 0.8,
+        "importantAverageThreshold": 0.65,
+        "adaptiveEscalation": true,
+        "singleImagePairOnly": true,
+        "selectionRule": "Choose only the most visually salient, identity-defining, user-prioritized, or high-risk semantic systems. Group repeated parts instead of reviewing every mesh. AI vision scores every selected feature from the same full reference/render pair."
+      }
+    },
+    "reviewAfterPasses": [
+      "blockout",
+      "structural-pass",
+      "form-refinement",
+      "material-pass",
+      "surface-pass",
+      "lighting-pass",
+      "interaction-pass",
+      "optimization-pass"
+    ],
+    "allowedActions": [
+      "continue",
+      "refine-spec",
+      "refine-code",
+      "request-input",
+      "stop"
+    ],
+    "specRefineTriggers": [
+      "missing component",
+      "wrong primitive family",
+      "wrong proportions",
+      "material layer under-specified",
+      "local feature not traceable to viewEvidence",
+      "reference ambiguity discovered during implementation"
+    ],
+    "codeRefineTriggers": [
+      "spec is adequate but generated geometry/material does not match",
+      "browser render differs from reference",
+      "performance budget exceeded",
+      "lighting hides geometry or material response"
+    ],
+    "stopCriteria": [
+      "target fidelity reached or user accepts current approximation",
+      "remaining gaps require new reference images or manual art"
+    ],
+    "screenshotPolicy": {
+      "requiredForPasses": [
+        "blockout",
+        "structural-pass",
+        "form-refinement",
+        "material-pass",
+        "surface-pass",
+        "lighting-pass",
+        "interaction-pass"
+      ],
+      "preferredCapture": "in-app-browser-screenshot",
+      "fallbackCapture": "user-supplied-screenshot-path",
+      "minimumEvidence": "Each visual pass needs a reference image, rendered screenshot, side-by-side comparison sheet, AI vision score, layer scores, and critique before choosing continue.",
+      "reviewPairRule": "Compare the same camera/viewpoint whenever possible; do not judge a front reference against a random render angle.",
+      "acceptanceAuthority": "AI vision review of the comparison sheet. Code-generated pixel similarity is not sufficient evidence."
+    }
+  },
+  "featureReviewTargets": [
+    {
+      "id": "raised-4x4-silhouette",
+      "name": "Raised four-wheel off-road silhouette",
+      "tier": "critical",
+      "passIds": [
+        "blockout",
+        "form-refinement"
+      ],
+      "minimumScore": 0.78,
+      "mustPass": true,
+      "componentRefs": [
+        "root",
+        "wheel-system"
+      ],
+      "evidenceRefs": [
+        "full-object"
+      ]
+    },
+    {
+      "id": "four-wheel-system",
+      "name": "Four large tire and hub system",
+      "tier": "critical",
+      "passIds": [
+        "structural-pass",
+        "surface-pass"
+      ],
+      "minimumScore": 0.78,
+      "mustPass": true,
+      "componentRefs": [
+        "wheel-system"
+      ],
+      "evidenceRefs": [
+        "identity-details"
+      ]
+    },
+    {
+      "id": "cabin-hood-bed",
+      "name": "Cabin, hood, and rear utility-bed hierarchy",
+      "tier": "critical",
+      "passIds": [
+        "structural-pass",
+        "form-refinement"
+      ],
+      "minimumScore": 0.76,
+      "mustPass": true,
+      "componentRefs": [
+        "cabin",
+        "hood",
+        "cargo-bed"
+      ],
+      "evidenceRefs": [
+        "full-object"
+      ]
+    },
+    {
+      "id": "roof-expedition-gear",
+      "name": "Roof rack and lamp bar",
+      "tier": "important",
+      "passIds": [
+        "structural-pass",
+        "material-pass"
+      ],
+      "minimumScore": 0.68,
+      "mustPass": false,
+      "componentRefs": [
+        "roof-rack",
+        "lighting"
+      ],
+      "evidenceRefs": [
+        "identity-details"
+      ]
+    }
+  ],
+  "sculptPipeline": {
+    "passGateMode": "locked-sequential",
+    "passOrder": [
+      "blockout",
+      "structural-pass",
+      "form-refinement",
+      "material-pass",
+      "surface-pass",
+      "lighting-pass",
+      "interaction-pass",
+      "optimization-pass"
+    ],
+    "currentPass": "blockout",
+    "completedPasses": [],
+    "lastCompletedPass": "",
+    "blockedReason": "blockout requires a browser screenshot and self-correction review before structural-pass unlocks",
+    "nextRequiredEvidence": [
+      "blockout browser render screenshot from the GitHub Copilot in-app Browser",
+      "side-by-side reference/render comparison sheet",
+      "AI vision score >= 0.7 with layer scores and mismatch critique",
+      "critical semantic feature scores from the same image pair meeting their individual thresholds",
+      "reviewHistory entry for blockout with action=continue"
+    ]
+  },
+  "lookDevTargets": {
+    "qualityPriority": "balanced",
+    "materialPass": {
+      "albedoPaletteRequired": true,
+      "roughnessVariationRequired": true,
+      "normalOrBumpRequired": true,
+      "localOverridesRequired": true,
+      "minimumTextureResolution": 1024,
+      "preferredTextureResolution": 2048,
+      "independentMapChannels": [
+        "albedo",
+        "roughness",
+        "height",
+        "normal",
+        "ambient-occlusion"
+      ],
+      "requiredSurfaceFrequencyBands": [
+        "macro",
+        "meso",
+        "micro"
+      ],
+      "geometryReliefRequiredWhenSilhouetteAffected": true,
+      "referencePbrExtraction": {
+        "requiredWhenSourceImagePresent": false,
+        "targetThreshold": 0.7,
+        "stopOnLowConfidence": true,
+        "script": "../../scripts/extract_reference_pbr.py",
+        "acceptedLimitation": "single-image extraction is reference-derived inference, not exact photogrammetry"
+      },
+      "mustAvoid": [
+        "single flat albedo per material",
+        "uniform roughness",
+        "albedo texture reused as roughness/height/normal/AO",
+        "single-frequency random noise",
+        "plastic-looking smooth bark, stone, cloth, foliage, or aged material",
+        "local color/detail described only in prose without material masks",
+        "claiming exact PBR recovery when confidence is below the target threshold"
+      ]
+    },
+    "lightingPass": {
+      "requiredTerms": [
+        "key light",
+        "fill light",
+        "rim or environment light",
+        "exposure",
+        "tone mapping",
+        "background",
+        "contact shadow"
+      ],
+      "mustAvoid": [
+        "ambient-only lighting",
+        "flat value range",
+        "missing contact shadow",
+        "reference lighting copied without separating material readability"
+      ]
+    },
+    "screenshotReview": [
+      "Compare albedo palette and local color zones.",
+      "Compare roughness/normal/bump response under light.",
+      "Compare cavity dirt, edge wear, stains, moss, scratches, or other local masks.",
+      "Compare key/fill/rim structure, exposure, tone mapping, background, and contact shadows.",
+      "Capture a neutral-light render to verify material readability without reference lighting.",
+      "Capture a grazing-light close-up to expose flat normals, uniform roughness, tiling, and plastic highlights.",
+      "Capture a reference-matched render from the same camera framing as the source."
+    ]
+  },
+  "actionReadiness": {
+    "contract": "Every macro/meso component should be generated as a stable named Object3D pivot node with a mesh child, action metadata, optional sockets, collider proxy, and destruction metadata.",
+    "defaultRigType": "action-ready-static-rig",
+    "rootMotionNode": "root",
+    "requiredComponentFields": [
+      "id",
+      "parent",
+      "transform",
+      "attachment for child appendages, connectors, limbs, tubes, handles, legs, horns, wings, branches, or cables",
+      "actionProfile.animationRole",
+      "actionProfile.pivot",
+      "actionProfile.collider",
+      "actionProfile.destruction"
+    ],
+    "transformChannels": [
+      "translate",
+      "rotate",
+      "scale",
+      "bend",
+      "twist",
+      "detach",
+      "visibility",
+      "material-state"
+    ],
+    "authoringRules": [
+      "Do not collapse independently movable parts into one mesh.",
+      "Put transforms on component pivot groups, not only on raw meshes.",
+      "For attached child parts, put the pivot at the semantic root/socket and build visible geometry from localStart to localEnd.",
+      "Represent hinge, socket, detachable, and breakable intent even when no animation is implemented yet.",
+      "Use simplified collider proxies for runtime physics instead of visual mesh colliders by default."
+    ],
+    "destructionPolicy": {
+      "defaultBreakable": false,
+      "fractureGroupNaming": "Use stable semantic names such as body-shell, left-hinge, glass-panel, branch-segment.",
+      "debrisStrategy": "Prefer detachable component groups and a small number of procedural fragments over random mesh explosion."
+    }
+  },
+  "assumptions": [],
+  "coordinateFrame": {
+    "front": "camera-facing side in the reference image",
+    "up": "image up direction",
+    "scaleReference": "unit scale; adjust after first browser render"
+  },
+  "silhouette": {
+    "boundingShape": "",
+    "aspectRatios": [],
+    "symmetry": "",
+    "dominantCurves": [],
+    "negativeSpaces": [],
+    "landmarks": []
+  },
+  "viewEvidence": [
+    {
+      "id": "full-object",
+      "view": "reference",
+      "imageRegion": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 1.0,
+        "height": 1.0,
+        "units": "normalized"
+      },
+      "observations": [
+        "The vehicle is isolated and its raised four-wheel chassis, cabin, rear body, and wheel spacing are readable.",
+        "Brick studs, tire treads, and roof lamps are deterministic repetition systems.",
+        "Hidden underbody details are simplified for a browser-real-time showcase."
+      ],
+      "confidence": 0.82
+    },
+    {
+      "id": "identity-details",
+      "view": "reference",
+      "imageRegion": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 1.0,
+        "height": 1.0,
+        "units": "normalized"
+      },
+      "observations": [
+        "The render reads as the same olive raised 4x4 expedition vehicle.",
+        "Three variants preserve four-wheel topology while changing panel palette and repeated-detail density."
+      ],
+      "confidence": 0.82
+    }
+  ],
+  "componentTree": [
+    {
+      "id": "root",
+      "name": "Long wheelbase chassis",
+      "level": "macro",
+      "role": "body",
+      "importance": 1.0,
+      "confidence": 0.82,
+      "primitive": "box",
+      "geometryDescriptor": {
+        "topologyIntent": "Procedural box representation for Long wheelbase chassis.",
+        "edgeTreatment": {
+          "type": "controlled bevel",
+          "bevelRadius": 0.04,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "object-space procedural coordinates",
+        "normalStrategy": "smooth generated normals plus procedural normal map"
+      },
+      "parent": null,
+      "attachment": null,
+      "dimensions": {
+        "width": 5.8,
+        "height": 0.7,
+        "depth": 2.7,
+        "units": "relative",
+        "confidence": 0.8
+      },
+      "transform": {
+        "position": [
+          0,
+          1.1,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "root",
+        "pivot": {
+          "mode": "base",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.8
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "root",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "body-shell",
+      "materialLayers": [
+        "body-shell"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "root-feature-1",
+          "type": "stepped rocker panels",
+          "placement": "Long wheelbase chassis",
+          "size": "reference-relative",
+          "geometryEffect": "procedural geometry or instancing",
+          "materialEffect": "local material override",
+          "confidence": 0.78
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.24,
+        "microRoughness": 0.48,
+        "bumpAmplitude": 0.025,
+        "normalPattern": "component-specific procedural detail",
+        "displacementPattern": "",
+        "occlusionPattern": "contact AO",
+        "edgeWearPattern": "subtle exposed-edge response",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [
+        "Long wheelbase chassis"
+      ],
+      "fidelityTier": "blockout"
+    },
+    {
+      "id": "cabin",
+      "name": "Enclosed cabin",
+      "level": "macro",
+      "role": "shell",
+      "importance": 0.78,
+      "confidence": 0.82,
+      "primitive": "box",
+      "geometryDescriptor": {
+        "topologyIntent": "Procedural box representation for Enclosed cabin.",
+        "edgeTreatment": {
+          "type": "controlled bevel",
+          "bevelRadius": 0.04,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "object-space procedural coordinates",
+        "normalStrategy": "smooth generated normals plus procedural normal map"
+      },
+      "parent": "root",
+      "attachment": null,
+      "dimensions": {
+        "width": 2.5,
+        "height": 1.7,
+        "depth": 2.5,
+        "units": "relative",
+        "confidence": 0.8
+      },
+      "transform": {
+        "position": [
+          -0.6,
+          2.0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.8
+        },
+        "transformChannels": {
+          "translate": false,
+          "rotate": true,
+          "scale": true,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": true,
+          "fractureGroup": "cabin",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 4.0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "body-shell",
+      "materialLayers": [
+        "body-shell"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "cabin-feature-1",
+          "type": "angular windshield frame",
+          "placement": "Enclosed cabin",
+          "size": "reference-relative",
+          "geometryEffect": "procedural geometry or instancing",
+          "materialEffect": "local material override",
+          "confidence": 0.78
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.24,
+        "microRoughness": 0.48,
+        "bumpAmplitude": 0.025,
+        "normalPattern": "component-specific procedural detail",
+        "displacementPattern": "",
+        "occlusionPattern": "contact AO",
+        "edgeWearPattern": "subtle exposed-edge response",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [
+        "Enclosed cabin"
+      ],
+      "fidelityTier": "blockout"
+    },
+    {
+      "id": "cargo-bed",
+      "name": "Rear utility bed",
+      "level": "macro",
+      "role": "shell",
+      "importance": 0.78,
+      "confidence": 0.82,
+      "primitive": "box",
+      "geometryDescriptor": {
+        "topologyIntent": "Procedural box representation for Rear utility bed.",
+        "edgeTreatment": {
+          "type": "controlled bevel",
+          "bevelRadius": 0.04,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "object-space procedural coordinates",
+        "normalStrategy": "smooth generated normals plus procedural normal map"
+      },
+      "parent": "root",
+      "attachment": null,
+      "dimensions": {
+        "width": 2.2,
+        "height": 1.0,
+        "depth": 2.5,
+        "units": "relative",
+        "confidence": 0.8
+      },
+      "transform": {
+        "position": [
+          1.9,
+          1.7,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.8
+        },
+        "transformChannels": {
+          "translate": false,
+          "rotate": true,
+          "scale": true,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": true,
+          "fractureGroup": "cargo-bed",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 4.0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "dark-trim",
+      "materialLayers": [
+        "dark-trim"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "cargo-bed-feature-1",
+          "type": "open utility bed rails",
+          "placement": "Rear utility bed",
+          "size": "reference-relative",
+          "geometryEffect": "procedural geometry or instancing",
+          "materialEffect": "local material override",
+          "confidence": 0.78
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.24,
+        "microRoughness": 0.48,
+        "bumpAmplitude": 0.025,
+        "normalPattern": "component-specific procedural detail",
+        "displacementPattern": "",
+        "occlusionPattern": "contact AO",
+        "edgeWearPattern": "subtle exposed-edge response",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [
+        "Rear utility bed"
+      ],
+      "fidelityTier": "blockout"
+    },
+    {
+      "id": "hood",
+      "name": "Front hood",
+      "level": "meso",
+      "role": "shell",
+      "importance": 0.78,
+      "confidence": 0.82,
+      "primitive": "box",
+      "geometryDescriptor": {
+        "topologyIntent": "Procedural box representation for Front hood.",
+        "edgeTreatment": {
+          "type": "controlled bevel",
+          "bevelRadius": 0.04,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "object-space procedural coordinates",
+        "normalStrategy": "smooth generated normals plus procedural normal map"
+      },
+      "parent": "root",
+      "attachment": null,
+      "dimensions": {
+        "width": 1.7,
+        "height": 0.65,
+        "depth": 2.45,
+        "units": "relative",
+        "confidence": 0.8
+      },
+      "transform": {
+        "position": [
+          -2.15,
+          1.65,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.8
+        },
+        "transformChannels": {
+          "translate": false,
+          "rotate": true,
+          "scale": true,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": true,
+          "fractureGroup": "hood",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 4.0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "body-shell",
+      "materialLayers": [
+        "body-shell"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "hood-feature-1",
+          "type": "faceted hood panels",
+          "placement": "Front hood",
+          "size": "reference-relative",
+          "geometryEffect": "procedural geometry or instancing",
+          "materialEffect": "local material override",
+          "confidence": 0.78
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.24,
+        "microRoughness": 0.48,
+        "bumpAmplitude": 0.025,
+        "normalPattern": "component-specific procedural detail",
+        "displacementPattern": "",
+        "occlusionPattern": "contact AO",
+        "edgeWearPattern": "subtle exposed-edge response",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [
+        "Front hood"
+      ],
+      "fidelityTier": "structural-pass"
+    },
+    {
+      "id": "wheel-system",
+      "name": "Four wheel system",
+      "level": "meso",
+      "role": "ornament",
+      "importance": 0.78,
+      "confidence": 0.82,
+      "primitive": "instanced-cluster",
+      "geometryDescriptor": {
+        "topologyIntent": "Procedural instanced-cluster representation for Four wheel system.",
+        "edgeTreatment": {
+          "type": "controlled bevel",
+          "bevelRadius": 0.04,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "object-space procedural coordinates",
+        "normalStrategy": "smooth generated normals plus procedural normal map"
+      },
+      "parent": "root",
+      "attachment": null,
+      "dimensions": {
+        "width": 6.2,
+        "height": 1.7,
+        "depth": 3.4,
+        "units": "relative",
+        "confidence": 0.8
+      },
+      "transform": {
+        "position": [
+          0,
+          0.65,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.8
+        },
+        "transformChannels": {
+          "translate": false,
+          "rotate": true,
+          "scale": true,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": true,
+          "fractureGroup": "wheel-system",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 4.0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "rubber",
+      "materialLayers": [
+        "rubber"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "wheel-system-feature-1",
+          "type": "deep tire sidewall",
+          "placement": "Four wheel system",
+          "size": "reference-relative",
+          "geometryEffect": "procedural geometry or instancing",
+          "materialEffect": "local material override",
+          "confidence": 0.78
+        },
+        {
+          "id": "wheel-system-feature-2",
+          "type": "visible hubs",
+          "placement": "Four wheel system",
+          "size": "reference-relative",
+          "geometryEffect": "procedural geometry or instancing",
+          "materialEffect": "local material override",
+          "confidence": 0.78
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.24,
+        "microRoughness": 0.48,
+        "bumpAmplitude": 0.025,
+        "normalPattern": "component-specific procedural detail",
+        "displacementPattern": "",
+        "occlusionPattern": "contact AO",
+        "edgeWearPattern": "subtle exposed-edge response",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [
+        "Four wheel system"
+      ],
+      "fidelityTier": "structural-pass"
+    },
+    {
+      "id": "roof-rack",
+      "name": "Roof expedition rack",
+      "level": "meso",
+      "role": "ornament",
+      "importance": 0.78,
+      "confidence": 0.82,
+      "primitive": "box",
+      "geometryDescriptor": {
+        "topologyIntent": "Procedural box representation for Roof expedition rack.",
+        "edgeTreatment": {
+          "type": "controlled bevel",
+          "bevelRadius": 0.04,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "object-space procedural coordinates",
+        "normalStrategy": "smooth generated normals plus procedural normal map"
+      },
+      "parent": "root",
+      "attachment": null,
+      "dimensions": {
+        "width": 2.8,
+        "height": 0.35,
+        "depth": 2.45,
+        "units": "relative",
+        "confidence": 0.8
+      },
+      "transform": {
+        "position": [
+          -0.35,
+          3.1,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.8
+        },
+        "transformChannels": {
+          "translate": false,
+          "rotate": true,
+          "scale": true,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": true,
+          "fractureGroup": "roof-rack",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 4.0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "dark-trim",
+      "materialLayers": [
+        "dark-trim"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "roof-rack-feature-1",
+          "type": "roof light bar",
+          "placement": "Roof expedition rack",
+          "size": "reference-relative",
+          "geometryEffect": "procedural geometry or instancing",
+          "materialEffect": "local material override",
+          "confidence": 0.78
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.24,
+        "microRoughness": 0.48,
+        "bumpAmplitude": 0.025,
+        "normalPattern": "component-specific procedural detail",
+        "displacementPattern": "",
+        "occlusionPattern": "contact AO",
+        "edgeWearPattern": "subtle exposed-edge response",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [
+        "Roof expedition rack"
+      ],
+      "fidelityTier": "structural-pass"
+    },
+    {
+      "id": "glass-system",
+      "name": "Windshield and windows",
+      "level": "meso",
+      "role": "surface detail",
+      "importance": 0.78,
+      "confidence": 0.82,
+      "primitive": "plane-card",
+      "geometryDescriptor": {
+        "topologyIntent": "Procedural plane-card representation for Windshield and windows.",
+        "edgeTreatment": {
+          "type": "controlled bevel",
+          "bevelRadius": 0.04,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "object-space procedural coordinates",
+        "normalStrategy": "smooth generated normals plus procedural normal map"
+      },
+      "parent": "root",
+      "attachment": null,
+      "dimensions": {
+        "width": 2.4,
+        "height": 1.1,
+        "depth": 2.5,
+        "units": "relative",
+        "confidence": 0.8
+      },
+      "transform": {
+        "position": [
+          -0.9,
+          2.25,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.8
+        },
+        "transformChannels": {
+          "translate": false,
+          "rotate": true,
+          "scale": true,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": true,
+          "fractureGroup": "glass-system",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 4.0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "glass",
+      "materialLayers": [
+        "glass"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [],
+      "surfaceDetail": {
+        "macroRoughness": 0.24,
+        "microRoughness": 0.48,
+        "bumpAmplitude": 0.025,
+        "normalPattern": "component-specific procedural detail",
+        "displacementPattern": "",
+        "occlusionPattern": "contact AO",
+        "edgeWearPattern": "subtle exposed-edge response",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [
+        "Windshield and windows"
+      ],
+      "fidelityTier": "structural-pass"
+    },
+    {
+      "id": "bumper",
+      "name": "Front recovery bumper",
+      "level": "meso",
+      "role": "ornament",
+      "importance": 0.78,
+      "confidence": 0.82,
+      "primitive": "box",
+      "geometryDescriptor": {
+        "topologyIntent": "Procedural box representation for Front recovery bumper.",
+        "edgeTreatment": {
+          "type": "controlled bevel",
+          "bevelRadius": 0.04,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "object-space procedural coordinates",
+        "normalStrategy": "smooth generated normals plus procedural normal map"
+      },
+      "parent": "root",
+      "attachment": null,
+      "dimensions": {
+        "width": 0.45,
+        "height": 0.55,
+        "depth": 2.8,
+        "units": "relative",
+        "confidence": 0.8
+      },
+      "transform": {
+        "position": [
+          -3.05,
+          1.0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.8
+        },
+        "transformChannels": {
+          "translate": false,
+          "rotate": true,
+          "scale": true,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": true,
+          "fractureGroup": "bumper",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 4.0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "accent",
+      "materialLayers": [
+        "accent"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "bumper-feature-1",
+          "type": "tow points",
+          "placement": "Front recovery bumper",
+          "size": "reference-relative",
+          "geometryEffect": "procedural geometry or instancing",
+          "materialEffect": "local material override",
+          "confidence": 0.78
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.24,
+        "microRoughness": 0.48,
+        "bumpAmplitude": 0.025,
+        "normalPattern": "component-specific procedural detail",
+        "displacementPattern": "",
+        "occlusionPattern": "contact AO",
+        "edgeWearPattern": "subtle exposed-edge response",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [
+        "Front recovery bumper"
+      ],
+      "fidelityTier": "structural-pass"
+    },
+    {
+      "id": "lighting",
+      "name": "Headlights and roof lamps",
+      "level": "meso",
+      "role": "ornament",
+      "importance": 0.78,
+      "confidence": 0.82,
+      "primitive": "instanced-cluster",
+      "geometryDescriptor": {
+        "topologyIntent": "Procedural instanced-cluster representation for Headlights and roof lamps.",
+        "edgeTreatment": {
+          "type": "controlled bevel",
+          "bevelRadius": 0.04,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "object-space procedural coordinates",
+        "normalStrategy": "smooth generated normals plus procedural normal map"
+      },
+      "parent": "root",
+      "attachment": null,
+      "dimensions": {
+        "width": 3.2,
+        "height": 0.5,
+        "depth": 2.4,
+        "units": "relative",
+        "confidence": 0.8
+      },
+      "transform": {
+        "position": [
+          -1.2,
+          2.55,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.8
+        },
+        "transformChannels": {
+          "translate": false,
+          "rotate": true,
+          "scale": true,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": true,
+          "fractureGroup": "lighting",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 4.0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "lamp",
+      "materialLayers": [
+        "lamp"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "lighting-feature-1",
+          "type": "paired headlight clusters",
+          "placement": "Headlights and roof lamps",
+          "size": "reference-relative",
+          "geometryEffect": "procedural geometry or instancing",
+          "materialEffect": "local material override",
+          "confidence": 0.78
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.24,
+        "microRoughness": 0.48,
+        "bumpAmplitude": 0.025,
+        "normalPattern": "component-specific procedural detail",
+        "displacementPattern": "",
+        "occlusionPattern": "contact AO",
+        "edgeWearPattern": "subtle exposed-edge response",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [
+        "Headlights and roof lamps"
+      ],
+      "fidelityTier": "structural-pass"
+    }
+  ],
+  "materials": [
+    {
+      "id": "body-shell",
+      "name": "Olive body panels",
+      "type": "physical",
+      "shaderModel": "MeshPhysicalMaterial",
+      "baseColor": "#65704A",
+      "color": "#65704A",
+      "albedo": {
+        "dominant": "#65704A",
+        "secondary": [
+          "#4C5937",
+          "#78835B",
+          "#8C9570"
+        ],
+        "samplingNotes": "Reference-derived palette for Olive body panels."
+      },
+      "colorVariation": {
+        "palette": [
+          "#65704A",
+          "#4C5937",
+          "#78835B",
+          "#8C9570"
+        ],
+        "pattern": "deterministic regional variation",
+        "amplitude": 0.18,
+        "heightCorrelation": 0.15
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "object-space",
+        "repeat": [
+          2.0,
+          2.0
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "Keep detail stable across deterministic variants."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 2.0,
+          "amplitude": 0.24,
+          "role": "broad value zones"
+        },
+        {
+          "id": "meso",
+          "frequency": 12.0,
+          "amplitude": 0.12,
+          "role": "panel or surface breakup"
+        },
+        {
+          "id": "micro",
+          "frequency": 56.0,
+          "amplitude": 0.035,
+          "role": "highlight breakup"
+        }
+      ],
+      "roughness": {
+        "base": 0.62,
+        "variation": 0.12,
+        "map": "independent-body-shell-roughness-field",
+        "localResponse": "Cavities are rougher and exposed edges are smoother."
+      },
+      "metalness": {
+        "base": 0.0,
+        "variation": 0.0
+      },
+      "normal": {
+        "pattern": "independent-body-shell-normal-field",
+        "strength": 0.26,
+        "scale": 24.0,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "micro surface",
+        "amplitude": 0.02,
+        "scale": 48.0
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0.0,
+        "scale": 1.0,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.28,
+        "contactShadowBias": 0.35,
+        "notes": "Concentrate AO at component contacts."
+      },
+      "wear": {
+        "edgeWear": 0.08,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.08,
+        "cavityBias": 0.55,
+        "color": "#1A1A18"
+      },
+      "localOverrides": [
+        {
+          "id": "body-shell-contact-zone",
+          "region": "component contact and lower-facing regions",
+          "changes": "increase AO and roughness without flattening albedo",
+          "strength": 0.35,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        }
+      ],
+      "shaderNotes": [
+        "Generate albedo, roughness, normal, and AO independently."
+      ]
+    },
+    {
+      "id": "roof-shell",
+      "name": "Light roof panels",
+      "type": "physical",
+      "shaderModel": "MeshPhysicalMaterial",
+      "baseColor": "#D8D8D2",
+      "color": "#D8D8D2",
+      "albedo": {
+        "dominant": "#D8D8D2",
+        "secondary": [
+          "#BFC2BC",
+          "#ECECE6"
+        ],
+        "samplingNotes": "Reference-derived palette for Light roof panels."
+      },
+      "colorVariation": {
+        "palette": [
+          "#D8D8D2",
+          "#BFC2BC",
+          "#ECECE6"
+        ],
+        "pattern": "deterministic regional variation",
+        "amplitude": 0.18,
+        "heightCorrelation": 0.15
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "object-space",
+        "repeat": [
+          2.0,
+          2.0
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "Keep detail stable across deterministic variants."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 2.0,
+          "amplitude": 0.24,
+          "role": "broad value zones"
+        },
+        {
+          "id": "meso",
+          "frequency": 12.0,
+          "amplitude": 0.12,
+          "role": "panel or surface breakup"
+        },
+        {
+          "id": "micro",
+          "frequency": 56.0,
+          "amplitude": 0.035,
+          "role": "highlight breakup"
+        }
+      ],
+      "roughness": {
+        "base": 0.58,
+        "variation": 0.12,
+        "map": "independent-roof-shell-roughness-field",
+        "localResponse": "Cavities are rougher and exposed edges are smoother."
+      },
+      "metalness": {
+        "base": 0.0,
+        "variation": 0.0
+      },
+      "normal": {
+        "pattern": "independent-roof-shell-normal-field",
+        "strength": 0.26,
+        "scale": 24.0,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "micro surface",
+        "amplitude": 0.02,
+        "scale": 48.0
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0.0,
+        "scale": 1.0,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.28,
+        "contactShadowBias": 0.35,
+        "notes": "Concentrate AO at component contacts."
+      },
+      "wear": {
+        "edgeWear": 0.08,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.08,
+        "cavityBias": 0.55,
+        "color": "#1A1A18"
+      },
+      "localOverrides": [
+        {
+          "id": "roof-shell-contact-zone",
+          "region": "component contact and lower-facing regions",
+          "changes": "increase AO and roughness without flattening albedo",
+          "strength": 0.35,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        }
+      ],
+      "shaderNotes": [
+        "Generate albedo, roughness, normal, and AO independently."
+      ]
+    },
+    {
+      "id": "dark-trim",
+      "name": "Dark structural trim",
+      "type": "physical",
+      "shaderModel": "MeshPhysicalMaterial",
+      "baseColor": "#171A19",
+      "color": "#171A19",
+      "albedo": {
+        "dominant": "#171A19",
+        "secondary": [
+          "#2A2F2E",
+          "#3E4543"
+        ],
+        "samplingNotes": "Reference-derived palette for Dark structural trim."
+      },
+      "colorVariation": {
+        "palette": [
+          "#171A19",
+          "#2A2F2E",
+          "#3E4543"
+        ],
+        "pattern": "deterministic regional variation",
+        "amplitude": 0.18,
+        "heightCorrelation": 0.15
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "object-space",
+        "repeat": [
+          2.0,
+          2.0
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "Keep detail stable across deterministic variants."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 2.0,
+          "amplitude": 0.24,
+          "role": "broad value zones"
+        },
+        {
+          "id": "meso",
+          "frequency": 12.0,
+          "amplitude": 0.12,
+          "role": "panel or surface breakup"
+        },
+        {
+          "id": "micro",
+          "frequency": 56.0,
+          "amplitude": 0.035,
+          "role": "highlight breakup"
+        }
+      ],
+      "roughness": {
+        "base": 0.7,
+        "variation": 0.12,
+        "map": "independent-dark-trim-roughness-field",
+        "localResponse": "Cavities are rougher and exposed edges are smoother."
+      },
+      "metalness": {
+        "base": 0.0,
+        "variation": 0.0
+      },
+      "normal": {
+        "pattern": "independent-dark-trim-normal-field",
+        "strength": 0.26,
+        "scale": 24.0,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "micro surface",
+        "amplitude": 0.02,
+        "scale": 48.0
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0.0,
+        "scale": 1.0,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.28,
+        "contactShadowBias": 0.35,
+        "notes": "Concentrate AO at component contacts."
+      },
+      "wear": {
+        "edgeWear": 0.08,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.08,
+        "cavityBias": 0.55,
+        "color": "#1A1A18"
+      },
+      "localOverrides": [
+        {
+          "id": "dark-trim-contact-zone",
+          "region": "component contact and lower-facing regions",
+          "changes": "increase AO and roughness without flattening albedo",
+          "strength": 0.35,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        }
+      ],
+      "shaderNotes": [
+        "Generate albedo, roughness, normal, and AO independently."
+      ]
+    },
+    {
+      "id": "accent",
+      "name": "Expedition accent panels",
+      "type": "physical",
+      "shaderModel": "MeshPhysicalMaterial",
+      "baseColor": "#D87927",
+      "color": "#D87927",
+      "albedo": {
+        "dominant": "#D87927",
+        "secondary": [
+          "#E6B64C",
+          "#3AA6A0",
+          "#B75B32"
+        ],
+        "samplingNotes": "Reference-derived palette for Expedition accent panels."
+      },
+      "colorVariation": {
+        "palette": [
+          "#D87927",
+          "#E6B64C",
+          "#3AA6A0",
+          "#B75B32"
+        ],
+        "pattern": "deterministic regional variation",
+        "amplitude": 0.18,
+        "heightCorrelation": 0.15
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "object-space",
+        "repeat": [
+          2.0,
+          2.0
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "Keep detail stable across deterministic variants."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 2.0,
+          "amplitude": 0.24,
+          "role": "broad value zones"
+        },
+        {
+          "id": "meso",
+          "frequency": 12.0,
+          "amplitude": 0.12,
+          "role": "panel or surface breakup"
+        },
+        {
+          "id": "micro",
+          "frequency": 56.0,
+          "amplitude": 0.035,
+          "role": "highlight breakup"
+        }
+      ],
+      "roughness": {
+        "base": 0.52,
+        "variation": 0.12,
+        "map": "independent-accent-roughness-field",
+        "localResponse": "Cavities are rougher and exposed edges are smoother."
+      },
+      "metalness": {
+        "base": 0.0,
+        "variation": 0.0
+      },
+      "normal": {
+        "pattern": "independent-accent-normal-field",
+        "strength": 0.26,
+        "scale": 24.0,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "micro surface",
+        "amplitude": 0.02,
+        "scale": 48.0
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0.0,
+        "scale": 1.0,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.28,
+        "contactShadowBias": 0.35,
+        "notes": "Concentrate AO at component contacts."
+      },
+      "wear": {
+        "edgeWear": 0.08,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.08,
+        "cavityBias": 0.55,
+        "color": "#1A1A18"
+      },
+      "localOverrides": [
+        {
+          "id": "accent-contact-zone",
+          "region": "component contact and lower-facing regions",
+          "changes": "increase AO and roughness without flattening albedo",
+          "strength": 0.35,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        }
+      ],
+      "shaderNotes": [
+        "Generate albedo, roughness, normal, and AO independently."
+      ]
+    },
+    {
+      "id": "rubber",
+      "name": "Tire rubber",
+      "type": "physical",
+      "shaderModel": "MeshPhysicalMaterial",
+      "baseColor": "#111311",
+      "color": "#111311",
+      "albedo": {
+        "dominant": "#111311",
+        "secondary": [
+          "#222622",
+          "#363C36"
+        ],
+        "samplingNotes": "Reference-derived palette for Tire rubber."
+      },
+      "colorVariation": {
+        "palette": [
+          "#111311",
+          "#222622",
+          "#363C36"
+        ],
+        "pattern": "deterministic regional variation",
+        "amplitude": 0.18,
+        "heightCorrelation": 0.15
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "object-space",
+        "repeat": [
+          2.0,
+          2.0
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "Keep detail stable across deterministic variants."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 2.0,
+          "amplitude": 0.24,
+          "role": "broad value zones"
+        },
+        {
+          "id": "meso",
+          "frequency": 12.0,
+          "amplitude": 0.12,
+          "role": "panel or surface breakup"
+        },
+        {
+          "id": "micro",
+          "frequency": 56.0,
+          "amplitude": 0.035,
+          "role": "highlight breakup"
+        }
+      ],
+      "roughness": {
+        "base": 0.82,
+        "variation": 0.12,
+        "map": "independent-rubber-roughness-field",
+        "localResponse": "Cavities are rougher and exposed edges are smoother."
+      },
+      "metalness": {
+        "base": 0.0,
+        "variation": 0.0
+      },
+      "normal": {
+        "pattern": "independent-rubber-normal-field",
+        "strength": 0.26,
+        "scale": 24.0,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "micro surface",
+        "amplitude": 0.02,
+        "scale": 48.0
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0.0,
+        "scale": 1.0,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.28,
+        "contactShadowBias": 0.35,
+        "notes": "Concentrate AO at component contacts."
+      },
+      "wear": {
+        "edgeWear": 0.08,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.08,
+        "cavityBias": 0.55,
+        "color": "#1A1A18"
+      },
+      "localOverrides": [
+        {
+          "id": "rubber-contact-zone",
+          "region": "component contact and lower-facing regions",
+          "changes": "increase AO and roughness without flattening albedo",
+          "strength": 0.35,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        }
+      ],
+      "shaderNotes": [
+        "Generate albedo, roughness, normal, and AO independently."
+      ]
+    },
+    {
+      "id": "glass",
+      "name": "Smoky glazing",
+      "type": "physical",
+      "shaderModel": "MeshPhysicalMaterial",
+      "baseColor": "#182B30",
+      "color": "#182B30",
+      "albedo": {
+        "dominant": "#182B30",
+        "secondary": [
+          "#29434A",
+          "#5A7378"
+        ],
+        "samplingNotes": "Reference-derived palette for Smoky glazing."
+      },
+      "colorVariation": {
+        "palette": [
+          "#182B30",
+          "#29434A",
+          "#5A7378"
+        ],
+        "pattern": "deterministic regional variation",
+        "amplitude": 0.18,
+        "heightCorrelation": 0.15
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "object-space",
+        "repeat": [
+          2.0,
+          2.0
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "Keep detail stable across deterministic variants."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 2.0,
+          "amplitude": 0.24,
+          "role": "broad value zones"
+        },
+        {
+          "id": "meso",
+          "frequency": 12.0,
+          "amplitude": 0.12,
+          "role": "panel or surface breakup"
+        },
+        {
+          "id": "micro",
+          "frequency": 56.0,
+          "amplitude": 0.035,
+          "role": "highlight breakup"
+        }
+      ],
+      "roughness": {
+        "base": 0.2,
+        "variation": 0.12,
+        "map": "independent-glass-roughness-field",
+        "localResponse": "Cavities are rougher and exposed edges are smoother."
+      },
+      "metalness": {
+        "base": 0.05,
+        "variation": 0.05
+      },
+      "normal": {
+        "pattern": "independent-glass-normal-field",
+        "strength": 0.26,
+        "scale": 24.0,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "micro surface",
+        "amplitude": 0.02,
+        "scale": 48.0
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0.0,
+        "scale": 1.0,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.28,
+        "contactShadowBias": 0.35,
+        "notes": "Concentrate AO at component contacts."
+      },
+      "wear": {
+        "edgeWear": 0.08,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.08,
+        "cavityBias": 0.55,
+        "color": "#1A1A18"
+      },
+      "localOverrides": [
+        {
+          "id": "glass-contact-zone",
+          "region": "component contact and lower-facing regions",
+          "changes": "increase AO and roughness without flattening albedo",
+          "strength": 0.35,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        }
+      ],
+      "shaderNotes": [
+        "Generate albedo, roughness, normal, and AO independently."
+      ]
+    },
+    {
+      "id": "lamp",
+      "name": "Warm lamps",
+      "type": "physical",
+      "shaderModel": "MeshPhysicalMaterial",
+      "baseColor": "#FFB347",
+      "color": "#FFB347",
+      "albedo": {
+        "dominant": "#FFB347",
+        "secondary": [
+          "#FFD782",
+          "#FFF3C4"
+        ],
+        "samplingNotes": "Reference-derived palette for Warm lamps."
+      },
+      "colorVariation": {
+        "palette": [
+          "#FFB347",
+          "#FFD782",
+          "#FFF3C4"
+        ],
+        "pattern": "deterministic regional variation",
+        "amplitude": 0.18,
+        "heightCorrelation": 0.15
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "object-space",
+        "repeat": [
+          2.0,
+          2.0
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "Keep detail stable across deterministic variants."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 2.0,
+          "amplitude": 0.24,
+          "role": "broad value zones"
+        },
+        {
+          "id": "meso",
+          "frequency": 12.0,
+          "amplitude": 0.12,
+          "role": "panel or surface breakup"
+        },
+        {
+          "id": "micro",
+          "frequency": 56.0,
+          "amplitude": 0.035,
+          "role": "highlight breakup"
+        }
+      ],
+      "roughness": {
+        "base": 0.3,
+        "variation": 0.12,
+        "map": "independent-lamp-roughness-field",
+        "localResponse": "Cavities are rougher and exposed edges are smoother."
+      },
+      "metalness": {
+        "base": 0.0,
+        "variation": 0.0
+      },
+      "normal": {
+        "pattern": "independent-lamp-normal-field",
+        "strength": 0.26,
+        "scale": 24.0,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "micro surface",
+        "amplitude": 0.02,
+        "scale": 48.0
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0.0,
+        "scale": 1.0,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.28,
+        "contactShadowBias": 0.35,
+        "notes": "Concentrate AO at component contacts."
+      },
+      "wear": {
+        "edgeWear": 0.08,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.08,
+        "cavityBias": 0.55,
+        "color": "#1A1A18"
+      },
+      "localOverrides": [
+        {
+          "id": "lamp-contact-zone",
+          "region": "component contact and lower-facing regions",
+          "changes": "increase AO and roughness without flattening albedo",
+          "strength": 0.35,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        }
+      ],
+      "shaderNotes": [
+        "Generate albedo, roughness, normal, and AO independently."
+      ],
+      "emissive": {
+        "color": "#FFD782",
+        "intensity": 1.8
+      }
+    }
+  ],
+  "sculptDNA": {
+    "schemaVersion": "1.0",
+    "enabled": true,
+    "strategy": "constraint-aware semantic variation",
+    "parameters": [
+      {
+        "id": "body-shell-roughness",
+        "label": "body-shell roughness",
+        "target": {
+          "kind": "material",
+          "id": "body-shell",
+          "path": "roughness.base"
+        },
+        "operation": "set",
+        "distribution": "triangular",
+        "range": {
+          "min": 0.5,
+          "max": 0.74
+        },
+        "precision": 4,
+        "semanticEffects": [
+          "highlight width",
+          "surface age",
+          "material readability"
+        ]
+      },
+      {
+        "id": "body-shell-dominant-palette",
+        "label": "body-shell dominant palette color",
+        "target": {
+          "kind": "material",
+          "id": "body-shell",
+          "path": "colorVariation.palette.0"
+        },
+        "operation": "set",
+        "distribution": "choice",
+        "choices": [
+          "#65704A",
+          "#4C5937",
+          "#78835B",
+          "#8C9570"
+        ],
+        "semanticEffects": [
+          "palette family",
+          "local albedo variation"
+        ]
+      },
+      {
+        "id": "roof-shell-roughness",
+        "label": "roof-shell roughness",
+        "target": {
+          "kind": "material",
+          "id": "roof-shell",
+          "path": "roughness.base"
+        },
+        "operation": "set",
+        "distribution": "triangular",
+        "range": {
+          "min": 0.46,
+          "max": 0.7
+        },
+        "precision": 4,
+        "semanticEffects": [
+          "highlight width",
+          "surface age",
+          "material readability"
+        ]
+      },
+      {
+        "id": "roof-shell-dominant-palette",
+        "label": "roof-shell dominant palette color",
+        "target": {
+          "kind": "material",
+          "id": "roof-shell",
+          "path": "colorVariation.palette.0"
+        },
+        "operation": "set",
+        "distribution": "choice",
+        "choices": [
+          "#D8D8D2",
+          "#BFC2BC",
+          "#ECECE6"
+        ],
+        "semanticEffects": [
+          "palette family",
+          "local albedo variation"
+        ]
+      },
+      {
+        "id": "dark-trim-roughness",
+        "label": "dark-trim roughness",
+        "target": {
+          "kind": "material",
+          "id": "dark-trim",
+          "path": "roughness.base"
+        },
+        "operation": "set",
+        "distribution": "triangular",
+        "range": {
+          "min": 0.58,
+          "max": 0.82
+        },
+        "precision": 4,
+        "semanticEffects": [
+          "highlight width",
+          "surface age",
+          "material readability"
+        ]
+      },
+      {
+        "id": "dark-trim-dominant-palette",
+        "label": "dark-trim dominant palette color",
+        "target": {
+          "kind": "material",
+          "id": "dark-trim",
+          "path": "colorVariation.palette.0"
+        },
+        "operation": "set",
+        "distribution": "choice",
+        "choices": [
+          "#171A19",
+          "#2A2F2E",
+          "#3E4543"
+        ],
+        "semanticEffects": [
+          "palette family",
+          "local albedo variation"
+        ]
+      },
+      {
+        "id": "accent-roughness",
+        "label": "accent roughness",
+        "target": {
+          "kind": "material",
+          "id": "accent",
+          "path": "roughness.base"
+        },
+        "operation": "set",
+        "distribution": "triangular",
+        "range": {
+          "min": 0.4,
+          "max": 0.64
+        },
+        "precision": 4,
+        "semanticEffects": [
+          "highlight width",
+          "surface age",
+          "material readability"
+        ]
+      },
+      {
+        "id": "accent-dominant-palette",
+        "label": "accent dominant palette color",
+        "target": {
+          "kind": "material",
+          "id": "accent",
+          "path": "colorVariation.palette.0"
+        },
+        "operation": "set",
+        "distribution": "choice",
+        "choices": [
+          "#D87927",
+          "#E6B64C",
+          "#3AA6A0",
+          "#B75B32"
+        ],
+        "semanticEffects": [
+          "palette family",
+          "local albedo variation"
+        ]
+      },
+      {
+        "id": "rubber-roughness",
+        "label": "rubber roughness",
+        "target": {
+          "kind": "material",
+          "id": "rubber",
+          "path": "roughness.base"
+        },
+        "operation": "set",
+        "distribution": "triangular",
+        "range": {
+          "min": 0.7,
+          "max": 0.94
+        },
+        "precision": 4,
+        "semanticEffects": [
+          "highlight width",
+          "surface age",
+          "material readability"
+        ]
+      },
+      {
+        "id": "rubber-dominant-palette",
+        "label": "rubber dominant palette color",
+        "target": {
+          "kind": "material",
+          "id": "rubber",
+          "path": "colorVariation.palette.0"
+        },
+        "operation": "set",
+        "distribution": "choice",
+        "choices": [
+          "#111311",
+          "#222622",
+          "#363C36"
+        ],
+        "semanticEffects": [
+          "palette family",
+          "local albedo variation"
+        ]
+      },
+      {
+        "id": "glass-roughness",
+        "label": "glass roughness",
+        "target": {
+          "kind": "material",
+          "id": "glass",
+          "path": "roughness.base"
+        },
+        "operation": "set",
+        "distribution": "triangular",
+        "range": {
+          "min": 0.08,
+          "max": 0.32
+        },
+        "precision": 4,
+        "semanticEffects": [
+          "highlight width",
+          "surface age",
+          "material readability"
+        ]
+      },
+      {
+        "id": "glass-dominant-palette",
+        "label": "glass dominant palette color",
+        "target": {
+          "kind": "material",
+          "id": "glass",
+          "path": "colorVariation.palette.0"
+        },
+        "operation": "set",
+        "distribution": "choice",
+        "choices": [
+          "#182B30",
+          "#29434A",
+          "#5A7378"
+        ],
+        "semanticEffects": [
+          "palette family",
+          "local albedo variation"
+        ]
+      },
+      {
+        "id": "lamp-roughness",
+        "label": "lamp roughness",
+        "target": {
+          "kind": "material",
+          "id": "lamp",
+          "path": "roughness.base"
+        },
+        "operation": "set",
+        "distribution": "triangular",
+        "range": {
+          "min": 0.18,
+          "max": 0.42
+        },
+        "precision": 4,
+        "semanticEffects": [
+          "highlight width",
+          "surface age",
+          "material readability"
+        ]
+      },
+      {
+        "id": "lamp-dominant-palette",
+        "label": "lamp dominant palette color",
+        "target": {
+          "kind": "material",
+          "id": "lamp",
+          "path": "colorVariation.palette.0"
+        },
+        "operation": "set",
+        "distribution": "choice",
+        "choices": [
+          "#FFB347",
+          "#FFD782",
+          "#FFF3C4"
+        ],
+        "semanticEffects": [
+          "palette family",
+          "local albedo variation"
+        ]
+      },
+      {
+        "id": "wheel-treads-count",
+        "label": "wheel-treads repetition count",
+        "target": {
+          "kind": "repetition",
+          "id": "wheel-treads",
+          "path": "count"
+        },
+        "operation": "set",
+        "distribution": "triangular",
+        "range": {
+          "min": 51,
+          "max": 77
+        },
+        "precision": 0,
+        "semanticEffects": [
+          "repetition density",
+          "draw-call and triangle budget"
+        ]
+      },
+      {
+        "id": "body-studs-count",
+        "label": "body-studs repetition count",
+        "target": {
+          "kind": "repetition",
+          "id": "body-studs",
+          "path": "count"
+        },
+        "operation": "set",
+        "distribution": "triangular",
+        "range": {
+          "min": 58,
+          "max": 86
+        },
+        "precision": 0,
+        "semanticEffects": [
+          "repetition density",
+          "draw-call and triangle budget"
+        ]
+      },
+      {
+        "id": "roof-lamps-count",
+        "label": "roof-lamps repetition count",
+        "target": {
+          "kind": "repetition",
+          "id": "roof-lamps",
+          "path": "count"
+        },
+        "operation": "set",
+        "distribution": "triangular",
+        "range": {
+          "min": 4,
+          "max": 6
+        },
+        "precision": 0,
+        "semanticEffects": [
+          "repetition density",
+          "draw-call and triangle budget"
+        ]
+      }
+    ],
+    "constraints": [],
+    "invariants": [
+      "component-ids",
+      "parent-links",
+      "material-refs",
+      "socket-ids",
+      "fracture-groups",
+      "attachment-roots",
+      "build-pass-order",
+      "feature-review-targets"
+    ],
+    "variantPolicy": {
+      "defaultCount": 4,
+      "defaultSeed": 20260711,
+      "maxAttemptsPerVariant": 64,
+      "resetReviewEvidence": true
+    },
+    "authoringRule": "These controls are conservative starters. Rename them in object language, add coupling groups for dependent proportions, and add ratio/range constraints before generating a production family."
+  },
+  "repetitionSystems": [
+    {
+      "id": "wheel-treads",
+      "name": "Wheel tread blocks",
+      "primitive": "instanced-cluster",
+      "componentRefs": [
+        "wheel-system"
+      ],
+      "material": "rubber",
+      "count": 64,
+      "seed": 6103,
+      "distribution": "four rings",
+      "constraints": [
+        "equal front and rear wheel spacing"
+      ]
+    },
+    {
+      "id": "body-studs",
+      "name": "Visible brick studs",
+      "primitive": "instanced-cluster",
+      "componentRefs": [
+        "root",
+        "hood",
+        "cabin"
+      ],
+      "material": "body-shell",
+      "count": 72,
+      "seed": 8831,
+      "distribution": "panel grid with omissions",
+      "constraints": [
+        "preserve window and panel gaps"
+      ]
+    },
+    {
+      "id": "roof-lamps",
+      "name": "Roof rack lamps",
+      "primitive": "instanced-cluster",
+      "componentRefs": [
+        "roof-rack",
+        "lighting"
+      ],
+      "material": "lamp",
+      "count": 5,
+      "seed": 331,
+      "distribution": "centered row",
+      "constraints": [
+        "symmetrical spacing"
+      ]
+    }
+  ],
+  "buildPasses": [
+    {
+      "id": "blockout",
+      "goal": "Complete the blockout showcase gate.",
+      "componentRefs": [
+        "root",
+        "cabin",
+        "cargo-bed",
+        "hood",
+        "wheel-system",
+        "roof-rack",
+        "glass-system",
+        "bumper",
+        "lighting"
+      ],
+      "acceptance": [
+        "blockout preserves identity-defining systems.",
+        "Visual evidence meets the configured AI-vision threshold."
+      ]
+    },
+    {
+      "id": "structural-pass",
+      "goal": "Complete the structural-pass showcase gate.",
+      "componentRefs": [
+        "root",
+        "cabin",
+        "cargo-bed",
+        "hood",
+        "wheel-system",
+        "roof-rack",
+        "glass-system",
+        "bumper",
+        "lighting"
+      ],
+      "acceptance": [
+        "structural-pass preserves identity-defining systems.",
+        "Visual evidence meets the configured AI-vision threshold."
+      ]
+    },
+    {
+      "id": "form-refinement",
+      "goal": "Complete the form-refinement showcase gate.",
+      "componentRefs": [
+        "root",
+        "cabin",
+        "cargo-bed",
+        "hood",
+        "wheel-system",
+        "roof-rack",
+        "glass-system",
+        "bumper",
+        "lighting"
+      ],
+      "acceptance": [
+        "form-refinement preserves identity-defining systems.",
+        "Visual evidence meets the configured AI-vision threshold."
+      ]
+    },
+    {
+      "id": "material-pass",
+      "goal": "Complete the material-pass showcase gate.",
+      "componentRefs": [
+        "root",
+        "cabin",
+        "cargo-bed",
+        "hood",
+        "wheel-system",
+        "roof-rack",
+        "glass-system",
+        "bumper",
+        "lighting"
+      ],
+      "acceptance": [
+        "material-pass preserves identity-defining systems.",
+        "Visual evidence meets the configured AI-vision threshold."
+      ]
+    },
+    {
+      "id": "surface-pass",
+      "goal": "Complete the surface-pass showcase gate.",
+      "componentRefs": [
+        "root",
+        "cabin",
+        "cargo-bed",
+        "hood",
+        "wheel-system",
+        "roof-rack",
+        "glass-system",
+        "bumper",
+        "lighting"
+      ],
+      "acceptance": [
+        "surface-pass preserves identity-defining systems.",
+        "Visual evidence meets the configured AI-vision threshold."
+      ]
+    },
+    {
+      "id": "lighting-pass",
+      "goal": "Complete the lighting-pass showcase gate.",
+      "componentRefs": [
+        "root",
+        "cabin",
+        "cargo-bed",
+        "hood",
+        "wheel-system",
+        "roof-rack",
+        "glass-system",
+        "bumper",
+        "lighting"
+      ],
+      "acceptance": [
+        "lighting-pass preserves identity-defining systems.",
+        "Visual evidence meets the configured AI-vision threshold."
+      ]
+    },
+    {
+      "id": "interaction-pass",
+      "goal": "Complete the interaction-pass showcase gate.",
+      "componentRefs": [
+        "root",
+        "cabin",
+        "cargo-bed",
+        "hood",
+        "wheel-system",
+        "roof-rack",
+        "glass-system",
+        "bumper",
+        "lighting"
+      ],
+      "acceptance": [
+        "interaction-pass preserves identity-defining systems.",
+        "Visual evidence meets the configured AI-vision threshold."
+      ]
+    },
+    {
+      "id": "optimization-pass",
+      "goal": "Complete the optimization-pass showcase gate.",
+      "componentRefs": [
+        "root",
+        "cabin",
+        "cargo-bed",
+        "hood",
+        "wheel-system",
+        "roof-rack",
+        "glass-system",
+        "bumper",
+        "lighting"
+      ],
+      "acceptance": [
+        "optimization-pass preserves identity-defining systems.",
+        "Visual evidence meets the configured AI-vision threshold."
+      ]
+    }
+  ],
+  "visualEvidence": [],
+  "reviewHistory": [],
+  "lodPlan": [
+    {
+      "tier": "near",
+      "distance": 0,
+      "strategy": "full component tree and material layers"
+    },
+    {
+      "tier": "far",
+      "distance": 30,
+      "strategy": "merge static components and reduce local feature geometry"
+    }
+  ],
+  "performanceBudget": {
+    "qualityPriority": "balanced",
+    "targetTriangles": 120000,
+    "maxDrawCalls": 80,
+    "textureSize": 1024,
+    "fpsTarget": 45,
+    "optimizationPolicy": "Preserve the README silhouette before reducing repeated detail."
+  },
+  "lightingFromPhoto": [
+    "Key light: soft sun or warm studio key with readable shadows.",
+    "Fill light: cool sky fill preserving material midtones.",
+    "Rim/environment light: subtle separation from the background.",
+    "Exposure and tone mapping: ACES Filmic with controlled highlights.",
+    "Contact shadow: ground and component-contact anchoring."
+  ],
+  "proceduralStrategy": [
+    "Build macro silhouette before repeated details.",
+    "Use deterministic seeds for repeated systems.",
+    "Keep variant controls semantic and bounded.",
+    "Render three promoted variants from one camera for README comparison."
+  ],
+  "animationAnchors": [
+    "root turntable pivot",
+    "material-state controls"
+  ],
+  "destructionAnchors": [
+    "semantic component boundaries"
+  ],
+  "risks": []
+}

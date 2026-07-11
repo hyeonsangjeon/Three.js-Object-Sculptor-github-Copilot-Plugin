@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#06121d" />
+    <meta
+      name="description"
+      content="A high-detail procedural Repolis Tree generated with Three.js Sculpt DNA."
+    />
+    <title>Repolis Tree — Three.js Sculpt DNA Flagship</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "./node_modules/three/build/three.module.js",
+          "three/addons/": "./node_modules/three/examples/jsm/"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <main id="app" aria-label="Interactive procedural Repolis Tree">
+      <section class="intro" aria-labelledby="scene-title">
+        <p class="eyebrow">REPOLIS FLAGSHIP · THREE.JS SCULPT DNA</p>
+        <h1 id="scene-title">Living<br />Archive</h1>
+        <p class="subtitle">
+          A code-sculpted landmark grown from curves, generated PBR, deterministic foliage, and light.
+        </p>
+        <div class="proof">
+          <span>No imported mesh</span>
+          <span id="generation-time">Generating…</span>
+        </div>
+      </section>
+
+      <nav class="controls" aria-label="Repolis Tree controls">
+        <button id="toggle-motion" type="button" aria-pressed="true">Pause rotation</button>
+        <button id="reset-view" type="button">Front view</button>
+        <button id="next-variant" type="button">Next DNA</button>
+      </nav>
+
+      <section class="variant-panel" aria-live="polite">
+        <span class="variant-label">CURATED DNA</span>
+        <strong id="variant-name">Golden Canopy</strong>
+        <span id="variant-index">01 / 03</span>
+      </section>
+
+      <button
+        id="open-reference"
+        class="reference-preview"
+        type="button"
+        aria-haspopup="dialog"
+        aria-controls="reference-dialog"
+      >
+        <img src="./reference/repolis-tree-reference.jpeg" alt="Original Repolis Tree reference" />
+        <span>Original reference</span>
+      </button>
+
+      <dialog id="reference-dialog" class="reference-dialog">
+        <button id="close-reference" type="button" aria-label="Close reference image">×</button>
+        <img src="./reference/repolis-tree-reference.jpeg" alt="Original Repolis Tree reference enlarged" />
+      </dialog>
+
+      <p class="hint" aria-hidden="true">DRAG TO ROTATE · SCROLL TO ZOOM · SWITCH CURATED DNA</p>
+      <div id="scene"></div>
+      <div id="loading" role="status" aria-live="polite">Growing procedural hierarchy…</div>
+    </main>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

@@ -6,6 +6,108 @@ This GitHub Copilot CLI plugin is based on Vinh Hiển's MIT-licensed [Three.js 
 
 Our original capability is **Sculpt DNA**: a semantic parameter layer that varies proportions, material response, palette, and repetition systems without changing component identity, attachment roots, sockets, fracture groups, or quality gates.
 
+Its **Coverage Curator** generates a larger safe candidate pool and uses a deterministic centroid-extreme plus greedy max-min heuristic to select a broadly separated representative family. This prevents README contact sheets, product families, and art-direction reviews from showing three nearly identical random samples without claiming an expensive global combinatorial optimum.
+
+## Flagship: Repolis Living Archive
+
+[Open the interactive Repolis Tree demo](https://hyeonsangjeon.github.io/Three.js-Object-Sculptor-github-Copilot-Plugin/)
+
+![Rotating high-detail procedural Repolis Tree](assets/repolis-tree-hero.gif)
+
+The flagship is generated entirely with code: **0 imported meshes**, approximately **100ms generation**, **17,761 branch vertices**, **2,600 instanced leaves**, **220 moss instances**, and **72 branch-following code glyphs** in the Golden Canopy configuration.
+
+![Repolis Living Archive interactive hero screen](assets/repolis-tree-hero.png)
+
+The interactive page imports the same reusable output intended for the Repolis application:
+
+- [Repolis production factory](examples/repolis-hero/repolis-output/createRepolisHero.js)
+- [TypeScript declarations](examples/repolis-hero/repolis-output/createRepolisHero.d.ts)
+- [Runtime profile](examples/repolis-hero/repolis-output/repolis-hero-profile.json)
+- [Evidence-backed ObjectSculptSpec](examples/repolis-tree/object-sculpt-spec.json)
+- [Pass-by-pass visual evidence](examples/repolis-hero/evidence/)
+
+## Demo
+
+Each result below is an actual browser-rendered Three.js family. Coverage Curator generated 24 constraint-safe candidates per reference and greedily selected three broadly separated `ObjectSculptSpec` variants. Repolis starts from an evidence-backed, fully completed base sculpt; Brick and Seoul remain explicit preview families. Every new variant resets its own visual evidence before promotion.
+
+### Repolis Tree
+
+<table>
+  <tr>
+    <th>Reference</th>
+    <th>Sculpt DNA variants</th>
+  </tr>
+  <tr>
+    <td><img src="assets/repolis-tree-reference.jpeg" alt="Gemini-generated Repolis Tree reference"></td>
+    <td><img src="assets/repolis-tree-sculpt-dna-result.png" alt="Three procedural Repolis Tree Sculpt DNA variants"></td>
+  </tr>
+</table>
+
+This botanical study separates warm bark from gold energy, builds a rooted branch hierarchy, and instances amber leaves, cyan accents, constellation nodes, and hanging lights. The three production candidates change palette and repetition density without changing the tree's semantic hierarchy.
+
+[Base spec](examples/repolis-tree/object-sculpt-spec.json) ·
+[Variant manifest](examples/showcase/variants/tree/sculpt-dna-manifest.json) ·
+[Renderer](examples/showcase/showcase.js)
+
+### Brick Off-Road Explorer
+
+<table>
+  <tr>
+    <th>Reference</th>
+    <th>Sculpt DNA variants</th>
+  </tr>
+  <tr>
+    <td><img src="assets/brick-offroad-reference.jpeg" alt="User-provided brick-built off-road vehicle reference"></td>
+    <td><img src="assets/brick-offroad-sculpt-dna-result.png" alt="Three procedural brick off-road Sculpt DNA variants"></td>
+  </tr>
+</table>
+
+This hard-surface study preserves the raised four-wheel topology, olive body panels, light roof, cabin and hood hierarchy, tire treads, roof rack, lamps, and recovery accents while varying bounded material and repetition parameters.
+
+[Base spec](examples/brick-offroad/object-sculpt-spec.json) ·
+[Variant manifest](examples/showcase/variants/brick/sculpt-dna-manifest.json) ·
+[Renderer](examples/showcase/showcase.js)
+
+### Seoul Palace Scene Challenge
+
+<table>
+  <tr>
+    <th>Reference crop</th>
+    <th>Sculpt DNA variants</th>
+  </tr>
+  <tr>
+    <td><img src="assets/seoul-challenge-reference.jpeg" alt="User-selected Seoul palace and city challenge crop"></td>
+    <td><img src="assets/seoul-challenge-sculpt-dna-result.png" alt="Three layered procedural Seoul palace scene variants"></td>
+  </tr>
+</table>
+
+This is deliberately a **conditional scene reconstruction**, not one isolated object. The workflow decomposes the crop into palace halls, dark roof rhythms, courtyard, tree belt, city blocks, and mountain ridges, then varies their density and palette while preserving front-to-back layer order.
+
+[Base spec](examples/seoul-challenge/object-sculpt-spec.json) ·
+[Variant manifest](examples/showcase/variants/seoul/sculpt-dna-manifest.json) ·
+[Renderer](examples/showcase/showcase.js)
+
+The two camera photos are stored as web-sized JPEGs with GPS, device, and original capture metadata removed.
+
+Run the interactive showcase locally:
+
+```bash
+cd examples/showcase
+npm install
+npm run serve
+```
+
+Then open `http://127.0.0.1:4173/?scene=tree`, replacing `tree` with `brick` or `seoul`.
+
+## At A Glance
+
+- **Plugin:** `threejs-sculpt-dna`
+- **Skills:** `object-to-threejs-procedural` and `sculpt-dna-variants`
+- **Input:** an attached object image, reference screenshot, or local image path
+- **Output:** a procedural Three.js factory, versioned `ObjectSculptSpec`, deterministic variant family, and visual review evidence
+- **Best for:** real-time props, hard-surface objects, botanical landmarks, product studies, and explicitly layered scene approximations
+- **Not for:** photogrammetry, exact mesh extraction, or guaranteed hidden-side reconstruction from one image
+
 ## What It Produces
 
 - An image suitability verdict with explicit uncertainty.
@@ -14,54 +116,25 @@ Our original capability is **Sculpt DNA**: a semantic parameter layer that varie
 - A pass-gated TypeScript Three.js factory with generated PBR maps and look-dev lighting.
 - Reference/render comparison sheets and structured AI-vision review history.
 - Deterministic Sculpt DNA variant specs with mutation provenance and semantic invariant checks.
+- Coverage-curated representative families selected from larger safe candidate pools.
 
 It is a code-native reconstruction workflow, not photogrammetry or exact mesh extraction.
 
-## Canonical Repolis Tree Reference
+## Why High-Detail Results Take Multiple Passes
 
-![Repolis Tree reference generated by the project owner with Gemini](assets/repolis-tree-reference.jpeg)
+The skill is a disciplined construction workflow, not a one-click detail filter. High-detail procedural assets come from combining:
 
-The project now uses the owner-provided Gemini image above as its canonical reconstruction example. The earlier search-sourced dark tree image is not distributed in this repository.
+- custom curve-swept geometry with taper, bends, multi-frequency deformation, and enough radial/longitudinal segments for the hero silhouette
+- hierarchical macro, secondary, tertiary, and fine components rather than one trunk or shell mesh
+- deterministic instancing for leaves, studs, treads, moss, lights, trees, buildings, and other repeated systems
+- independent albedo, roughness, height, normal, and AO channels plus object-specific local overrides
+- small identity details such as branch collars, end grain, sockets, roof tiers, ground contacts, wear, and ornaments
+- browser screenshot review and AI-vision correction after every locked sculpt pass
+- batching, instancing, and LOD only after the visual identity has passed
 
-The target is the luminous central tree, not the surrounding village. Its suitability is **conditional**: the silhouette and procedural decomposition are strong, but a single scene illustration cannot reveal exact rear branch topology or physically separate baked bloom from material response.
+The generated factory is therefore a pass-gated scaffold. Hero quality still requires object-specific form, material, lighting, and optimization work.
 
-| Gate | Score (0–3) |
-| --- | ---: |
-| Object isolation | 1 |
-| Silhouette readability | 3 |
-| Depth inference | 2 |
-| Primitive decomposition | 3 |
-| Material procedurality | 3 |
-| Occlusion risk | 2 |
-| Interaction fit | 3 |
-
-The committed example starts over from this reference with:
-
-- 3 macro masses and 10 meso trunk, branch, root, and energy components
-- warm bark, gold energy, amber leaf, and cyan leaf materials
-- deterministic amber/cyan leaves, constellation nodes, and hanging lights
-- separate bark and emissive channels so shaded wood does not collapse to black
-- 12 safe material and repetition Sculpt DNA controls with semantic invariants; geometry controls stay disabled until their pivots, sockets, and colliders have explicit coupled updates
-
-Files:
-
-- `examples/repolis-tree/assessment.json`
-- `examples/repolis-tree/object-sculpt-spec.json`
-- `examples/repolis-tree/createRepolisTreeModel.ts`
-
-### Hard-Surface Validation Reference
-
-![User-provided brick-built off-road vehicle reference](assets/brick-offroad-reference.jpeg)
-
-The user-provided vehicle photo replaces the inherited tower-ship artwork as the repository's hard-surface validation image. It exercises object isolation, front/side depth inference, panel hierarchy, repeated fasteners, wheel systems, roof attachments, and multi-material reconstruction. The inherited tower-ship image is used only for local migration checks and is not distributed in this repository.
-
-### Seoul Scene Challenge
-
-![User-provided Seoul city and palace challenge reference](assets/seoul-challenge-reference.jpeg)
-
-The Seoul photo is intentionally a difficult scene rather than an isolated object. It validates that the plugin does not blindly turn a whole photograph into one mesh: reflections in the sky, palace architecture, roads, vehicles, trees, urban blocks, and mountain silhouettes require the agent to reject a monolithic reconstruction and ask the user to select a specific target or accept a layered scene approximation.
-
-Both user photos are stored as web-sized JPEGs with GPS, device, and original capture metadata removed.
+Our extension adds a second problem-solving layer: after those detailed assets define a safe semantic design space, **Coverage Curator** greedily broadens parameter-space coverage without changing topology, attachments, action-ready hierarchy, or visual review targets.
 
 ## Original Sculpt DNA Idea
 
@@ -83,6 +156,16 @@ Each parameter has a range or choice set, sampling distribution, semantic purpos
 - repetition-system IDs
 
 Every generated variant receives a reproducible seed and mutation log. Existing screenshots and pass approvals are cleared because changed geometry or materials must earn fresh visual acceptance.
+
+For a representative family rather than a raw batch:
+
+```bash
+python3 scripts/sculpt_dna.py curate object-sculpt-spec.json \
+  --out-dir curated \
+  --count 3 \
+  --pool-size 24 \
+  --seed 1337
+```
 
 ## Architecture
 
@@ -259,6 +342,8 @@ python3 scripts/append_sculpt_review.py object-sculpt-spec.json \
   --in-place
 ```
 
+Repeat the locked render, comparison, review, and pipeline-sync loop for `structural-pass`, `form-refinement`, `material-pass`, and `surface-pass`. Production Sculpt DNA generation intentionally remains blocked until evidence-backed `reviewHistory` completes that sequence.
+
 ## Sculpt DNA Quick Start
 
 Initialize conservative starter controls:
@@ -274,13 +359,24 @@ python3 scripts/sculpt_dna.py validate object-sculpt-spec.json
 python3 scripts/validate_sculpt_spec.py object-sculpt-spec.json
 ```
 
-Generate eight reproducible variants:
+After the base sculpt has completed through `surface-pass`, generate eight production variants:
 
 ```bash
 python3 scripts/sculpt_dna.py generate object-sculpt-spec.json \
   --out-dir ./variants \
   --count 8 \
   --seed 1337
+```
+
+For an early, explicitly non-promotable design-space contact sheet, add `--preview`. Preview provenance records the missing base passes and keeps every result blocked pending its own visual review:
+
+```bash
+python3 scripts/sculpt_dna.py curate object-sculpt-spec.json \
+  --out-dir ./preview-variants \
+  --count 3 \
+  --pool-size 24 \
+  --seed 1337 \
+  --preview
 ```
 
 The output directory contains:

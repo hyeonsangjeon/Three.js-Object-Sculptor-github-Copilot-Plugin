@@ -16,11 +16,14 @@ sys.path.insert(0, str(SCRIPTS))
 from new_sculpt_spec import make_spec  # noqa: E402
 from sculpt_dna_core import (  # noqa: E402
     constraint_failures,
+    curate_variants,
     generate_variant,
     make_default_sculpt_dna,
     validate_sculpt_dna_block,
 )
 from generate_threejs_factory import generate  # noqa: E402
+from sculpt_dna import build_parser, variant_gate  # noqa: E402
+from append_sculpt_review import load_json_argument  # noqa: E402
 
 
 class SculptDNATests(unittest.TestCase):
@@ -28,6 +31,23 @@ class SculptDNATests(unittest.TestCase):
         spec = make_spec("Test Artifact", "reference.png")
         spec["sculptDNA"] = make_default_sculpt_dna(spec)
         return spec
+
+    def test_long_inline_review_json_is_not_treated_as_a_path(self) -> None:
+        payload = [
+            {
+                "id": f"feature-{index}",
+                "score": 0.8,
+                "visible": True,
+                "notes": "long inline review payload",
+            }
+            for index in range(12)
+        ]
+        encoded = json.dumps(payload)
+        self.assertGreater(len(encoded), 255)
+        self.assertEqual(
+            load_json_argument(encoded, "--feature-reviews-json"),
+            payload,
+        )
 
     def test_default_dna_is_valid_and_semantic(self) -> None:
         spec = self.make_dna_spec()
@@ -68,6 +88,66 @@ class SculptDNATests(unittest.TestCase):
         self.assertEqual(first["sculptPipeline"]["currentPass"], "blockout")
         self.assertEqual(first["sculptPipeline"]["completedPasses"], [])
         self.assertTrue(first["variantProvenance"]["invariants"]["ok"])
+
+    def test_production_gate_derives_completion_from_review_evidence(self) -> None:
+        spec = self.make_dna_spec()
+        spec["sculptPipeline"]["completedPasses"] = [
+            "blockout",
+            "structural-pass",
+            "form-refinement",
+            "material-pass",
+            "surface-pass",
+        ]
+        with self.assertRaisesRegex(ValueError, "out of sync"):
+            variant_gate(spec, False)
+        completed, missing = variant_gate(spec, True)
+        self.assertEqual(completed, [])
+        self.assertEqual(
+            missing,
+            [
+                "blockout",
+                "structural-pass",
+                "form-refinement",
+                "material-pass",
+                "surface-pass",
+            ],
+        )
+
+    def test_production_gate_requires_existing_evidence_files(self) -> None:
+        spec_path = ROOT / "examples" / "repolis-tree" / "object-sculpt-spec.json"
+        spec = json.loads(spec_path.read_text(encoding="utf-8"))
+        completed, missing = variant_gate(spec, False, spec_path)
+        self.assertEqual(missing, [])
+        self.assertIn("surface-pass", completed)
+        spec["reviewHistory"][0]["visualEvidence"]["renderScreenshot"] = (
+            "examples/repolis-hero/evidence/does-not-exist.webp"
+        )
+        with self.assertRaisesRegex(ValueError, "existing local visual evidence"):
+            variant_gate(spec, False, spec_path)
+
+    def test_coverage_curator_is_deterministic_and_diverse(self) -> None:
+        spec = self.make_dna_spec()
+        first, first_report = curate_variants(spec, 42, 3, 16)
+        second, second_report = curate_variants(spec, 42, 3, 16)
+        self.assertEqual(first, second)
+        self.assertEqual(first_report, second_report)
+        self.assertEqual(len(first), 3)
+        self.assertEqual(first_report["samplingMode"], "coverage-curated")
+        self.assertEqual(len(set(first_report["selectedCandidateIndexes"])), 3)
+        self.assertGreater(first_report["coverageScore"], 0)
+        self.assertEqual(
+            [item[1]["variantId"] for item in first],
+            ["test-artifact-v001", "test-artifact-v002", "test-artifact-v003"],
+        )
+        self.assertTrue(
+            all(item[1]["samplingMode"] == "coverage-curated" for item in first)
+        )
+
+    def test_curator_cli_defers_default_count_to_variant_policy(self) -> None:
+        args = build_parser().parse_args(
+            ["curate", "spec.json", "--out-dir", "variants"]
+        )
+        self.assertIsNone(args.count)
 
     def test_immutable_semantic_target_is_rejected(self) -> None:
         spec = self.make_dna_spec()
@@ -260,7 +340,7 @@ class SculptDNATests(unittest.TestCase):
                 text=True,
             )
             variants_dir = root / "variants"
-            subprocess.run(
+            blocked = subprocess.run(
                 [
                     sys.executable,
                     str(SCRIPTS / "sculpt_dna.py"),
@@ -273,6 +353,25 @@ class SculptDNATests(unittest.TestCase):
                     "--seed",
                     "17",
                 ],
+                capture_output=True,
+                text=True,
+            )
+            self.assertNotEqual(blocked.returncode, 0)
+            self.assertIn("complete through surface-pass", blocked.stderr)
+            subprocess.run(
+                [
+                    sys.executable,
+                    str(SCRIPTS / "sculpt_dna.py"),
+                    "generate",
+                    str(spec_path),
+                    "--out-dir",
+                    str(variants_dir),
+                    "--count",
+                    "2",
+                    "--seed",
+                    "17",
+                    "--preview",
+                ],
                 check=True,
                 capture_output=True,
                 text=True,
@@ -283,6 +382,11 @@ class SculptDNATests(unittest.TestCase):
             self.assertEqual(manifest["count"], 2)
             self.assertEqual(manifest["sourceSpec"], "spec.json")
             self.assertEqual(len(manifest["sourceSpecSha256"]), 64)
+            self.assertTrue(manifest["previewMode"])
+            self.assertEqual(
+                manifest["passGateStatus"],
+                "pending-per-variant-visual-review",
+            )
             variant_path = variants_dir / manifest["variants"][0]["path"]
             factory_path = root / "createCliArtifactModel.ts"
             subprocess.run(
@@ -302,6 +406,36 @@ class SculptDNATests(unittest.TestCase):
             self.assertIn("root.userData.variantProvenance", factory)
             self.assertIn("emissiveIntensity:", factory)
             self.assertIn(".scale.set(1.0, 1.0, 1.0)", factory)
+
+            curated_dir = root / "curated"
+            subprocess.run(
+                [
+                    sys.executable,
+                    str(SCRIPTS / "sculpt_dna.py"),
+                    "curate",
+                    str(spec_path),
+                    "--out-dir",
+                    str(curated_dir),
+                    "--count",
+                    "3",
+                    "--pool-size",
+                    "12",
+                    "--seed",
+                    "17",
+                    "--preview",
+                ],
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            curated_manifest = json.loads(
+                (curated_dir / "sculpt-dna-manifest.json").read_text(encoding="utf-8")
+            )
+            self.assertEqual(curated_manifest["samplingMode"], "coverage-curated")
+            self.assertEqual(curated_manifest["poolSize"], 12)
+            self.assertEqual(curated_manifest["count"], 3)
+            self.assertGreater(curated_manifest["coverageScore"], 0)
+            self.assertTrue(curated_manifest["previewMode"])
 
 
 if __name__ == "__main__":

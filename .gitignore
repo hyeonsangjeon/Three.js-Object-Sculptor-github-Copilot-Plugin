@@ -1,3 +1,6 @@
 __pycache__/
 *.py[cod]
 .DS_Store
+node_modules/
+examples/repolis-hero/dist/
+examples/repolis-hero/.capture-frames/

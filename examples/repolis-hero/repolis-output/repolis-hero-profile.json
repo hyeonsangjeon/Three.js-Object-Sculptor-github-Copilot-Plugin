@@ -1,0 +1,31 @@
+{
+  "name": "Repolis Hero Tree",
+  "version": "1.0.0",
+  "seed": 20260711,
+  "sourceReference": "../../../assets/repolis-tree-reference.jpeg",
+  "factory": "createRepolisHero.js",
+  "generation": {
+    "geometry": "custom tapered Catmull-Rom curve sweeps",
+    "materials": "runtime-generated independent bark PBR textures",
+    "foliage": "deterministic amber/cyan instanced leaves",
+    "effects": [
+      "branch-following gold energy",
+      "constellation nodes and links",
+      "hanging lights",
+      "root glow"
+    ],
+    "importedMeshes": 0
+  },
+  "actionReadiness": {
+    "nodes": true,
+    "sockets": true,
+    "colliders": true,
+    "destructionGroups": true,
+    "runtimeMetadata": "Serializable IDs live in root.userData.sculptRuntime; live Object3D references are returned as hero.runtime"
+  },
+  "variants": [
+    "golden-canopy",
+    "solar-archive",
+    "aurora-index"
+  ]
+}

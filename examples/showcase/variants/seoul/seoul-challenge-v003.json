@@ -1,0 +1,3518 @@
+{
+  "targetName": "Seoul Palace Layered Challenge",
+  "targetId": "seoul-challenge-v003",
+  "schemaVersion": "2.0",
+  "terminologyProfile": {
+    "domain": "real-time procedural Three.js asset",
+    "geometryTerms": [
+      "silhouette",
+      "topology",
+      "primitive",
+      "bevel",
+      "chamfer",
+      "taper",
+      "bend",
+      "boolean cut",
+      "edge loop",
+      "surface normal",
+      "displacement"
+    ],
+    "materialTerms": [
+      "albedo",
+      "baseColor",
+      "roughness",
+      "metalness",
+      "normal map",
+      "bump map",
+      "ambient occlusion",
+      "cavity dirt",
+      "edge wear",
+      "clearcoat"
+    ],
+    "lightingTerms": [
+      "key light",
+      "fill light",
+      "rim light",
+      "HDRI/environment reflection",
+      "contact shadow"
+    ],
+    "descriptionRule": "Use measurable 3D graphics terms. Avoid vague words unless they are paired with concrete geometry/material/shader parameters."
+  },
+  "sourceImage": "assets/seoul-challenge-reference.jpeg",
+  "suitability": "conditional",
+  "scores": {
+    "object_isolation": 1,
+    "silhouette_readability": 3,
+    "depth_inference": 2,
+    "primitive_decomposition": 3,
+    "material_procedurality": 3,
+    "occlusion_risk": 2,
+    "interaction_fit": 3
+  },
+  "preSpecAssessment": {
+    "objectClass": {
+      "primaryType": "layered architectural city-scene challenge",
+      "formLanguage": [
+        "procedural real-time reconstruction",
+        "deterministic variant family"
+      ],
+      "structureKind": [
+        "hierarchical components",
+        "repeated systems"
+      ],
+      "motionPotential": [
+        "turntable",
+        "component state variation"
+      ],
+      "materialFamilies": [
+        "Warm sand courtyard",
+        "Muted palace walls",
+        "Charcoal tiled roofs",
+        "Forested mountains",
+        "Distant urban blocks",
+        "Palace tree belt"
+      ],
+      "notes": "Showcase assessment authored from the user-provided reference."
+    },
+    "complexity": {
+      "tier": "complex",
+      "scores": {
+        "silhouetteComplexity": 3,
+        "componentCount": 3,
+        "hierarchyDepth": 2,
+        "repetitionDensity": 3,
+        "materialLayerCount": 3,
+        "localDetailDensity": 2,
+        "occlusionRisk": 2,
+        "actionReadinessNeed": 2
+      },
+      "estimatedCounts": {
+        "macroComponents": 3,
+        "mesoComponents": 9,
+        "microFeatureGroups": 9,
+        "materialLayers": 6,
+        "repetitionSystems": 4
+      },
+      "reasoning": [
+        "The photo contains a palace campus, roads, city blocks, vegetation, and mountain ridges rather than one isolated object.",
+        "The showcase accepts a layered low-poly scene approximation instead of pretending to recover exact architecture.",
+        "Variant controls change density and palette while preserving palace, city, and mountain ordering."
+      ]
+    },
+    "specDepthDecision": {
+      "requiredDepth": "complex",
+      "minimumComponentLevels": [
+        "macro",
+        "meso",
+        "micro"
+      ],
+      "needsRepetitionSystems": true,
+      "needsMaterialLocalOverrides": true,
+      "needsMultipleReviewViews": true,
+      "needsActionReadyHierarchy": true,
+      "rationale": "The README showcase must expose recognizable structure and controlled variation."
+    },
+    "unknownsToResolveBeforeImplementation": [],
+    "sourceImage": "assets/seoul-challenge-reference.jpeg"
+  },
+  "qualityContract": {
+    "qualityBar": "complex",
+    "definitionOfDone": [
+      "The scene reads as a Seoul palace campus framed by dense city blocks and green mountain ridges.",
+      "Three variants preserve the palace axis while changing roof, city-density, tree-density, and mountain systems."
+    ],
+    "minimumSpecDepth": {
+      "macroComponents": 3,
+      "mesoComponents": 9,
+      "microFeatureGroups": 9,
+      "materialLayers": 6,
+      "repetitionSystems": 4,
+      "reviewViewpoints": 4
+    },
+    "featureGroups": [
+      {
+        "id": "palace-campus-layout",
+        "name": "Palace courtyard and hall hierarchy",
+        "required": true,
+        "qualityCriteria": [
+          "Palace courtyard and hall hierarchy remains recognizable across variants."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "Palace courtyard and hall hierarchy becomes generic or visually detached."
+        ]
+      },
+      {
+        "id": "dark-roof-rhythm",
+        "name": "Dark tiled roof rhythm",
+        "required": true,
+        "qualityCriteria": [
+          "Dark tiled roof rhythm remains recognizable across variants."
+        ],
+        "evidenceRefs": [
+          "identity-details"
+        ],
+        "failureModes": [
+          "Dark tiled roof rhythm becomes generic or visually detached."
+        ]
+      },
+      {
+        "id": "city-mountain-layers",
+        "name": "City, tree belt, and mountain depth layers",
+        "required": true,
+        "qualityCriteria": [
+          "City, tree belt, and mountain depth layers remains recognizable across variants."
+        ],
+        "evidenceRefs": [
+          "full-object"
+        ],
+        "failureModes": [
+          "City, tree belt, and mountain depth layers becomes generic or visually detached."
+        ]
+      },
+      {
+        "id": "foreground-gate-axis",
+        "name": "Foreground gate and ceremonial axis",
+        "required": false,
+        "qualityCriteria": [
+          "Foreground gate and ceremonial axis remains recognizable across variants."
+        ],
+        "evidenceRefs": [
+          "identity-details"
+        ],
+        "failureModes": [
+          "Foreground gate and ceremonial axis becomes generic or visually detached."
+        ]
+      }
+    ],
+    "visualDeltaChecks": [
+      "silhouette and proportion delta",
+      "component hierarchy delta",
+      "material palette and roughness delta",
+      "repetition density delta"
+    ],
+    "antiShallowSpecRules": [
+      "Do not generate the showcase from a single undifferentiated mesh.",
+      "Do not vary protected component IDs, parent links, or review targets.",
+      "Do not accept variants without fresh visual evidence."
+    ]
+  },
+  "qualityTargets": {
+    "targetFidelity": 0.72,
+    "mustMatch": [
+      "Palace courtyard and hall hierarchy",
+      "Dark tiled roof rhythm",
+      "City, tree belt, and mountain depth layers"
+    ],
+    "niceToHave": [
+      "micro scratches, stains, chips, and dirt masks",
+      "secondary lighting match"
+    ],
+    "fpsTarget": 60,
+    "reviewViewpoints": [
+      "reference-aerial",
+      "palace-axis",
+      "side-depth",
+      "mountain-silhouette"
+    ]
+  },
+  "selfCorrectLoop": {
+    "enabled": true,
+    "visualAcceptance": {
+      "reviewer": "ai-vision",
+      "threshold": 0.7,
+      "comparisonArtifactRequired": true,
+      "layerScoresRequired": true,
+      "codePixelDiffIsAcceptanceAuthority": false,
+      "scoringRule": "AI vision must inspect a side-by-side reference/render sheet and score the current pass from 0 to 1. Pixel-diff code may assist diagnostics but cannot approve a pass.",
+      "requiredLayerScores": [
+        "silhouetteProportion",
+        "componentStructure",
+        "formDetail",
+        "materialSurface",
+        "lightingCamera"
+      ],
+      "featureReviewPolicy": {
+        "enabled": true,
+        "reviewUnit": "semantic-subsystem",
+        "maxCriticalFeaturesPerPass": 5,
+        "maxImportantFeaturesPerPass": 3,
+        "criticalDefaultThreshold": 0.8,
+        "importantAverageThreshold": 0.65,
+        "adaptiveEscalation": true,
+        "singleImagePairOnly": true,
+        "selectionRule": "Choose only the most visually salient, identity-defining, user-prioritized, or high-risk semantic systems. Group repeated parts instead of reviewing every mesh. AI vision scores every selected feature from the same full reference/render pair."
+      }
+    },
+    "reviewAfterPasses": [
+      "blockout",
+      "structural-pass",
+      "form-refinement",
+      "material-pass",
+      "surface-pass",
+      "lighting-pass",
+      "interaction-pass",
+      "optimization-pass"
+    ],
+    "allowedActions": [
+      "continue",
+      "refine-spec",
+      "refine-code",
+      "request-input",
+      "stop"
+    ],
+    "specRefineTriggers": [
+      "missing component",
+      "wrong primitive family",
+      "wrong proportions",
+      "material layer under-specified",
+      "local feature not traceable to viewEvidence",
+      "reference ambiguity discovered during implementation"
+    ],
+    "codeRefineTriggers": [
+      "spec is adequate but generated geometry/material does not match",
+      "browser render differs from reference",
+      "performance budget exceeded",
+      "lighting hides geometry or material response"
+    ],
+    "stopCriteria": [
+      "target fidelity reached or user accepts current approximation",
+      "remaining gaps require new reference images or manual art"
+    ],
+    "screenshotPolicy": {
+      "requiredForPasses": [
+        "blockout",
+        "structural-pass",
+        "form-refinement",
+        "material-pass",
+        "surface-pass",
+        "lighting-pass",
+        "interaction-pass"
+      ],
+      "preferredCapture": "in-app-browser-screenshot",
+      "fallbackCapture": "user-supplied-screenshot-path",
+      "minimumEvidence": "Each visual pass needs a reference image, rendered screenshot, side-by-side comparison sheet, AI vision score, layer scores, and critique before choosing continue.",
+      "reviewPairRule": "Compare the same camera/viewpoint whenever possible; do not judge a front reference against a random render angle.",
+      "acceptanceAuthority": "AI vision review of the comparison sheet. Code-generated pixel similarity is not sufficient evidence."
+    }
+  },
+  "featureReviewTargets": [
+    {
+      "id": "palace-campus-layout",
+      "name": "Palace courtyard and hall hierarchy",
+      "tier": "critical",
+      "passIds": [
+        "blockout",
+        "structural-pass"
+      ],
+      "minimumScore": 0.74,
+      "mustPass": true,
+      "componentRefs": [
+        "palace-campus",
+        "main-hall",
+        "courtyard"
+      ],
+      "evidenceRefs": [
+        "full-object"
+      ]
+    },
+    {
+      "id": "dark-roof-rhythm",
+      "name": "Dark tiled roof rhythm",
+      "tier": "critical",
+      "passIds": [
+        "structural-pass",
+        "material-pass"
+      ],
+      "minimumScore": 0.72,
+      "mustPass": true,
+      "componentRefs": [
+        "roof-system",
+        "main-hall",
+        "side-halls"
+      ],
+      "evidenceRefs": [
+        "identity-details"
+      ]
+    },
+    {
+      "id": "city-mountain-layers",
+      "name": "City, tree belt, and mountain depth layers",
+      "tier": "critical",
+      "passIds": [
+        "blockout",
+        "lighting-pass"
+      ],
+      "minimumScore": 0.72,
+      "mustPass": true,
+      "componentRefs": [
+        "city-blocks",
+        "tree-belt",
+        "mountain-backdrop"
+      ],
+      "evidenceRefs": [
+        "full-object"
+      ]
+    },
+    {
+      "id": "foreground-gate-axis",
+      "name": "Foreground gate and ceremonial axis",
+      "tier": "important",
+      "passIds": [
+        "structural-pass",
+        "form-refinement"
+      ],
+      "minimumScore": 0.66,
+      "mustPass": false,
+      "componentRefs": [
+        "front-gate",
+        "courtyard"
+      ],
+      "evidenceRefs": [
+        "identity-details"
+      ]
+    }
+  ],
+  "sculptPipeline": {
+    "passGateMode": "locked-sequential",
+    "passOrder": [
+      "blockout",
+      "structural-pass",
+      "form-refinement",
+      "material-pass",
+      "surface-pass",
+      "lighting-pass",
+      "interaction-pass",
+      "optimization-pass"
+    ],
+    "currentPass": "blockout",
+    "completedPasses": [],
+    "lastCompletedPass": "",
+    "blockedReason": "Sculpt DNA changed visible geometry or material parameters; this variant needs fresh browser and AI-vision evidence before deeper passes unlock.",
+    "nextRequiredEvidence": [
+      "fresh blockout browser screenshot for this Sculpt DNA variant",
+      "side-by-side comparison against the intended family reference or design target",
+      "AI vision layer and semantic feature scores for this variant",
+      "new reviewHistory entry with action=continue"
+    ]
+  },
+  "lookDevTargets": {
+    "qualityPriority": "balanced",
+    "materialPass": {
+      "albedoPaletteRequired": true,
+      "roughnessVariationRequired": true,
+      "normalOrBumpRequired": true,
+      "localOverridesRequired": true,
+      "minimumTextureResolution": 1024,
+      "preferredTextureResolution": 2048,
+      "independentMapChannels": [
+        "albedo",
+        "roughness",
+        "height",
+        "normal",
+        "ambient-occlusion"
+      ],
+      "requiredSurfaceFrequencyBands": [
+        "macro",
+        "meso",
+        "micro"
+      ],
+      "geometryReliefRequiredWhenSilhouetteAffected": true,
+      "referencePbrExtraction": {
+        "requiredWhenSourceImagePresent": false,
+        "targetThreshold": 0.7,
+        "stopOnLowConfidence": true,
+        "script": "../../scripts/extract_reference_pbr.py",
+        "acceptedLimitation": "single-image extraction is reference-derived inference, not exact photogrammetry"
+      },
+      "mustAvoid": [
+        "single flat albedo per material",
+        "uniform roughness",
+        "albedo texture reused as roughness/height/normal/AO",
+        "single-frequency random noise",
+        "plastic-looking smooth bark, stone, cloth, foliage, or aged material",
+        "local color/detail described only in prose without material masks",
+        "claiming exact PBR recovery when confidence is below the target threshold"
+      ]
+    },
+    "lightingPass": {
+      "requiredTerms": [
+        "key light",
+        "fill light",
+        "rim or environment light",
+        "exposure",
+        "tone mapping",
+        "background",
+        "contact shadow"
+      ],
+      "mustAvoid": [
+        "ambient-only lighting",
+        "flat value range",
+        "missing contact shadow",
+        "reference lighting copied without separating material readability"
+      ]
+    },
+    "screenshotReview": [
+      "Compare albedo palette and local color zones.",
+      "Compare roughness/normal/bump response under light.",
+      "Compare cavity dirt, edge wear, stains, moss, scratches, or other local masks.",
+      "Compare key/fill/rim structure, exposure, tone mapping, background, and contact shadows.",
+      "Capture a neutral-light render to verify material readability without reference lighting.",
+      "Capture a grazing-light close-up to expose flat normals, uniform roughness, tiling, and plastic highlights.",
+      "Capture a reference-matched render from the same camera framing as the source."
+    ]
+  },
+  "actionReadiness": {
+    "contract": "Every macro/meso component should be generated as a stable named Object3D pivot node with a mesh child, action metadata, optional sockets, collider proxy, and destruction metadata.",
+    "defaultRigType": "action-ready-static-rig",
+    "rootMotionNode": "root",
+    "requiredComponentFields": [
+      "id",
+      "parent",
+      "transform",
+      "attachment for child appendages, connectors, limbs, tubes, handles, legs, horns, wings, branches, or cables",
+      "actionProfile.animationRole",
+      "actionProfile.pivot",
+      "actionProfile.collider",
+      "actionProfile.destruction"
+    ],
+    "transformChannels": [
+      "translate",
+      "rotate",
+      "scale",
+      "bend",
+      "twist",
+      "detach",
+      "visibility",
+      "material-state"
+    ],
+    "authoringRules": [
+      "Do not collapse independently movable parts into one mesh.",
+      "Put transforms on component pivot groups, not only on raw meshes.",
+      "For attached child parts, put the pivot at the semantic root/socket and build visible geometry from localStart to localEnd.",
+      "Represent hinge, socket, detachable, and breakable intent even when no animation is implemented yet.",
+      "Use simplified collider proxies for runtime physics instead of visual mesh colliders by default."
+    ],
+    "destructionPolicy": {
+      "defaultBreakable": false,
+      "fractureGroupNaming": "Use stable semantic names such as body-shell, left-hinge, glass-panel, branch-segment.",
+      "debrisStrategy": "Prefer detachable component groups and a small number of procedural fragments over random mesh explosion."
+    }
+  },
+  "assumptions": [],
+  "coordinateFrame": {
+    "front": "camera-facing side in the reference image",
+    "up": "image up direction",
+    "scaleReference": "unit scale; adjust after first browser render"
+  },
+  "silhouette": {
+    "boundingShape": "",
+    "aspectRatios": [],
+    "symmetry": "",
+    "dominantCurves": [],
+    "negativeSpaces": [],
+    "landmarks": []
+  },
+  "viewEvidence": [
+    {
+      "id": "full-object",
+      "view": "reference",
+      "imageRegion": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 1.0,
+        "height": 1.0,
+        "units": "normalized"
+      },
+      "observations": [
+        "The photo contains a palace campus, roads, city blocks, vegetation, and mountain ridges rather than one isolated object.",
+        "The showcase accepts a layered low-poly scene approximation instead of pretending to recover exact architecture.",
+        "Variant controls change density and palette while preserving palace, city, and mountain ordering."
+      ],
+      "confidence": 0.82
+    },
+    {
+      "id": "identity-details",
+      "view": "reference",
+      "imageRegion": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 1.0,
+        "height": 1.0,
+        "units": "normalized"
+      },
+      "observations": [
+        "The scene reads as a Seoul palace campus framed by dense city blocks and green mountain ridges.",
+        "Three variants preserve the palace axis while changing roof, city-density, tree-density, and mountain systems."
+      ],
+      "confidence": 0.82
+    }
+  ],
+  "componentTree": [
+    {
+      "id": "root",
+      "name": "Palace and city terrain",
+      "level": "macro",
+      "role": "base",
+      "importance": 1.0,
+      "confidence": 0.82,
+      "primitive": "box",
+      "geometryDescriptor": {
+        "topologyIntent": "Procedural box representation for Palace and city terrain.",
+        "edgeTreatment": {
+          "type": "controlled bevel",
+          "bevelRadius": 0.04,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "object-space procedural coordinates",
+        "normalStrategy": "smooth generated normals plus procedural normal map"
+      },
+      "parent": null,
+      "attachment": null,
+      "dimensions": {
+        "width": 14,
+        "height": 0.35,
+        "depth": 10,
+        "units": "relative",
+        "confidence": 0.8
+      },
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "root",
+        "pivot": {
+          "mode": "base",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.8
+        },
+        "transformChannels": {
+          "translate": true,
+          "rotate": true,
+          "scale": true,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": false,
+          "fractureGroup": "root",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 0.0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "courtyard",
+      "materialLayers": [
+        "courtyard"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "root-feature-1",
+          "type": "large ceremonial courtyard",
+          "placement": "Palace and city terrain",
+          "size": "reference-relative",
+          "geometryEffect": "procedural geometry or instancing",
+          "materialEffect": "local material override",
+          "confidence": 0.78
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.24,
+        "microRoughness": 0.48,
+        "bumpAmplitude": 0.025,
+        "normalPattern": "component-specific procedural detail",
+        "displacementPattern": "",
+        "occlusionPattern": "contact AO",
+        "edgeWearPattern": "subtle exposed-edge response",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [
+        "Palace and city terrain"
+      ],
+      "fidelityTier": "blockout"
+    },
+    {
+      "id": "palace-campus",
+      "name": "Palace campus",
+      "level": "macro",
+      "role": "architectural",
+      "importance": 0.78,
+      "confidence": 0.82,
+      "primitive": "box",
+      "geometryDescriptor": {
+        "topologyIntent": "Procedural box representation for Palace campus.",
+        "edgeTreatment": {
+          "type": "controlled bevel",
+          "bevelRadius": 0.04,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "object-space procedural coordinates",
+        "normalStrategy": "smooth generated normals plus procedural normal map"
+      },
+      "parent": "root",
+      "attachment": null,
+      "dimensions": {
+        "width": 9,
+        "height": 2.8,
+        "depth": 6,
+        "units": "relative",
+        "confidence": 0.8
+      },
+      "transform": {
+        "position": [
+          1.2,
+          1.4,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.8
+        },
+        "transformChannels": {
+          "translate": false,
+          "rotate": true,
+          "scale": true,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": true,
+          "fractureGroup": "palace-campus",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 4.0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "palace-wall",
+      "materialLayers": [
+        "palace-wall"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "palace-campus-feature-1",
+          "type": "layered hall hierarchy",
+          "placement": "Palace campus",
+          "size": "reference-relative",
+          "geometryEffect": "procedural geometry or instancing",
+          "materialEffect": "local material override",
+          "confidence": 0.78
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.24,
+        "microRoughness": 0.48,
+        "bumpAmplitude": 0.025,
+        "normalPattern": "component-specific procedural detail",
+        "displacementPattern": "",
+        "occlusionPattern": "contact AO",
+        "edgeWearPattern": "subtle exposed-edge response",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [
+        "Palace campus"
+      ],
+      "fidelityTier": "blockout"
+    },
+    {
+      "id": "mountain-backdrop",
+      "name": "Mountain backdrop",
+      "level": "macro",
+      "role": "background",
+      "importance": 0.78,
+      "confidence": 0.82,
+      "primitive": "instanced-cluster",
+      "geometryDescriptor": {
+        "topologyIntent": "Procedural instanced-cluster representation for Mountain backdrop.",
+        "edgeTreatment": {
+          "type": "controlled bevel",
+          "bevelRadius": 0.04,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "object-space procedural coordinates",
+        "normalStrategy": "smooth generated normals plus procedural normal map"
+      },
+      "parent": "root",
+      "attachment": null,
+      "dimensions": {
+        "width": 16,
+        "height": 5,
+        "depth": 4,
+        "units": "relative",
+        "confidence": 0.8
+      },
+      "transform": {
+        "position": [
+          0,
+          2.5,
+          -7
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.8
+        },
+        "transformChannels": {
+          "translate": false,
+          "rotate": true,
+          "scale": true,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": true,
+          "fractureGroup": "mountain-backdrop",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 4.0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "mountain",
+      "materialLayers": [
+        "mountain"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "mountain-backdrop-feature-1",
+          "type": "three dominant ridgelines",
+          "placement": "Mountain backdrop",
+          "size": "reference-relative",
+          "geometryEffect": "procedural geometry or instancing",
+          "materialEffect": "local material override",
+          "confidence": 0.78
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.24,
+        "microRoughness": 0.48,
+        "bumpAmplitude": 0.025,
+        "normalPattern": "component-specific procedural detail",
+        "displacementPattern": "",
+        "occlusionPattern": "contact AO",
+        "edgeWearPattern": "subtle exposed-edge response",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [
+        "Mountain backdrop"
+      ],
+      "fidelityTier": "blockout"
+    },
+    {
+      "id": "main-hall",
+      "name": "Main palace hall",
+      "level": "meso",
+      "role": "architectural",
+      "importance": 0.78,
+      "confidence": 0.82,
+      "primitive": "box",
+      "geometryDescriptor": {
+        "topologyIntent": "Procedural box representation for Main palace hall.",
+        "edgeTreatment": {
+          "type": "controlled bevel",
+          "bevelRadius": 0.04,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "object-space procedural coordinates",
+        "normalStrategy": "smooth generated normals plus procedural normal map"
+      },
+      "parent": "palace-campus",
+      "attachment": null,
+      "dimensions": {
+        "width": 4.2,
+        "height": 1.6,
+        "depth": 2.4,
+        "units": "relative",
+        "confidence": 0.8
+      },
+      "transform": {
+        "position": [
+          2.2,
+          1.2,
+          -1.5
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.8
+        },
+        "transformChannels": {
+          "translate": false,
+          "rotate": true,
+          "scale": true,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": true,
+          "fractureGroup": "main-hall",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 4.0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "palace-wall",
+      "materialLayers": [
+        "palace-wall"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "main-hall-feature-1",
+          "type": "dark multi-tier roof",
+          "placement": "Main palace hall",
+          "size": "reference-relative",
+          "geometryEffect": "procedural geometry or instancing",
+          "materialEffect": "local material override",
+          "confidence": 0.78
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.24,
+        "microRoughness": 0.48,
+        "bumpAmplitude": 0.025,
+        "normalPattern": "component-specific procedural detail",
+        "displacementPattern": "",
+        "occlusionPattern": "contact AO",
+        "edgeWearPattern": "subtle exposed-edge response",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [
+        "Main palace hall"
+      ],
+      "fidelityTier": "structural-pass"
+    },
+    {
+      "id": "front-gate",
+      "name": "Foreground ceremonial gate",
+      "level": "meso",
+      "role": "architectural",
+      "importance": 0.78,
+      "confidence": 0.82,
+      "primitive": "box",
+      "geometryDescriptor": {
+        "topologyIntent": "Procedural box representation for Foreground ceremonial gate.",
+        "edgeTreatment": {
+          "type": "controlled bevel",
+          "bevelRadius": 0.04,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "object-space procedural coordinates",
+        "normalStrategy": "smooth generated normals plus procedural normal map"
+      },
+      "parent": "palace-campus",
+      "attachment": null,
+      "dimensions": {
+        "width": 3.8,
+        "height": 1.5,
+        "depth": 1.2,
+        "units": "relative",
+        "confidence": 0.8
+      },
+      "transform": {
+        "position": [
+          -3.7,
+          0.9,
+          3.0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.8
+        },
+        "transformChannels": {
+          "translate": false,
+          "rotate": true,
+          "scale": true,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": true,
+          "fractureGroup": "front-gate",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 4.0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "palace-wall",
+      "materialLayers": [
+        "palace-wall"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "front-gate-feature-1",
+          "type": "central arch openings",
+          "placement": "Foreground ceremonial gate",
+          "size": "reference-relative",
+          "geometryEffect": "procedural geometry or instancing",
+          "materialEffect": "local material override",
+          "confidence": 0.78
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.24,
+        "microRoughness": 0.48,
+        "bumpAmplitude": 0.025,
+        "normalPattern": "component-specific procedural detail",
+        "displacementPattern": "",
+        "occlusionPattern": "contact AO",
+        "edgeWearPattern": "subtle exposed-edge response",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [
+        "Foreground ceremonial gate"
+      ],
+      "fidelityTier": "structural-pass"
+    },
+    {
+      "id": "roof-system",
+      "name": "Dark tiled roof system",
+      "level": "meso",
+      "role": "ornament",
+      "importance": 0.78,
+      "confidence": 0.82,
+      "primitive": "instanced-cluster",
+      "geometryDescriptor": {
+        "topologyIntent": "Procedural instanced-cluster representation for Dark tiled roof system.",
+        "edgeTreatment": {
+          "type": "controlled bevel",
+          "bevelRadius": 0.04,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "object-space procedural coordinates",
+        "normalStrategy": "smooth generated normals plus procedural normal map"
+      },
+      "parent": "palace-campus",
+      "attachment": null,
+      "dimensions": {
+        "width": 9.5,
+        "height": 1.2,
+        "depth": 6.4,
+        "units": "relative",
+        "confidence": 0.8
+      },
+      "transform": {
+        "position": [
+          1.0,
+          2.2,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.8
+        },
+        "transformChannels": {
+          "translate": false,
+          "rotate": true,
+          "scale": true,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": true,
+          "fractureGroup": "roof-system",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 4.0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "roof",
+      "materialLayers": [
+        "roof"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "roof-system-feature-1",
+          "type": "upturned eave silhouettes",
+          "placement": "Dark tiled roof system",
+          "size": "reference-relative",
+          "geometryEffect": "procedural geometry or instancing",
+          "materialEffect": "local material override",
+          "confidence": 0.78
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.24,
+        "microRoughness": 0.48,
+        "bumpAmplitude": 0.025,
+        "normalPattern": "component-specific procedural detail",
+        "displacementPattern": "",
+        "occlusionPattern": "contact AO",
+        "edgeWearPattern": "subtle exposed-edge response",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [
+        "Dark tiled roof system"
+      ],
+      "fidelityTier": "structural-pass"
+    },
+    {
+      "id": "courtyard",
+      "name": "Open ceremonial courtyard",
+      "level": "meso",
+      "role": "base",
+      "importance": 0.78,
+      "confidence": 0.82,
+      "primitive": "box",
+      "geometryDescriptor": {
+        "topologyIntent": "Procedural box representation for Open ceremonial courtyard.",
+        "edgeTreatment": {
+          "type": "controlled bevel",
+          "bevelRadius": 0.04,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "object-space procedural coordinates",
+        "normalStrategy": "smooth generated normals plus procedural normal map"
+      },
+      "parent": "root",
+      "attachment": null,
+      "dimensions": {
+        "width": 7.0,
+        "height": 0.08,
+        "depth": 4.5,
+        "units": "relative",
+        "confidence": 0.8
+      },
+      "transform": {
+        "position": [
+          -1.0,
+          0.25,
+          1.0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.8
+        },
+        "transformChannels": {
+          "translate": false,
+          "rotate": true,
+          "scale": true,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": true,
+          "fractureGroup": "courtyard",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 4.0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "courtyard",
+      "materialLayers": [
+        "courtyard"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "courtyard-feature-1",
+          "type": "pale central axis",
+          "placement": "Open ceremonial courtyard",
+          "size": "reference-relative",
+          "geometryEffect": "procedural geometry or instancing",
+          "materialEffect": "local material override",
+          "confidence": 0.78
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.24,
+        "microRoughness": 0.48,
+        "bumpAmplitude": 0.025,
+        "normalPattern": "component-specific procedural detail",
+        "displacementPattern": "",
+        "occlusionPattern": "contact AO",
+        "edgeWearPattern": "subtle exposed-edge response",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [
+        "Open ceremonial courtyard"
+      ],
+      "fidelityTier": "structural-pass"
+    },
+    {
+      "id": "wall-system",
+      "name": "Perimeter walls",
+      "level": "meso",
+      "role": "architectural",
+      "importance": 0.78,
+      "confidence": 0.82,
+      "primitive": "instanced-cluster",
+      "geometryDescriptor": {
+        "topologyIntent": "Procedural instanced-cluster representation for Perimeter walls.",
+        "edgeTreatment": {
+          "type": "controlled bevel",
+          "bevelRadius": 0.04,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "object-space procedural coordinates",
+        "normalStrategy": "smooth generated normals plus procedural normal map"
+      },
+      "parent": "root",
+      "attachment": null,
+      "dimensions": {
+        "width": 10,
+        "height": 0.8,
+        "depth": 7,
+        "units": "relative",
+        "confidence": 0.8
+      },
+      "transform": {
+        "position": [
+          0.5,
+          0.6,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.8
+        },
+        "transformChannels": {
+          "translate": false,
+          "rotate": true,
+          "scale": true,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": true,
+          "fractureGroup": "wall-system",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 4.0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "palace-wall",
+      "materialLayers": [
+        "palace-wall"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [],
+      "surfaceDetail": {
+        "macroRoughness": 0.24,
+        "microRoughness": 0.48,
+        "bumpAmplitude": 0.025,
+        "normalPattern": "component-specific procedural detail",
+        "displacementPattern": "",
+        "occlusionPattern": "contact AO",
+        "edgeWearPattern": "subtle exposed-edge response",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [
+        "Perimeter walls"
+      ],
+      "fidelityTier": "structural-pass"
+    },
+    {
+      "id": "side-halls",
+      "name": "Secondary halls",
+      "level": "meso",
+      "role": "architectural",
+      "importance": 0.78,
+      "confidence": 0.82,
+      "primitive": "instanced-cluster",
+      "geometryDescriptor": {
+        "topologyIntent": "Procedural instanced-cluster representation for Secondary halls.",
+        "edgeTreatment": {
+          "type": "controlled bevel",
+          "bevelRadius": 0.04,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "object-space procedural coordinates",
+        "normalStrategy": "smooth generated normals plus procedural normal map"
+      },
+      "parent": "root",
+      "attachment": null,
+      "dimensions": {
+        "width": 8,
+        "height": 1.4,
+        "depth": 5,
+        "units": "relative",
+        "confidence": 0.8
+      },
+      "transform": {
+        "position": [
+          1.2,
+          0.9,
+          0.3
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.8
+        },
+        "transformChannels": {
+          "translate": false,
+          "rotate": true,
+          "scale": true,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": true,
+          "fractureGroup": "side-halls",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 4.0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "palace-wall",
+      "materialLayers": [
+        "palace-wall"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [],
+      "surfaceDetail": {
+        "macroRoughness": 0.24,
+        "microRoughness": 0.48,
+        "bumpAmplitude": 0.025,
+        "normalPattern": "component-specific procedural detail",
+        "displacementPattern": "",
+        "occlusionPattern": "contact AO",
+        "edgeWearPattern": "subtle exposed-edge response",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [
+        "Secondary halls"
+      ],
+      "fidelityTier": "structural-pass"
+    },
+    {
+      "id": "city-blocks",
+      "name": "Dense urban blocks",
+      "level": "meso",
+      "role": "background",
+      "importance": 0.78,
+      "confidence": 0.82,
+      "primitive": "instanced-cluster",
+      "geometryDescriptor": {
+        "topologyIntent": "Procedural instanced-cluster representation for Dense urban blocks.",
+        "edgeTreatment": {
+          "type": "controlled bevel",
+          "bevelRadius": 0.04,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "object-space procedural coordinates",
+        "normalStrategy": "smooth generated normals plus procedural normal map"
+      },
+      "parent": "root",
+      "attachment": null,
+      "dimensions": {
+        "width": 15,
+        "height": 3.5,
+        "depth": 5,
+        "units": "relative",
+        "confidence": 0.8
+      },
+      "transform": {
+        "position": [
+          -2,
+          1.7,
+          -5
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.8
+        },
+        "transformChannels": {
+          "translate": false,
+          "rotate": true,
+          "scale": true,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": true,
+          "fractureGroup": "city-blocks",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 4.0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "city",
+      "materialLayers": [
+        "city"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "city-blocks-feature-1",
+          "type": "white low-rise density gradient",
+          "placement": "Dense urban blocks",
+          "size": "reference-relative",
+          "geometryEffect": "procedural geometry or instancing",
+          "materialEffect": "local material override",
+          "confidence": 0.78
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.24,
+        "microRoughness": 0.48,
+        "bumpAmplitude": 0.025,
+        "normalPattern": "component-specific procedural detail",
+        "displacementPattern": "",
+        "occlusionPattern": "contact AO",
+        "edgeWearPattern": "subtle exposed-edge response",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [
+        "Dense urban blocks"
+      ],
+      "fidelityTier": "structural-pass"
+    },
+    {
+      "id": "tree-belt",
+      "name": "Green tree belt",
+      "level": "meso",
+      "role": "background",
+      "importance": 0.78,
+      "confidence": 0.82,
+      "primitive": "instanced-cluster",
+      "geometryDescriptor": {
+        "topologyIntent": "Procedural instanced-cluster representation for Green tree belt.",
+        "edgeTreatment": {
+          "type": "controlled bevel",
+          "bevelRadius": 0.04,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "object-space procedural coordinates",
+        "normalStrategy": "smooth generated normals plus procedural normal map"
+      },
+      "parent": "root",
+      "attachment": null,
+      "dimensions": {
+        "width": 13,
+        "height": 2,
+        "depth": 4,
+        "units": "relative",
+        "confidence": 0.8
+      },
+      "transform": {
+        "position": [
+          0,
+          1,
+          -3.8
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.8
+        },
+        "transformChannels": {
+          "translate": false,
+          "rotate": true,
+          "scale": true,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": true,
+          "fractureGroup": "tree-belt",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 4.0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "vegetation",
+      "materialLayers": [
+        "vegetation"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [
+        {
+          "id": "tree-belt-feature-1",
+          "type": "palace-to-city green buffer",
+          "placement": "Green tree belt",
+          "size": "reference-relative",
+          "geometryEffect": "procedural geometry or instancing",
+          "materialEffect": "local material override",
+          "confidence": 0.78
+        }
+      ],
+      "surfaceDetail": {
+        "macroRoughness": 0.24,
+        "microRoughness": 0.48,
+        "bumpAmplitude": 0.025,
+        "normalPattern": "component-specific procedural detail",
+        "displacementPattern": "",
+        "occlusionPattern": "contact AO",
+        "edgeWearPattern": "subtle exposed-edge response",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [
+        "Green tree belt"
+      ],
+      "fidelityTier": "structural-pass"
+    },
+    {
+      "id": "foreground-road",
+      "name": "Foreground road and wall",
+      "level": "meso",
+      "role": "base",
+      "importance": 0.78,
+      "confidence": 0.82,
+      "primitive": "box",
+      "geometryDescriptor": {
+        "topologyIntent": "Procedural box representation for Foreground road and wall.",
+        "edgeTreatment": {
+          "type": "controlled bevel",
+          "bevelRadius": 0.04,
+          "segments": 2
+        },
+        "deformationStack": [],
+        "uvStrategy": "object-space procedural coordinates",
+        "normalStrategy": "smooth generated normals plus procedural normal map"
+      },
+      "parent": "root",
+      "attachment": null,
+      "dimensions": {
+        "width": 14,
+        "height": 0.25,
+        "depth": 1.6,
+        "units": "relative",
+        "confidence": 0.8
+      },
+      "transform": {
+        "position": [
+          0,
+          0.3,
+          4.8
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "actionProfile": {
+        "animationRole": "static",
+        "pivot": {
+          "mode": "center",
+          "localPosition": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "confidence": 0.8
+        },
+        "transformChannels": {
+          "translate": false,
+          "rotate": true,
+          "scale": true,
+          "visibility": true,
+          "materialState": true
+        },
+        "sockets": [],
+        "collider": {
+          "type": "box",
+          "offset": [
+            0,
+            0,
+            0
+          ],
+          "scale": [
+            1,
+            1,
+            1
+          ],
+          "isTrigger": false
+        },
+        "constraints": [],
+        "destruction": {
+          "breakable": true,
+          "fractureGroup": "foreground-road",
+          "seamRefs": [],
+          "detachableFragments": [],
+          "breakImpulse": 4.0,
+          "debrisMaterial": "base"
+        }
+      },
+      "material": "city",
+      "materialLayers": [
+        "city"
+      ],
+      "deformations": [],
+      "joints": [],
+      "seams": [],
+      "localFeatures": [],
+      "surfaceDetail": {
+        "macroRoughness": 0.24,
+        "microRoughness": 0.48,
+        "bumpAmplitude": 0.025,
+        "normalPattern": "component-specific procedural detail",
+        "displacementPattern": "",
+        "occlusionPattern": "contact AO",
+        "edgeWearPattern": "subtle exposed-edge response",
+        "notes": ""
+      },
+      "evidenceRefs": [
+        "full-object"
+      ],
+      "details": [
+        "Foreground road and wall"
+      ],
+      "fidelityTier": "structural-pass"
+    }
+  ],
+  "materials": [
+    {
+      "id": "courtyard",
+      "name": "Warm sand courtyard",
+      "type": "physical",
+      "shaderModel": "MeshPhysicalMaterial",
+      "baseColor": "#C9B58B",
+      "color": "#C9B58B",
+      "albedo": {
+        "dominant": "#C9B58B",
+        "secondary": [
+          "#E4D4AA",
+          "#A99571"
+        ],
+        "samplingNotes": "Reference-derived palette for Warm sand courtyard."
+      },
+      "colorVariation": {
+        "palette": [
+          "#A99571",
+          "#E4D4AA",
+          "#A99571"
+        ],
+        "pattern": "deterministic regional variation",
+        "amplitude": 0.18,
+        "heightCorrelation": 0.15
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "object-space",
+        "repeat": [
+          2.0,
+          2.0
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "Keep detail stable across deterministic variants."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 2.0,
+          "amplitude": 0.24,
+          "role": "broad value zones"
+        },
+        {
+          "id": "meso",
+          "frequency": 12.0,
+          "amplitude": 0.12,
+          "role": "panel or surface breakup"
+        },
+        {
+          "id": "micro",
+          "frequency": 56.0,
+          "amplitude": 0.035,
+          "role": "highlight breakup"
+        }
+      ],
+      "roughness": {
+        "base": 0.7832,
+        "variation": 0.12,
+        "map": "independent-courtyard-roughness-field",
+        "localResponse": "Cavities are rougher and exposed edges are smoother."
+      },
+      "metalness": {
+        "base": 0.0,
+        "variation": 0.0
+      },
+      "normal": {
+        "pattern": "independent-courtyard-normal-field",
+        "strength": 0.26,
+        "scale": 24.0,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "micro surface",
+        "amplitude": 0.02,
+        "scale": 48.0
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0.0,
+        "scale": 1.0,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.28,
+        "contactShadowBias": 0.35,
+        "notes": "Concentrate AO at component contacts."
+      },
+      "wear": {
+        "edgeWear": 0.08,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.08,
+        "cavityBias": 0.55,
+        "color": "#1A1A18"
+      },
+      "localOverrides": [
+        {
+          "id": "courtyard-contact-zone",
+          "region": "component contact and lower-facing regions",
+          "changes": "increase AO and roughness without flattening albedo",
+          "strength": 0.35,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        }
+      ],
+      "shaderNotes": [
+        "Generate albedo, roughness, normal, and AO independently."
+      ]
+    },
+    {
+      "id": "palace-wall",
+      "name": "Muted palace walls",
+      "type": "physical",
+      "shaderModel": "MeshPhysicalMaterial",
+      "baseColor": "#BDAE8C",
+      "color": "#BDAE8C",
+      "albedo": {
+        "dominant": "#BDAE8C",
+        "secondary": [
+          "#7E4B3C",
+          "#D6C8A7"
+        ],
+        "samplingNotes": "Reference-derived palette for Muted palace walls."
+      },
+      "colorVariation": {
+        "palette": [
+          "#D6C8A7",
+          "#7E4B3C",
+          "#D6C8A7"
+        ],
+        "pattern": "deterministic regional variation",
+        "amplitude": 0.18,
+        "heightCorrelation": 0.15
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "object-space",
+        "repeat": [
+          2.0,
+          2.0
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "Keep detail stable across deterministic variants."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 2.0,
+          "amplitude": 0.24,
+          "role": "broad value zones"
+        },
+        {
+          "id": "meso",
+          "frequency": 12.0,
+          "amplitude": 0.12,
+          "role": "panel or surface breakup"
+        },
+        {
+          "id": "micro",
+          "frequency": 56.0,
+          "amplitude": 0.035,
+          "role": "highlight breakup"
+        }
+      ],
+      "roughness": {
+        "base": 0.6247,
+        "variation": 0.12,
+        "map": "independent-palace-wall-roughness-field",
+        "localResponse": "Cavities are rougher and exposed edges are smoother."
+      },
+      "metalness": {
+        "base": 0.0,
+        "variation": 0.0
+      },
+      "normal": {
+        "pattern": "independent-palace-wall-normal-field",
+        "strength": 0.26,
+        "scale": 24.0,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "micro surface",
+        "amplitude": 0.02,
+        "scale": 48.0
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0.0,
+        "scale": 1.0,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.28,
+        "contactShadowBias": 0.35,
+        "notes": "Concentrate AO at component contacts."
+      },
+      "wear": {
+        "edgeWear": 0.08,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.08,
+        "cavityBias": 0.55,
+        "color": "#1A1A18"
+      },
+      "localOverrides": [
+        {
+          "id": "palace-wall-contact-zone",
+          "region": "component contact and lower-facing regions",
+          "changes": "increase AO and roughness without flattening albedo",
+          "strength": 0.35,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        }
+      ],
+      "shaderNotes": [
+        "Generate albedo, roughness, normal, and AO independently."
+      ]
+    },
+    {
+      "id": "roof",
+      "name": "Charcoal tiled roofs",
+      "type": "physical",
+      "shaderModel": "MeshPhysicalMaterial",
+      "baseColor": "#202827",
+      "color": "#202827",
+      "albedo": {
+        "dominant": "#202827",
+        "secondary": [
+          "#34413F",
+          "#111716"
+        ],
+        "samplingNotes": "Reference-derived palette for Charcoal tiled roofs."
+      },
+      "colorVariation": {
+        "palette": [
+          "#202827",
+          "#34413F",
+          "#111716"
+        ],
+        "pattern": "deterministic regional variation",
+        "amplitude": 0.18,
+        "heightCorrelation": 0.15
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "object-space",
+        "repeat": [
+          2.0,
+          2.0
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "Keep detail stable across deterministic variants."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 2.0,
+          "amplitude": 0.24,
+          "role": "broad value zones"
+        },
+        {
+          "id": "meso",
+          "frequency": 12.0,
+          "amplitude": 0.12,
+          "role": "panel or surface breakup"
+        },
+        {
+          "id": "micro",
+          "frequency": 56.0,
+          "amplitude": 0.035,
+          "role": "highlight breakup"
+        }
+      ],
+      "roughness": {
+        "base": 0.7541,
+        "variation": 0.12,
+        "map": "independent-roof-roughness-field",
+        "localResponse": "Cavities are rougher and exposed edges are smoother."
+      },
+      "metalness": {
+        "base": 0.0,
+        "variation": 0.0
+      },
+      "normal": {
+        "pattern": "independent-roof-normal-field",
+        "strength": 0.26,
+        "scale": 24.0,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "micro surface",
+        "amplitude": 0.02,
+        "scale": 48.0
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0.0,
+        "scale": 1.0,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.28,
+        "contactShadowBias": 0.35,
+        "notes": "Concentrate AO at component contacts."
+      },
+      "wear": {
+        "edgeWear": 0.08,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.08,
+        "cavityBias": 0.55,
+        "color": "#1A1A18"
+      },
+      "localOverrides": [
+        {
+          "id": "roof-contact-zone",
+          "region": "component contact and lower-facing regions",
+          "changes": "increase AO and roughness without flattening albedo",
+          "strength": 0.35,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        }
+      ],
+      "shaderNotes": [
+        "Generate albedo, roughness, normal, and AO independently."
+      ]
+    },
+    {
+      "id": "mountain",
+      "name": "Forested mountains",
+      "type": "physical",
+      "shaderModel": "MeshPhysicalMaterial",
+      "baseColor": "#254D36",
+      "color": "#254D36",
+      "albedo": {
+        "dominant": "#254D36",
+        "secondary": [
+          "#376B49",
+          "#183927"
+        ],
+        "samplingNotes": "Reference-derived palette for Forested mountains."
+      },
+      "colorVariation": {
+        "palette": [
+          "#254D36",
+          "#376B49",
+          "#183927"
+        ],
+        "pattern": "deterministic regional variation",
+        "amplitude": 0.18,
+        "heightCorrelation": 0.15
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "object-space",
+        "repeat": [
+          2.0,
+          2.0
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "Keep detail stable across deterministic variants."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 2.0,
+          "amplitude": 0.24,
+          "role": "broad value zones"
+        },
+        {
+          "id": "meso",
+          "frequency": 12.0,
+          "amplitude": 0.12,
+          "role": "panel or surface breakup"
+        },
+        {
+          "id": "micro",
+          "frequency": 56.0,
+          "amplitude": 0.035,
+          "role": "highlight breakup"
+        }
+      ],
+      "roughness": {
+        "base": 0.8483,
+        "variation": 0.12,
+        "map": "independent-mountain-roughness-field",
+        "localResponse": "Cavities are rougher and exposed edges are smoother."
+      },
+      "metalness": {
+        "base": 0.0,
+        "variation": 0.0
+      },
+      "normal": {
+        "pattern": "independent-mountain-normal-field",
+        "strength": 0.26,
+        "scale": 24.0,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "micro surface",
+        "amplitude": 0.02,
+        "scale": 48.0
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0.0,
+        "scale": 1.0,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.28,
+        "contactShadowBias": 0.35,
+        "notes": "Concentrate AO at component contacts."
+      },
+      "wear": {
+        "edgeWear": 0.08,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.08,
+        "cavityBias": 0.55,
+        "color": "#1A1A18"
+      },
+      "localOverrides": [
+        {
+          "id": "mountain-contact-zone",
+          "region": "component contact and lower-facing regions",
+          "changes": "increase AO and roughness without flattening albedo",
+          "strength": 0.35,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        }
+      ],
+      "shaderNotes": [
+        "Generate albedo, roughness, normal, and AO independently."
+      ]
+    },
+    {
+      "id": "city",
+      "name": "Distant urban blocks",
+      "type": "physical",
+      "shaderModel": "MeshPhysicalMaterial",
+      "baseColor": "#CBD0CC",
+      "color": "#CBD0CC",
+      "albedo": {
+        "dominant": "#CBD0CC",
+        "secondary": [
+          "#E2E4DF",
+          "#9EA7A3"
+        ],
+        "samplingNotes": "Reference-derived palette for Distant urban blocks."
+      },
+      "colorVariation": {
+        "palette": [
+          "#CBD0CC",
+          "#E2E4DF",
+          "#9EA7A3"
+        ],
+        "pattern": "deterministic regional variation",
+        "amplitude": 0.18,
+        "heightCorrelation": 0.15
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "object-space",
+        "repeat": [
+          2.0,
+          2.0
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "Keep detail stable across deterministic variants."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 2.0,
+          "amplitude": 0.24,
+          "role": "broad value zones"
+        },
+        {
+          "id": "meso",
+          "frequency": 12.0,
+          "amplitude": 0.12,
+          "role": "panel or surface breakup"
+        },
+        {
+          "id": "micro",
+          "frequency": 56.0,
+          "amplitude": 0.035,
+          "role": "highlight breakup"
+        }
+      ],
+      "roughness": {
+        "base": 0.7466,
+        "variation": 0.12,
+        "map": "independent-city-roughness-field",
+        "localResponse": "Cavities are rougher and exposed edges are smoother."
+      },
+      "metalness": {
+        "base": 0.0,
+        "variation": 0.0
+      },
+      "normal": {
+        "pattern": "independent-city-normal-field",
+        "strength": 0.26,
+        "scale": 24.0,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "micro surface",
+        "amplitude": 0.02,
+        "scale": 48.0
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0.0,
+        "scale": 1.0,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.28,
+        "contactShadowBias": 0.35,
+        "notes": "Concentrate AO at component contacts."
+      },
+      "wear": {
+        "edgeWear": 0.08,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.08,
+        "cavityBias": 0.55,
+        "color": "#1A1A18"
+      },
+      "localOverrides": [
+        {
+          "id": "city-contact-zone",
+          "region": "component contact and lower-facing regions",
+          "changes": "increase AO and roughness without flattening albedo",
+          "strength": 0.35,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        }
+      ],
+      "shaderNotes": [
+        "Generate albedo, roughness, normal, and AO independently."
+      ]
+    },
+    {
+      "id": "vegetation",
+      "name": "Palace tree belt",
+      "type": "physical",
+      "shaderModel": "MeshPhysicalMaterial",
+      "baseColor": "#39704A",
+      "color": "#39704A",
+      "albedo": {
+        "dominant": "#39704A",
+        "secondary": [
+          "#5B8A58",
+          "#254E35"
+        ],
+        "samplingNotes": "Reference-derived palette for Palace tree belt."
+      },
+      "colorVariation": {
+        "palette": [
+          "#39704A",
+          "#5B8A58",
+          "#254E35"
+        ],
+        "pattern": "deterministic regional variation",
+        "amplitude": 0.18,
+        "heightCorrelation": 0.15
+      },
+      "textureResolution": 1024,
+      "textureProjection": {
+        "mode": "object-space",
+        "repeat": [
+          2.0,
+          2.0
+        ],
+        "anisotropy": 8,
+        "texelDensityIntent": "Keep detail stable across deterministic variants."
+      },
+      "surfaceFrequencyBands": [
+        {
+          "id": "macro",
+          "frequency": 2.0,
+          "amplitude": 0.24,
+          "role": "broad value zones"
+        },
+        {
+          "id": "meso",
+          "frequency": 12.0,
+          "amplitude": 0.12,
+          "role": "panel or surface breakup"
+        },
+        {
+          "id": "micro",
+          "frequency": 56.0,
+          "amplitude": 0.035,
+          "role": "highlight breakup"
+        }
+      ],
+      "roughness": {
+        "base": 0.8839,
+        "variation": 0.12,
+        "map": "independent-vegetation-roughness-field",
+        "localResponse": "Cavities are rougher and exposed edges are smoother."
+      },
+      "metalness": {
+        "base": 0.0,
+        "variation": 0.0
+      },
+      "normal": {
+        "pattern": "independent-vegetation-normal-field",
+        "strength": 0.26,
+        "scale": 24.0,
+        "space": "tangent"
+      },
+      "bump": {
+        "pattern": "micro surface",
+        "amplitude": 0.02,
+        "scale": 48.0
+      },
+      "displacement": {
+        "pattern": "none",
+        "amplitude": 0.0,
+        "scale": 1.0,
+        "silhouetteAffects": false
+      },
+      "ambientOcclusion": {
+        "cavityStrength": 0.28,
+        "contactShadowBias": 0.35,
+        "notes": "Concentrate AO at component contacts."
+      },
+      "wear": {
+        "edgeWear": 0.08,
+        "scratches": [],
+        "chips": []
+      },
+      "dirt": {
+        "amount": 0.08,
+        "cavityBias": 0.55,
+        "color": "#1A1A18"
+      },
+      "localOverrides": [
+        {
+          "id": "vegetation-contact-zone",
+          "region": "component contact and lower-facing regions",
+          "changes": "increase AO and roughness without flattening albedo",
+          "strength": 0.35,
+          "evidenceRefs": [
+            "full-object"
+          ]
+        }
+      ],
+      "shaderNotes": [
+        "Generate albedo, roughness, normal, and AO independently."
+      ]
+    }
+  ],
+  "sculptDNA": {
+    "schemaVersion": "1.0",
+    "enabled": true,
+    "strategy": "constraint-aware semantic variation",
+    "parameters": [
+      {
+        "id": "courtyard-roughness",
+        "label": "courtyard roughness",
+        "target": {
+          "kind": "material",
+          "id": "courtyard",
+          "path": "roughness.base"
+        },
+        "operation": "set",
+        "distribution": "triangular",
+        "range": {
+          "min": 0.7,
+          "max": 0.94
+        },
+        "precision": 4,
+        "semanticEffects": [
+          "highlight width",
+          "surface age",
+          "material readability"
+        ]
+      },
+      {
+        "id": "courtyard-dominant-palette",
+        "label": "courtyard dominant palette color",
+        "target": {
+          "kind": "material",
+          "id": "courtyard",
+          "path": "colorVariation.palette.0"
+        },
+        "operation": "set",
+        "distribution": "choice",
+        "choices": [
+          "#C9B58B",
+          "#E4D4AA",
+          "#A99571"
+        ],
+        "semanticEffects": [
+          "palette family",
+          "local albedo variation"
+        ]
+      },
+      {
+        "id": "palace-wall-roughness",
+        "label": "palace-wall roughness",
+        "target": {
+          "kind": "material",
+          "id": "palace-wall",
+          "path": "roughness.base"
+        },
+        "operation": "set",
+        "distribution": "triangular",
+        "range": {
+          "min": 0.6,
+          "max": 0.84
+        },
+        "precision": 4,
+        "semanticEffects": [
+          "highlight width",
+          "surface age",
+          "material readability"
+        ]
+      },
+      {
+        "id": "palace-wall-dominant-palette",
+        "label": "palace-wall dominant palette color",
+        "target": {
+          "kind": "material",
+          "id": "palace-wall",
+          "path": "colorVariation.palette.0"
+        },
+        "operation": "set",
+        "distribution": "choice",
+        "choices": [
+          "#BDAE8C",
+          "#7E4B3C",
+          "#D6C8A7"
+        ],
+        "semanticEffects": [
+          "palette family",
+          "local albedo variation"
+        ]
+      },
+      {
+        "id": "roof-roughness",
+        "label": "roof roughness",
+        "target": {
+          "kind": "material",
+          "id": "roof",
+          "path": "roughness.base"
+        },
+        "operation": "set",
+        "distribution": "triangular",
+        "range": {
+          "min": 0.62,
+          "max": 0.86
+        },
+        "precision": 4,
+        "semanticEffects": [
+          "highlight width",
+          "surface age",
+          "material readability"
+        ]
+      },
+      {
+        "id": "roof-dominant-palette",
+        "label": "roof dominant palette color",
+        "target": {
+          "kind": "material",
+          "id": "roof",
+          "path": "colorVariation.palette.0"
+        },
+        "operation": "set",
+        "distribution": "choice",
+        "choices": [
+          "#202827",
+          "#34413F",
+          "#111716"
+        ],
+        "semanticEffects": [
+          "palette family",
+          "local albedo variation"
+        ]
+      },
+      {
+        "id": "mountain-roughness",
+        "label": "mountain roughness",
+        "target": {
+          "kind": "material",
+          "id": "mountain",
+          "path": "roughness.base"
+        },
+        "operation": "set",
+        "distribution": "triangular",
+        "range": {
+          "min": 0.78,
+          "max": 1.0
+        },
+        "precision": 4,
+        "semanticEffects": [
+          "highlight width",
+          "surface age",
+          "material readability"
+        ]
+      },
+      {
+        "id": "mountain-dominant-palette",
+        "label": "mountain dominant palette color",
+        "target": {
+          "kind": "material",
+          "id": "mountain",
+          "path": "colorVariation.palette.0"
+        },
+        "operation": "set",
+        "distribution": "choice",
+        "choices": [
+          "#254D36",
+          "#376B49",
+          "#183927"
+        ],
+        "semanticEffects": [
+          "palette family",
+          "local albedo variation"
+        ]
+      },
+      {
+        "id": "city-roughness",
+        "label": "city roughness",
+        "target": {
+          "kind": "material",
+          "id": "city",
+          "path": "roughness.base"
+        },
+        "operation": "set",
+        "distribution": "triangular",
+        "range": {
+          "min": 0.66,
+          "max": 0.9
+        },
+        "precision": 4,
+        "semanticEffects": [
+          "highlight width",
+          "surface age",
+          "material readability"
+        ]
+      },
+      {
+        "id": "city-dominant-palette",
+        "label": "city dominant palette color",
+        "target": {
+          "kind": "material",
+          "id": "city",
+          "path": "colorVariation.palette.0"
+        },
+        "operation": "set",
+        "distribution": "choice",
+        "choices": [
+          "#CBD0CC",
+          "#E2E4DF",
+          "#9EA7A3"
+        ],
+        "semanticEffects": [
+          "palette family",
+          "local albedo variation"
+        ]
+      },
+      {
+        "id": "vegetation-roughness",
+        "label": "vegetation roughness",
+        "target": {
+          "kind": "material",
+          "id": "vegetation",
+          "path": "roughness.base"
+        },
+        "operation": "set",
+        "distribution": "triangular",
+        "range": {
+          "min": 0.76,
+          "max": 1.0
+        },
+        "precision": 4,
+        "semanticEffects": [
+          "highlight width",
+          "surface age",
+          "material readability"
+        ]
+      },
+      {
+        "id": "vegetation-dominant-palette",
+        "label": "vegetation dominant palette color",
+        "target": {
+          "kind": "material",
+          "id": "vegetation",
+          "path": "colorVariation.palette.0"
+        },
+        "operation": "set",
+        "distribution": "choice",
+        "choices": [
+          "#39704A",
+          "#5B8A58",
+          "#254E35"
+        ],
+        "semanticEffects": [
+          "palette family",
+          "local albedo variation"
+        ]
+      },
+      {
+        "id": "palace-roofs-count",
+        "label": "palace-roofs repetition count",
+        "target": {
+          "kind": "repetition",
+          "id": "palace-roofs",
+          "path": "count"
+        },
+        "operation": "set",
+        "distribution": "triangular",
+        "range": {
+          "min": 11,
+          "max": 17
+        },
+        "precision": 0,
+        "semanticEffects": [
+          "repetition density",
+          "draw-call and triangle budget"
+        ]
+      },
+      {
+        "id": "urban-blocks-count",
+        "label": "urban-blocks repetition count",
+        "target": {
+          "kind": "repetition",
+          "id": "urban-blocks",
+          "path": "count"
+        },
+        "operation": "set",
+        "distribution": "triangular",
+        "range": {
+          "min": 38,
+          "max": 58
+        },
+        "precision": 0,
+        "semanticEffects": [
+          "repetition density",
+          "draw-call and triangle budget"
+        ]
+      },
+      {
+        "id": "tree-clusters-count",
+        "label": "tree-clusters repetition count",
+        "target": {
+          "kind": "repetition",
+          "id": "tree-clusters",
+          "path": "count"
+        },
+        "operation": "set",
+        "distribution": "triangular",
+        "range": {
+          "min": 58,
+          "max": 86
+        },
+        "precision": 0,
+        "semanticEffects": [
+          "repetition density",
+          "draw-call and triangle budget"
+        ]
+      },
+      {
+        "id": "mountain-peaks-count",
+        "label": "mountain-peaks repetition count",
+        "target": {
+          "kind": "repetition",
+          "id": "mountain-peaks",
+          "path": "count"
+        },
+        "operation": "set",
+        "distribution": "triangular",
+        "range": {
+          "min": 6,
+          "max": 8
+        },
+        "precision": 0,
+        "semanticEffects": [
+          "repetition density",
+          "draw-call and triangle budget"
+        ]
+      }
+    ],
+    "constraints": [],
+    "invariants": [
+      "component-ids",
+      "parent-links",
+      "material-refs",
+      "socket-ids",
+      "fracture-groups",
+      "attachment-roots",
+      "build-pass-order",
+      "feature-review-targets"
+    ],
+    "variantPolicy": {
+      "defaultCount": 4,
+      "defaultSeed": 20260711,
+      "maxAttemptsPerVariant": 64,
+      "resetReviewEvidence": true
+    },
+    "authoringRule": "These controls are conservative starters. Rename them in object language, add coupling groups for dependent proportions, and add ratio/range constraints before generating a production family."
+  },
+  "repetitionSystems": [
+    {
+      "id": "palace-roofs",
+      "name": "Palace roof tiers",
+      "primitive": "instanced-cluster",
+      "componentRefs": [
+        "roof-system",
+        "main-hall",
+        "side-halls"
+      ],
+      "material": "roof",
+      "count": 16,
+      "seed": 1107,
+      "distribution": "campus hierarchy",
+      "constraints": [
+        "main hall remains dominant"
+      ]
+    },
+    {
+      "id": "urban-blocks",
+      "name": "Urban building blocks",
+      "primitive": "instanced-cluster",
+      "componentRefs": [
+        "city-blocks"
+      ],
+      "material": "city",
+      "count": 55,
+      "seed": 711,
+      "distribution": "dense rear band",
+      "constraints": [
+        "height below mountain skyline"
+      ]
+    },
+    {
+      "id": "tree-clusters",
+      "name": "Tree clusters",
+      "primitive": "instanced-cluster",
+      "componentRefs": [
+        "tree-belt"
+      ],
+      "material": "vegetation",
+      "count": 66,
+      "seed": 2026,
+      "distribution": "palace edge and city buffer",
+      "constraints": [
+        "courtyard remains open"
+      ]
+    },
+    {
+      "id": "mountain-peaks",
+      "name": "Mountain peaks",
+      "primitive": "instanced-cluster",
+      "componentRefs": [
+        "mountain-backdrop"
+      ],
+      "material": "mountain",
+      "count": 7,
+      "seed": 37,
+      "distribution": "left and right ridgelines",
+      "constraints": [
+        "central valley remains visible"
+      ]
+    }
+  ],
+  "buildPasses": [
+    {
+      "id": "blockout",
+      "goal": "Complete the blockout showcase gate.",
+      "componentRefs": [
+        "root",
+        "palace-campus",
+        "mountain-backdrop",
+        "main-hall",
+        "front-gate",
+        "roof-system",
+        "courtyard",
+        "wall-system",
+        "side-halls",
+        "city-blocks",
+        "tree-belt",
+        "foreground-road"
+      ],
+      "acceptance": [
+        "blockout preserves identity-defining systems.",
+        "Visual evidence meets the configured AI-vision threshold."
+      ]
+    },
+    {
+      "id": "structural-pass",
+      "goal": "Complete the structural-pass showcase gate.",
+      "componentRefs": [
+        "root",
+        "palace-campus",
+        "mountain-backdrop",
+        "main-hall",
+        "front-gate",
+        "roof-system",
+        "courtyard",
+        "wall-system",
+        "side-halls",
+        "city-blocks",
+        "tree-belt",
+        "foreground-road"
+      ],
+      "acceptance": [
+        "structural-pass preserves identity-defining systems.",
+        "Visual evidence meets the configured AI-vision threshold."
+      ]
+    },
+    {
+      "id": "form-refinement",
+      "goal": "Complete the form-refinement showcase gate.",
+      "componentRefs": [
+        "root",
+        "palace-campus",
+        "mountain-backdrop",
+        "main-hall",
+        "front-gate",
+        "roof-system",
+        "courtyard",
+        "wall-system",
+        "side-halls",
+        "city-blocks",
+        "tree-belt",
+        "foreground-road"
+      ],
+      "acceptance": [
+        "form-refinement preserves identity-defining systems.",
+        "Visual evidence meets the configured AI-vision threshold."
+      ]
+    },
+    {
+      "id": "material-pass",
+      "goal": "Complete the material-pass showcase gate.",
+      "componentRefs": [
+        "root",
+        "palace-campus",
+        "mountain-backdrop",
+        "main-hall",
+        "front-gate",
+        "roof-system",
+        "courtyard",
+        "wall-system",
+        "side-halls",
+        "city-blocks",
+        "tree-belt",
+        "foreground-road"
+      ],
+      "acceptance": [
+        "material-pass preserves identity-defining systems.",
+        "Visual evidence meets the configured AI-vision threshold."
+      ]
+    },
+    {
+      "id": "surface-pass",
+      "goal": "Complete the surface-pass showcase gate.",
+      "componentRefs": [
+        "root",
+        "palace-campus",
+        "mountain-backdrop",
+        "main-hall",
+        "front-gate",
+        "roof-system",
+        "courtyard",
+        "wall-system",
+        "side-halls",
+        "city-blocks",
+        "tree-belt",
+        "foreground-road"
+      ],
+      "acceptance": [
+        "surface-pass preserves identity-defining systems.",
+        "Visual evidence meets the configured AI-vision threshold."
+      ]
+    },
+    {
+      "id": "lighting-pass",
+      "goal": "Complete the lighting-pass showcase gate.",
+      "componentRefs": [
+        "root",
+        "palace-campus",
+        "mountain-backdrop",
+        "main-hall",
+        "front-gate",
+        "roof-system",
+        "courtyard",
+        "wall-system",
+        "side-halls",
+        "city-blocks",
+        "tree-belt",
+        "foreground-road"
+      ],
+      "acceptance": [
+        "lighting-pass preserves identity-defining systems.",
+        "Visual evidence meets the configured AI-vision threshold."
+      ]
+    },
+    {
+      "id": "interaction-pass",
+      "goal": "Complete the interaction-pass showcase gate.",
+      "componentRefs": [
+        "root",
+        "palace-campus",
+        "mountain-backdrop",
+        "main-hall",
+        "front-gate",
+        "roof-system",
+        "courtyard",
+        "wall-system",
+        "side-halls",
+        "city-blocks",
+        "tree-belt",
+        "foreground-road"
+      ],
+      "acceptance": [
+        "interaction-pass preserves identity-defining systems.",
+        "Visual evidence meets the configured AI-vision threshold."
+      ]
+    },
+    {
+      "id": "optimization-pass",
+      "goal": "Complete the optimization-pass showcase gate.",
+      "componentRefs": [
+        "root",
+        "palace-campus",
+        "mountain-backdrop",
+        "main-hall",
+        "front-gate",
+        "roof-system",
+        "courtyard",
+        "wall-system",
+        "side-halls",
+        "city-blocks",
+        "tree-belt",
+        "foreground-road"
+      ],
+      "acceptance": [
+        "optimization-pass preserves identity-defining systems.",
+        "Visual evidence meets the configured AI-vision threshold."
+      ]
+    }
+  ],
+  "visualEvidence": [],
+  "reviewHistory": [],
+  "lodPlan": [
+    {
+      "tier": "near",
+      "distance": 0,
+      "strategy": "full component tree and material layers"
+    },
+    {
+      "tier": "far",
+      "distance": 30,
+      "strategy": "merge static components and reduce local feature geometry"
+    }
+  ],
+  "performanceBudget": {
+    "qualityPriority": "balanced",
+    "targetTriangles": 120000,
+    "maxDrawCalls": 80,
+    "textureSize": 1024,
+    "fpsTarget": 45,
+    "optimizationPolicy": "Preserve the README silhouette before reducing repeated detail."
+  },
+  "lightingFromPhoto": [
+    "Key light: soft sun or warm studio key with readable shadows.",
+    "Fill light: cool sky fill preserving material midtones.",
+    "Rim/environment light: subtle separation from the background.",
+    "Exposure and tone mapping: ACES Filmic with controlled highlights.",
+    "Contact shadow: ground and component-contact anchoring."
+  ],
+  "proceduralStrategy": [
+    "Build macro silhouette before repeated details.",
+    "Use deterministic seeds for repeated systems.",
+    "Keep variant controls semantic and bounded.",
+    "Render three promoted variants from one camera for README comparison."
+  ],
+  "animationAnchors": [
+    "root turntable pivot",
+    "material-state controls"
+  ],
+  "destructionAnchors": [
+    "semantic component boundaries"
+  ],
+  "risks": [
+    "The 842x476 crop is sufficient for macro layering but not exact facade or roof-tile reconstruction.",
+    "This challenge demonstrates scene decomposition, not exact geospatial reconstruction."
+  ],
+  "variantProvenance": {
+    "sculptDNAVersion": "1.0",
+    "variantId": "seoul-challenge-v003",
+    "sourceTargetId": "seoul-challenge",
+    "sourceTargetSlug": "seoul-challenge",
+    "rootSeed": 20260711,
+    "variantSeed": 10559084579826424457,
+    "index": 3,
+    "attempt": 1,
+    "mutations": [
+      {
+        "parameterId": "courtyard-roughness",
+        "target": {
+          "kind": "material",
+          "id": "courtyard",
+          "path": "roughness.base"
+        },
+        "before": 0.82,
+        "after": 0.7832
+      },
+      {
+        "parameterId": "courtyard-dominant-palette",
+        "target": {
+          "kind": "material",
+          "id": "courtyard",
+          "path": "colorVariation.palette.0"
+        },
+        "before": "#C9B58B",
+        "after": "#A99571"
+      },
+      {
+        "parameterId": "palace-wall-roughness",
+        "target": {
+          "kind": "material",
+          "id": "palace-wall",
+          "path": "roughness.base"
+        },
+        "before": 0.72,
+        "after": 0.6247
+      },
+      {
+        "parameterId": "palace-wall-dominant-palette",
+        "target": {
+          "kind": "material",
+          "id": "palace-wall",
+          "path": "colorVariation.palette.0"
+        },
+        "before": "#BDAE8C",
+        "after": "#D6C8A7"
+      },
+      {
+        "parameterId": "roof-roughness",
+        "target": {
+          "kind": "material",
+          "id": "roof",
+          "path": "roughness.base"
+        },
+        "before": 0.74,
+        "after": 0.7541
+      },
+      {
+        "parameterId": "roof-dominant-palette",
+        "target": {
+          "kind": "material",
+          "id": "roof",
+          "path": "colorVariation.palette.0"
+        },
+        "before": "#202827",
+        "after": "#202827"
+      },
+      {
+        "parameterId": "mountain-roughness",
+        "target": {
+          "kind": "material",
+          "id": "mountain",
+          "path": "roughness.base"
+        },
+        "before": 0.9,
+        "after": 0.8483
+      },
+      {
+        "parameterId": "mountain-dominant-palette",
+        "target": {
+          "kind": "material",
+          "id": "mountain",
+          "path": "colorVariation.palette.0"
+        },
+        "before": "#254D36",
+        "after": "#254D36"
+      },
+      {
+        "parameterId": "city-roughness",
+        "target": {
+          "kind": "material",
+          "id": "city",
+          "path": "roughness.base"
+        },
+        "before": 0.78,
+        "after": 0.7466
+      },
+      {
+        "parameterId": "city-dominant-palette",
+        "target": {
+          "kind": "material",
+          "id": "city",
+          "path": "colorVariation.palette.0"
+        },
+        "before": "#CBD0CC",
+        "after": "#CBD0CC"
+      },
+      {
+        "parameterId": "vegetation-roughness",
+        "target": {
+          "kind": "material",
+          "id": "vegetation",
+          "path": "roughness.base"
+        },
+        "before": 0.88,
+        "after": 0.8839
+      },
+      {
+        "parameterId": "vegetation-dominant-palette",
+        "target": {
+          "kind": "material",
+          "id": "vegetation",
+          "path": "colorVariation.palette.0"
+        },
+        "before": "#39704A",
+        "after": "#39704A"
+      },
+      {
+        "parameterId": "palace-roofs-count",
+        "target": {
+          "kind": "repetition",
+          "id": "palace-roofs",
+          "path": "count"
+        },
+        "before": 14,
+        "after": 16
+      },
+      {
+        "parameterId": "urban-blocks-count",
+        "target": {
+          "kind": "repetition",
+          "id": "urban-blocks",
+          "path": "count"
+        },
+        "before": 48,
+        "after": 55
+      },
+      {
+        "parameterId": "tree-clusters-count",
+        "target": {
+          "kind": "repetition",
+          "id": "tree-clusters",
+          "path": "count"
+        },
+        "before": 72,
+        "after": 66
+      },
+      {
+        "parameterId": "mountain-peaks-count",
+        "target": {
+          "kind": "repetition",
+          "id": "mountain-peaks",
+          "path": "count"
+        },
+        "before": 7,
+        "after": 7
+      }
+    ],
+    "invariants": {
+      "ok": true,
+      "checked": [
+        "component-ids",
+        "parent-links",
+        "material-refs",
+        "socket-ids",
+        "fracture-groups",
+        "attachment-roots",
+        "build-pass-order",
+        "feature-review-targets"
+      ]
+    },
+    "reviewEvidenceReset": true,
+    "samplingMode": "coverage-curated",
+    "candidateIndex": 24,
+    "curatedIndex": 3,
+    "selectionScore": 0.525496,
+    "previewMode": true,
+    "passGateStatus": "pending-per-variant-visual-review"
+  }
+}

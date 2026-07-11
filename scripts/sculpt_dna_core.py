@@ -909,3 +909,164 @@ def generate_variant(
     raise ValueError(
         f"could not generate variant {index} after {max_attempts} attempts: {failure_text}"
     )
+
+
+def _mutation_vector(
+    parameters: list[dict[str, Any]],
+    provenance: dict[str, Any],
+) -> list[float]:
+    mutations = {
+        mutation.get("parameterId"): mutation
+        for mutation in provenance.get("mutations", [])
+        if isinstance(mutation, dict)
+    }
+    vector: list[float] = []
+    for parameter in parameters:
+        mutation = mutations.get(parameter.get("id"))
+        if not isinstance(mutation, dict):
+            vector.append(0.5)
+            continue
+        distribution = parameter.get("distribution")
+        if distribution == "choice":
+            choices = parameter.get("choices", [])
+            after = mutation.get("after")
+            if not isinstance(choices, list) or not choices:
+                vector.append(0.5)
+                continue
+            try:
+                choice_index = choices.index(after)
+            except ValueError:
+                choice_index = 0
+            vector.append(
+                0.0 if len(choices) == 1 else choice_index / (len(choices) - 1)
+            )
+            continue
+        value_range = parameter.get("range")
+        if not isinstance(value_range, dict):
+            vector.append(0.5)
+            continue
+        minimum = value_range.get("min")
+        maximum = value_range.get("max")
+        if not is_number(minimum) or not is_number(maximum) or float(maximum) <= float(minimum):
+            vector.append(0.5)
+            continue
+        before = mutation.get("before")
+        after = mutation.get("after")
+        if not is_number(before) or not is_number(after):
+            vector.append(0.5)
+            continue
+        operation = parameter.get("operation")
+        if operation == "multiply":
+            sampled = float(after) / float(before) if abs(float(before)) > 1e-12 else float(minimum)
+        elif operation == "add":
+            sampled = float(after) - float(before)
+        else:
+            sampled = float(after)
+        normalized = (sampled - float(minimum)) / (float(maximum) - float(minimum))
+        vector.append(min(1.0, max(0.0, normalized)))
+    return vector
+
+
+def _vector_distance(left: list[float], right: list[float]) -> float:
+    if not left or len(left) != len(right):
+        return 0.0
+    squared = sum((a - b) ** 2 for a, b in zip(left, right))
+    return math.sqrt(squared / len(left))
+
+
+def _coverage_score(vectors: list[list[float]]) -> float:
+    distances = [
+        _vector_distance(vectors[left], vectors[right])
+        for left in range(len(vectors))
+        for right in range(left + 1, len(vectors))
+    ]
+    return sum(distances) / len(distances) if distances else 0.0
+
+
+def curate_variants(
+    source_spec: dict[str, Any],
+    root_seed: int,
+    count: int,
+    pool_size: int,
+    dna: dict[str, Any] | None = None,
+) -> tuple[list[tuple[dict[str, Any], dict[str, Any]]], dict[str, Any]]:
+    if not 1 <= count <= 100:
+        raise ValueError("curated variant count must be from 1 to 100")
+    if pool_size < count or pool_size > 500:
+        raise ValueError("curation pool size must be >= count and <= 500")
+    block = source_spec.get("sculptDNA") if dna is None else dna
+    errors, _ = validate_sculpt_dna_block(source_spec, block)
+    if errors:
+        raise ValueError("; ".join(errors))
+    if not isinstance(block, dict) or block.get("enabled") is not True:
+        raise ValueError("sculptDNA must be enabled before variant curation")
+
+    candidates = [
+        generate_variant(source_spec, root_seed, candidate_index, block)
+        for candidate_index in range(1, pool_size + 1)
+    ]
+    parameters = [
+        item for item in block.get("parameters", []) if isinstance(item, dict)
+    ]
+    vectors = [
+        _mutation_vector(parameters, provenance)
+        for _, provenance in candidates
+    ]
+    centroid = [
+        sum(vector[axis] for vector in vectors) / len(vectors)
+        for axis in range(len(vectors[0]))
+    ] if vectors and vectors[0] else []
+    first = max(
+        range(len(candidates)),
+        key=lambda index: (_vector_distance(vectors[index], centroid), -index),
+    )
+    selected = [first]
+    selection_scores = [_vector_distance(vectors[first], centroid)]
+    while len(selected) < count:
+        remaining = [index for index in range(len(candidates)) if index not in selected]
+        next_index = max(
+            remaining,
+            key=lambda index: (
+                min(_vector_distance(vectors[index], vectors[chosen]) for chosen in selected),
+                -index,
+            ),
+        )
+        selection_scores.append(
+            min(_vector_distance(vectors[next_index], vectors[chosen]) for chosen in selected)
+        )
+        selected.append(next_index)
+
+    source_target_id = str(source_spec.get("targetId") or "object")
+    source_target_slug = safe_target_slug(source_target_id)
+    curated: list[tuple[dict[str, Any], dict[str, Any]]] = []
+    for curated_index, (candidate_index, selection_score) in enumerate(
+        zip(selected, selection_scores),
+        start=1,
+    ):
+        variant, provenance = candidates[candidate_index]
+        variant_id = f"{source_target_slug}-v{curated_index:03d}"
+        provenance["samplingMode"] = "coverage-curated"
+        provenance["candidateIndex"] = int(provenance["index"])
+        provenance["curatedIndex"] = curated_index
+        provenance["index"] = curated_index
+        provenance["variantId"] = variant_id
+        provenance["selectionScore"] = round(selection_score, 6)
+        variant["targetId"] = variant_id
+        variant["variantProvenance"] = provenance
+        curated.append((variant, provenance))
+
+    selected_vectors = [vectors[index] for index in selected]
+    report = {
+        "samplingMode": "coverage-curated",
+        "poolSize": pool_size,
+        "selectedCandidateIndexes": [
+            int(candidates[index][1]["candidateIndex"])
+            if "candidateIndex" in candidates[index][1]
+            else int(candidates[index][1]["index"])
+            for index in selected
+        ],
+        "parameterIds": [str(item.get("id")) for item in parameters],
+        "coverageScore": round(_coverage_score(selected_vectors), 6),
+        "selectionStrategy": "centroid-extreme then greedy max-min normalized parameter distance",
+    }
+    return curated, report

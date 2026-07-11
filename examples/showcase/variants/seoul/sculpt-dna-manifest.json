@@ -1,0 +1,610 @@
+{
+  "schemaVersion": "1.0",
+  "sourceSpec": "object-sculpt-spec.json",
+  "sourceSpecSha256": "858722a91e84e885ee56741abde955a4ffa6a21cd9cc7f8e57066b9edca3ea56",
+  "rootSeed": 20260711,
+  "count": 3,
+  "variants": [
+    {
+      "variantId": "seoul-challenge-v001",
+      "path": "seoul-challenge-v001.json",
+      "variantSeed": 4992890508517837628,
+      "attempt": 1,
+      "mutations": [
+        {
+          "parameterId": "courtyard-roughness",
+          "target": {
+            "kind": "material",
+            "id": "courtyard",
+            "path": "roughness.base"
+          },
+          "before": 0.82,
+          "after": 0.7355
+        },
+        {
+          "parameterId": "courtyard-dominant-palette",
+          "target": {
+            "kind": "material",
+            "id": "courtyard",
+            "path": "colorVariation.palette.0"
+          },
+          "before": "#C9B58B",
+          "after": "#A99571"
+        },
+        {
+          "parameterId": "palace-wall-roughness",
+          "target": {
+            "kind": "material",
+            "id": "palace-wall",
+            "path": "roughness.base"
+          },
+          "before": 0.72,
+          "after": 0.7679
+        },
+        {
+          "parameterId": "palace-wall-dominant-palette",
+          "target": {
+            "kind": "material",
+            "id": "palace-wall",
+            "path": "colorVariation.palette.0"
+          },
+          "before": "#BDAE8C",
+          "after": "#7E4B3C"
+        },
+        {
+          "parameterId": "roof-roughness",
+          "target": {
+            "kind": "material",
+            "id": "roof",
+            "path": "roughness.base"
+          },
+          "before": 0.74,
+          "after": 0.7949
+        },
+        {
+          "parameterId": "roof-dominant-palette",
+          "target": {
+            "kind": "material",
+            "id": "roof",
+            "path": "colorVariation.palette.0"
+          },
+          "before": "#202827",
+          "after": "#111716"
+        },
+        {
+          "parameterId": "mountain-roughness",
+          "target": {
+            "kind": "material",
+            "id": "mountain",
+            "path": "roughness.base"
+          },
+          "before": 0.9,
+          "after": 0.8645
+        },
+        {
+          "parameterId": "mountain-dominant-palette",
+          "target": {
+            "kind": "material",
+            "id": "mountain",
+            "path": "colorVariation.palette.0"
+          },
+          "before": "#254D36",
+          "after": "#183927"
+        },
+        {
+          "parameterId": "city-roughness",
+          "target": {
+            "kind": "material",
+            "id": "city",
+            "path": "roughness.base"
+          },
+          "before": 0.78,
+          "after": 0.7806
+        },
+        {
+          "parameterId": "city-dominant-palette",
+          "target": {
+            "kind": "material",
+            "id": "city",
+            "path": "colorVariation.palette.0"
+          },
+          "before": "#CBD0CC",
+          "after": "#CBD0CC"
+        },
+        {
+          "parameterId": "vegetation-roughness",
+          "target": {
+            "kind": "material",
+            "id": "vegetation",
+            "path": "roughness.base"
+          },
+          "before": 0.88,
+          "after": 0.9655
+        },
+        {
+          "parameterId": "vegetation-dominant-palette",
+          "target": {
+            "kind": "material",
+            "id": "vegetation",
+            "path": "colorVariation.palette.0"
+          },
+          "before": "#39704A",
+          "after": "#254E35"
+        },
+        {
+          "parameterId": "palace-roofs-count",
+          "target": {
+            "kind": "repetition",
+            "id": "palace-roofs",
+            "path": "count"
+          },
+          "before": 14,
+          "after": 13
+        },
+        {
+          "parameterId": "urban-blocks-count",
+          "target": {
+            "kind": "repetition",
+            "id": "urban-blocks",
+            "path": "count"
+          },
+          "before": 48,
+          "after": 51
+        },
+        {
+          "parameterId": "tree-clusters-count",
+          "target": {
+            "kind": "repetition",
+            "id": "tree-clusters",
+            "path": "count"
+          },
+          "before": 72,
+          "after": 81
+        },
+        {
+          "parameterId": "mountain-peaks-count",
+          "target": {
+            "kind": "repetition",
+            "id": "mountain-peaks",
+            "path": "count"
+          },
+          "before": 7,
+          "after": 8
+        }
+      ],
+      "invariants": {
+        "ok": true,
+        "checked": [
+          "component-ids",
+          "parent-links",
+          "material-refs",
+          "socket-ids",
+          "fracture-groups",
+          "attachment-roots",
+          "build-pass-order",
+          "feature-review-targets"
+        ]
+      },
+      "reviewEvidenceReset": true,
+      "samplingMode": "coverage-curated",
+      "candidateIndex": 15,
+      "curatedIndex": 1,
+      "selectionScore": 0.362951,
+      "previewMode": true,
+      "passGateStatus": "pending-per-variant-visual-review"
+    },
+    {
+      "variantId": "seoul-challenge-v002",
+      "path": "seoul-challenge-v002.json",
+      "variantSeed": 832591700629058726,
+      "attempt": 1,
+      "mutations": [
+        {
+          "parameterId": "courtyard-roughness",
+          "target": {
+            "kind": "material",
+            "id": "courtyard",
+            "path": "roughness.base"
+          },
+          "before": 0.82,
+          "after": 0.853
+        },
+        {
+          "parameterId": "courtyard-dominant-palette",
+          "target": {
+            "kind": "material",
+            "id": "courtyard",
+            "path": "colorVariation.palette.0"
+          },
+          "before": "#C9B58B",
+          "after": "#C9B58B"
+        },
+        {
+          "parameterId": "palace-wall-roughness",
+          "target": {
+            "kind": "material",
+            "id": "palace-wall",
+            "path": "roughness.base"
+          },
+          "before": 0.72,
+          "after": 0.7225
+        },
+        {
+          "parameterId": "palace-wall-dominant-palette",
+          "target": {
+            "kind": "material",
+            "id": "palace-wall",
+            "path": "colorVariation.palette.0"
+          },
+          "before": "#BDAE8C",
+          "after": "#BDAE8C"
+        },
+        {
+          "parameterId": "roof-roughness",
+          "target": {
+            "kind": "material",
+            "id": "roof",
+            "path": "roughness.base"
+          },
+          "before": 0.74,
+          "after": 0.7844
+        },
+        {
+          "parameterId": "roof-dominant-palette",
+          "target": {
+            "kind": "material",
+            "id": "roof",
+            "path": "colorVariation.palette.0"
+          },
+          "before": "#202827",
+          "after": "#34413F"
+        },
+        {
+          "parameterId": "mountain-roughness",
+          "target": {
+            "kind": "material",
+            "id": "mountain",
+            "path": "roughness.base"
+          },
+          "before": 0.9,
+          "after": 0.9509
+        },
+        {
+          "parameterId": "mountain-dominant-palette",
+          "target": {
+            "kind": "material",
+            "id": "mountain",
+            "path": "colorVariation.palette.0"
+          },
+          "before": "#254D36",
+          "after": "#254D36"
+        },
+        {
+          "parameterId": "city-roughness",
+          "target": {
+            "kind": "material",
+            "id": "city",
+            "path": "roughness.base"
+          },
+          "before": 0.78,
+          "after": 0.7981
+        },
+        {
+          "parameterId": "city-dominant-palette",
+          "target": {
+            "kind": "material",
+            "id": "city",
+            "path": "colorVariation.palette.0"
+          },
+          "before": "#CBD0CC",
+          "after": "#9EA7A3"
+        },
+        {
+          "parameterId": "vegetation-roughness",
+          "target": {
+            "kind": "material",
+            "id": "vegetation",
+            "path": "roughness.base"
+          },
+          "before": 0.88,
+          "after": 0.8072
+        },
+        {
+          "parameterId": "vegetation-dominant-palette",
+          "target": {
+            "kind": "material",
+            "id": "vegetation",
+            "path": "colorVariation.palette.0"
+          },
+          "before": "#39704A",
+          "after": "#39704A"
+        },
+        {
+          "parameterId": "palace-roofs-count",
+          "target": {
+            "kind": "repetition",
+            "id": "palace-roofs",
+            "path": "count"
+          },
+          "before": 14,
+          "after": 12
+        },
+        {
+          "parameterId": "urban-blocks-count",
+          "target": {
+            "kind": "repetition",
+            "id": "urban-blocks",
+            "path": "count"
+          },
+          "before": 48,
+          "after": 53
+        },
+        {
+          "parameterId": "tree-clusters-count",
+          "target": {
+            "kind": "repetition",
+            "id": "tree-clusters",
+            "path": "count"
+          },
+          "before": 72,
+          "after": 74
+        },
+        {
+          "parameterId": "mountain-peaks-count",
+          "target": {
+            "kind": "repetition",
+            "id": "mountain-peaks",
+            "path": "count"
+          },
+          "before": 7,
+          "after": 7
+        }
+      ],
+      "invariants": {
+        "ok": true,
+        "checked": [
+          "component-ids",
+          "parent-links",
+          "material-refs",
+          "socket-ids",
+          "fracture-groups",
+          "attachment-roots",
+          "build-pass-order",
+          "feature-review-targets"
+        ]
+      },
+      "reviewEvidenceReset": true,
+      "samplingMode": "coverage-curated",
+      "candidateIndex": 11,
+      "curatedIndex": 2,
+      "selectionScore": 0.598032,
+      "previewMode": true,
+      "passGateStatus": "pending-per-variant-visual-review"
+    },
+    {
+      "variantId": "seoul-challenge-v003",
+      "path": "seoul-challenge-v003.json",
+      "variantSeed": 10559084579826424457,
+      "attempt": 1,
+      "mutations": [
+        {
+          "parameterId": "courtyard-roughness",
+          "target": {
+            "kind": "material",
+            "id": "courtyard",
+            "path": "roughness.base"
+          },
+          "before": 0.82,
+          "after": 0.7832
+        },
+        {
+          "parameterId": "courtyard-dominant-palette",
+          "target": {
+            "kind": "material",
+            "id": "courtyard",
+            "path": "colorVariation.palette.0"
+          },
+          "before": "#C9B58B",
+          "after": "#A99571"
+        },
+        {
+          "parameterId": "palace-wall-roughness",
+          "target": {
+            "kind": "material",
+            "id": "palace-wall",
+            "path": "roughness.base"
+          },
+          "before": 0.72,
+          "after": 0.6247
+        },
+        {
+          "parameterId": "palace-wall-dominant-palette",
+          "target": {
+            "kind": "material",
+            "id": "palace-wall",
+            "path": "colorVariation.palette.0"
+          },
+          "before": "#BDAE8C",
+          "after": "#D6C8A7"
+        },
+        {
+          "parameterId": "roof-roughness",
+          "target": {
+            "kind": "material",
+            "id": "roof",
+            "path": "roughness.base"
+          },
+          "before": 0.74,
+          "after": 0.7541
+        },
+        {
+          "parameterId": "roof-dominant-palette",
+          "target": {
+            "kind": "material",
+            "id": "roof",
+            "path": "colorVariation.palette.0"
+          },
+          "before": "#202827",
+          "after": "#202827"
+        },
+        {
+          "parameterId": "mountain-roughness",
+          "target": {
+            "kind": "material",
+            "id": "mountain",
+            "path": "roughness.base"
+          },
+          "before": 0.9,
+          "after": 0.8483
+        },
+        {
+          "parameterId": "mountain-dominant-palette",
+          "target": {
+            "kind": "material",
+            "id": "mountain",
+            "path": "colorVariation.palette.0"
+          },
+          "before": "#254D36",
+          "after": "#254D36"
+        },
+        {
+          "parameterId": "city-roughness",
+          "target": {
+            "kind": "material",
+            "id": "city",
+            "path": "roughness.base"
+          },
+          "before": 0.78,
+          "after": 0.7466
+        },
+        {
+          "parameterId": "city-dominant-palette",
+          "target": {
+            "kind": "material",
+            "id": "city",
+            "path": "colorVariation.palette.0"
+          },
+          "before": "#CBD0CC",
+          "after": "#CBD0CC"
+        },
+        {
+          "parameterId": "vegetation-roughness",
+          "target": {
+            "kind": "material",
+            "id": "vegetation",
+            "path": "roughness.base"
+          },
+          "before": 0.88,
+          "after": 0.8839
+        },
+        {
+          "parameterId": "vegetation-dominant-palette",
+          "target": {
+            "kind": "material",
+            "id": "vegetation",
+            "path": "colorVariation.palette.0"
+          },
+          "before": "#39704A",
+          "after": "#39704A"
+        },
+        {
+          "parameterId": "palace-roofs-count",
+          "target": {
+            "kind": "repetition",
+            "id": "palace-roofs",
+            "path": "count"
+          },
+          "before": 14,
+          "after": 16
+        },
+        {
+          "parameterId": "urban-blocks-count",
+          "target": {
+            "kind": "repetition",
+            "id": "urban-blocks",
+            "path": "count"
+          },
+          "before": 48,
+          "after": 55
+        },
+        {
+          "parameterId": "tree-clusters-count",
+          "target": {
+            "kind": "repetition",
+            "id": "tree-clusters",
+            "path": "count"
+          },
+          "before": 72,
+          "after": 66
+        },
+        {
+          "parameterId": "mountain-peaks-count",
+          "target": {
+            "kind": "repetition",
+            "id": "mountain-peaks",
+            "path": "count"
+          },
+          "before": 7,
+          "after": 7
+        }
+      ],
+      "invariants": {
+        "ok": true,
+        "checked": [
+          "component-ids",
+          "parent-links",
+          "material-refs",
+          "socket-ids",
+          "fracture-groups",
+          "attachment-roots",
+          "build-pass-order",
+          "feature-review-targets"
+        ]
+      },
+      "reviewEvidenceReset": true,
+      "samplingMode": "coverage-curated",
+      "candidateIndex": 24,
+      "curatedIndex": 3,
+      "selectionScore": 0.525496,
+      "previewMode": true,
+      "passGateStatus": "pending-per-variant-visual-review"
+    }
+  ],
+  "samplingMode": "coverage-curated",
+  "poolSize": 24,
+  "selectedCandidateIndexes": [
+    15,
+    11,
+    24
+  ],
+  "parameterIds": [
+    "courtyard-roughness",
+    "courtyard-dominant-palette",
+    "palace-wall-roughness",
+    "palace-wall-dominant-palette",
+    "roof-roughness",
+    "roof-dominant-palette",
+    "mountain-roughness",
+    "mountain-dominant-palette",
+    "city-roughness",
+    "city-dominant-palette",
+    "vegetation-roughness",
+    "vegetation-dominant-palette",
+    "palace-roofs-count",
+    "urban-blocks-count",
+    "tree-clusters-count",
+    "mountain-peaks-count"
+  ],
+  "coverageScore": 0.554063,
+  "selectionStrategy": "centroid-extreme then greedy max-min normalized parameter distance",
+  "previewMode": true,
+  "passGateStatus": "pending-per-variant-visual-review",
+  "baseCompletedPasses": [],
+  "missingBasePasses": [
+    "blockout",
+    "structural-pass",
+    "form-refinement",
+    "material-pass",
+    "surface-pass"
+  ]
+}
