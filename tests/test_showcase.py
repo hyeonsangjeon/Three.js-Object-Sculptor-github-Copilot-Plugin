@@ -60,12 +60,14 @@ class ShowcaseTests(unittest.TestCase):
                     manifest["sourceSpecSha256"],
                     sha256(base_spec.read_bytes()).hexdigest(),
                 )
-                if family == "tree":
+                if family in {"tree", "brick"}:
                     self.assertFalse(manifest["previewMode"])
-                    self.assertEqual(
-                        manifest["passGateStatus"],
-                        "base-sculpt-gate-complete",
+                    expected_status = (
+                        "evidence-backed-production"
+                        if family == "brick"
+                        else "base-sculpt-gate-complete"
                     )
+                    self.assertEqual(manifest["passGateStatus"], expected_status)
                     self.assertEqual(manifest["missingBasePasses"], [])
                 else:
                     self.assertTrue(manifest["previewMode"])
@@ -87,9 +89,30 @@ class ShowcaseTests(unittest.TestCase):
         for family in review["families"]:
             self.assertTrue((ROOT / family["reference"]).exists())
             self.assertTrue((ROOT / family["render"]).exists())
+            expected_status = (
+                "evidence-backed-production"
+                if family["id"] == "brick-offroad"
+                else "pending-per-variant-visual-review"
+            )
+            self.assertEqual(family["passGateStatus"], expected_status)
+            manifest_dir = {
+                "repolis-tree": "tree",
+                "brick-offroad": "brick",
+                "seoul-challenge": "seoul",
+            }[family["id"]]
+            manifest = json.loads(
+                (
+                    ROOT
+                    / "examples"
+                    / "showcase"
+                    / "variants"
+                    / manifest_dir
+                    / "sculpt-dna-manifest.json"
+                ).read_text(encoding="utf-8")
+            )
             self.assertEqual(
-                family["passGateStatus"],
-                "pending-per-variant-visual-review",
+                family["coverageCurator"]["coverageScore"],
+                manifest["coverageScore"],
             )
 
     def test_local_server_is_loopback_and_showcase_scoped(self) -> None:

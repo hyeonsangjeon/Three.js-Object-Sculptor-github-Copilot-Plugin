@@ -29,22 +29,22 @@
       "id": "brick-offroad",
       "reference": "assets/brick-offroad-reference.jpeg",
       "render": "assets/brick-offroad-sculpt-dna-result.png",
-      "decision": "document-family-preview",
-      "baseSculptStatus": "preview",
-      "passGateStatus": "pending-per-variant-visual-review",
+      "decision": "promote-to-evidence-backed-flagship",
+      "baseSculptStatus": "complete",
+      "passGateStatus": "evidence-backed-production",
       "coverageCurator": {
         "poolSize": 24,
         "selectedCandidateIndexes": [19, 8, 14],
-        "coverageScore": 0.543732
+        "coverageScore": 0.540837
       },
       "scores": {
-        "silhouetteProportion": 0.76,
-        "componentStructure": 0.78,
-        "formDetail": 0.67,
-        "materialSurface": 0.72,
-        "lightingCamera": 0.74
+        "silhouetteProportion": 0.83,
+        "componentStructure": 0.83,
+        "formDetail": 0.81,
+        "materialSurface": 0.8,
+        "lightingCamera": 0.82
       },
-      "notes": "A refine-spec pass corrected the initial six-wheel interpretation to the reference four-wheel topology and restored olive panels, a light roof, roof gear, treads, and lamps."
+      "notes": "The production flagship and all three curated variants now have fresh same-camera evidence. They preserve exactly four wheels, vehicle-specific body hierarchy, generated PBR separation, action-ready runtime contracts, and the photographed expedition identity."
     },
     {
       "id": "seoul-challenge",

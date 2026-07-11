@@ -124,7 +124,7 @@ def next_required_evidence(spec: dict[str, Any], pass_id: str) -> list[str]:
     if pass_id == "complete":
         return []
     evidence = pass_acceptance(spec, pass_id)
-    evidence.extend(pass_specific_evidence(pass_id))
+    evidence.extend(pass_specific_evidence(spec, pass_id))
     if pass_id in VISUAL_PASS_IDS:
         evidence.append("browser render screenshot from the GitHub Copilot in-app Browser")
         evidence.append("side-by-side reference/render comparison sheet for AI vision review")
@@ -381,17 +381,22 @@ def lighting_pass_gaps(spec: dict[str, Any]) -> list[str]:
     return gaps
 
 
-def pass_specific_evidence(pass_id: str) -> list[str]:
+def pass_specific_evidence(spec: dict[str, Any], pass_id: str) -> list[str]:
     if pass_id in {"structural-pass", "form-refinement"}:
         return [
             "attachment contracts for child appendages/connectors",
             "no floating child roots/joints in the browser screenshot",
         ]
     if pass_id == "material-pass":
+        minimum_resolution = (
+            spec.get("lookDevTargets", {})
+            .get("materialPass", {})
+            .get("minimumTextureResolution", 1024)
+        )
         return [
             "reference-derived albedo palette with dominant, secondary, and accent colors",
             "independent albedo, roughness, height/normal, and AO maps",
-            "macro, meso, and micro surface-frequency response at 1024px or higher",
+            f"macro, meso, and micro surface-frequency response at {minimum_resolution}px or higher",
             "local material masks: AO, dirt, wear, stains, moss, chips, scratches, wetness, or equivalent",
             "neutral, grazing-light close-up, and reference-matched browser screenshots",
             "AI vision comparison sheet score meeting the visual acceptance threshold",

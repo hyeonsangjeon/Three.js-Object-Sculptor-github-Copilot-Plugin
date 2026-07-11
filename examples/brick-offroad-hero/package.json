@@ -1,0 +1,18 @@
+{
+  "name": "brick-offroad-flagship",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 4176",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1 --port 4176",
+    "capture": "node scripts/capture.mjs"
+  },
+  "dependencies": {
+    "three": "0.180.0"
+  },
+  "devDependencies": {
+    "puppeteer-core": "25.3.0",
+    "vite": "7.1.7"
+  }
+}

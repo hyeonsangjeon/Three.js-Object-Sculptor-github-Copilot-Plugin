@@ -1,0 +1,43 @@
+{
+  "name": "Brick Off-Road Explorer",
+  "version": "1.0.0",
+  "seed": 20260712,
+  "sourceReference": "../../../assets/brick-offroad-reference.jpeg",
+  "factory": "createBrickOffroad.js",
+  "generation": {
+    "geometry": "rounded boxes, torus arches and tires, cylinders, procedural rails, and instanced repetition systems",
+    "materials": "runtime-generated independent albedo, roughness, height, normal, and ambient-occlusion channels",
+    "textureResolution": 512,
+    "repetition": [
+      "52-76 tire tread blocks with equal cadence on all four wheels",
+      "63-72 body studs from curated DNA",
+      "4-5 roof lamps from curated DNA",
+      "20 panel fasteners",
+      "wheel hub spokes"
+    ],
+    "importedMeshes": 0
+  },
+  "actionReadiness": {
+    "root": "brick-offroad-root",
+    "chassis": "chassis",
+    "wheelPivots": 4,
+    "steeringPivots": 2,
+    "suspensionAnchors": 4,
+    "hingedPanels": [
+      "hood-pivot",
+      "left-door-pivot",
+      "right-door-pivot",
+      "tailgate-pivot"
+    ],
+    "roofSockets": 3,
+    "colliders": true,
+    "destructionGroups": true,
+    "runtimeMetadata": "Serializable IDs stay in root.userData; live Object3D references are returned as result.runtime"
+  },
+  "variants": [
+    "brick-offroad-v001",
+    "brick-offroad-v002",
+    "brick-offroad-v003"
+  ],
+  "variantControls": "brick-variant-config.json is validated against the production ObjectSculptSpec variants"
+}

@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0",
   "sourceSpec": "object-sculpt-spec.json",
-  "sourceSpecSha256": "df9d26fbb26a5a3a4f526353160c5b05a64710bca488e5e6832911d692266567",
+  "sourceSpecSha256": "b83335e75c1c9e8ada1e6f8995969491f6beae19ad68e763e43a932b6992f06c",
   "rootSeed": 20260711,
   "count": 3,
   "variants": [
@@ -89,7 +89,7 @@
             "path": "colorVariation.palette.0"
           },
           "before": "#D87927",
-          "after": "#3AA6A0"
+          "after": "#E28A2B"
         },
         {
           "parameterId": "rubber-roughness",
@@ -159,7 +159,7 @@
             "path": "count"
           },
           "before": 64,
-          "after": 53
+          "after": 52
         },
         {
           "parameterId": "body-studs-count",
@@ -169,7 +169,7 @@
             "path": "count"
           },
           "before": 72,
-          "after": 76
+          "after": 72
         },
         {
           "parameterId": "roof-lamps-count",
@@ -179,7 +179,7 @@
             "path": "count"
           },
           "before": 5,
-          "after": 6
+          "after": 5
         }
       ],
       "invariants": {
@@ -199,9 +199,14 @@
       "samplingMode": "coverage-curated",
       "candidateIndex": 19,
       "curatedIndex": 1,
-      "selectionScore": 0.378358,
-      "previewMode": true,
-      "passGateStatus": "pending-per-variant-visual-review"
+      "selectionScore": 0.36496,
+      "previewMode": false,
+      "passGateStatus": "evidence-backed-production",
+      "visualEvidence": {
+        "aiVisionScore": 0.78,
+        "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-1.webp",
+        "comparisonImage": "examples/brick-offroad-hero/evidence/variant-1-comparison.webp"
+      }
     },
     {
       "variantId": "brick-offroad-v002",
@@ -287,7 +292,7 @@
             "path": "colorVariation.palette.0"
           },
           "before": "#D87927",
-          "after": "#3AA6A0"
+          "after": "#E28A2B"
         },
         {
           "parameterId": "rubber-roughness",
@@ -357,7 +362,7 @@
             "path": "count"
           },
           "before": 64,
-          "after": 74
+          "after": 76
         },
         {
           "parameterId": "body-studs-count",
@@ -397,9 +402,14 @@
       "samplingMode": "coverage-curated",
       "candidateIndex": 8,
       "curatedIndex": 2,
-      "selectionScore": 0.61133,
-      "previewMode": true,
-      "passGateStatus": "pending-per-variant-visual-review"
+      "selectionScore": 0.586049,
+      "previewMode": false,
+      "passGateStatus": "evidence-backed-production",
+      "visualEvidence": {
+        "aiVisionScore": 0.76,
+        "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-2.webp",
+        "comparisonImage": "examples/brick-offroad-hero/evidence/variant-2-comparison.webp"
+      }
     },
     {
       "variantId": "brick-offroad-v003",
@@ -555,7 +565,7 @@
             "path": "count"
           },
           "before": 64,
-          "after": 57
+          "after": 52
         },
         {
           "parameterId": "body-studs-count",
@@ -565,7 +575,7 @@
             "path": "count"
           },
           "before": 72,
-          "after": 72
+          "after": 63
         },
         {
           "parameterId": "roof-lamps-count",
@@ -595,9 +605,14 @@
       "samplingMode": "coverage-curated",
       "candidateIndex": 14,
       "curatedIndex": 3,
-      "selectionScore": 0.4914,
-      "previewMode": true,
-      "passGateStatus": "pending-per-variant-visual-review"
+      "selectionScore": 0.51774,
+      "previewMode": false,
+      "passGateStatus": "evidence-backed-production",
+      "visualEvidence": {
+        "aiVisionScore": 0.79,
+        "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-3.webp",
+        "comparisonImage": "examples/brick-offroad-hero/evidence/variant-3-comparison.webp"
+      }
     }
   ],
   "samplingMode": "coverage-curated",
@@ -626,16 +641,19 @@
     "body-studs-count",
     "roof-lamps-count"
   ],
-  "coverageScore": 0.543732,
+  "coverageScore": 0.540837,
   "selectionStrategy": "centroid-extreme then greedy max-min normalized parameter distance",
-  "previewMode": true,
-  "passGateStatus": "pending-per-variant-visual-review",
-  "baseCompletedPasses": [],
-  "missingBasePasses": [
+  "previewMode": false,
+  "passGateStatus": "evidence-backed-production",
+  "baseCompletedPasses": [
     "blockout",
     "structural-pass",
     "form-refinement",
     "material-pass",
-    "surface-pass"
-  ]
+    "surface-pass",
+    "lighting-pass",
+    "interaction-pass",
+    "optimization-pass"
+  ],
+  "missingBasePasses": []
 }

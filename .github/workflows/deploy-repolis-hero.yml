@@ -1,10 +1,11 @@
-name: Deploy Repolis hero
+name: Deploy flagship demos
 
 on:
   push:
     branches: [main]
     paths:
       - "examples/repolis-hero/**"
+      - "examples/brick-offroad-hero/**"
       - ".github/workflows/deploy-repolis-hero.yml"
   workflow_dispatch:
 
@@ -26,17 +27,30 @@ jobs:
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: examples/repolis-hero/package-lock.json
-      - name: Install dependencies
+          cache-dependency-path: |
+            examples/repolis-hero/package-lock.json
+            examples/brick-offroad-hero/package-lock.json
+      - name: Install Repolis dependencies
         working-directory: examples/repolis-hero
         run: npm ci
-      - name: Build hero
+      - name: Build Repolis root
         working-directory: examples/repolis-hero
         run: npm run build
+      - name: Install Brick dependencies
+        working-directory: examples/brick-offroad-hero
+        run: npm ci
+      - name: Build Brick route
+        working-directory: examples/brick-offroad-hero
+        run: npm run build
+      - name: Assemble Pages artifact
+        run: |
+          mkdir -p pages/brick
+          cp -R examples/repolis-hero/dist/. pages/
+          cp -R examples/brick-offroad-hero/dist/. pages/brick/
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: examples/repolis-hero/dist
+          path: pages
 
   deploy:
     environment:

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#11130f" />
+    <meta
+      name="description"
+      content="Explore a production-quality brick-built off-road 4x4 generated procedurally with Three.js Sculpt DNA."
+    />
+    <meta property="og:title" content="Brick Off-Road Explorer — Three.js Sculpt DNA" />
+    <meta
+      property="og:description"
+      content="A code-sculpted flagship with generated PBR, action-ready hierarchy, and deterministic vehicle DNA."
+    />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='5' y='20' width='54' height='28' rx='7' fill='%236f7650'/%3E%3Ccircle cx='18' cy='49' r='9' fill='%23161918'/%3E%3Ccircle cx='47' cy='49' r='9' fill='%23161918'/%3E%3C/svg%3E" />
+    <title>Brick Off-Road Explorer — Three.js Sculpt DNA Flagship</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main id="app" aria-labelledby="scene-title">
+      <section class="intro">
+        <p class="eyebrow">SCULPT DNA · PROCEDURAL FLAGSHIP 02</p>
+        <h1 id="scene-title">Brick<br />Explorer</h1>
+        <p class="subtitle">
+          The photographed olive 4x4 rebuilt from code: four wheels, articulated panels,
+          generated PBR, and expedition detail.
+        </p>
+        <div class="proof" aria-label="Generation facts">
+          <span>0 imported meshes</span>
+          <span id="generation-time">Generating</span>
+          <span id="geometry-stats">Measuring geometry</span>
+        </div>
+      </section>
+
+      <nav class="controls" aria-label="Vehicle controls">
+        <button id="toggle-motion" type="button" aria-pressed="true">Pause rotation</button>
+        <button id="reset-view" type="button">Reference view</button>
+        <button id="next-variant" type="button">Next DNA</button>
+      </nav>
+
+      <section class="variant-panel" aria-live="polite" aria-label="Active Sculpt DNA">
+        <span class="variant-label">CURATED VEHICLE DNA</span>
+        <strong id="variant-name">Field Olive</strong>
+        <span id="variant-index">01 / 03</span>
+        <span class="topology-label">FOUR-WHEEL TOPOLOGY LOCKED</span>
+      </section>
+
+      <button
+        id="open-reference"
+        class="reference-preview"
+        type="button"
+        aria-haspopup="dialog"
+        aria-controls="reference-dialog"
+      >
+        <img
+          src="./reference/brick-offroad-reference.jpeg"
+          alt="Photographed olive brick-built off-road 4x4 reference"
+          width="1600"
+          height="1394"
+        />
+        <span>Inspect source reference</span>
+      </button>
+
+      <dialog id="reference-dialog" class="reference-dialog" aria-labelledby="reference-title">
+        <div class="dialog-heading">
+          <div>
+            <p class="eyebrow">SOURCE EVIDENCE</p>
+            <h2 id="reference-title">Olive brick-built 4x4</h2>
+          </div>
+          <button id="close-reference" type="button" aria-label="Close reference image">×</button>
+        </div>
+        <img
+          src="./reference/brick-offroad-reference.jpeg"
+          alt="Large view of the photographed olive brick-built off-road 4x4"
+          width="1600"
+          height="1394"
+        />
+      </dialog>
+
+      <p class="hint" aria-hidden="true">DRAG TO ORBIT · SCROLL TO ZOOM · SWITCH CURATED DNA</p>
+      <div
+        id="scene"
+        role="img"
+        aria-label="Interactive three-dimensional procedural Brick Off-Road Explorer"
+      ></div>
+      <div id="loading" role="status" aria-live="polite">
+        <span>Assembling procedural 4×4</span>
+      </div>
+    </main>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
