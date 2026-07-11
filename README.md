@@ -1,4 +1,4 @@
-# Three.js Sculpt DNA for GitHub Copilot
+# threejs-sculpt-dna — A GitHub Copilot Plugin
 
 > A community-built GitHub Copilot plugin for code-native procedural Three.js reconstruction and deterministic asset families.
 
@@ -12,7 +12,7 @@ Its **Coverage Curator** generates a larger safe candidate pool and uses a deter
 
 ## 03 · Flagship: Repolis Living Archive
 
-[Open the interactive Repolis Tree demo](https://hyeonsangjeon.github.io/Three.js-Object-Sculptor-github-Copilot-Plugin/)
+[Open the interactive Repolis Tree demo](https://hyeonsangjeon.github.io/threejs-sculpt-dna/)
 
 ![Rotating high-detail procedural Repolis Tree](assets/repolis-tree-hero.gif)
 
@@ -58,7 +58,7 @@ The middle contact sheet is design-space exploration, not the finished asset. Co
 
    ```bash
    copilot plugin marketplace add \
-     hyeonsangjeon/Three.js-Object-Sculptor-github-Copilot-Plugin
+     hyeonsangjeon/threejs-sculpt-dna
 
    copilot plugin install \
      threejs-sculpt-dna@threejs-copilot-plugins
@@ -294,7 +294,7 @@ copilot plugin list
 Install directly from GitHub:
 
 ```bash
-copilot plugin install hyeonsangjeon/Three.js-Object-Sculptor-github-Copilot-Plugin
+copilot plugin install hyeonsangjeon/threejs-sculpt-dna
 ```
 
 Copilot currently warns that direct repository installs will eventually move to marketplace-only distribution, but the public repository install is supported today.
@@ -303,7 +303,7 @@ Install through this repository's Copilot plugin marketplace:
 
 ```bash
 copilot plugin marketplace add \
-  hyeonsangjeon/Three.js-Object-Sculptor-github-Copilot-Plugin
+  hyeonsangjeon/threejs-sculpt-dna
 
 copilot plugin install \
   threejs-sculpt-dna@threejs-copilot-plugins

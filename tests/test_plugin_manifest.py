@@ -26,7 +26,9 @@ class PluginManifestTests(unittest.TestCase):
 
     def test_public_brand_name_does_not_include_cli(self) -> None:
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
-        self.assertTrue(readme.startswith("# Three.js Sculpt DNA for GitHub Copilot"))
+        self.assertTrue(
+            readme.startswith("# threejs-sculpt-dna — A GitHub Copilot Plugin")
+        )
         self.assertNotIn(
             "# Three.js Sculpt DNA for GitHub Copilot CLI",
             readme,
@@ -37,7 +39,7 @@ class PluginManifestTests(unittest.TestCase):
         guide = (ROOT / "docs" / "USER_GUIDE.md").read_text(encoding="utf-8")
         install = "threejs-sculpt-dna@threejs-copilot-plugins"
         repository = (
-            "hyeonsangjeon/Three.js-Object-Sculptor-github-Copilot-Plugin"
+            "hyeonsangjeon/threejs-sculpt-dna"
         )
         for document in (readme, guide):
             self.assertIn(install, document)

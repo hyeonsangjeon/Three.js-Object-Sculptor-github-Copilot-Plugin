@@ -1,4 +1,4 @@
-# Three.js Sculpt DNA for GitHub Copilot — User Guide
+# threejs-sculpt-dna — A GitHub Copilot Plugin: User Guide
 
 ## 1. Install from the Copilot plugin marketplace
 
@@ -6,7 +6,7 @@ Register this repository as a marketplace:
 
 ```bash
 copilot plugin marketplace add \
-  hyeonsangjeon/Three.js-Object-Sculptor-github-Copilot-Plugin
+  hyeonsangjeon/threejs-sculpt-dna
 ```
 
 Browse the registered plugin:
@@ -182,7 +182,7 @@ Use `--force` only when you also want to uninstall plugins installed from that m
 ```bash
 copilot plugin marketplace remove threejs-copilot-plugins --force
 copilot plugin marketplace add \
-  hyeonsangjeon/Three.js-Object-Sculptor-github-Copilot-Plugin
+  hyeonsangjeon/threejs-sculpt-dna
 ```
 
 Then reinstall the plugin.

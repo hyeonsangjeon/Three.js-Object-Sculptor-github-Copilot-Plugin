@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "python3 -m http.server 4174 --bind 127.0.0.1 --directory .",
     "dev": "vite --host 127.0.0.1 --port 4174",
-    "build": "vite build --base /Three.js-Object-Sculptor-github-Copilot-Plugin/",
+    "build": "vite build --base /threejs-sculpt-dna/",
     "preview": "vite preview --host 127.0.0.1 --port 4174",
     "capture": "node scripts/capture.mjs"
   },
