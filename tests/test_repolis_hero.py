@@ -116,6 +116,9 @@ class RepolisHeroTests(unittest.TestCase):
             with self.subTest(output=relative):
                 self.assertEqual(digest((hero_dir / relative).resolve()), expected)
         self.assertEqual(manifest["capture"]["seed"], 20260711)
+        self.assertEqual(manifest["capture"]["frames"], 24)
+        self.assertEqual(manifest["capture"]["fps"], 6)
+        self.assertEqual(manifest["capture"]["rotationSeconds"], 4)
         self.assertEqual(manifest["runtimeStats"]["importedMeshes"], 0)
 
     def test_readme_distinguishes_reference_variants_and_flagship(self) -> None:

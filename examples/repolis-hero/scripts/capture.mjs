@@ -13,6 +13,8 @@ const assetsDir = path.join(repoRoot, 'assets');
 const evidenceDir = path.join(heroDir, 'evidence');
 const framesDir = path.join(heroDir, '.capture-frames');
 const baseUrl = 'http://127.0.0.1:4175';
+const gifFrameCount = 24;
+const gifFps = 6;
 
 
 async function exists(filePath) {
@@ -160,8 +162,8 @@ async function main() {
       waitUntil: 'networkidle0',
     });
     await waitForHero(page);
-    for (let index = 0; index < 20; index += 1) {
-      const angle = -0.35 + index * Math.PI * 2 / 20;
+    for (let index = 0; index < gifFrameCount; index += 1) {
+      const angle = -0.35 + index * Math.PI * 2 / gifFrameCount;
       await page.evaluate((value) => window.__setHeroAngle(value), angle);
       await new Promise((resolve) => setTimeout(resolve, 30));
       await page.screenshot({
@@ -176,11 +178,11 @@ async function main() {
         'error',
         '-y',
         '-framerate',
-        '10',
+        String(gifFps),
         '-i',
         path.join(framesDir, 'frame-%02d.png'),
         '-filter_complex',
-        'fps=10,scale=960:-1:flags=lanczos,split[s0][s1];[s0]palettegen=max_colors=192[p];[s1][p]paletteuse=dither=bayer:bayer_scale=3',
+        `fps=${gifFps},scale=960:-1:flags=lanczos,split[s0][s1];[s0]palettegen=max_colors=192[p];[s1][p]paletteuse=dither=bayer:bayer_scale=3`,
         '-loop',
         '0',
         path.join(assetsDir, 'repolis-tree-hero.gif'),
@@ -255,8 +257,9 @@ async function main() {
         seed: 20260711,
         variant: 'golden-canopy',
         viewport: [1200, 675],
-        frames: 20,
-        fps: 10,
+        frames: gifFrameCount,
+        fps: gifFps,
+        rotationSeconds: gifFrameCount / gifFps,
         chrome: path.basename(chromePath),
       },
       runtimeStats: stats,
