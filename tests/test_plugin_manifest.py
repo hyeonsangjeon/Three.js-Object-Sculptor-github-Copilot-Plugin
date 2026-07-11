@@ -59,6 +59,21 @@ class PluginManifestTests(unittest.TestCase):
             readme,
         )
 
+    def test_launch_kit_uses_current_public_links_and_install_command(self) -> None:
+        launch_kit = (ROOT / "docs" / "LAUNCH_KIT.md").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("https://github.com/hyeonsangjeon/threejs-sculpt-dna", launch_kit)
+        self.assertIn("https://hyeonsangjeon.github.io/threejs-sculpt-dna/", launch_kit)
+        self.assertIn(
+            "threejs-sculpt-dna@threejs-copilot-plugins",
+            launch_kit,
+        )
+        self.assertIn(
+            "Do not say the flagship was produced with zero art direction.",
+            launch_kit,
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
