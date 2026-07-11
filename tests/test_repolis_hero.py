@@ -129,6 +129,11 @@ class RepolisHeroTests(unittest.TestCase):
             "**01 Reference** → **02 Sculpt DNA variants** → **03 Flagship above**",
             readme,
         )
+        self.assertIn("<th>03 · Flagship — final</th>", readme)
+        self.assertIn(
+            'alt="Final Repolis Living Archive flagship render"',
+            readme,
+        )
 
 
 if __name__ == "__main__":

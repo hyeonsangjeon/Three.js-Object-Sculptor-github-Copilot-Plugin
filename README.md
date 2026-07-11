@@ -33,10 +33,12 @@ The interactive page imports the same reusable output intended for the Repolis a
   <tr>
     <th>01 · Reference</th>
     <th>02 · Sculpt DNA variants — intermediate</th>
+    <th>03 · Flagship — final</th>
   </tr>
   <tr>
     <td><img src="assets/repolis-tree-reference.jpeg" alt="Gemini-generated Repolis Tree reference"></td>
     <td><img src="assets/repolis-tree-sculpt-dna-result.png" alt="Three intermediate procedural Repolis Tree Sculpt DNA variants"></td>
+    <td><img src="assets/repolis-tree-hero.png" alt="Final Repolis Living Archive flagship render"></td>
   </tr>
 </table>
 
