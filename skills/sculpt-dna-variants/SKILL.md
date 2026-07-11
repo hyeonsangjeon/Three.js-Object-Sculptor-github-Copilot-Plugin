@@ -51,7 +51,7 @@ Scripts are relative to this skill directory:
 1. Validate the base spec with `validate_sculpt_spec.py`.
 2. Initialize Sculpt DNA.
 3. Replace generic parameter names with object-specific language and remove controls that do not create a useful visible delta.
-4. Review `references/sculpt-dna-schema.md` and add constraints for coupled proportions.
+4. Review the [Sculpt DNA schema](references/sculpt-dna-schema.md) and add constraints for coupled proportions.
 5. Run both Sculpt DNA validation and full spec validation.
 6. Generate a safe candidate pool.
 7. Use Coverage Curator when the user needs a small contact sheet, README demo, or representative design family.
@@ -86,3 +86,7 @@ A generated variant is acceptable only when:
 - A curated family records its candidate pool, selected indexes, normalized parameter-distance strategy, and coverage score.
 
 If valid samples cannot be produced within `maxAttemptsPerVariant`, refine the ranges or constraints. Do not silently relax the invariant contract.
+
+## Reference
+
+- [Sculpt DNA schema, constraints, invariants, provenance, and Coverage Curator](references/sculpt-dna-schema.md)

@@ -405,6 +405,18 @@ Apply these hard-won patterns:
 - Protect performance: instance repeated details, keep collision simplified, and avoid geometry that only exists to hide a bad material.
 - When the user compares against a reference image, explicitly name the mismatch before changing code.
 
+## References
+
+- [3D graphics terminology](references/3d-graphics-terminology.md)
+- [Action-ready model contract](references/action-ready-models.md)
+- [Attachment and joint correctness](references/attachment-joint-correctness.md)
+- [Browser screenshot feedback](references/browser-screenshot-feedback.md)
+- [Material and lighting realism](references/material-lighting-realism.md)
+- [Pre-spec assessment](references/pre-spec-assessment.md)
+- [Procedural Three.js patterns](references/procedural-patterns.md)
+- [Self-correction loop](references/self-correction-loop.md)
+- [Image validation rubric](references/validation-rubric.md)
+
 ## Output Format
 
 For analysis-only requests, return:
