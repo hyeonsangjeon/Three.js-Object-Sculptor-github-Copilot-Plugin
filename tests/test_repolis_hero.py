@@ -118,6 +118,18 @@ class RepolisHeroTests(unittest.TestCase):
         self.assertEqual(manifest["capture"]["seed"], 20260711)
         self.assertEqual(manifest["runtimeStats"]["importedMeshes"], 0)
 
+    def test_readme_distinguishes_reference_variants_and_flagship(self) -> None:
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        reference = readme.index("### 1. Reference")
+        variants = readme.index("### 2. Sculpt DNA Variants — Intermediate Exploration")
+        flagship = readme.index("### 3. Flagship: Repolis Living Archive")
+        self.assertLess(reference, variants)
+        self.assertLess(variants, flagship)
+        self.assertIn(
+            "They are **not** presented as the final visual-quality output.",
+            readme,
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

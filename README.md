@@ -8,13 +8,35 @@ Our original capability is **Sculpt DNA**: a semantic parameter layer that varie
 
 Its **Coverage Curator** generates a larger safe candidate pool and uses a deterministic centroid-extreme plus greedy max-min heuristic to select a broadly separated representative family. This prevents README contact sheets, product families, and art-direction reviews from showing three nearly identical random samples without claiming an expensive global combinatorial optimum.
 
-## Flagship: Repolis Living Archive
+## Repolis Pipeline
+
+**Reference** → **Sculpt DNA variants** → **Flagship: Repolis Living Archive**
+
+The middle contact sheet is design-space exploration, not the finished asset. Coverage Curator generated 24 constraint-safe candidates and selected three broadly separated variants. The final flagship then received object-specific geometry, PBR, lighting, camera, interaction, optimization, and eight evidence-backed sculpt-pass reviews.
+
+### 1. Reference
+
+![Gemini-generated Repolis Tree reference](assets/repolis-tree-reference.jpeg)
+
+The source establishes the identity contract: monumental Y-shaped trunk, gold energy network, amber/cyan canopy, constellation ornaments, and a luminous night landmark.
+
+### 2. Sculpt DNA Variants — Intermediate Exploration
+
+![Three procedural Repolis Tree Sculpt DNA variants](assets/repolis-tree-sculpt-dna-result.png)
+
+These candidates test palette and repetition ranges while preserving component IDs, parent links, sockets, attachment roots, and review targets. They are **not** presented as the final visual-quality output.
+
+[Evidence-backed base spec](examples/repolis-tree/object-sculpt-spec.json) ·
+[Coverage Curator manifest](examples/showcase/variants/tree/sculpt-dna-manifest.json) ·
+[Variant renderer](examples/showcase/showcase.js)
+
+### 3. Flagship: Repolis Living Archive
 
 [Open the interactive Repolis Tree demo](https://hyeonsangjeon.github.io/Three.js-Object-Sculptor-github-Copilot-Plugin/)
 
 ![Rotating high-detail procedural Repolis Tree](assets/repolis-tree-hero.gif)
 
-The flagship is generated entirely with code: **0 imported meshes**, approximately **100ms generation**, **17,761 branch vertices**, **2,600 instanced leaves**, **220 moss instances**, and **72 branch-following code glyphs** in the Golden Canopy configuration.
+The final flagship is generated entirely with code: **0 imported meshes**, approximately **100ms generation**, **17,761 branch vertices**, **2,600 instanced leaves**, **220 moss instances**, and **72 branch-following code glyphs** in the Golden Canopy configuration.
 
 ![Repolis Living Archive interactive hero screen](assets/repolis-tree-hero.png)
 
@@ -23,31 +45,11 @@ The interactive page imports the same reusable output intended for the Repolis a
 - [Repolis production factory](examples/repolis-hero/repolis-output/createRepolisHero.js)
 - [TypeScript declarations](examples/repolis-hero/repolis-output/createRepolisHero.d.ts)
 - [Runtime profile](examples/repolis-hero/repolis-output/repolis-hero-profile.json)
-- [Evidence-backed ObjectSculptSpec](examples/repolis-tree/object-sculpt-spec.json)
 - [Pass-by-pass visual evidence](examples/repolis-hero/evidence/)
 
-## Demo
+## Additional Demo Families
 
-Each result below is an actual browser-rendered Three.js family. Coverage Curator generated 24 constraint-safe candidates per reference and greedily selected three broadly separated `ObjectSculptSpec` variants. Repolis starts from an evidence-backed, fully completed base sculpt; Brick and Seoul remain explicit preview families. Every new variant resets its own visual evidence before promotion.
-
-### Repolis Tree
-
-<table>
-  <tr>
-    <th>Reference</th>
-    <th>Sculpt DNA variants</th>
-  </tr>
-  <tr>
-    <td><img src="assets/repolis-tree-reference.jpeg" alt="Gemini-generated Repolis Tree reference"></td>
-    <td><img src="assets/repolis-tree-sculpt-dna-result.png" alt="Three procedural Repolis Tree Sculpt DNA variants"></td>
-  </tr>
-</table>
-
-This botanical study separates warm bark from gold energy, builds a rooted branch hierarchy, and instances amber leaves, cyan accents, constellation nodes, and hanging lights. The three production candidates change palette and repetition density without changing the tree's semantic hierarchy.
-
-[Base spec](examples/repolis-tree/object-sculpt-spec.json) ·
-[Variant manifest](examples/showcase/variants/tree/sculpt-dna-manifest.json) ·
-[Renderer](examples/showcase/showcase.js)
+Brick and Seoul remain explicit preview families. Every generated variant resets its own visual evidence before promotion.
 
 ### Brick Off-Road Explorer
 
