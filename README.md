@@ -1,4 +1,6 @@
-# Three.js Sculpt DNA
+# Three.js Sculpt DNA for GitHub Copilot CLI
+
+> A community-built GitHub Copilot CLI plugin for code-native procedural Three.js reconstruction and deterministic asset families.
 
 Turn an object reference image into a quality-gated, action-ready procedural Three.js model, then expand that model into a deterministic family of constraint-safe variants.
 
