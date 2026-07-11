@@ -1,0 +1,75 @@
+name: Bug report
+description: Report a reproducible plugin, script, validation, or generated-output problem
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Include the smallest reproducible input and remove sensitive data from logs and images.
+  - type: input
+    id: version
+    attributes:
+      label: Plugin version
+      placeholder: "0.4.3"
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Installation or marketplace
+        - object-to-threejs-procedural skill
+        - sculpt-dna-variants skill
+        - ObjectSculptSpec validation
+        - Three.js factory generation
+        - Image or PBR processing
+        - Browser review or evidence
+        - Showcase or Repolis demo
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction steps
+      placeholder: |
+        1. Run ...
+        2. Attach ...
+        3. Observe ...
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: OS, Python, Node.js, Three.js, and Copilot versions
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs or screenshots
+      description: Remove tokens, private paths, GPS, and unrelated personal information.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I searched existing issues.
+          required: true
+        - label: I removed secrets and sensitive metadata.
+          required: true

@@ -1,0 +1,41 @@
+name: Feature request
+description: Propose a focused workflow, schema, geometry, material, or runtime improvement
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: User problem
+      description: Describe the limitation without prescribing the implementation first.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed workflow
+      description: Explain inputs, steps, outputs, and failure behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: compatibility
+    attributes:
+      label: Compatibility or schema impact
+      description: Note migration, deterministic output, performance, or marketplace impact.
+  - type: textarea
+    id: verification
+    attributes:
+      label: Verification
+      description: How can the behavior be measured or visually reviewed?
+    validations:
+      required: true
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope checks
+      options:
+        - label: This does not require weakening existing quality or evidence gates.
+          required: true
+        - label: I searched ROADMAP.md and existing issues.
+          required: true

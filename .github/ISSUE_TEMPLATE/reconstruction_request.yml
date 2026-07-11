@@ -1,0 +1,51 @@
+name: Reference reconstruction request
+description: Propose an authorized reference for a new procedural reconstruction example
+title: "[Reconstruction]: "
+labels:
+  - enhancement
+body:
+  - type: input
+    id: object
+    attributes:
+      label: Target object
+      placeholder: Mechanical camera, botanical landmark, product prop...
+    validations:
+      required: true
+  - type: dropdown
+    id: use
+    attributes:
+      label: Intended use
+      options:
+        - Browser-real-time prop
+        - Hero render
+        - Game-ready object
+        - Articulated or animated object
+        - Destructible object
+        - Layered scene approximation
+    validations:
+      required: true
+  - type: textarea
+    id: references
+    attributes:
+      label: Reference images
+      description: Attach the image and describe available front, side, back, or detail views.
+    validations:
+      required: true
+  - type: textarea
+    id: identity
+    attributes:
+      label: Identity-defining features
+      description: List the silhouette, structural, material, and local features that must survive.
+    validations:
+      required: true
+  - type: checkboxes
+    id: rights
+    attributes:
+      label: Image rights and privacy
+      options:
+        - label: I created these images or have permission to redistribute them in this MIT repository.
+          required: true
+        - label: I removed GPS and sensitive EXIF metadata.
+          required: true
+        - label: I understand that one image cannot guarantee exact hidden geometry.
+          required: true

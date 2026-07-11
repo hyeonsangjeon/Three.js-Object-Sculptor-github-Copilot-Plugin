@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: User guide
+    url: https://github.com/hyeonsangjeon/threejs-sculpt-dna/blob/main/docs/USER_GUIDE.md
+    about: Installation, prompts, production gates, and troubleshooting
+  - name: Live Repolis demo
+    url: https://hyeonsangjeon.github.io/threejs-sculpt-dna/
+    about: Verify the flagship browser experience
