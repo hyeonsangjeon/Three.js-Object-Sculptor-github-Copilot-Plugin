@@ -32,6 +32,21 @@ class PluginManifestTests(unittest.TestCase):
             readme,
         )
 
+    def test_readme_and_manual_document_marketplace_install(self) -> None:
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        guide = (ROOT / "docs" / "USER_GUIDE.md").read_text(encoding="utf-8")
+        install = "threejs-sculpt-dna@threejs-copilot-plugins"
+        repository = (
+            "hyeonsangjeon/Three.js-Object-Sculptor-github-Copilot-Plugin"
+        )
+        for document in (readme, guide):
+            self.assertIn(install, document)
+            self.assertIn(repository, document)
+        self.assertIn(
+            "assets/github-copilot-image-prompt-example.png",
+            readme,
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

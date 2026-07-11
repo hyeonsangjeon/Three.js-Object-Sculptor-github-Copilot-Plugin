@@ -52,6 +52,37 @@ The middle contact sheet is design-space exploration, not the finished asset. Co
 [Coverage Curator manifest](examples/showcase/variants/tree/sculpt-dna-manifest.json) ·
 [Variant renderer](examples/showcase/showcase.js)
 
+## Quick Start
+
+1. Register the marketplace and install the plugin:
+
+   ```bash
+   copilot plugin marketplace add \
+     hyeonsangjeon/Three.js-Object-Sculptor-github-Copilot-Plugin
+
+   copilot plugin install \
+     threejs-sculpt-dna@threejs-copilot-plugins
+   ```
+
+2. Start a new GitHub Copilot session and verify `/skills list` includes:
+   - `object-to-threejs-procedural`
+   - `sculpt-dna-variants`
+
+3. Attach a reference image and ask Copilot to reconstruct it:
+
+   ```text
+   Use Three.js Sculpt DNA for GitHub Copilot.
+
+   Reconstruct this attached reference as a browser-real-time, action-ready
+   procedural Three.js model. Follow the locked sculpt passes, review browser
+   screenshots, then curate 3 representative variants from 24 safe candidates.
+   Do not use an imported mesh.
+   ```
+
+![GitHub Copilot image prompt using the Repolis Tree reference](assets/github-copilot-image-prompt-example.png)
+
+Read the [complete user guide](docs/USER_GUIDE.md) for production vs preview variants, prompt templates, updates, uninstalling, and troubleshooting.
+
 ## Additional Demo Families
 
 Brick and Seoul remain explicit preview families. Every generated variant resets its own visual evidence before promotion.

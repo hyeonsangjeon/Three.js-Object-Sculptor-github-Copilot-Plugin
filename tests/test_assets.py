@@ -41,6 +41,13 @@ class AssetTests(unittest.TestCase):
                 self.assertEqual(result["technicalSuitability"], "pass")
                 self.assertLess(path.stat().st_size, 500_000)
 
+    def test_copilot_prompt_example_is_readme_ready(self) -> None:
+        path = ROOT / "assets" / "github-copilot-image-prompt-example.png"
+        result = probe(path)
+        self.assertEqual((result["width"], result["height"]), (1200, 760))
+        self.assertEqual(result["technicalSuitability"], "pass")
+        self.assertLess(path.stat().st_size, 500_000)
+
     def test_inherited_demo_images_are_not_released(self) -> None:
         for filename in (
             "ancient-autumn-tree-demo.png",
