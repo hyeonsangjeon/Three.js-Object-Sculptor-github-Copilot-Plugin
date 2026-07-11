@@ -355,8 +355,6 @@ The test suite covers DNA derivation, schema validation, immutable-target reject
 - Complex generated primitives such as lathe, tube, curve sweep, extrude, and instanced clusters still require object-specific hand refinement.
 - Variant constraints protect declared semantics, but visual acceptance still requires fresh browser evidence.
 
-## License and Provenance
+## License
 
-MIT. The original 2026 Vinh Hiển copyright and permission notice are preserved in `LICENSE`.
-
-This fork adds the GitHub Copilot CLI manifest and terminology, Sculpt DNA skills and schema, deterministic variant generation, semantic invariants, variant provenance, generated runtime metadata, tests, and updated documentation.
+MIT
