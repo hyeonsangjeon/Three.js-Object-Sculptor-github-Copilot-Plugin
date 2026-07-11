@@ -1,7 +1,7 @@
 {
   "name": "threejs-sculpt-dna",
-  "description": "A GitHub Copilot CLI plugin that reconstructs object images as quality-gated procedural Three.js models and deterministic asset families.",
-  "version": "0.4.1",
+  "description": "A GitHub Copilot plugin that reconstructs object images as quality-gated procedural Three.js models and deterministic asset families.",
+  "version": "0.4.2",
   "author": {
     "name": "hyeonsangjeon",
     "email": "wingnut0310@gmail.com",

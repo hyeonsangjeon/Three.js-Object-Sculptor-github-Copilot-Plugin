@@ -121,7 +121,7 @@ class RepolisHeroTests(unittest.TestCase):
     def test_readme_distinguishes_reference_variants_and_flagship(self) -> None:
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
         self.assertTrue(
-            readme.startswith("# Three.js Sculpt DNA for GitHub Copilot CLI")
+            readme.startswith("# Three.js Sculpt DNA for GitHub Copilot")
         )
         flagship = readme.index("## 03 · Flagship: Repolis Living Archive")
         reference = readme.index("01 · Reference")

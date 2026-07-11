@@ -1,0 +1,40 @@
+{
+  "name": "threejs-copilot-plugins",
+  "owner": {
+    "name": "hyeonsangjeon",
+    "email": "wingnut0310@gmail.com"
+  },
+  "metadata": {
+    "description": "GitHub Copilot plugins for procedural Three.js reconstruction and deterministic asset generation.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "threejs-sculpt-dna",
+      "description": "Reconstruct reference images as quality-gated procedural Three.js models and coverage-curated deterministic asset families.",
+      "version": "0.4.2",
+      "source": ".",
+      "author": {
+        "name": "hyeonsangjeon",
+        "email": "wingnut0310@gmail.com",
+        "url": "https://github.com/hyeonsangjeon"
+      },
+      "homepage": "https://hyeonsangjeon.github.io/Three.js-Object-Sculptor-github-Copilot-Plugin/",
+      "repository": "https://github.com/hyeonsangjeon/Three.js-Object-Sculptor-github-Copilot-Plugin",
+      "license": "MIT",
+      "keywords": [
+        "github-copilot",
+        "threejs",
+        "procedural-3d",
+        "object-reconstruction",
+        "asset-variants"
+      ],
+      "category": "Developer Tools",
+      "tags": [
+        "image-to-3d",
+        "sculpt-dna",
+        "coverage-curator"
+      ]
+    }
+  ]
+}

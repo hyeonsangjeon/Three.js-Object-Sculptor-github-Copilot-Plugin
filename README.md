@@ -1,10 +1,10 @@
-# Three.js Sculpt DNA for GitHub Copilot CLI
+# Three.js Sculpt DNA for GitHub Copilot
 
-> A community-built GitHub Copilot CLI plugin for code-native procedural Three.js reconstruction and deterministic asset families.
+> A community-built GitHub Copilot plugin for code-native procedural Three.js reconstruction and deterministic asset families.
 
 Turn an object reference image into a quality-gated, action-ready procedural Three.js model, then expand that model into a deterministic family of constraint-safe variants.
 
-This GitHub Copilot CLI plugin is based on Vinh Hiển's MIT-licensed [Three.js Object Sculptor](https://github.com/vinhhien112/Three.js-Object-Sculptor-Codex-Plugin). It preserves the original image assessment, sculpt specification, pass locking, procedural PBR, action-ready hierarchy, and visual review workflow while porting the package to Copilot's `plugin.json` format.
+This GitHub Copilot plugin is based on Vinh Hiển's MIT-licensed [Three.js Object Sculptor](https://github.com/vinhhien112/Three.js-Object-Sculptor-Codex-Plugin). It preserves the original image assessment, sculpt specification, pass locking, procedural PBR, action-ready hierarchy, and visual review workflow while porting the package to Copilot's `plugin.json` format.
 
 Our original capability is **Sculpt DNA**: a semantic parameter layer that varies proportions, material response, palette, and repetition systems without changing component identity, attachment roots, sockets, fracture groups, or quality gates.
 
@@ -203,7 +203,7 @@ technical probe -> pre-spec assessment -> ObjectSculptSpec
 
 | Layer | Technology | Why it is used |
 | --- | --- | --- |
-| Copilot packaging | Root `plugin.json`, skill directories, `SKILL.md` YAML frontmatter | Native GitHub Copilot CLI plugin discovery and task-triggered instructions |
+| Copilot packaging | Root `plugin.json`, skill directories, `SKILL.md` YAML frontmatter | Native GitHub Copilot plugin discovery and task-triggered instructions |
 | Agent workflow | Markdown skills and focused reference documents | Keeps visual reasoning, quality gates, and implementation policy readable and editable |
 | Data contract | Versioned JSON `ObjectSculptSpec` | Separates observed design intent from generated renderer objects and supports iterative correction |
 | Automation | Python 3.10+ standard library | Portable CLIs with no mandatory package installation |
@@ -244,7 +244,7 @@ The browser, TypeScript compiler, bundler, and Three.js version belong to the ta
 
 ## Requirements
 
-- GitHub Copilot CLI with plugin support.
+- GitHub Copilot with plugin support.
 - Python 3.10 or newer.
 - A Three.js browser project for generated model implementation.
 - A rendered screenshot and AI-vision review for visual acceptance.
@@ -267,6 +267,18 @@ copilot plugin install hyeonsangjeon/Three.js-Object-Sculptor-github-Copilot-Plu
 ```
 
 Copilot currently warns that direct repository installs will eventually move to marketplace-only distribution, but the public repository install is supported today.
+
+Install through this repository's Copilot plugin marketplace:
+
+```bash
+copilot plugin marketplace add \
+  hyeonsangjeon/Three.js-Object-Sculptor-github-Copilot-Plugin
+
+copilot plugin install \
+  threejs-sculpt-dna@threejs-copilot-plugins
+```
+
+GitHub Copilot plugin marketplaces are decentralized repositories rather than a single approval-based catalog. The checked-in `.github/plugin/marketplace.json` makes this repository a supported marketplace source.
 
 Start a new Copilot CLI session, then verify the skills:
 
