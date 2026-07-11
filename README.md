@@ -2,6 +2,11 @@
 
 > A community-built GitHub Copilot plugin for code-native procedural Three.js reconstruction and deterministic asset families.
 
+[![Release](https://img.shields.io/github/v/release/hyeonsangjeon/threejs-sculpt-dna?display_name=tag)](https://github.com/hyeonsangjeon/threejs-sculpt-dna/releases/latest)
+[![Live Demo](https://img.shields.io/badge/Live-Repolis%20Demo-19b7a5)](https://hyeonsangjeon.github.io/threejs-sculpt-dna/)
+[![Copilot Plugin](https://img.shields.io/badge/GitHub%20Copilot-Plugin-8957e5)](docs/USER_GUIDE.md)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 Turn an object reference image into a quality-gated, action-ready procedural Three.js model, then expand that model into a deterministic family of constraint-safe variants.
 
 This GitHub Copilot plugin is based on Vinh Hiển's MIT-licensed [Three.js Object Sculptor](https://github.com/vinhhien112/Three.js-Object-Sculptor-Codex-Plugin). It preserves the original image assessment, sculpt specification, pass locking, procedural PBR, action-ready hierarchy, and visual review workflow while porting the package to Copilot's `plugin.json` format.

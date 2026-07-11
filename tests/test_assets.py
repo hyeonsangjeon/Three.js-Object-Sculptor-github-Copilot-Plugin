@@ -48,6 +48,13 @@ class AssetTests(unittest.TestCase):
         self.assertEqual(result["technicalSuitability"], "pass")
         self.assertLess(path.stat().st_size, 500_000)
 
+    def test_social_preview_matches_github_recommendation(self) -> None:
+        path = ROOT / "assets" / "social-preview.png"
+        result = probe(path)
+        self.assertEqual((result["width"], result["height"]), (1280, 640))
+        self.assertEqual(result["technicalSuitability"], "pass")
+        self.assertLess(path.stat().st_size, 1_000_000)
+
     def test_inherited_demo_images_are_not_released(self) -> None:
         for filename in (
             "ancient-autumn-tree-demo.png",

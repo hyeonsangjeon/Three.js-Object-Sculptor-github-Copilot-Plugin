@@ -49,6 +49,16 @@ class PluginManifestTests(unittest.TestCase):
             readme,
         )
 
+    def test_release_changelog_matches_plugin_version(self) -> None:
+        plugin = json.loads((ROOT / "plugin.json").read_text(encoding="utf-8"))
+        changelog = (ROOT / "CHANGELOG.md").read_text(encoding="utf-8")
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        self.assertIn(f"## [{plugin['version']}]", changelog)
+        self.assertIn(
+            "img.shields.io/github/v/release/hyeonsangjeon/threejs-sculpt-dna",
+            readme,
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
