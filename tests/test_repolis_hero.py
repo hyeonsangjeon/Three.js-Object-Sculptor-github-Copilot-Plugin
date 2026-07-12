@@ -99,6 +99,32 @@ class RepolisHeroTests(unittest.TestCase):
         self.assertIn("function syncMotionButton()", source)
         self.assertIn("syncMotionButton();", source)
         self.assertIn("aria-pressed", source)
+        self.assertIn("const captureMode = query.get('capture') === '1'", source)
+        self.assertIn("canonicalElapsed", source)
+        capture = (
+            ROOT / "examples" / "repolis-hero" / "scripts" / "capture.mjs"
+        ).read_text(encoding="utf-8")
+        self.assertIn("capture=1&time=1.25", capture)
+        self.assertIn("hero-ui-raw.png", capture)
+        self.assertIn("'-map_metadata'", capture)
+
+    def test_flagship_pager_links_tree_and_brick_routes(self) -> None:
+        tree_html = (
+            ROOT / "examples" / "repolis-hero" / "index.html"
+        ).read_text(encoding="utf-8")
+        brick_html = (
+            ROOT / "examples" / "brick-offroad-hero" / "index.html"
+        ).read_text(encoding="utf-8")
+        self.assertIn('aria-label="Flagship 1 of 2"', tree_html)
+        self.assertEqual(tree_html.count('data-flagship="brick"'), 2)
+        self.assertIn('aria-label="Flagship 2 of 2"', brick_html)
+        self.assertEqual(brick_html.count('data-flagship="tree"'), 2)
+        self.assertIn("http://127.0.0.1:4176/", (
+            ROOT / "examples" / "repolis-hero" / "main.js"
+        ).read_text(encoding="utf-8"))
+        self.assertIn("http://127.0.0.1:4174/", (
+            ROOT / "examples" / "brick-offroad-hero" / "main.js"
+        ).read_text(encoding="utf-8"))
 
     def test_artifact_manifest_matches_current_sources_and_outputs(self) -> None:
         hero_dir = ROOT / "examples" / "repolis-hero"

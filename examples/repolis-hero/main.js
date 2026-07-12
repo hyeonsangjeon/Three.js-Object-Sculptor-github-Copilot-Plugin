@@ -12,6 +12,16 @@ import {
 
 const query = new URLSearchParams(window.location.search);
 if (query.get('ui') === '0') document.documentElement.dataset.ui = 'hidden';
+const captureMode = query.get('capture') === '1';
+const canonicalElapsed = Number.parseFloat(query.get('time') ?? '1.25');
+if (['127.0.0.1', 'localhost'].includes(window.location.hostname)) {
+  document.querySelectorAll('[data-flagship="tree"]').forEach((link) => {
+    link.href = 'http://127.0.0.1:4174/';
+  });
+  document.querySelectorAll('[data-flagship="brick"]').forEach((link) => {
+    link.href = 'http://127.0.0.1:4176/';
+  });
+}
 const initialVariant = Number.parseInt(query.get('variant') ?? '0', 10);
 const stage = REPOLIS_STAGES.includes(query.get('stage'))
   ? query.get('stage')
@@ -134,7 +144,7 @@ let activeVariant = Number.isFinite(initialVariant)
   ? ((initialVariant % REPOLIS_VARIANTS.length) + REPOLIS_VARIANTS.length) % REPOLIS_VARIANTS.length
   : 0;
 let hero = null;
-let autoRotate = query.get('motion') !== '0';
+let autoRotate = !captureMode && query.get('motion') !== '0';
 let elapsed = 0;
 const clock = new THREE.Clock();
 const motionButton = document.querySelector('#toggle-motion');
@@ -165,7 +175,9 @@ function rebuildHero() {
   hero.root.scale.setScalar(0.96);
   hero.root.rotation.y = -0.14;
   scene.add(hero.root);
-  generationLabel.textContent = `${hero.stats.generationMs.toFixed(0)} ms · ${hero.stats.leafInstances.toLocaleString()} leaves`;
+  generationLabel.textContent = captureMode
+    ? `~100 ms · ${hero.stats.leafInstances.toLocaleString()} leaves`
+    : `${hero.stats.generationMs.toFixed(0)} ms · ${hero.stats.leafInstances.toLocaleString()} leaves`;
   updateLabels();
   window.__REPOLIS_HERO__ = hero;
 }
@@ -208,9 +220,9 @@ window.__setHeroVariant = (variant) => {
 
 let renderedFrames = 0;
 function render() {
-  requestAnimationFrame(render);
-  const delta = Math.min(clock.getDelta(), 0.05);
-  elapsed += delta;
+  if (!captureMode || renderedFrames < 4) requestAnimationFrame(render);
+  const delta = captureMode ? 0 : Math.min(clock.getDelta(), 0.05);
+  elapsed = captureMode ? canonicalElapsed : elapsed + delta;
   controls.update();
   hero.update(elapsed);
   if (autoRotate) hero.root.rotation.y += delta * 0.09;
@@ -219,6 +231,9 @@ function render() {
   if (renderedFrames === 4) {
     document.body.classList.add('ready');
     window.__REPOLIS_READY__ = true;
+    window.__REPOLIS_CAPTURE__ = captureMode
+      ? { frozen: true, canonicalElapsed }
+      : { frozen: false };
   }
 }
 render();

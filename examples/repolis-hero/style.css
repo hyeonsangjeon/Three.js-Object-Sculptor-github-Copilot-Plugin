@@ -96,17 +96,57 @@ h1 {
   top: 28px;
   right: 32px;
   display: flex;
-  gap: 8px;
+  gap: 5px;
+}
+
+.flagship-pager {
+  display: inline-flex;
+  align-items: center;
+  gap: 1px;
+  padding: 3px;
+  border: 1px solid rgba(225, 235, 231, 0.16);
+  border-radius: 999px;
+  background: rgba(5, 13, 19, 0.58);
+  backdrop-filter: blur(12px);
+}
+
+.flagship-pager a {
+  display: grid;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+  border-radius: 50%;
+  color: #8fa5a8;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 160ms ease, background 160ms ease;
+}
+
+.flagship-pager a:hover,
+.flagship-pager a:focus-visible {
+  color: #fff3d4;
+  background: rgba(98, 220, 227, 0.16);
+  outline: none;
+}
+
+.flagship-pager > span {
+  min-width: 34px;
+  color: #8fa5a8;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-align: center;
 }
 
 button {
   border: 1px solid rgba(225, 235, 231, 0.18);
   border-radius: 999px;
-  padding: 9px 13px;
+  padding: 7px 10px;
   background: rgba(5, 13, 19, 0.56);
   color: #dce8e5;
   font: inherit;
-  font-size: 11px;
+  font-size: 10px;
   cursor: pointer;
   backdrop-filter: blur(12px);
   transition: border-color 160ms ease, background 160ms ease, color 160ms ease;
@@ -251,7 +291,7 @@ html[data-ui="hidden"] .hint {
 }
 
 @media (max-width: 760px) {
-  .intro { width: 58vw; }
+  .intro { top: 78px; width: 68vw; }
   .subtitle { display: none; }
   .controls { top: 16px; right: 16px; }
   .controls button:nth-child(2) { display: none; }

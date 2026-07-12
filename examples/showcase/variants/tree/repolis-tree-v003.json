@@ -3977,6 +3977,11 @@
     "Dense transparent leaf cards can create overdraw unless instanced and LOD-controlled.",
     "Reference village scale is illustrative; final world-unit scale must be calibrated in the target scene."
   ],
+  "reviewPolicy": {
+    "version": 2,
+    "authoritativeReview": "latest-per-pass",
+    "evidenceBinding": "local-sha256-required"
+  },
   "variantProvenance": {
     "sculptDNAVersion": "1.0",
     "variantId": "repolis-tree-v003",

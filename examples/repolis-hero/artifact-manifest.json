@@ -10,10 +10,12 @@
     "frames": 24,
     "fps": 6,
     "rotationSeconds": 4,
+    "deterministic": true,
+    "canonicalElapsed": 1.25,
     "chrome": "Google Chrome"
   },
   "runtimeStats": {
-    "generationMs": 126.40000000596046,
+    "generationMs": 133.89999997615814,
     "macroBranches": 15,
     "secondaryBranches": 56,
     "fineBranches": 112,
@@ -25,27 +27,27 @@
     "stage": "full"
   },
   "sourceSha256": {
-    "index.html": "f497aa1f0c40ab127b6107255ace03777ad8120b0235c6d65b3774ef617deb95",
-    "main.js": "c416bd62dd587e25f1a3a1692acca34a469d18fd8c861178de2f851f7c06fde3",
-    "style.css": "8b6d750509d7744091551ba6893c03ec8d6178d758e270d05c2856225887b977",
+    "index.html": "5497aad523c7198da5f066755a8874663dbaa16f038ac468e6e740cb7e173578",
+    "main.js": "8adf70e19da7a7151180e1dcf5bf2734d9e4cc9353e791958ec22ccbf339fc38",
+    "style.css": "60b00a0fd810bd5073727768497646d71a0621ea33a4549a4b58aa8166e61587",
     "repolis-output/createRepolisHero.js": "65bd7fc76013ee0f11898174095556d581be64ea8f15e76e090fb8955a17d0e3",
     "repolis-output/repolis-hero-profile.json": "dbd376bb180aae1d1d93ed579ea3a3558cbd8e397f6da9ed853f0b1325916351",
-    "../repolis-tree/object-sculpt-spec.json": "2ecff4affb5dc5283f591ff54f59c5e68e7c39c56b7bca7dcd4a0204fda4ddd6"
+    "../repolis-tree/object-sculpt-spec.json": "9556e708ace61dbd2a4128700e41ec8dac3d0c930f0e85e09cc2915013aa40d8"
   },
   "outputSha256": {
-    "../../assets/repolis-tree-hero.png": "c8f11b9f8b4f01cfdfbe1c3098be6996567550558bdca69ed5f21b14ace74faa",
-    "../../assets/repolis-tree-hero.gif": "bbb1521ebc21b4852aae25bdcc288949a0383fd786ddc79a5ea5601f57b9b4a3",
-    "evidence/blockout.webp": "5136691889f7eb1b43150302c7cdf100ad28def359f9511f38b247878a3c9cec",
-    "evidence/blockout-comparison.webp": "829e1c1c5cc25cdc355a21cbff353ea836a1787063fabbca765e46a92629ef27",
-    "evidence/structural-pass.webp": "a74ba2b3ec5e3d7ef67aefb5de8ddda24af468550a9b1b2a0349a4106aeba172",
-    "evidence/structural-pass-comparison.webp": "de2544f8955fbbf171710a1ae30e3dc654752b034f90314aa6cc165fc5a54e62",
-    "evidence/form-refinement.webp": "69c558332f70195fdb64c55ece1b1814ea0137ec4e26c25eb3016f44dd550986",
-    "evidence/form-refinement-comparison.webp": "46e801d7a8a0debc6a4a24b824dc3e52b519e2ff54eaa82a95d67f0059b4957e",
-    "evidence/material-pass.webp": "effb2e8b1c86c5dbe04fc3d4532f2ee538e1b3173b8563254f8c042ceab0cf56",
-    "evidence/material-pass-comparison.webp": "3efa01aaa5006420985b9b14d6ae85fbe756c01d7d76706872d8500186b45ec8",
-    "evidence/surface-pass.webp": "9d8252146d9d3f86d460abd044c2162a1d8be23491de97cd9ae7757d6271007f",
-    "evidence/surface-pass-comparison.webp": "25b15a9898a0aac636e2524dcacfb0b6833014012c53f381fd9b90f2ae37f2ea",
-    "evidence/final.webp": "2b9d265ef8e2339d8abaa98ab639d3b0f8d7dbac93ba7d92a3fcd54cefab176d",
-    "evidence/final-comparison.webp": "909531fe6515c23d351e2089be0826d9359cf3be39b5a37b123817e927ff43d8"
+    "../../assets/repolis-tree-hero.png": "76e0b4d0f0bdb1ad7a71a4a8817065738416be17aa92ccc8085eadf158de33b9",
+    "../../assets/repolis-tree-hero.gif": "0d9f20b42438c8ad350308e57d2a65d1dbdbd6f76d6f0c5654a2cf982c72df61",
+    "evidence/blockout.webp": "5d8fc3213da5a5e34e81f33037301a0026ed303b11c685b69ebba51b10cf01e2",
+    "evidence/blockout-comparison.webp": "c0c02eb5f9034c8508335750cac03d1fdc143f9d3788afc542f9cf80d3507584",
+    "evidence/structural-pass.webp": "a3805baa841123d443f001bbe15102de9551b72fdea1ed06eb2d294a0ebb0574",
+    "evidence/structural-pass-comparison.webp": "b138c56eefa42a3987dc4e9f0b3e039e83b6a890b7ece00754deef3982a158e1",
+    "evidence/form-refinement.webp": "502f35f7e2c369f818c25ce2e9c9386f7679e5ebb78368d0136df5474c8ab9c0",
+    "evidence/form-refinement-comparison.webp": "be066abce6fa8c053a68927d67c05ea8eb71a454084e05ea0324809e8fadcb38",
+    "evidence/material-pass.webp": "ce66cb5be273ef8cefb6222f7d8200b91ba28a4072227df70850d030b45ce4d4",
+    "evidence/material-pass-comparison.webp": "0c3898eadb63247261cd88c07fcdc6d2ad972df2ffbdb553f52bd0f7f30a52b0",
+    "evidence/surface-pass.webp": "df072c94738edb089628aa0c9dde7eee5389135fc56f0a506b236e3eb3d79e1c",
+    "evidence/surface-pass-comparison.webp": "fd5101b98648b01676fbe113423391dcdc10cf538f0f3a67cecdb2a8ca962cf6",
+    "evidence/final.webp": "da836f5a4dea2692619bdcb13085da6756c56afe8b40661ee7e9e01daa200354",
+    "evidence/final-comparison.webp": "dadc1ace2f2eaf85faebe1c4da5574f40876dbc25862aa8abf4e4349dd0787d0"
   }
 }

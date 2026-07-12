@@ -16,10 +16,10 @@
     "canonicalElapsed": 1.25,
     "deterministicFrameSha256": "05db81749b298a71b5ea6f6e559c0c64cfc3920eebb9042ab21f0ded96c2c8e9",
     "portAllocation": "ephemeral-os-assigned",
-    "sourceFingerprint": "01b4560bcf329e778e100b3ab92cd74bf70e60af10a57792c702dbff55d4b8c3"
+    "sourceFingerprint": "5aa6de4bb12746055118d4d6d107cf3784659d61a48faa124bba5ef75797a0c0"
   },
   "runtimeStats": {
-    "generationMs": 1052.7000000178814,
+    "generationMs": 1241.699999988079,
     "meshes": 126,
     "triangles": 64148,
     "sceneDrawables": 126,
@@ -96,7 +96,7 @@
         }
       },
       "stats": {
-        "generationMs": 1034.300000011921,
+        "generationMs": 1364.0999999940395,
         "meshes": 126,
         "triangles": 63564,
         "sceneDrawables": 126,
@@ -147,7 +147,7 @@
         }
       },
       "stats": {
-        "generationMs": 1010,
+        "generationMs": 1261.699999988079,
         "meshes": 126,
         "triangles": 68324,
         "sceneDrawables": 126,
@@ -198,7 +198,7 @@
         }
       },
       "stats": {
-        "generationMs": 1050,
+        "generationMs": 1322.5999999940395,
         "meshes": 126,
         "triangles": 66980,
         "sceneDrawables": 126,
@@ -734,9 +734,9 @@
     "heroCopy": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82"
   },
   "sourceSha256": {
-    "index.html": "c86fecea7bd2d9d9deb0173d4b5c1ac2b9706d86118ad27be6808fc1b6a32a11",
-    "main.js": "a50b225f202f794c7a57509333965a716b6280f174c97dbd1b84b51c03604724",
-    "style.css": "89a5c428b8ced325d1b8ca5b928fe85fbfed0f9576e71b5670b615df55b12b51",
+    "index.html": "17f1ebe01578eef52c182a0fc0dfd3a9ca32d2668fb726e151c6173d375089f4",
+    "main.js": "747f7c2a38fb05b7068c84b5c1a964deb606dec556e5650dc9da8619a33f598c",
+    "style.css": "ca434c41fdf81a322ff712978b2efd7b90038566da4234a92a7122abed7a0d65",
     "package.json": "0af01640413136e602cd9c223b0ebe69e041572384e8b726ac2d4dadeb3b2f41",
     "package-lock.json": "e045d74a051632d5036ceddece0cb707e14ba0431deb29216c0512aeb10c1980",
     "vite.config.js": "a71333093cca0f55d91530cfd89d51df4aae9c816b252f377b72a7953d011340",

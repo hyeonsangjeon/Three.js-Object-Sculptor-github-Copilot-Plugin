@@ -11,6 +11,14 @@ import {
 } from './brick-output/createBrickOffroad.js';
 
 const query = new URLSearchParams(window.location.search);
+if (['127.0.0.1', 'localhost'].includes(window.location.hostname)) {
+  document.querySelectorAll('[data-flagship="tree"]').forEach((link) => {
+    link.href = 'http://127.0.0.1:4174/';
+  });
+  document.querySelectorAll('[data-flagship="brick"]').forEach((link) => {
+    link.href = 'http://127.0.0.1:4176/';
+  });
+}
 if (query.get('ui') === '0') document.documentElement.dataset.ui = 'hidden';
 const requestedStage = query.get('stage');
 const stage = BRICK_STAGES.includes(requestedStage) ? requestedStage : 'full';

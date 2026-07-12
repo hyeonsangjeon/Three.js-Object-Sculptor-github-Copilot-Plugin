@@ -87,7 +87,7 @@ async function sha256(filePath) {
 async function captureStage(page, stage, sourceName) {
   const pngPath = path.join(framesDir, `${stage}.png`);
   await page.goto(
-    `${baseUrl}/?stage=${encodeURIComponent(stage)}&variant=0&motion=0&ui=0`,
+    `${baseUrl}/?stage=${encodeURIComponent(stage)}&variant=0&motion=0&ui=0&capture=1&time=1.25`,
     { waitUntil: 'networkidle0' },
   );
   await waitForHero(page);
@@ -149,16 +149,32 @@ async function main() {
     const page = await browser.newPage();
     await page.setViewport({ width: 1200, height: 675, deviceScaleFactor: 1 });
 
-    await page.goto(`${baseUrl}/?stage=full&variant=0&motion=0`, {
+    await page.goto(`${baseUrl}/?stage=full&variant=0&motion=0&capture=1&time=1.25`, {
       waitUntil: 'networkidle0',
     });
     await waitForHero(page);
     const stats = await page.evaluate(() => window.__REPOLIS_HERO__.stats);
-    await page.screenshot({
-      path: path.join(assetsDir, 'repolis-tree-hero.png'),
-    });
+    const heroRawPng = path.join(framesDir, 'hero-ui-raw.png');
+    await page.screenshot({ path: heroRawPng });
+    run(
+      process.env.FFMPEG_BIN ?? 'ffmpeg',
+      [
+        '-hide_banner',
+        '-loglevel',
+        'error',
+        '-y',
+        '-i',
+        heroRawPng,
+        '-frames:v',
+        '1',
+        '-map_metadata',
+        '-1',
+        path.join(assetsDir, 'repolis-tree-hero.png'),
+      ],
+      { quiet: true },
+    );
 
-    await page.goto(`${baseUrl}/?stage=full&variant=0&motion=0&ui=0`, {
+    await page.goto(`${baseUrl}/?stage=full&variant=0&motion=0&ui=0&capture=1&time=1.25`, {
       waitUntil: 'networkidle0',
     });
     await waitForHero(page);
@@ -200,7 +216,7 @@ async function main() {
     for (const [stage, sourceName] of stages) {
       await captureStage(page, stage, sourceName);
     }
-    await page.goto(`${baseUrl}/?stage=full&variant=0&motion=0&ui=0`, {
+    await page.goto(`${baseUrl}/?stage=full&variant=0&motion=0&ui=0&capture=1&time=1.25`, {
       waitUntil: 'networkidle0',
     });
     await waitForHero(page);
@@ -260,6 +276,8 @@ async function main() {
         frames: gifFrameCount,
         fps: gifFps,
         rotationSeconds: gifFrameCount / gifFps,
+        deterministic: true,
+        canonicalElapsed: 1.25,
         chrome: path.basename(chromePath),
       },
       runtimeStats: stats,
