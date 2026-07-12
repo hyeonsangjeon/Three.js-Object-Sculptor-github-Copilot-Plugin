@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import copy
 import json
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -22,8 +23,16 @@ from sculpt_dna_core import (  # noqa: E402
     validate_sculpt_dna_block,
 )
 from generate_threejs_factory import generate  # noqa: E402
+from migrate_review_policy import migrate_spec  # noqa: E402
 from sculpt_dna import build_parser, variant_gate  # noqa: E402
 from append_sculpt_review import load_json_argument  # noqa: E402
+from sculpt_pass_orchestrator import (  # noqa: E402
+    completed_passes,
+    pass_order,
+    sync_pipeline,
+)
+from validate_sculpt_spec import validate_spec, validate_visual_evidence_history  # noqa: E402
+from visual_evidence_hashes import bind_visual_evidence_hashes, file_sha256  # noqa: E402
 
 
 class SculptDNATests(unittest.TestCase):
@@ -122,8 +131,225 @@ class SculptDNATests(unittest.TestCase):
         spec["reviewHistory"][0]["visualEvidence"]["renderScreenshot"] = (
             "examples/repolis-hero/evidence/does-not-exist.webp"
         )
-        with self.assertRaisesRegex(ValueError, "existing local visual evidence"):
+        with self.assertRaisesRegex(
+            ValueError,
+            "out of sync|matching local visual evidence hashes",
+        ):
             variant_gate(spec, False, spec_path)
+
+    @staticmethod
+    def remove_review_bindings(spec: dict) -> None:
+        spec.pop("reviewPolicy", None)
+        binding_fields = {
+            "reviewId",
+            "reviewedAt",
+            "referenceSha256",
+            "renderSha256",
+            "comparisonSha256",
+            "referenceBinding",
+            "renderBinding",
+            "comparisonBinding",
+        }
+        for item in spec.get("reviewHistory", []):
+            visual = item.get("visualEvidence", {})
+            for field in binding_fields:
+                visual.pop(field, None)
+        for visual in spec.get("visualEvidence", []):
+            for field in binding_fields:
+                visual.pop(field, None)
+
+    def test_legacy_repolis_remains_valid_with_path_checks(self) -> None:
+        spec_path = ROOT / "examples" / "repolis-tree" / "object-sculpt-spec.json"
+        spec = json.loads(spec_path.read_text(encoding="utf-8"))
+        self.remove_review_bindings(spec)
+        errors, warnings = validate_spec(spec, spec_path)
+        self.assertEqual(errors, [])
+        self.assertTrue(any("legacy path-existence" in item for item in warnings))
+        self.assertEqual(
+            completed_passes(spec, pass_order(spec), spec_path),
+            pass_order(spec),
+        )
+        completed, missing = variant_gate(spec, False, spec_path)
+        self.assertEqual(completed, pass_order(spec))
+        self.assertEqual(missing, [])
+
+    def test_older_stale_review_is_superseded_by_latest_bound_review(self) -> None:
+        spec_path = ROOT / "examples" / "brick-offroad" / "object-sculpt-spec.json"
+        spec = json.loads(spec_path.read_text(encoding="utf-8"))
+        stale = copy.deepcopy(spec["reviewHistory"][0])
+        stale["visualEvidence"]["renderSha256"] = "0" * 64
+        spec["reviewHistory"].insert(0, stale)
+        errors, _warnings = validate_spec(spec, spec_path)
+        self.assertFalse(any("visual evidence binding failed" in item for item in errors))
+        self.assertEqual(
+            completed_passes(spec, pass_order(spec), spec_path),
+            pass_order(spec),
+        )
+        variant_gate(spec, False, spec_path)
+
+    def test_latest_stale_review_invalidates_every_production_gate(self) -> None:
+        spec_path = ROOT / "examples" / "brick-offroad" / "object-sculpt-spec.json"
+        spec = json.loads(spec_path.read_text(encoding="utf-8"))
+        stale = copy.deepcopy(spec["reviewHistory"][0])
+        stale["visualEvidence"]["renderSha256"] = "0" * 64
+        spec["reviewHistory"].append(stale)
+        errors, _warnings = validate_spec(spec, spec_path)
+        self.assertTrue(any("visual evidence binding failed" in item for item in errors))
+        self.assertEqual(completed_passes(spec, pass_order(spec), spec_path), [])
+        sync_pipeline(spec, spec_path)
+        self.assertEqual(spec["sculptPipeline"]["currentPass"], "blockout")
+        with self.assertRaisesRegex(ValueError, "complete through surface-pass"):
+            variant_gate(spec, False, spec_path)
+
+    def test_hash_required_latest_review_rejects_missing_hashes(self) -> None:
+        spec_path = ROOT / "examples" / "brick-offroad" / "object-sculpt-spec.json"
+        spec = json.loads(spec_path.read_text(encoding="utf-8"))
+        visual = spec["reviewHistory"][0]["visualEvidence"]
+        visual.pop("renderSha256")
+        errors, _warnings = validate_spec(spec, spec_path)
+        self.assertTrue(any("renderSha256 is required" in item for item in errors))
+        self.assertEqual(completed_passes(spec, pass_order(spec), spec_path), [])
+
+    def test_review_policy_migration_backfills_legacy_repolis(self) -> None:
+        spec_path = ROOT / "examples" / "repolis-tree" / "object-sculpt-spec.json"
+        spec = json.loads(spec_path.read_text(encoding="utf-8"))
+        self.remove_review_bindings(spec)
+        migrate_spec(spec, spec_path)
+        self.assertEqual(spec["reviewPolicy"]["version"], 2)
+        for review in spec["reviewHistory"]:
+            visual = review.get("visualEvidence")
+            if visual:
+                self.assertEqual(len(visual["renderSha256"]), 64)
+                self.assertEqual(len(visual["comparisonSha256"]), 64)
+        errors, _warnings = validate_spec(spec, spec_path)
+        self.assertEqual(errors, [])
+
+    def test_append_review_hashes_all_local_visual_evidence(self) -> None:
+        probe_dir = ROOT / "tests" / ".visual-evidence-hash-probe"
+        try:
+            probe_dir.mkdir(exist_ok=True)
+            evidence_path = probe_dir / "evidence.bin"
+            evidence_path.write_bytes(b"reviewed pixels")
+            spec_path = probe_dir / "spec.json"
+            spec_path.write_text(
+                json.dumps(make_spec("Hash Probe", str(evidence_path)), indent=2)
+                + "\n",
+                encoding="utf-8",
+            )
+            subprocess.run(
+                [
+                    sys.executable,
+                    str(SCRIPTS / "append_sculpt_review.py"),
+                    str(spec_path),
+                    "--pass-id",
+                    "blockout",
+                    "--fidelity",
+                    "0.5",
+                    "--action",
+                    "refine-code",
+                    "--summary",
+                    "Hash binding probe",
+                    "--reference-screenshot",
+                    str(evidence_path),
+                    "--render-screenshot",
+                    str(evidence_path),
+                    "--comparison-image",
+                    str(evidence_path),
+                    "--in-place",
+                ],
+                check=True,
+                capture_output=True,
+                text=True,
+                cwd=ROOT,
+            )
+            visual = json.loads(spec_path.read_text(encoding="utf-8"))[
+                "reviewHistory"
+            ][0]["visualEvidence"]
+            expected = file_sha256(evidence_path)
+            self.assertEqual(visual["referenceSha256"], expected)
+            self.assertEqual(visual["renderSha256"], expected)
+            self.assertEqual(visual["comparisonSha256"], expected)
+            self.assertTrue(visual["reviewId"].startswith("blockout-review-"))
+            self.assertEqual(
+                visual["reviewedAt"],
+                json.loads(spec_path.read_text(encoding="utf-8"))[
+                    "reviewHistory"
+                ][0]["timestamp"],
+            )
+        finally:
+            shutil.rmtree(probe_dir, ignore_errors=True)
+
+    def test_overwritten_evidence_invalidates_completion_and_production(self) -> None:
+        source_path = ROOT / "examples" / "repolis-tree" / "object-sculpt-spec.json"
+        spec = json.loads(source_path.read_text(encoding="utf-8"))
+        probe_dir = ROOT / "tests" / ".visual-evidence-overwrite-probe"
+        try:
+            probe_dir.mkdir(exist_ok=True)
+            evidence_path = probe_dir / "render.webp"
+            original = (
+                ROOT / spec["reviewHistory"][0]["visualEvidence"]["renderScreenshot"]
+            )
+            shutil.copyfile(original, evidence_path)
+            visual = spec["reviewHistory"][0]["visualEvidence"]
+            visual["renderScreenshot"] = str(evidence_path)
+            bind_visual_evidence_hashes(visual, source_path)
+            self.assertEqual(
+                completed_passes(spec, pass_order(spec), source_path),
+                pass_order(spec),
+            )
+            variant_gate(spec, False, source_path)
+
+            evidence_path.write_bytes(evidence_path.read_bytes() + b"changed")
+            self.assertEqual(
+                completed_passes(spec, pass_order(spec), source_path),
+                [],
+            )
+            sync_pipeline(spec, source_path)
+            self.assertEqual(spec["sculptPipeline"]["completedPasses"], [])
+            self.assertEqual(spec["sculptPipeline"]["currentPass"], "blockout")
+            with self.assertRaisesRegex(
+                ValueError,
+                "complete through surface-pass",
+            ):
+                variant_gate(spec, False, source_path)
+        finally:
+            shutil.rmtree(probe_dir, ignore_errors=True)
+
+    def test_remote_record_only_evidence_does_not_require_local_hashes(self) -> None:
+        errors: list[str] = []
+        validate_visual_evidence_history(
+            {
+                "visualEvidence": [
+                    {
+                        "passId": "blockout",
+                        "referenceScreenshot": "https://example.com/reference.png",
+                        "renderScreenshot": "session-artifact://render",
+                        "comparisonImage": "https://example.com/comparison.png",
+                        "referenceBinding": "remote-unverified",
+                        "renderBinding": "remote-unverified",
+                        "comparisonBinding": "remote-unverified",
+                    }
+                ]
+            },
+            errors,
+        )
+        self.assertEqual(errors, [])
+
+    def test_notes_only_record_does_not_require_production_image_pair(self) -> None:
+        errors: list[str] = []
+        validate_visual_evidence_history(
+            {
+                "visualEvidence": [
+                    {
+                        "passId": "blockout",
+                        "cameraView": "three-quarter",
+                        "notes": "Capture pending; record-only observation.",
+                    }
+                ]
+            },
+            errors,
+        )
+        self.assertEqual(errors, [])
 
     def test_coverage_curator_is_deterministic_and_diverse(self) -> None:
         spec = self.make_dna_spec()

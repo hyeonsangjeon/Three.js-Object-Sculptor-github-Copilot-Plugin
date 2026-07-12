@@ -11,6 +11,10 @@ from pathlib import Path
 from typing import Any
 
 from visual_feature_gate import feature_gate_failures
+from visual_evidence_hashes import (
+    latest_review_for_pass,
+    review_visual_evidence_failures,
+)
 
 
 DEFAULT_PASS_ORDER = [
@@ -82,7 +86,12 @@ def visual_evidence(entry: dict[str, Any]) -> dict[str, Any]:
     return visual if isinstance(visual, dict) else {}
 
 
-def review_completes_pass(spec: dict[str, Any], entry: dict[str, Any], pass_id: str) -> bool:
+def review_completes_pass(
+    spec: dict[str, Any],
+    entry: dict[str, Any],
+    pass_id: str,
+    spec_path: Path | None = None,
+) -> bool:
     if entry.get("passId") != pass_id or entry.get("action") != "continue":
         return False
     if pass_id in VISUAL_PASS_IDS:
@@ -93,20 +102,23 @@ def review_completes_pass(spec: dict[str, Any], entry: dict[str, Any], pass_id: 
         threshold = entry.get("visualAcceptanceThreshold", 0.7)
         if not has_number(score) or not has_number(threshold) or float(score) < float(threshold):
             return False
+        if review_visual_evidence_failures(spec, visual, spec_path):
+            return False
         if feature_gate_failures(spec, entry, pass_id):
             return False
     return True
 
 
-def completed_passes(spec: dict[str, Any], ids: list[str]) -> list[str]:
-    history = spec.get("reviewHistory", [])
-    if not isinstance(history, list):
-        return []
+def completed_passes(
+    spec: dict[str, Any],
+    ids: list[str],
+    spec_path: Path | None = None,
+) -> list[str]:
     completed: list[str] = []
     for pass_id in ids:
-        if any(
-            isinstance(entry, dict) and review_completes_pass(spec, entry, pass_id)
-            for entry in history
+        entry = latest_review_for_pass(spec, pass_id)
+        if isinstance(entry, dict) and review_completes_pass(
+            spec, entry, pass_id, spec_path
         ):
             completed.append(pass_id)
         else:
@@ -124,7 +136,7 @@ def next_required_evidence(spec: dict[str, Any], pass_id: str) -> list[str]:
     if pass_id == "complete":
         return []
     evidence = pass_acceptance(spec, pass_id)
-    evidence.extend(pass_specific_evidence(pass_id))
+    evidence.extend(pass_specific_evidence(spec, pass_id))
     if pass_id in VISUAL_PASS_IDS:
         evidence.append("browser render screenshot from the GitHub Copilot in-app Browser")
         evidence.append("side-by-side reference/render comparison sheet for AI vision review")
@@ -381,17 +393,22 @@ def lighting_pass_gaps(spec: dict[str, Any]) -> list[str]:
     return gaps
 
 
-def pass_specific_evidence(pass_id: str) -> list[str]:
+def pass_specific_evidence(spec: dict[str, Any], pass_id: str) -> list[str]:
     if pass_id in {"structural-pass", "form-refinement"}:
         return [
             "attachment contracts for child appendages/connectors",
             "no floating child roots/joints in the browser screenshot",
         ]
     if pass_id == "material-pass":
+        minimum_resolution = (
+            spec.get("lookDevTargets", {})
+            .get("materialPass", {})
+            .get("minimumTextureResolution", 1024)
+        )
         return [
             "reference-derived albedo palette with dominant, secondary, and accent colors",
             "independent albedo, roughness, height/normal, and AO maps",
-            "macro, meso, and micro surface-frequency response at 1024px or higher",
+            f"macro, meso, and micro surface-frequency response at {minimum_resolution}px or higher",
             "local material masks: AO, dirt, wear, stains, moss, chips, scratches, wetness, or equivalent",
             "neutral, grazing-light close-up, and reference-matched browser screenshots",
             "AI vision comparison sheet score meeting the visual acceptance threshold",
@@ -420,9 +437,12 @@ def pass_specific_gaps(spec: dict[str, Any], pass_id: str) -> list[str]:
     return []
 
 
-def sync_pipeline(spec: dict[str, Any]) -> dict[str, Any]:
+def sync_pipeline(
+    spec: dict[str, Any],
+    spec_path: Path | None = None,
+) -> dict[str, Any]:
     ids = pass_order(spec)
-    completed = completed_passes(spec, ids)
+    completed = completed_passes(spec, ids, spec_path)
     current = current_pass(ids, completed)
     pipeline = spec.setdefault("sculptPipeline", {})
     if not isinstance(pipeline, dict):
@@ -442,8 +462,12 @@ def sync_pipeline(spec: dict[str, Any]) -> dict[str, Any]:
     return pipeline
 
 
-def check_pass(spec: dict[str, Any], requested_pass: str) -> tuple[bool, str, dict[str, Any]]:
-    pipeline = sync_pipeline(spec)
+def check_pass(
+    spec: dict[str, Any],
+    requested_pass: str,
+    spec_path: Path | None = None,
+) -> tuple[bool, str, dict[str, Any]]:
+    pipeline = sync_pipeline(spec, spec_path)
     ids = list(pipeline["passOrder"])
     if requested_pass not in ids:
         return False, f"unknown build pass {requested_pass!r}", pipeline
@@ -468,8 +492,11 @@ def check_pass(spec: dict[str, Any], requested_pass: str) -> tuple[bool, str, di
     )
 
 
-def status_payload(spec: dict[str, Any]) -> dict[str, Any]:
-    pipeline = sync_pipeline(spec)
+def status_payload(
+    spec: dict[str, Any],
+    spec_path: Path | None = None,
+) -> dict[str, Any]:
+    pipeline = sync_pipeline(spec, spec_path)
     return {
         "targetName": spec.get("targetName"),
         "passGateMode": pipeline.get("passGateMode"),
@@ -503,7 +530,7 @@ def main(argv: list[str]) -> int:
     spec = load_spec(spec_path)
 
     if args.command == "status":
-        payload = status_payload(spec)
+        payload = status_payload(spec, spec_path)
         if args.json:
             print(json.dumps(payload, indent=2, ensure_ascii=False))
         else:
@@ -514,7 +541,7 @@ def main(argv: list[str]) -> int:
         return 0
 
     if args.command == "check":
-        ok, message, pipeline = check_pass(spec, args.pass_id)
+        ok, message, pipeline = check_pass(spec, args.pass_id, spec_path)
         payload = {"ok": ok, "message": message, "pipeline": pipeline}
         if args.json:
             print(json.dumps(payload, indent=2, ensure_ascii=False))
@@ -524,7 +551,7 @@ def main(argv: list[str]) -> int:
         return 0 if ok else 1
 
     if args.command == "sync":
-        payload = status_payload(spec)
+        payload = status_payload(spec, spec_path)
         output = spec_path if args.in_place else (args.out.expanduser().resolve() if args.out else None)
         if output:
             write_spec(output, spec)

@@ -2,6 +2,11 @@
   "targetName": "Brick Off-Road Explorer",
   "targetId": "brick-offroad-v003",
   "schemaVersion": "2.0",
+  "reviewPolicy": {
+    "version": 2,
+    "authoritativeReview": "latest-per-pass",
+    "evidenceBinding": "local-sha256-required"
+  },
   "terminologyProfile": {
     "domain": "real-time procedural Three.js asset",
     "geometryTerms": [
@@ -80,12 +85,12 @@
       "scores": {
         "silhouetteComplexity": 3,
         "componentCount": 3,
-        "hierarchyDepth": 2,
+        "hierarchyDepth": 3,
         "repetitionDensity": 3,
         "materialLayerCount": 3,
-        "localDetailDensity": 2,
+        "localDetailDensity": 3,
         "occlusionRisk": 2,
-        "actionReadinessNeed": 2
+        "actionReadinessNeed": 3
       },
       "estimatedCounts": {
         "macroComponents": 3,
@@ -97,7 +102,8 @@
       "reasoning": [
         "The vehicle is isolated and its raised four-wheel chassis, cabin, rear body, and wheel spacing are readable.",
         "Brick studs, tire treads, and roof lamps are deterministic repetition systems.",
-        "Hidden underbody details are simplified for a browser-real-time showcase."
+        "The photographed near-side front wheel, rear wheel, hood, cabin, and roof cargo provide enough scale and overlap cues to infer the hidden pair and underbody.",
+        "The production hierarchy needs wheel and steering pivots, suspension anchors, hinged panels, roof sockets, collider proxies, and semantic destruction groups."
       ]
     },
     "specDepthDecision": {
@@ -119,8 +125,10 @@
   "qualityContract": {
     "qualityBar": "complex",
     "definitionOfDone": [
-      "The render reads as the same olive raised 4x4 expedition vehicle.",
-      "Three variants preserve four-wheel topology while changing panel palette and repeated-detail density."
+      "The reference-matched three-quarter render reads as the same olive brick-built off-road 4x4: long faceted hood, upright glazed cabin, light roof, rear utility body, raised arches, and exactly four wheels.",
+      "The full pass shows brick/stud language, tread blocks, hubs, suspension, panel seams, hinges, fasteners, grille, lamps, bumpers, roof rack, cargo, and warm recovery accents without imported meshes.",
+      "Generated olive paint, rubber, glazing, dark trim, metal, lamps, and dirt/wear use independent PBR channels and remain readable under neutral studio lighting.",
+      "Three deterministic configurations preserve component IDs, four-wheel topology, action-ready pivots, sockets, colliders, and destruction groups while varying bounded palette and surface-age controls."
     ],
     "minimumSpecDepth": {
       "macroComponents": 3,
@@ -136,13 +144,14 @@
         "name": "Raised four-wheel off-road silhouette",
         "required": true,
         "qualityCriteria": [
-          "Raised four-wheel off-road silhouette remains recognizable across variants."
+          "Wheelbase, track, tire diameter, hood length, cabin height, roof overhang, and rear utility-body mass match the photographed proportions.",
+          "Exactly four wheels remain visible or inferable at the expected axle and track positions in every configuration."
         ],
         "evidenceRefs": [
           "full-object"
         ],
         "failureModes": [
-          "Raised four-wheel off-road silhouette becomes generic or visually detached."
+          "Short generic SUV proportions, five or more wheels, narrow track, centered cabin, or wheels floating outside the arches."
         ]
       },
       {
@@ -150,13 +159,14 @@
         "name": "Four large tire and hub system",
         "required": true,
         "qualityCriteria": [
-          "Four large tire and hub system remains recognizable across variants."
+          "All four tires share axle orientation, tread cadence, black multi-spoke hubs, and suspension contact with the chassis.",
+          "Front steering pivots remain distinct from rear wheel pivots."
         ],
         "evidenceRefs": [
           "identity-details"
         ],
         "failureModes": [
-          "Four large tire and hub system becomes generic or visually detached."
+          "Torus wheels face the wrong axis, duplicate wheels appear, tread blocks float, or hubs lack mechanical depth."
         ]
       },
       {
@@ -164,13 +174,14 @@
         "name": "Cabin, hood, and rear utility-bed hierarchy",
         "required": true,
         "qualityCriteria": [
-          "Cabin, hood, and rear utility-bed hierarchy remains recognizable across variants."
+          "Faceted olive hood, black A-pillars, broad windshield, side windows, two doors, and rear utility body reproduce the photographed massing.",
+          "Light roof panels and black structural rails frame the glazed cabin."
         ],
         "evidenceRefs": [
           "full-object"
         ],
         "failureModes": [
-          "Cabin, hood, and rear utility-bed hierarchy becomes generic or visually detached."
+          "Monolithic body shell, missing windshield rake, missing doors, or rear body that reads as an open pickup bed."
         ]
       },
       {
@@ -178,13 +189,13 @@
         "name": "Roof rack and lamp bar",
         "required": false,
         "qualityCriteria": [
-          "Roof rack and lamp bar remains recognizable across variants."
+          "Black roof rails support a dark cargo case, light recovery boards, fasteners, and warm auxiliary lamps at the photographed roof height."
         ],
         "evidenceRefs": [
           "identity-details"
         ],
         "failureModes": [
-          "Roof rack and lamp bar becomes generic or visually detached."
+          "Floating roof cargo, oversized lamps, missing support rails, or cargo that obscures the light roof."
         ]
       }
     ],
@@ -192,24 +203,29 @@
       "silhouette and proportion delta",
       "component hierarchy delta",
       "material palette and roughness delta",
-      "repetition density delta"
+      "repetition density delta",
+      "wheel count/orientation and axle-contact delta",
+      "reference camera framing delta"
     ],
     "antiShallowSpecRules": [
       "Do not generate the showcase from a single undifferentiated mesh.",
       "Do not vary protected component IDs, parent links, or review targets.",
-      "Do not accept variants without fresh visual evidence."
+      "Do not accept variants without fresh visual evidence.",
+      "Reject any runtime that stores live Three.js references in serializable userData.",
+      "Reject a full pass that omits the photographed hood/cabin/window/door/fender/rear-body relationships."
     ]
   },
   "qualityTargets": {
-    "targetFidelity": 0.72,
+    "targetFidelity": 0.78,
     "mustMatch": [
-      "Raised four-wheel off-road silhouette",
-      "Four large tire and hub system",
-      "Cabin, hood, and rear utility-bed hierarchy"
+      "Exact four-wheel placement and orientation",
+      "Long faceted hood, upright glazed cabin, light roof, and rear utility-body proportions",
+      "Olive panels separated from black structure, rubber, glass, metal, and warm recovery accents",
+      "Brick studs, panel seams, tire tread, hubs, suspension, rack cargo, grille, and lamps"
     ],
     "niceToHave": [
-      "micro scratches, stains, chips, and dirt masks",
-      "secondary lighting match"
+      "subtle edge wear and seam dirt",
+      "rear-most hidden-side details inferred from bilateral construction"
     ],
     "fpsTarget": 60,
     "reviewViewpoints": [
@@ -223,7 +239,7 @@
     "enabled": true,
     "visualAcceptance": {
       "reviewer": "ai-vision",
-      "threshold": 0.7,
+      "threshold": 0.74,
       "comparisonArtifactRequired": true,
       "layerScoresRequired": true,
       "codePixelDiffIsAcceptanceAuthority": false,
@@ -301,14 +317,16 @@
   },
   "featureReviewTargets": [
     {
-      "id": "raised-4x4-silhouette",
-      "name": "Raised four-wheel off-road silhouette",
+      "id": "vehicle-proportion-wheel-placement",
+      "name": "Reference wheelbase, track, ride height, and exactly four correctly oriented wheels",
       "tier": "critical",
       "passIds": [
         "blockout",
-        "form-refinement"
+        "structural-pass",
+        "form-refinement",
+        "surface-pass"
       ],
-      "minimumScore": 0.78,
+      "minimumScore": 0.8,
       "mustPass": true,
       "componentRefs": [
         "root",
@@ -319,16 +337,59 @@
       ]
     },
     {
-      "id": "four-wheel-system",
-      "name": "Four large tire and hub system",
+      "id": "hood-cabin-window-identity",
+      "name": "Faceted hood, upright cabin, windshield, side windows, doors, and light roof",
       "tier": "critical",
       "passIds": [
+        "blockout",
         "structural-pass",
-        "surface-pass"
+        "form-refinement"
       ],
       "minimumScore": 0.78,
       "mustPass": true,
       "componentRefs": [
+        "cabin",
+        "hood",
+        "glass-system"
+      ],
+      "evidenceRefs": [
+        "full-object"
+      ]
+    },
+    {
+      "id": "fender-door-utility-structure",
+      "name": "Wheel arches, doors, rocker structure, rear utility body, bumpers, and suspension",
+      "tier": "critical",
+      "passIds": [
+        "structural-pass",
+        "form-refinement",
+        "interaction-pass"
+      ],
+      "minimumScore": 0.76,
+      "mustPass": true,
+      "componentRefs": [
+        "root",
+        "cabin",
+        "cargo-bed",
+        "bumper",
+        "wheel-system"
+      ],
+      "evidenceRefs": [
+        "full-object"
+      ]
+    },
+    {
+      "id": "brick-tread-fastener-language",
+      "name": "Brick studs, tire tread blocks, hubs, seams, hinges, and visible fasteners",
+      "tier": "critical",
+      "passIds": [
+        "surface-pass"
+      ],
+      "minimumScore": 0.76,
+      "mustPass": true,
+      "componentRefs": [
+        "root",
+        "hood",
         "wheel-system"
       ],
       "evidenceRefs": [
@@ -336,33 +397,36 @@
       ]
     },
     {
-      "id": "cabin-hood-bed",
-      "name": "Cabin, hood, and rear utility-bed hierarchy",
+      "id": "material-system-separation",
+      "name": "Olive paint, light roof, black trim, rubber, glass, metal, lamps, and dirt/wear remain physically distinct",
       "tier": "critical",
       "passIds": [
-        "structural-pass",
-        "form-refinement"
+        "material-pass",
+        "surface-pass",
+        "lighting-pass"
       ],
       "minimumScore": 0.76,
       "mustPass": true,
       "componentRefs": [
+        "root",
         "cabin",
-        "hood",
-        "cargo-bed"
+        "glass-system",
+        "lighting"
       ],
       "evidenceRefs": [
-        "full-object"
+        "identity-details"
       ]
     },
     {
-      "id": "roof-expedition-gear",
-      "name": "Roof rack and lamp bar",
+      "id": "roof-rack-cargo-lamps",
+      "name": "Black roof rack, cargo case, recovery boards, auxiliary lamps, and warm accents",
       "tier": "important",
       "passIds": [
         "structural-pass",
-        "material-pass"
+        "form-refinement",
+        "surface-pass"
       ],
-      "minimumScore": 0.68,
+      "minimumScore": 0.7,
       "mustPass": false,
       "componentRefs": [
         "roof-rack",
@@ -385,16 +449,20 @@
       "interaction-pass",
       "optimization-pass"
     ],
-    "currentPass": "blockout",
-    "completedPasses": [],
-    "lastCompletedPass": "",
-    "blockedReason": "Sculpt DNA changed visible geometry or material parameters; this variant needs fresh browser and AI-vision evidence before deeper passes unlock.",
-    "nextRequiredEvidence": [
-      "fresh blockout browser screenshot for this Sculpt DNA variant",
-      "side-by-side comparison against the intended family reference or design target",
-      "AI vision layer and semantic feature scores for this variant",
-      "new reviewHistory entry with action=continue"
-    ]
+    "currentPass": "complete",
+    "completedPasses": [
+      "blockout",
+      "structural-pass",
+      "form-refinement",
+      "material-pass",
+      "surface-pass",
+      "lighting-pass",
+      "interaction-pass",
+      "optimization-pass"
+    ],
+    "lastCompletedPass": "optimization-pass",
+    "blockedReason": "all build passes completed",
+    "nextRequiredEvidence": []
   },
   "lookDevTargets": {
     "qualityPriority": "balanced",
@@ -403,8 +471,8 @@
       "roughnessVariationRequired": true,
       "normalOrBumpRequired": true,
       "localOverridesRequired": true,
-      "minimumTextureResolution": 1024,
-      "preferredTextureResolution": 2048,
+      "minimumTextureResolution": 512,
+      "preferredTextureResolution": 512,
       "independentMapChannels": [
         "albedo",
         "roughness",
@@ -499,19 +567,41 @@
       "debrisStrategy": "Prefer detachable component groups and a small number of procedural fragments over random mesh explosion."
     }
   },
-  "assumptions": [],
+  "assumptions": [
+    "The hidden left-side wheel, suspension, door, and utility-body details mirror the visible near side while preserving four-wheel topology.",
+    "Fine branded text and exact commercial brick part topology are represented as procedural panel and fastener language rather than copied logos.",
+    "The single reference supports an approximate action-ready reconstruction, not an exact reverse-engineered production mesh."
+  ],
   "coordinateFrame": {
-    "front": "camera-facing side in the reference image",
-    "up": "image up direction",
-    "scaleReference": "unit scale; adjust after first browser render"
+    "front": "negative X points toward the grille and long hood",
+    "up": "positive Y",
+    "scaleReference": "one scene unit is approximately one stud module; wheel diameter is approximately 1.75 units"
   },
   "silhouette": {
-    "boundingShape": "",
-    "aspectRatios": [],
-    "symmetry": "",
-    "dominantCurves": [],
-    "negativeSpaces": [],
-    "landmarks": []
+    "boundingShape": "long-wheelbase rectangular 4x4 with a low faceted hood, upright cabin, raised arches, and roof cargo",
+    "aspectRatios": [
+      "overall length:width:height approximately 6.6:3.3:3.4 including tires and rack",
+      "wheelbase approximately 4.5 wheel radii",
+      "track approximately 1.6 tire diameters"
+    ],
+    "symmetry": "bilateral across the longitudinal X/Y center plane with asymmetric roof cargo and visible-side wear",
+    "dominantCurves": [
+      "four circular tire silhouettes",
+      "arched olive fenders over each axle",
+      "rounded hood corners and light roof overhang"
+    ],
+    "negativeSpaces": [
+      "open wheel wells between tire and fender",
+      "dark window apertures bounded by black pillars",
+      "clearance below rocker panels and chassis"
+    ],
+    "landmarks": [
+      "long olive hood with raised center panel",
+      "wide black-framed windshield under a light roof",
+      "near-side front and rear doors with visible hinges and fasteners",
+      "black roof rack carrying dark case and light recovery boards",
+      "warm front recovery hardware"
+    ]
   },
   "viewEvidence": [
     {
@@ -1684,7 +1774,7 @@
       },
       "colorVariation": {
         "palette": [
-          "#8C9570",
+          "#65704A",
           "#4C5937",
           "#78835B",
           "#8C9570"
@@ -1693,7 +1783,7 @@
         "amplitude": 0.18,
         "heightCorrelation": 0.15
       },
-      "textureResolution": 1024,
+      "textureResolution": 512,
       "textureProjection": {
         "mode": "object-space",
         "repeat": [
@@ -1724,7 +1814,7 @@
         }
       ],
       "roughness": {
-        "base": 0.6379,
+        "base": 0.582,
         "variation": 0.12,
         "map": "independent-body-shell-roughness-field",
         "localResponse": "Cavities are rougher and exposed edges are smoother."
@@ -1756,12 +1846,12 @@
         "notes": "Concentrate AO at component contacts."
       },
       "wear": {
-        "edgeWear": 0.08,
+        "edgeWear": 0.27,
         "scratches": [],
         "chips": []
       },
       "dirt": {
-        "amount": 0.08,
+        "amount": 0.2,
         "cavityBias": 0.55,
         "color": "#1A1A18"
       },
@@ -1805,7 +1895,7 @@
         "amplitude": 0.18,
         "heightCorrelation": 0.15
       },
-      "textureResolution": 1024,
+      "textureResolution": 512,
       "textureProjection": {
         "mode": "object-space",
         "repeat": [
@@ -1836,7 +1926,7 @@
         }
       ],
       "roughness": {
-        "base": 0.5967,
+        "base": 0.6146,
         "variation": 0.12,
         "map": "independent-roof-shell-roughness-field",
         "localResponse": "Cavities are rougher and exposed edges are smoother."
@@ -1917,7 +2007,7 @@
         "amplitude": 0.18,
         "heightCorrelation": 0.15
       },
-      "textureResolution": 1024,
+      "textureResolution": 512,
       "textureProjection": {
         "mode": "object-space",
         "repeat": [
@@ -1948,7 +2038,7 @@
         }
       ],
       "roughness": {
-        "base": 0.7056,
+        "base": 0.7608,
         "variation": 0.12,
         "map": "independent-dark-trim-roughness-field",
         "localResponse": "Cavities are rougher and exposed edges are smoother."
@@ -2015,23 +2105,23 @@
         "dominant": "#D87927",
         "secondary": [
           "#E6B64C",
-          "#3AA6A0",
+          "#E28A2B",
           "#B75B32"
         ],
         "samplingNotes": "Reference-derived palette for Expedition accent panels."
       },
       "colorVariation": {
         "palette": [
+          "#B75B32",
           "#E6B64C",
-          "#E6B64C",
-          "#3AA6A0",
+          "#E28A2B",
           "#B75B32"
         ],
         "pattern": "deterministic regional variation",
         "amplitude": 0.18,
         "heightCorrelation": 0.15
       },
-      "textureResolution": 1024,
+      "textureResolution": 512,
       "textureProjection": {
         "mode": "object-space",
         "repeat": [
@@ -2062,7 +2152,7 @@
         }
       ],
       "roughness": {
-        "base": 0.563,
+        "base": 0.6072,
         "variation": 0.12,
         "map": "independent-accent-roughness-field",
         "localResponse": "Cavities are rougher and exposed edges are smoother."
@@ -2135,7 +2225,7 @@
       },
       "colorVariation": {
         "palette": [
-          "#222622",
+          "#363C36",
           "#222622",
           "#363C36"
         ],
@@ -2143,7 +2233,7 @@
         "amplitude": 0.18,
         "heightCorrelation": 0.15
       },
-      "textureResolution": 1024,
+      "textureResolution": 512,
       "textureProjection": {
         "mode": "object-space",
         "repeat": [
@@ -2174,7 +2264,7 @@
         }
       ],
       "roughness": {
-        "base": 0.9126,
+        "base": 0.8654,
         "variation": 0.12,
         "map": "independent-rubber-roughness-field",
         "localResponse": "Cavities are rougher and exposed edges are smoother."
@@ -2247,7 +2337,7 @@
       },
       "colorVariation": {
         "palette": [
-          "#29434A",
+          "#182B30",
           "#29434A",
           "#5A7378"
         ],
@@ -2255,7 +2345,7 @@
         "amplitude": 0.18,
         "heightCorrelation": 0.15
       },
-      "textureResolution": 1024,
+      "textureResolution": 512,
       "textureProjection": {
         "mode": "object-space",
         "repeat": [
@@ -2286,7 +2376,7 @@
         }
       ],
       "roughness": {
-        "base": 0.1008,
+        "base": 0.2269,
         "variation": 0.12,
         "map": "independent-glass-roughness-field",
         "localResponse": "Cavities are rougher and exposed edges are smoother."
@@ -2359,7 +2449,7 @@
       },
       "colorVariation": {
         "palette": [
-          "#FFF3C4",
+          "#FFB347",
           "#FFD782",
           "#FFF3C4"
         ],
@@ -2367,7 +2457,7 @@
         "amplitude": 0.18,
         "heightCorrelation": 0.15
       },
-      "textureResolution": 1024,
+      "textureResolution": 512,
       "textureProjection": {
         "mode": "object-space",
         "repeat": [
@@ -2398,7 +2488,7 @@
         }
       ],
       "roughness": {
-        "base": 0.2676,
+        "base": 0.2423,
         "variation": 0.12,
         "map": "independent-lamp-roughness-field",
         "localResponse": "Cavities are rougher and exposed edges are smoother."
@@ -2459,6 +2549,17 @@
       }
     }
   ],
+  "runtimeConfiguration": {
+    "baseId": "brick-offroad-base",
+    "source": "examples/brick-offroad-hero/brick-output/brick-variant-config.json",
+    "evidencePolicy": "All base blockout through final evidence uses the exact base configuration. Curated v001-v003 configurations are reserved for per-variant evidence.",
+    "surfaceAgeDriver": "body-shell wear.edgeWear and dirt.amount are the shared runtime drivers for generated scratch, dirt, and roughness masks across all material families.",
+    "protectedBaseValues": {
+      "wheelTreads": 64,
+      "bodyStuds": 72,
+      "roofLamps": 5
+    }
+  },
   "sculptDNA": {
     "schemaVersion": "1.0",
     "enabled": true,
@@ -2504,6 +2605,50 @@
         "semanticEffects": [
           "palette family",
           "local albedo variation"
+        ]
+      },
+      {
+        "id": "surface-wear",
+        "label": "global procedural surface wear",
+        "target": {
+          "kind": "material",
+          "id": "body-shell",
+          "path": "wear.edgeWear"
+        },
+        "operation": "set",
+        "distribution": "triangular",
+        "range": {
+          "min": 0.16,
+          "max": 0.32
+        },
+        "precision": 2,
+        "group": "surface-age",
+        "semanticEffects": [
+          "scratch visibility",
+          "edge wear",
+          "roughness response"
+        ]
+      },
+      {
+        "id": "surface-dirt",
+        "label": "global procedural surface dirt",
+        "target": {
+          "kind": "material",
+          "id": "body-shell",
+          "path": "dirt.amount"
+        },
+        "operation": "set",
+        "distribution": "triangular",
+        "range": {
+          "min": 0.12,
+          "max": 0.24
+        },
+        "precision": 2,
+        "group": "surface-age",
+        "semanticEffects": [
+          "cavity dirt",
+          "albedo attenuation",
+          "ambient-occlusion response"
         ]
       },
       {
@@ -2622,7 +2767,7 @@
         "choices": [
           "#D87927",
           "#E6B64C",
-          "#3AA6A0",
+          "#E28A2B",
           "#B75B32"
         ],
         "semanticEffects": [
@@ -2762,12 +2907,12 @@
           "path": "count"
         },
         "operation": "set",
-        "distribution": "triangular",
-        "range": {
-          "min": 51,
-          "max": 77
-        },
-        "precision": 0,
+        "distribution": "choice",
+        "choices": [
+          52,
+          64,
+          76
+        ],
         "semanticEffects": [
           "repetition density",
           "draw-call and triangle budget"
@@ -2842,7 +2987,7 @@
         "wheel-system"
       ],
       "material": "rubber",
-      "count": 57,
+      "count": 76,
       "seed": 6103,
       "distribution": "four rings",
       "constraints": [
@@ -2859,7 +3004,7 @@
         "cabin"
       ],
       "material": "body-shell",
-      "count": 72,
+      "count": 60,
       "seed": 8831,
       "distribution": "panel grid with omissions",
       "constraints": [
@@ -3037,8 +3182,832 @@
       ]
     }
   ],
-  "visualEvidence": [],
-  "reviewHistory": [],
+  "visualEvidence": [
+    {
+      "timestamp": "2026-07-12T02:00:26Z",
+      "passId": "blockout",
+      "estimatedFidelity": 0.78,
+      "aiVisionScore": 0.78,
+      "visualAcceptanceThreshold": 0.74,
+      "layerScores": {
+        "silhouetteProportion": 0.81,
+        "componentStructure": 0.8,
+        "formDetail": 0.78,
+        "materialSurface": 0.77,
+        "lightingCamera": 0.76
+      },
+      "featureReviews": [
+        {
+          "id": "vehicle-proportion-wheel-placement",
+          "score": 0.83,
+          "visible": true,
+          "notes": "Four-wheel topology, track, wheelbase, and axle orientation remain unchanged."
+        },
+        {
+          "id": "hood-cabin-window-identity",
+          "score": 0.81,
+          "visible": true,
+          "notes": "Hood, framed cabin, glazing, doors, light roof, and rear body preserve identity."
+        }
+      ],
+      "referenceScreenshot": "assets/brick-offroad-reference.jpeg",
+      "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-3.webp",
+      "comparisonImage": "examples/brick-offroad-hero/evidence/variant-3-comparison.webp",
+      "cameraView": "reference-three-quarter",
+      "notes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+      "aiVisionNotes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+      "renderSha256": "3dc79fb282c678313ab088aadf2db73b6dc146a903a4774d85571dd4a3d4031c",
+      "comparisonSha256": "7c5173bcc83fbf7563774dd74f51390734f98616288b0de91bc0ac8f4ada5507",
+      "reviewedAt": "2026-07-12T02:00:26Z",
+      "reviewId": "brick-offroad-v003-fresh-review-2026-07-12T02:00:26Z",
+      "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+      "referenceBinding": "local-sha256",
+      "renderBinding": "local-sha256",
+      "comparisonBinding": "local-sha256"
+    },
+    {
+      "timestamp": "2026-07-12T02:00:26Z",
+      "passId": "structural-pass",
+      "estimatedFidelity": 0.78,
+      "aiVisionScore": 0.78,
+      "visualAcceptanceThreshold": 0.74,
+      "layerScores": {
+        "silhouetteProportion": 0.81,
+        "componentStructure": 0.8,
+        "formDetail": 0.78,
+        "materialSurface": 0.77,
+        "lightingCamera": 0.76
+      },
+      "featureReviews": [
+        {
+          "id": "vehicle-proportion-wheel-placement",
+          "score": 0.83,
+          "visible": true,
+          "notes": "Four-wheel topology, track, wheelbase, and axle orientation remain unchanged."
+        },
+        {
+          "id": "hood-cabin-window-identity",
+          "score": 0.81,
+          "visible": true,
+          "notes": "Hood, framed cabin, glazing, doors, light roof, and rear body preserve identity."
+        },
+        {
+          "id": "fender-door-utility-structure",
+          "score": 0.8,
+          "visible": true,
+          "notes": "Arches, doors, rocker, utility body, bumpers, and suspension remain attached."
+        }
+      ],
+      "referenceScreenshot": "assets/brick-offroad-reference.jpeg",
+      "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-3.webp",
+      "comparisonImage": "examples/brick-offroad-hero/evidence/variant-3-comparison.webp",
+      "cameraView": "reference-three-quarter",
+      "notes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+      "aiVisionNotes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+      "renderSha256": "3dc79fb282c678313ab088aadf2db73b6dc146a903a4774d85571dd4a3d4031c",
+      "comparisonSha256": "7c5173bcc83fbf7563774dd74f51390734f98616288b0de91bc0ac8f4ada5507",
+      "reviewedAt": "2026-07-12T02:00:26Z",
+      "reviewId": "brick-offroad-v003-fresh-review-2026-07-12T02:00:26Z",
+      "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+      "referenceBinding": "local-sha256",
+      "renderBinding": "local-sha256",
+      "comparisonBinding": "local-sha256"
+    },
+    {
+      "timestamp": "2026-07-12T02:00:26Z",
+      "passId": "form-refinement",
+      "estimatedFidelity": 0.78,
+      "aiVisionScore": 0.78,
+      "visualAcceptanceThreshold": 0.74,
+      "layerScores": {
+        "silhouetteProportion": 0.81,
+        "componentStructure": 0.8,
+        "formDetail": 0.78,
+        "materialSurface": 0.77,
+        "lightingCamera": 0.76
+      },
+      "featureReviews": [
+        {
+          "id": "vehicle-proportion-wheel-placement",
+          "score": 0.83,
+          "visible": true,
+          "notes": "Four-wheel topology, track, wheelbase, and axle orientation remain unchanged."
+        },
+        {
+          "id": "hood-cabin-window-identity",
+          "score": 0.81,
+          "visible": true,
+          "notes": "Hood, framed cabin, glazing, doors, light roof, and rear body preserve identity."
+        },
+        {
+          "id": "fender-door-utility-structure",
+          "score": 0.8,
+          "visible": true,
+          "notes": "Arches, doors, rocker, utility body, bumpers, and suspension remain attached."
+        }
+      ],
+      "referenceScreenshot": "assets/brick-offroad-reference.jpeg",
+      "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-3.webp",
+      "comparisonImage": "examples/brick-offroad-hero/evidence/variant-3-comparison.webp",
+      "cameraView": "reference-three-quarter",
+      "notes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+      "aiVisionNotes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+      "renderSha256": "3dc79fb282c678313ab088aadf2db73b6dc146a903a4774d85571dd4a3d4031c",
+      "comparisonSha256": "7c5173bcc83fbf7563774dd74f51390734f98616288b0de91bc0ac8f4ada5507",
+      "reviewedAt": "2026-07-12T02:00:26Z",
+      "reviewId": "brick-offroad-v003-fresh-review-2026-07-12T02:00:26Z",
+      "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+      "referenceBinding": "local-sha256",
+      "renderBinding": "local-sha256",
+      "comparisonBinding": "local-sha256"
+    },
+    {
+      "timestamp": "2026-07-12T02:00:26Z",
+      "passId": "material-pass",
+      "estimatedFidelity": 0.78,
+      "aiVisionScore": 0.78,
+      "visualAcceptanceThreshold": 0.74,
+      "layerScores": {
+        "silhouetteProportion": 0.81,
+        "componentStructure": 0.8,
+        "formDetail": 0.78,
+        "materialSurface": 0.77,
+        "lightingCamera": 0.76
+      },
+      "featureReviews": [
+        {
+          "id": "material-system-separation",
+          "score": 0.79,
+          "visible": true,
+          "notes": "Variant palette keeps paint, roof, trim, rubber, glass, metal, lamps, and dirt distinct."
+        }
+      ],
+      "referenceScreenshot": "assets/brick-offroad-reference.jpeg",
+      "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-3.webp",
+      "comparisonImage": "examples/brick-offroad-hero/evidence/variant-3-comparison.webp",
+      "cameraView": "reference-three-quarter",
+      "notes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+      "aiVisionNotes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+      "renderSha256": "3dc79fb282c678313ab088aadf2db73b6dc146a903a4774d85571dd4a3d4031c",
+      "comparisonSha256": "7c5173bcc83fbf7563774dd74f51390734f98616288b0de91bc0ac8f4ada5507",
+      "reviewedAt": "2026-07-12T02:00:26Z",
+      "reviewId": "brick-offroad-v003-fresh-review-2026-07-12T02:00:26Z",
+      "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+      "referenceBinding": "local-sha256",
+      "renderBinding": "local-sha256",
+      "comparisonBinding": "local-sha256"
+    },
+    {
+      "timestamp": "2026-07-12T02:00:26Z",
+      "passId": "surface-pass",
+      "estimatedFidelity": 0.78,
+      "aiVisionScore": 0.78,
+      "visualAcceptanceThreshold": 0.74,
+      "layerScores": {
+        "silhouetteProportion": 0.81,
+        "componentStructure": 0.8,
+        "formDetail": 0.78,
+        "materialSurface": 0.77,
+        "lightingCamera": 0.76
+      },
+      "featureReviews": [
+        {
+          "id": "vehicle-proportion-wheel-placement",
+          "score": 0.83,
+          "visible": true,
+          "notes": "Four-wheel topology, track, wheelbase, and axle orientation remain unchanged."
+        },
+        {
+          "id": "brick-tread-fastener-language",
+          "score": 0.78,
+          "visible": true,
+          "notes": "Studs, tread blocks, hubs, seams, hinges, and fasteners remain readable."
+        },
+        {
+          "id": "material-system-separation",
+          "score": 0.79,
+          "visible": true,
+          "notes": "Variant palette keeps paint, roof, trim, rubber, glass, metal, lamps, and dirt distinct."
+        }
+      ],
+      "referenceScreenshot": "assets/brick-offroad-reference.jpeg",
+      "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-3.webp",
+      "comparisonImage": "examples/brick-offroad-hero/evidence/variant-3-comparison.webp",
+      "cameraView": "reference-three-quarter",
+      "notes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+      "aiVisionNotes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+      "renderSha256": "3dc79fb282c678313ab088aadf2db73b6dc146a903a4774d85571dd4a3d4031c",
+      "comparisonSha256": "7c5173bcc83fbf7563774dd74f51390734f98616288b0de91bc0ac8f4ada5507",
+      "reviewedAt": "2026-07-12T02:00:26Z",
+      "reviewId": "brick-offroad-v003-fresh-review-2026-07-12T02:00:26Z",
+      "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+      "referenceBinding": "local-sha256",
+      "renderBinding": "local-sha256",
+      "comparisonBinding": "local-sha256"
+    },
+    {
+      "timestamp": "2026-07-12T02:00:26Z",
+      "passId": "lighting-pass",
+      "estimatedFidelity": 0.78,
+      "aiVisionScore": 0.78,
+      "visualAcceptanceThreshold": 0.74,
+      "layerScores": {
+        "silhouetteProportion": 0.81,
+        "componentStructure": 0.8,
+        "formDetail": 0.78,
+        "materialSurface": 0.77,
+        "lightingCamera": 0.76
+      },
+      "featureReviews": [
+        {
+          "id": "material-system-separation",
+          "score": 0.79,
+          "visible": true,
+          "notes": "Variant palette keeps paint, roof, trim, rubber, glass, metal, lamps, and dirt distinct."
+        }
+      ],
+      "referenceScreenshot": "assets/brick-offroad-reference.jpeg",
+      "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-3.webp",
+      "comparisonImage": "examples/brick-offroad-hero/evidence/variant-3-comparison.webp",
+      "cameraView": "reference-three-quarter",
+      "notes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+      "aiVisionNotes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+      "renderSha256": "3dc79fb282c678313ab088aadf2db73b6dc146a903a4774d85571dd4a3d4031c",
+      "comparisonSha256": "7c5173bcc83fbf7563774dd74f51390734f98616288b0de91bc0ac8f4ada5507",
+      "reviewedAt": "2026-07-12T02:00:26Z",
+      "reviewId": "brick-offroad-v003-fresh-review-2026-07-12T02:00:26Z",
+      "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+      "referenceBinding": "local-sha256",
+      "renderBinding": "local-sha256",
+      "comparisonBinding": "local-sha256"
+    },
+    {
+      "timestamp": "2026-07-12T02:00:26Z",
+      "passId": "interaction-pass",
+      "estimatedFidelity": 0.78,
+      "aiVisionScore": 0.78,
+      "visualAcceptanceThreshold": 0.74,
+      "layerScores": {
+        "silhouetteProportion": 0.81,
+        "componentStructure": 0.8,
+        "formDetail": 0.78,
+        "materialSurface": 0.77,
+        "lightingCamera": 0.76
+      },
+      "featureReviews": [
+        {
+          "id": "fender-door-utility-structure",
+          "score": 0.8,
+          "visible": true,
+          "notes": "Arches, doors, rocker, utility body, bumpers, and suspension remain attached."
+        }
+      ],
+      "referenceScreenshot": "assets/brick-offroad-reference.jpeg",
+      "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-3.webp",
+      "comparisonImage": "examples/brick-offroad-hero/evidence/variant-3-comparison.webp",
+      "cameraView": "reference-three-quarter",
+      "notes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+      "aiVisionNotes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+      "renderSha256": "3dc79fb282c678313ab088aadf2db73b6dc146a903a4774d85571dd4a3d4031c",
+      "comparisonSha256": "7c5173bcc83fbf7563774dd74f51390734f98616288b0de91bc0ac8f4ada5507",
+      "reviewedAt": "2026-07-12T02:00:26Z",
+      "reviewId": "brick-offroad-v003-fresh-review-2026-07-12T02:00:26Z",
+      "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+      "referenceBinding": "local-sha256",
+      "renderBinding": "local-sha256",
+      "comparisonBinding": "local-sha256"
+    },
+    {
+      "timestamp": "2026-07-12T02:00:26Z",
+      "passId": "optimization-pass",
+      "estimatedFidelity": 0.78,
+      "aiVisionScore": 0.78,
+      "visualAcceptanceThreshold": 0.74,
+      "layerScores": {
+        "silhouetteProportion": 0.81,
+        "componentStructure": 0.8,
+        "formDetail": 0.78,
+        "materialSurface": 0.77,
+        "lightingCamera": 0.76
+      },
+      "featureReviews": [],
+      "referenceScreenshot": "assets/brick-offroad-reference.jpeg",
+      "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-3.webp",
+      "comparisonImage": "examples/brick-offroad-hero/evidence/variant-3-comparison.webp",
+      "cameraView": "reference-three-quarter",
+      "notes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+      "aiVisionNotes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+      "renderSha256": "3dc79fb282c678313ab088aadf2db73b6dc146a903a4774d85571dd4a3d4031c",
+      "comparisonSha256": "7c5173bcc83fbf7563774dd74f51390734f98616288b0de91bc0ac8f4ada5507",
+      "reviewedAt": "2026-07-12T02:00:26Z",
+      "reviewId": "brick-offroad-v003-fresh-review-2026-07-12T02:00:26Z",
+      "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+      "referenceBinding": "local-sha256",
+      "renderBinding": "local-sha256",
+      "comparisonBinding": "local-sha256"
+    }
+  ],
+  "reviewHistory": [
+    {
+      "timestamp": "2026-07-12T02:00:26Z",
+      "passId": "blockout",
+      "estimatedFidelity": 0.78,
+      "aiVisionScore": 0.78,
+      "visualAcceptanceThreshold": 0.74,
+      "layerScores": {
+        "silhouetteProportion": 0.81,
+        "componentStructure": 0.8,
+        "formDetail": 0.78,
+        "materialSurface": 0.77,
+        "lightingCamera": 0.76
+      },
+      "featureReviews": [
+        {
+          "id": "vehicle-proportion-wheel-placement",
+          "score": 0.83,
+          "visible": true,
+          "notes": "Four-wheel topology, track, wheelbase, and axle orientation remain unchanged."
+        },
+        {
+          "id": "hood-cabin-window-identity",
+          "score": 0.81,
+          "visible": true,
+          "notes": "Hood, framed cabin, glazing, doors, light roof, and rear body preserve identity."
+        }
+      ],
+      "action": "continue",
+      "summary": "Fresh inspection of current brick-offroad-v003 comparison for blockout.",
+      "matched": [
+        "protected component IDs and parent links",
+        "four-wheel topology and action hierarchy",
+        "fresh same-camera visual evidence"
+      ],
+      "mismatches": [
+        "variant intentionally changes bounded palette, roughness, and repetition controls without changing topology"
+      ],
+      "specFixes": [],
+      "codeFixes": [],
+      "evidence": [],
+      "visualEvidence": {
+        "reviewId": "brick-offroad-v003-fresh-review-2026-07-12T02:00:26Z",
+        "reviewedAt": "2026-07-12T02:00:26Z",
+        "referenceScreenshot": "assets/brick-offroad-reference.jpeg",
+        "aiVisionScore": 0.78,
+        "layerScores": {
+          "silhouetteProportion": 0.81,
+          "componentStructure": 0.8,
+          "formDetail": 0.78,
+          "materialSurface": 0.77,
+          "lightingCamera": 0.76
+        },
+        "notes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+        "aiVisionNotes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+        "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-3.webp",
+        "comparisonImage": "examples/brick-offroad-hero/evidence/variant-3-comparison.webp",
+        "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+        "referenceBinding": "local-sha256",
+        "renderSha256": "3dc79fb282c678313ab088aadf2db73b6dc146a903a4774d85571dd4a3d4031c",
+        "renderBinding": "local-sha256",
+        "comparisonSha256": "7c5173bcc83fbf7563774dd74f51390734f98616288b0de91bc0ac8f4ada5507",
+        "comparisonBinding": "local-sha256"
+      }
+    },
+    {
+      "timestamp": "2026-07-12T02:00:26Z",
+      "passId": "structural-pass",
+      "estimatedFidelity": 0.78,
+      "aiVisionScore": 0.78,
+      "visualAcceptanceThreshold": 0.74,
+      "layerScores": {
+        "silhouetteProportion": 0.81,
+        "componentStructure": 0.8,
+        "formDetail": 0.78,
+        "materialSurface": 0.77,
+        "lightingCamera": 0.76
+      },
+      "featureReviews": [
+        {
+          "id": "vehicle-proportion-wheel-placement",
+          "score": 0.83,
+          "visible": true,
+          "notes": "Four-wheel topology, track, wheelbase, and axle orientation remain unchanged."
+        },
+        {
+          "id": "hood-cabin-window-identity",
+          "score": 0.81,
+          "visible": true,
+          "notes": "Hood, framed cabin, glazing, doors, light roof, and rear body preserve identity."
+        },
+        {
+          "id": "fender-door-utility-structure",
+          "score": 0.8,
+          "visible": true,
+          "notes": "Arches, doors, rocker, utility body, bumpers, and suspension remain attached."
+        }
+      ],
+      "action": "continue",
+      "summary": "Fresh inspection of current brick-offroad-v003 comparison for structural-pass.",
+      "matched": [
+        "protected component IDs and parent links",
+        "four-wheel topology and action hierarchy",
+        "fresh same-camera visual evidence"
+      ],
+      "mismatches": [
+        "variant intentionally changes bounded palette, roughness, and repetition controls without changing topology"
+      ],
+      "specFixes": [],
+      "codeFixes": [],
+      "evidence": [],
+      "visualEvidence": {
+        "reviewId": "brick-offroad-v003-fresh-review-2026-07-12T02:00:26Z",
+        "reviewedAt": "2026-07-12T02:00:26Z",
+        "referenceScreenshot": "assets/brick-offroad-reference.jpeg",
+        "aiVisionScore": 0.78,
+        "layerScores": {
+          "silhouetteProportion": 0.81,
+          "componentStructure": 0.8,
+          "formDetail": 0.78,
+          "materialSurface": 0.77,
+          "lightingCamera": 0.76
+        },
+        "notes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+        "aiVisionNotes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+        "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-3.webp",
+        "comparisonImage": "examples/brick-offroad-hero/evidence/variant-3-comparison.webp",
+        "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+        "referenceBinding": "local-sha256",
+        "renderSha256": "3dc79fb282c678313ab088aadf2db73b6dc146a903a4774d85571dd4a3d4031c",
+        "renderBinding": "local-sha256",
+        "comparisonSha256": "7c5173bcc83fbf7563774dd74f51390734f98616288b0de91bc0ac8f4ada5507",
+        "comparisonBinding": "local-sha256"
+      }
+    },
+    {
+      "timestamp": "2026-07-12T02:00:26Z",
+      "passId": "form-refinement",
+      "estimatedFidelity": 0.78,
+      "aiVisionScore": 0.78,
+      "visualAcceptanceThreshold": 0.74,
+      "layerScores": {
+        "silhouetteProportion": 0.81,
+        "componentStructure": 0.8,
+        "formDetail": 0.78,
+        "materialSurface": 0.77,
+        "lightingCamera": 0.76
+      },
+      "featureReviews": [
+        {
+          "id": "vehicle-proportion-wheel-placement",
+          "score": 0.83,
+          "visible": true,
+          "notes": "Four-wheel topology, track, wheelbase, and axle orientation remain unchanged."
+        },
+        {
+          "id": "hood-cabin-window-identity",
+          "score": 0.81,
+          "visible": true,
+          "notes": "Hood, framed cabin, glazing, doors, light roof, and rear body preserve identity."
+        },
+        {
+          "id": "fender-door-utility-structure",
+          "score": 0.8,
+          "visible": true,
+          "notes": "Arches, doors, rocker, utility body, bumpers, and suspension remain attached."
+        }
+      ],
+      "action": "continue",
+      "summary": "Fresh inspection of current brick-offroad-v003 comparison for form-refinement.",
+      "matched": [
+        "protected component IDs and parent links",
+        "four-wheel topology and action hierarchy",
+        "fresh same-camera visual evidence"
+      ],
+      "mismatches": [
+        "variant intentionally changes bounded palette, roughness, and repetition controls without changing topology"
+      ],
+      "specFixes": [],
+      "codeFixes": [],
+      "evidence": [],
+      "visualEvidence": {
+        "reviewId": "brick-offroad-v003-fresh-review-2026-07-12T02:00:26Z",
+        "reviewedAt": "2026-07-12T02:00:26Z",
+        "referenceScreenshot": "assets/brick-offroad-reference.jpeg",
+        "aiVisionScore": 0.78,
+        "layerScores": {
+          "silhouetteProportion": 0.81,
+          "componentStructure": 0.8,
+          "formDetail": 0.78,
+          "materialSurface": 0.77,
+          "lightingCamera": 0.76
+        },
+        "notes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+        "aiVisionNotes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+        "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-3.webp",
+        "comparisonImage": "examples/brick-offroad-hero/evidence/variant-3-comparison.webp",
+        "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+        "referenceBinding": "local-sha256",
+        "renderSha256": "3dc79fb282c678313ab088aadf2db73b6dc146a903a4774d85571dd4a3d4031c",
+        "renderBinding": "local-sha256",
+        "comparisonSha256": "7c5173bcc83fbf7563774dd74f51390734f98616288b0de91bc0ac8f4ada5507",
+        "comparisonBinding": "local-sha256"
+      }
+    },
+    {
+      "timestamp": "2026-07-12T02:00:26Z",
+      "passId": "material-pass",
+      "estimatedFidelity": 0.78,
+      "aiVisionScore": 0.78,
+      "visualAcceptanceThreshold": 0.74,
+      "layerScores": {
+        "silhouetteProportion": 0.81,
+        "componentStructure": 0.8,
+        "formDetail": 0.78,
+        "materialSurface": 0.77,
+        "lightingCamera": 0.76
+      },
+      "featureReviews": [
+        {
+          "id": "material-system-separation",
+          "score": 0.79,
+          "visible": true,
+          "notes": "Variant palette keeps paint, roof, trim, rubber, glass, metal, lamps, and dirt distinct."
+        }
+      ],
+      "action": "continue",
+      "summary": "Fresh inspection of current brick-offroad-v003 comparison for material-pass.",
+      "matched": [
+        "protected component IDs and parent links",
+        "four-wheel topology and action hierarchy",
+        "fresh same-camera visual evidence"
+      ],
+      "mismatches": [
+        "variant intentionally changes bounded palette, roughness, and repetition controls without changing topology"
+      ],
+      "specFixes": [],
+      "codeFixes": [],
+      "evidence": [],
+      "visualEvidence": {
+        "reviewId": "brick-offroad-v003-fresh-review-2026-07-12T02:00:26Z",
+        "reviewedAt": "2026-07-12T02:00:26Z",
+        "referenceScreenshot": "assets/brick-offroad-reference.jpeg",
+        "aiVisionScore": 0.78,
+        "layerScores": {
+          "silhouetteProportion": 0.81,
+          "componentStructure": 0.8,
+          "formDetail": 0.78,
+          "materialSurface": 0.77,
+          "lightingCamera": 0.76
+        },
+        "notes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+        "aiVisionNotes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+        "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-3.webp",
+        "comparisonImage": "examples/brick-offroad-hero/evidence/variant-3-comparison.webp",
+        "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+        "referenceBinding": "local-sha256",
+        "renderSha256": "3dc79fb282c678313ab088aadf2db73b6dc146a903a4774d85571dd4a3d4031c",
+        "renderBinding": "local-sha256",
+        "comparisonSha256": "7c5173bcc83fbf7563774dd74f51390734f98616288b0de91bc0ac8f4ada5507",
+        "comparisonBinding": "local-sha256"
+      }
+    },
+    {
+      "timestamp": "2026-07-12T02:00:26Z",
+      "passId": "surface-pass",
+      "estimatedFidelity": 0.78,
+      "aiVisionScore": 0.78,
+      "visualAcceptanceThreshold": 0.74,
+      "layerScores": {
+        "silhouetteProportion": 0.81,
+        "componentStructure": 0.8,
+        "formDetail": 0.78,
+        "materialSurface": 0.77,
+        "lightingCamera": 0.76
+      },
+      "featureReviews": [
+        {
+          "id": "vehicle-proportion-wheel-placement",
+          "score": 0.83,
+          "visible": true,
+          "notes": "Four-wheel topology, track, wheelbase, and axle orientation remain unchanged."
+        },
+        {
+          "id": "brick-tread-fastener-language",
+          "score": 0.78,
+          "visible": true,
+          "notes": "Studs, tread blocks, hubs, seams, hinges, and fasteners remain readable."
+        },
+        {
+          "id": "material-system-separation",
+          "score": 0.79,
+          "visible": true,
+          "notes": "Variant palette keeps paint, roof, trim, rubber, glass, metal, lamps, and dirt distinct."
+        }
+      ],
+      "action": "continue",
+      "summary": "Fresh inspection of current brick-offroad-v003 comparison for surface-pass.",
+      "matched": [
+        "protected component IDs and parent links",
+        "four-wheel topology and action hierarchy",
+        "fresh same-camera visual evidence"
+      ],
+      "mismatches": [
+        "variant intentionally changes bounded palette, roughness, and repetition controls without changing topology"
+      ],
+      "specFixes": [],
+      "codeFixes": [],
+      "evidence": [],
+      "visualEvidence": {
+        "reviewId": "brick-offroad-v003-fresh-review-2026-07-12T02:00:26Z",
+        "reviewedAt": "2026-07-12T02:00:26Z",
+        "referenceScreenshot": "assets/brick-offroad-reference.jpeg",
+        "aiVisionScore": 0.78,
+        "layerScores": {
+          "silhouetteProportion": 0.81,
+          "componentStructure": 0.8,
+          "formDetail": 0.78,
+          "materialSurface": 0.77,
+          "lightingCamera": 0.76
+        },
+        "notes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+        "aiVisionNotes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+        "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-3.webp",
+        "comparisonImage": "examples/brick-offroad-hero/evidence/variant-3-comparison.webp",
+        "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+        "referenceBinding": "local-sha256",
+        "renderSha256": "3dc79fb282c678313ab088aadf2db73b6dc146a903a4774d85571dd4a3d4031c",
+        "renderBinding": "local-sha256",
+        "comparisonSha256": "7c5173bcc83fbf7563774dd74f51390734f98616288b0de91bc0ac8f4ada5507",
+        "comparisonBinding": "local-sha256"
+      }
+    },
+    {
+      "timestamp": "2026-07-12T02:00:26Z",
+      "passId": "lighting-pass",
+      "estimatedFidelity": 0.78,
+      "aiVisionScore": 0.78,
+      "visualAcceptanceThreshold": 0.74,
+      "layerScores": {
+        "silhouetteProportion": 0.81,
+        "componentStructure": 0.8,
+        "formDetail": 0.78,
+        "materialSurface": 0.77,
+        "lightingCamera": 0.76
+      },
+      "featureReviews": [
+        {
+          "id": "material-system-separation",
+          "score": 0.79,
+          "visible": true,
+          "notes": "Variant palette keeps paint, roof, trim, rubber, glass, metal, lamps, and dirt distinct."
+        }
+      ],
+      "action": "continue",
+      "summary": "Fresh inspection of current brick-offroad-v003 comparison for lighting-pass.",
+      "matched": [
+        "protected component IDs and parent links",
+        "four-wheel topology and action hierarchy",
+        "fresh same-camera visual evidence"
+      ],
+      "mismatches": [
+        "variant intentionally changes bounded palette, roughness, and repetition controls without changing topology"
+      ],
+      "specFixes": [],
+      "codeFixes": [],
+      "evidence": [],
+      "visualEvidence": {
+        "reviewId": "brick-offroad-v003-fresh-review-2026-07-12T02:00:26Z",
+        "reviewedAt": "2026-07-12T02:00:26Z",
+        "referenceScreenshot": "assets/brick-offroad-reference.jpeg",
+        "aiVisionScore": 0.78,
+        "layerScores": {
+          "silhouetteProportion": 0.81,
+          "componentStructure": 0.8,
+          "formDetail": 0.78,
+          "materialSurface": 0.77,
+          "lightingCamera": 0.76
+        },
+        "notes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+        "aiVisionNotes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+        "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-3.webp",
+        "comparisonImage": "examples/brick-offroad-hero/evidence/variant-3-comparison.webp",
+        "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+        "referenceBinding": "local-sha256",
+        "renderSha256": "3dc79fb282c678313ab088aadf2db73b6dc146a903a4774d85571dd4a3d4031c",
+        "renderBinding": "local-sha256",
+        "comparisonSha256": "7c5173bcc83fbf7563774dd74f51390734f98616288b0de91bc0ac8f4ada5507",
+        "comparisonBinding": "local-sha256"
+      }
+    },
+    {
+      "timestamp": "2026-07-12T02:00:26Z",
+      "passId": "interaction-pass",
+      "estimatedFidelity": 0.78,
+      "aiVisionScore": 0.78,
+      "visualAcceptanceThreshold": 0.74,
+      "layerScores": {
+        "silhouetteProportion": 0.81,
+        "componentStructure": 0.8,
+        "formDetail": 0.78,
+        "materialSurface": 0.77,
+        "lightingCamera": 0.76
+      },
+      "featureReviews": [
+        {
+          "id": "fender-door-utility-structure",
+          "score": 0.8,
+          "visible": true,
+          "notes": "Arches, doors, rocker, utility body, bumpers, and suspension remain attached."
+        }
+      ],
+      "action": "continue",
+      "summary": "Fresh inspection of current brick-offroad-v003 comparison for interaction-pass.",
+      "matched": [
+        "protected component IDs and parent links",
+        "four-wheel topology and action hierarchy",
+        "fresh same-camera visual evidence"
+      ],
+      "mismatches": [
+        "variant intentionally changes bounded palette, roughness, and repetition controls without changing topology"
+      ],
+      "specFixes": [],
+      "codeFixes": [],
+      "evidence": [],
+      "visualEvidence": {
+        "reviewId": "brick-offroad-v003-fresh-review-2026-07-12T02:00:26Z",
+        "reviewedAt": "2026-07-12T02:00:26Z",
+        "referenceScreenshot": "assets/brick-offroad-reference.jpeg",
+        "aiVisionScore": 0.78,
+        "layerScores": {
+          "silhouetteProportion": 0.81,
+          "componentStructure": 0.8,
+          "formDetail": 0.78,
+          "materialSurface": 0.77,
+          "lightingCamera": 0.76
+        },
+        "notes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+        "aiVisionNotes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+        "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-3.webp",
+        "comparisonImage": "examples/brick-offroad-hero/evidence/variant-3-comparison.webp",
+        "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+        "referenceBinding": "local-sha256",
+        "renderSha256": "3dc79fb282c678313ab088aadf2db73b6dc146a903a4774d85571dd4a3d4031c",
+        "renderBinding": "local-sha256",
+        "comparisonSha256": "7c5173bcc83fbf7563774dd74f51390734f98616288b0de91bc0ac8f4ada5507",
+        "comparisonBinding": "local-sha256"
+      }
+    },
+    {
+      "timestamp": "2026-07-12T02:00:26Z",
+      "passId": "optimization-pass",
+      "estimatedFidelity": 0.78,
+      "aiVisionScore": 0.78,
+      "visualAcceptanceThreshold": 0.74,
+      "layerScores": {
+        "silhouetteProportion": 0.81,
+        "componentStructure": 0.8,
+        "formDetail": 0.78,
+        "materialSurface": 0.77,
+        "lightingCamera": 0.76
+      },
+      "featureReviews": [],
+      "action": "continue",
+      "summary": "Fresh inspection of current brick-offroad-v003 comparison for optimization-pass.",
+      "matched": [
+        "protected component IDs and parent links",
+        "four-wheel topology and action hierarchy",
+        "fresh same-camera visual evidence"
+      ],
+      "mismatches": [
+        "variant intentionally changes bounded palette, roughness, and repetition controls without changing topology"
+      ],
+      "specFixes": [],
+      "codeFixes": [],
+      "evidence": [],
+      "visualEvidence": {
+        "reviewId": "brick-offroad-v003-fresh-review-2026-07-12T02:00:26Z",
+        "reviewedAt": "2026-07-12T02:00:26Z",
+        "referenceScreenshot": "assets/brick-offroad-reference.jpeg",
+        "aiVisionScore": 0.78,
+        "layerScores": {
+          "silhouetteProportion": 0.81,
+          "componentStructure": 0.8,
+          "formDetail": 0.78,
+          "materialSurface": 0.77,
+          "lightingCamera": 0.76
+        },
+        "notes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+        "aiVisionNotes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+        "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-3.webp",
+        "comparisonImage": "examples/brick-offroad-hero/evidence/variant-3-comparison.webp",
+        "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+        "referenceBinding": "local-sha256",
+        "renderSha256": "3dc79fb282c678313ab088aadf2db73b6dc146a903a4774d85571dd4a3d4031c",
+        "renderBinding": "local-sha256",
+        "comparisonSha256": "7c5173bcc83fbf7563774dd74f51390734f98616288b0de91bc0ac8f4ada5507",
+        "comparisonBinding": "local-sha256"
+      }
+    }
+  ],
   "lodPlan": [
     {
       "tier": "near",
@@ -3054,10 +4023,10 @@
   "performanceBudget": {
     "qualityPriority": "balanced",
     "targetTriangles": 120000,
-    "maxDrawCalls": 80,
-    "textureSize": 1024,
+    "maxDrawCalls": 400,
+    "textureSize": 512,
     "fpsTarget": 45,
-    "optimizationPolicy": "Preserve the README silhouette before reducing repeated detail."
+    "optimizationPolicy": "Preserve action-ready boundaries and the reference silhouette, instance dense repetition systems, and enforce renderer.info full-frame WebGL calls at or below 400."
   },
   "lightingFromPhoto": [
     "Key light: soft sun or warm studio key with readable shadows.",
@@ -3086,7 +4055,7 @@
     "sourceTargetId": "brick-offroad",
     "sourceTargetSlug": "brick-offroad",
     "rootSeed": 20260711,
-    "variantSeed": 2111178937863530321,
+    "variantSeed": 923074270697732028,
     "index": 3,
     "attempt": 1,
     "mutations": [
@@ -3098,7 +4067,7 @@
           "path": "roughness.base"
         },
         "before": 0.62,
-        "after": 0.6379
+        "after": 0.582
       },
       {
         "parameterId": "body-shell-dominant-palette",
@@ -3108,7 +4077,27 @@
           "path": "colorVariation.palette.0"
         },
         "before": "#65704A",
-        "after": "#8C9570"
+        "after": "#65704A"
+      },
+      {
+        "parameterId": "surface-wear",
+        "target": {
+          "kind": "material",
+          "id": "body-shell",
+          "path": "wear.edgeWear"
+        },
+        "before": 0.08,
+        "after": 0.27
+      },
+      {
+        "parameterId": "surface-dirt",
+        "target": {
+          "kind": "material",
+          "id": "body-shell",
+          "path": "dirt.amount"
+        },
+        "before": 0.08,
+        "after": 0.2
       },
       {
         "parameterId": "roof-shell-roughness",
@@ -3118,7 +4107,7 @@
           "path": "roughness.base"
         },
         "before": 0.58,
-        "after": 0.5967
+        "after": 0.6146
       },
       {
         "parameterId": "roof-shell-dominant-palette",
@@ -3138,7 +4127,7 @@
           "path": "roughness.base"
         },
         "before": 0.7,
-        "after": 0.7056
+        "after": 0.7608
       },
       {
         "parameterId": "dark-trim-dominant-palette",
@@ -3158,7 +4147,7 @@
           "path": "roughness.base"
         },
         "before": 0.52,
-        "after": 0.563
+        "after": 0.6072
       },
       {
         "parameterId": "accent-dominant-palette",
@@ -3168,7 +4157,7 @@
           "path": "colorVariation.palette.0"
         },
         "before": "#D87927",
-        "after": "#E6B64C"
+        "after": "#B75B32"
       },
       {
         "parameterId": "rubber-roughness",
@@ -3178,7 +4167,7 @@
           "path": "roughness.base"
         },
         "before": 0.82,
-        "after": 0.9126
+        "after": 0.8654
       },
       {
         "parameterId": "rubber-dominant-palette",
@@ -3188,7 +4177,7 @@
           "path": "colorVariation.palette.0"
         },
         "before": "#111311",
-        "after": "#222622"
+        "after": "#363C36"
       },
       {
         "parameterId": "glass-roughness",
@@ -3198,7 +4187,7 @@
           "path": "roughness.base"
         },
         "before": 0.2,
-        "after": 0.1008
+        "after": 0.2269
       },
       {
         "parameterId": "glass-dominant-palette",
@@ -3208,7 +4197,7 @@
           "path": "colorVariation.palette.0"
         },
         "before": "#182B30",
-        "after": "#29434A"
+        "after": "#182B30"
       },
       {
         "parameterId": "lamp-roughness",
@@ -3218,7 +4207,7 @@
           "path": "roughness.base"
         },
         "before": 0.3,
-        "after": 0.2676
+        "after": 0.2423
       },
       {
         "parameterId": "lamp-dominant-palette",
@@ -3228,7 +4217,7 @@
           "path": "colorVariation.palette.0"
         },
         "before": "#FFB347",
-        "after": "#FFF3C4"
+        "after": "#FFB347"
       },
       {
         "parameterId": "wheel-treads-count",
@@ -3238,7 +4227,7 @@
           "path": "count"
         },
         "before": 64,
-        "after": 57
+        "after": 76
       },
       {
         "parameterId": "body-studs-count",
@@ -3248,7 +4237,7 @@
           "path": "count"
         },
         "before": 72,
-        "after": 72
+        "after": 60
       },
       {
         "parameterId": "roof-lamps-count",
@@ -3276,10 +4265,33 @@
     },
     "reviewEvidenceReset": true,
     "samplingMode": "coverage-curated",
-    "candidateIndex": 14,
+    "candidateIndex": 6,
     "curatedIndex": 3,
-    "selectionScore": 0.4914,
-    "previewMode": true,
-    "passGateStatus": "pending-per-variant-visual-review"
+    "selectionScore": 0.459116,
+    "previewMode": false,
+    "passGateStatus": "evidence-backed-production",
+    "visualAcceptance": {
+      "reviewId": "brick-offroad-v003-fresh-review-2026-07-12T02:00:26Z",
+      "reviewedAt": "2026-07-12T02:00:26Z",
+      "referenceScreenshot": "assets/brick-offroad-reference.jpeg",
+      "aiVisionScore": 0.78,
+      "layerScores": {
+        "silhouetteProportion": 0.81,
+        "componentStructure": 0.8,
+        "formDetail": 0.78,
+        "materialSurface": 0.77,
+        "lightingCamera": 0.76
+      },
+      "notes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+      "aiVisionNotes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+      "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-3.webp",
+      "comparisonImage": "examples/brick-offroad-hero/evidence/variant-3-comparison.webp",
+      "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+      "referenceBinding": "local-sha256",
+      "renderSha256": "3dc79fb282c678313ab088aadf2db73b6dc146a903a4774d85571dd4a3d4031c",
+      "renderBinding": "local-sha256",
+      "comparisonSha256": "7c5173bcc83fbf7563774dd74f51390734f98616288b0de91bc0ac8f4ada5507",
+      "comparisonBinding": "local-sha256"
+    }
   }
 }

@@ -10,7 +10,10 @@ import sys
 from pathlib import Path
 from typing import Any
 
-from sculpt_pass_orchestrator import pass_specific_gaps
+from sculpt_pass_orchestrator import (
+    completed_passes as evidence_completed_passes,
+    pass_specific_gaps,
+)
 
 
 VALID_PRIMITIVES = {
@@ -67,45 +70,23 @@ def pass_order(spec: dict[str, Any]) -> list[str]:
     return ids or DEFAULT_PASS_ORDER.copy()
 
 
-def review_visual_evidence(entry: dict[str, Any]) -> dict[str, Any]:
-    visual = entry.get("visualEvidence")
-    return visual if isinstance(visual, dict) else {}
-
-
-def review_completes_pass(entry: dict[str, Any], pass_id: str) -> bool:
-    if entry.get("passId") != pass_id or entry.get("action") != "continue":
-        return False
-    if pass_id in VISUAL_PASS_IDS and not review_visual_evidence(entry).get("renderScreenshot"):
-        return False
-    return True
-
-
-def completed_passes(spec: dict[str, Any], ids: list[str]) -> list[str]:
-    history = spec.get("reviewHistory", [])
-    if not isinstance(history, list):
-        return []
-    completed: list[str] = []
-    for pass_id in ids:
-        if any(isinstance(entry, dict) and review_completes_pass(entry, pass_id) for entry in history):
-            completed.append(pass_id)
-        else:
-            break
-    return completed
-
-
-def unlocked_pass(spec: dict[str, Any]) -> str:
+def unlocked_pass(spec: dict[str, Any], spec_path: Path | None = None) -> str:
     ids = pass_order(spec)
-    completed = completed_passes(spec, ids)
+    completed = evidence_completed_passes(spec, ids, spec_path)
     if len(completed) >= len(ids):
         return ids[-1]
     return ids[len(completed)]
 
 
-def assert_pass_unlocked(spec: dict[str, Any], requested_pass: str) -> None:
+def assert_pass_unlocked(
+    spec: dict[str, Any],
+    requested_pass: str,
+    spec_path: Path | None = None,
+) -> None:
     ids = pass_order(spec)
     if requested_pass not in ids:
         raise ValueError(f"unknown build pass {requested_pass!r}; expected one of: {', '.join(ids)}")
-    completed = completed_passes(spec, ids)
+    completed = evidence_completed_passes(spec, ids, spec_path)
     current = ids[-1] if len(completed) >= len(ids) else ids[len(completed)]
     if requested_pass in completed or requested_pass == current:
         return
@@ -926,10 +907,11 @@ def main(argv: list[str]) -> int:
     parser.add_argument("--force", action="store_true")
     args = parser.parse_args(argv)
 
-    spec = load_spec(args.spec.expanduser().resolve())
-    pass_id = args.pass_id or unlocked_pass(spec)
+    spec_path = args.spec.expanduser().resolve()
+    spec = load_spec(spec_path)
+    pass_id = args.pass_id or unlocked_pass(spec, spec_path)
     try:
-        assert_pass_unlocked(spec, pass_id)
+        assert_pass_unlocked(spec, pass_id, spec_path)
     except ValueError as exc:
         parser.error(str(exc))
     gaps = pass_specific_gaps(spec, pass_id)

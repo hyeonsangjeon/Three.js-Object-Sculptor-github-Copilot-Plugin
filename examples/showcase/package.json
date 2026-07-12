@@ -3,9 +3,13 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "serve": "python3 -m http.server 4173 --bind 127.0.0.1 --directory ."
+    "serve": "python3 -m http.server 4173 --bind 127.0.0.1 --directory .",
+    "build": "vite build --base /threejs-sculpt-dna/showcase/"
   },
   "dependencies": {
     "three": "0.180.0"
+  },
+  "devDependencies": {
+    "vite": "7.1.7"
   }
 }

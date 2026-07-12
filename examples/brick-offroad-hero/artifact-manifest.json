@@ -1,0 +1,790 @@
+{
+  "schemaVersion": "1.0",
+  "capture": {
+    "seed": 20260712,
+    "variant": "brick-offroad-base",
+    "viewport": [
+      1200,
+      675
+    ],
+    "frames": 24,
+    "fps": 6,
+    "rotationSeconds": 4,
+    "chrome": "Google Chrome",
+    "localGitMetadataExposed": false,
+    "deterministic": true,
+    "canonicalElapsed": 1.25,
+    "deterministicFrameSha256": "05db81749b298a71b5ea6f6e559c0c64cfc3920eebb9042ab21f0ded96c2c8e9",
+    "portAllocation": "ephemeral-os-assigned",
+    "sourceFingerprint": "01b4560bcf329e778e100b3ab92cd74bf70e60af10a57792c702dbff55d4b8c3"
+  },
+  "runtimeStats": {
+    "generationMs": 1052.7000000178814,
+    "meshes": 126,
+    "triangles": 64148,
+    "sceneDrawables": 126,
+    "wheels": 4,
+    "treadInstances": 64,
+    "treadsPerWheel": 16,
+    "studInstances": 72,
+    "roofLampInstances": 5,
+    "importedMeshes": 0,
+    "generatedTextureResolution": 512,
+    "generatedTextureCount": 48,
+    "wear": 0.08,
+    "dirtAmount": 0.08,
+    "configurationId": "brick-offroad-base",
+    "stage": "full",
+    "renderCalls": 387,
+    "renderedTriangles": 196141
+  },
+  "baseConfiguration": {
+    "id": "brick-offroad-base",
+    "label": "ObjectSculptSpec Base",
+    "body": "#65704A",
+    "bodyRoughness": 0.62,
+    "roof": "#D8D8D2",
+    "roofRoughness": 0.58,
+    "trim": "#171A19",
+    "trimRoughness": 0.7,
+    "accent": "#D87927",
+    "accentRoughness": 0.52,
+    "rubber": "#111311",
+    "rubberRoughness": 0.82,
+    "glass": "#182B30",
+    "glassRoughness": 0.2,
+    "lamp": "#FFB347",
+    "lampRoughness": 0.3,
+    "lampEmissive": "#FFD782",
+    "lampEmissiveIntensity": 1.8,
+    "dust": "#1A1A18",
+    "wear": 0.08,
+    "dirtAmount": 0.08,
+    "treadCount": 64,
+    "studCount": 72,
+    "roofLampCount": 5
+  },
+  "variantStats": [
+    {
+      "id": "brick-offroad-v001",
+      "controls": {
+        "body": "#65704A",
+        "bodyRoughness": 0.5552,
+        "roof": "#ECECE6",
+        "roofRoughness": 0.65,
+        "trim": "#3E4543",
+        "trimRoughness": 0.6967,
+        "accent": "#B75B32",
+        "accentRoughness": 0.5862,
+        "rubber": "#111311",
+        "rubberRoughness": 0.8624,
+        "glass": "#29434A",
+        "glassRoughness": 0.2649,
+        "lamp": "#FFB347",
+        "lampRoughness": 0.2974,
+        "lampEmissive": "#FFD782",
+        "lampEmissiveIntensity": 1.8,
+        "dust": "#1A1A18",
+        "wear": 0.29,
+        "dirtAmount": 0.22,
+        "treadCount": 64,
+        "studCount": 64,
+        "roofLampCount": 4,
+        "derivedBodyDark": {
+          "source": "body",
+          "multiplier": 0.72
+        }
+      },
+      "stats": {
+        "generationMs": 1034.300000011921,
+        "meshes": 126,
+        "triangles": 63564,
+        "sceneDrawables": 126,
+        "wheels": 4,
+        "treadInstances": 64,
+        "treadsPerWheel": 16,
+        "studInstances": 64,
+        "roofLampInstances": 4,
+        "importedMeshes": 0,
+        "generatedTextureResolution": 512,
+        "generatedTextureCount": 48,
+        "wear": 0.29,
+        "dirtAmount": 0.22,
+        "configurationId": "brick-offroad-v001",
+        "stage": "full",
+        "renderCalls": 387,
+        "renderedTriangles": 194461
+      }
+    },
+    {
+      "id": "brick-offroad-v002",
+      "controls": {
+        "body": "#65704A",
+        "bodyRoughness": 0.5826,
+        "roof": "#D8D8D2",
+        "roofRoughness": 0.5977,
+        "trim": "#2A2F2E",
+        "trimRoughness": 0.7164,
+        "accent": "#E6B64C",
+        "accentRoughness": 0.4674,
+        "rubber": "#363C36",
+        "rubberRoughness": 0.8414,
+        "glass": "#5A7378",
+        "glassRoughness": 0.1293,
+        "lamp": "#FFF3C4",
+        "lampRoughness": 0.1994,
+        "lampEmissive": "#FFD782",
+        "lampEmissiveIntensity": 1.8,
+        "dust": "#1A1A18",
+        "wear": 0.21,
+        "dirtAmount": 0.15,
+        "treadCount": 76,
+        "studCount": 81,
+        "roofLampCount": 5,
+        "derivedBodyDark": {
+          "source": "body",
+          "multiplier": 0.72
+        }
+      },
+      "stats": {
+        "generationMs": 1010,
+        "meshes": 126,
+        "triangles": 68324,
+        "sceneDrawables": 126,
+        "wheels": 4,
+        "treadInstances": 76,
+        "treadsPerWheel": 19,
+        "studInstances": 81,
+        "roofLampInstances": 5,
+        "importedMeshes": 0,
+        "generatedTextureResolution": 512,
+        "generatedTextureCount": 48,
+        "wear": 0.21,
+        "dirtAmount": 0.15,
+        "configurationId": "brick-offroad-v002",
+        "stage": "full",
+        "renderCalls": 387,
+        "renderedTriangles": 208669
+      }
+    },
+    {
+      "id": "brick-offroad-v003",
+      "controls": {
+        "body": "#65704A",
+        "bodyRoughness": 0.582,
+        "roof": "#D8D8D2",
+        "roofRoughness": 0.6146,
+        "trim": "#171A19",
+        "trimRoughness": 0.7608,
+        "accent": "#B75B32",
+        "accentRoughness": 0.6072,
+        "rubber": "#363C36",
+        "rubberRoughness": 0.8654,
+        "glass": "#182B30",
+        "glassRoughness": 0.2269,
+        "lamp": "#FFB347",
+        "lampRoughness": 0.2423,
+        "lampEmissive": "#FFD782",
+        "lampEmissiveIntensity": 1.8,
+        "dust": "#1A1A18",
+        "wear": 0.27,
+        "dirtAmount": 0.2,
+        "treadCount": 76,
+        "studCount": 60,
+        "roofLampCount": 5,
+        "derivedBodyDark": {
+          "source": "body",
+          "multiplier": 0.72
+        }
+      },
+      "stats": {
+        "generationMs": 1050,
+        "meshes": 126,
+        "triangles": 66980,
+        "sceneDrawables": 126,
+        "wheels": 4,
+        "treadInstances": 76,
+        "treadsPerWheel": 19,
+        "studInstances": 60,
+        "roofLampInstances": 5,
+        "importedMeshes": 0,
+        "generatedTextureResolution": 512,
+        "generatedTextureCount": 48,
+        "wear": 0.27,
+        "dirtAmount": 0.2,
+        "configurationId": "brick-offroad-v003",
+        "stage": "full",
+        "renderCalls": 387,
+        "renderedTriangles": 204637
+      }
+    }
+  ],
+  "serializationCheck": {
+    "rootName": "brick-offroad-root",
+    "runtimeKeys": [
+      "nodes",
+      "meshes",
+      "sockets",
+      "colliders",
+      "destructionGroups",
+      "wheelPivots",
+      "steeringPivots",
+      "suspensionAnchors",
+      "resources"
+    ],
+    "userData": {
+      "sculptRuntime": {
+        "schemaVersion": "1.0",
+        "seed": 20260712,
+        "stage": "full",
+        "variantId": "brick-offroad-base",
+        "nodeIds": [
+          "chassis",
+          "hood-pivot",
+          "cabin",
+          "rear-utility-body",
+          "front-left-suspension-anchor",
+          "front-left-steering-pivot",
+          "front-left-wheel-pivot",
+          "front-right-suspension-anchor",
+          "front-right-steering-pivot",
+          "front-right-wheel-pivot",
+          "rear-left-suspension-anchor",
+          "rear-left-wheel-pivot",
+          "rear-right-suspension-anchor",
+          "rear-right-wheel-pivot",
+          "front-bumper-pivot",
+          "left-door-pivot",
+          "left-rear-door-pivot",
+          "right-door-pivot",
+          "right-rear-door-pivot",
+          "tailgate-pivot",
+          "grille-system",
+          "roof-rack"
+        ],
+        "meshIds": [
+          "chassis-frame",
+          "lower-body",
+          "hood-main",
+          "cabin-lower-shell",
+          "utility-lower-shell",
+          "cabin-rear-pillar--1",
+          "utility-rear-pillar--1",
+          "cabin-rear-pillar-1",
+          "utility-rear-pillar-1",
+          "front-left-tire",
+          "front-left-hub",
+          "front-left-hub-cap",
+          "front-left-hub-spokes",
+          "front-left-tread-blocks",
+          "front-right-tire",
+          "front-right-hub",
+          "front-right-hub-cap",
+          "front-right-hub-spokes",
+          "front-right-tread-blocks",
+          "rear-left-tire",
+          "rear-left-hub",
+          "rear-left-hub-cap",
+          "rear-left-hub-spokes",
+          "rear-left-tread-blocks",
+          "rear-right-tire",
+          "rear-right-hub",
+          "rear-right-hub-cap",
+          "rear-right-hub-spokes",
+          "rear-right-tread-blocks",
+          "front-axle",
+          "rear-axle",
+          "front-left-shock",
+          "front-right-shock",
+          "rear-left-shock",
+          "rear-right-shock",
+          "front-left-fender-arch",
+          "front-left-fender-shoulder",
+          "front-right-fender-arch",
+          "front-right-fender-shoulder",
+          "rear-left-fender-arch",
+          "rear-left-fender-shoulder",
+          "rear-right-fender-arch",
+          "rear-right-fender-shoulder",
+          "front-bumper",
+          "front-skid",
+          "rear-bumper",
+          "left-door-panel",
+          "left-rear-door-panel",
+          "right-door-panel",
+          "right-rear-door-panel",
+          "tailgate-panel",
+          "hood-raised-panel",
+          "hood-vent-right",
+          "hood-vent-left",
+          "windshield-glass",
+          "windshield-left-a-pillar",
+          "windshield-right-a-pillar",
+          "windshield-top-bar",
+          "windshield-cowl-bar",
+          "front-side-window-right",
+          "rear-side-window-right",
+          "b-pillar-right",
+          "side-mirror-right",
+          "mirror-arm-right",
+          "utility-window-right",
+          "front-side-window-left",
+          "rear-side-window-left",
+          "b-pillar-left",
+          "side-mirror-left",
+          "mirror-arm-left",
+          "utility-window-left",
+          "light-roof",
+          "rear-light-roof",
+          "grille-surround",
+          "grille-slat-0",
+          "grille-slat-1",
+          "grille-slat-2",
+          "grille-slat-3",
+          "grille-slat-4",
+          "grille-slat-5",
+          "grille-slat-6",
+          "headlight-right",
+          "front-fastener-right",
+          "headlight-left",
+          "front-fastener-left",
+          "body-stud-language",
+          "fixed-panel-fasteners",
+          "rocker-step--1",
+          "front-door-handle-right",
+          "rear-door-handle-right",
+          "front-right-door-fasteners",
+          "rear-right-door-fasteners",
+          "door-hinge-right-front--0.38",
+          "door-hinge-right-front-0.38",
+          "door-hinge-right-rear--0.38",
+          "door-hinge-right-rear-0.38",
+          "rocker-step-1",
+          "front-door-handle-left",
+          "rear-door-handle-left",
+          "front-left-door-fasteners",
+          "rear-left-door-fasteners",
+          "door-hinge-left-front--0.38",
+          "door-hinge-left-front-0.38",
+          "door-hinge-left-rear--0.38",
+          "door-hinge-left-rear-0.38",
+          "rack-rail--1",
+          "rack-rail-1",
+          "rack-crossbar--0.8",
+          "rack-crossbar-0.2",
+          "rack-crossbar-1.2",
+          "rack-crossbar-2.2",
+          "roof-cargo-case",
+          "cargo-case-latch",
+          "recovery-board-stack",
+          "recovery-board-holes",
+          "roof-lamp-system",
+          "front-winch",
+          "winch-drum",
+          "recovery-hook--1",
+          "rear-lamp--1",
+          "recovery-hook-1",
+          "rear-lamp-1",
+          "hood-left-seam",
+          "hood-right-seam",
+          "left-door-seam",
+          "right-door-seam"
+        ],
+        "socketIds": [
+          "hood-hinge-socket",
+          "front-recovery-socket",
+          "rear-tow-socket",
+          "left-door-hinge",
+          "left-rear-door-hinge",
+          "right-door-hinge",
+          "right-rear-door-hinge",
+          "tailgate-hinge",
+          "roof-front-socket",
+          "roof-cargo-socket",
+          "roof-rear-socket"
+        ],
+        "colliderIds": [
+          "chassis-collider",
+          "left-door-collider",
+          "left-rear-door-collider",
+          "right-door-collider",
+          "right-rear-door-collider"
+        ],
+        "destructionGroupIds": [
+          "body-shell",
+          "wheel-system",
+          "structural-trim",
+          "surface-details",
+          "recovery-hardware"
+        ]
+      },
+      "sculptDNA": {
+        "configuration": "brick-offroad-base",
+        "topologyInvariant": "brick-offroad-four-wheel-v1",
+        "seed": 20260712,
+        "wear": 0.08,
+        "dirtAmount": 0.08
+      },
+      "variantProvenance": {
+        "source": "brick-offroad",
+        "variantId": "brick-offroad-base",
+        "deterministic": true,
+        "evidencePolicy": "evidence-backed-production",
+        "visualControls": {
+          "body": "#65704A",
+          "bodyRoughness": 0.62,
+          "roof": "#D8D8D2",
+          "roofRoughness": 0.58,
+          "trim": "#171A19",
+          "trimRoughness": 0.7,
+          "accent": "#D87927",
+          "accentRoughness": 0.52,
+          "rubber": "#111311",
+          "rubberRoughness": 0.82,
+          "glass": "#182B30",
+          "glassRoughness": 0.2,
+          "lamp": "#FFB347",
+          "lampRoughness": 0.3,
+          "lampEmissive": "#FFD782",
+          "lampEmissiveIntensity": 1.8,
+          "dust": "#1A1A18",
+          "wear": 0.08,
+          "dirtAmount": 0.08,
+          "treadCount": 64,
+          "studCount": 72,
+          "roofLampCount": 5,
+          "derivedBodyDark": {
+            "source": "body",
+            "multiplier": 0.72
+          }
+        }
+      }
+    }
+  },
+  "doorArticulation": [
+    {
+      "pivotId": "left-door-pivot",
+      "childIds": [
+        "left-door-panel",
+        "front-side-window-left",
+        "front-door-handle-left",
+        "side-mirror-left",
+        "mirror-arm-left",
+        "front-left-door-fasteners",
+        "left-door-hinge",
+        "door-hinge-left-front--0.38",
+        "door-hinge-left-front-0.38"
+      ],
+      "allParented": true,
+      "fastenerParentedDirectly": true,
+      "childMoved": true,
+      "fastenerInstancesMoved": true,
+      "fixedFastenersStayed": true,
+      "fastenerWorldBefore": [
+        [
+          -0.8421540016244276,
+          1.8300000131130219,
+          1.2873525621635054
+        ],
+        [
+          -0.8421540016244276,
+          2.669999986886978,
+          1.2873525621635054
+        ]
+      ],
+      "fastenerWorldAfter": [
+        [
+          -0.9402210880894348,
+          1.8300000131130219,
+          1.3114078397907734
+        ],
+        [
+          -0.9402210880894348,
+          2.669999986886978,
+          1.3114078397907734
+        ]
+      ]
+    },
+    {
+      "pivotId": "left-rear-door-pivot",
+      "childIds": [
+        "left-rear-door-panel",
+        "rear-side-window-left",
+        "rear-door-handle-left",
+        "rear-left-door-fasteners",
+        "left-rear-door-hinge",
+        "door-hinge-left-rear--0.38",
+        "door-hinge-left-rear-0.38"
+      ],
+      "allParented": true,
+      "fastenerParentedDirectly": true,
+      "childMoved": true,
+      "fastenerInstancesMoved": true,
+      "fixedFastenersStayed": true,
+      "fastenerWorldBefore": [
+        [
+          0.037142092237232964,
+          1.8300000131130219,
+          1.3225431762477433
+        ],
+        [
+          0.037142092237232964,
+          2.669999986886978,
+          1.3225431762477433
+        ]
+      ],
+      "fastenerWorldAfter": [
+        [
+          -0.06092499422777437,
+          1.8300000131130219,
+          1.3465984538750113
+        ],
+        [
+          -0.06092499422777437,
+          2.669999986886978,
+          1.3465984538750113
+        ]
+      ]
+    },
+    {
+      "pivotId": "right-door-pivot",
+      "childIds": [
+        "right-door-panel",
+        "front-side-window-right",
+        "front-door-handle-right",
+        "side-mirror-right",
+        "mirror-arm-right",
+        "front-right-door-fasteners",
+        "right-door-hinge",
+        "door-hinge-right-front--0.38",
+        "door-hinge-right-front-0.38"
+      ],
+      "allParented": true,
+      "fastenerParentedDirectly": true,
+      "childMoved": true,
+      "fastenerInstancesMoved": true,
+      "fixedFastenersStayed": true,
+      "fastenerWorldBefore": [
+        [
+          -0.7365821597530814,
+          1.8300000131130219,
+          -1.3505357098923612
+        ],
+        [
+          -0.7365821597530814,
+          2.669999986886978,
+          -1.3505357098923612
+        ]
+      ],
+      "fastenerWorldAfter": [
+        [
+          -0.8324132287236007,
+          1.8300000131130219,
+          -1.3823510528801046
+        ],
+        [
+          -0.8324132287236007,
+          2.669999986886978,
+          -1.3823510528801046
+        ]
+      ]
+    },
+    {
+      "pivotId": "right-rear-door-pivot",
+      "childIds": [
+        "right-rear-door-panel",
+        "rear-side-window-right",
+        "rear-door-handle-right",
+        "rear-right-door-fasteners",
+        "right-rear-door-hinge",
+        "door-hinge-right-rear--0.38",
+        "door-hinge-right-rear-0.38"
+      ],
+      "allParented": true,
+      "fastenerParentedDirectly": true,
+      "childMoved": true,
+      "fastenerInstancesMoved": true,
+      "fixedFastenersStayed": true,
+      "fastenerWorldBefore": [
+        [
+          0.14271393410857913,
+          1.8300000131130219,
+          -1.3153450958081232
+        ],
+        [
+          0.14271393410857913,
+          2.669999986886978,
+          -1.3153450958081232
+        ]
+      ],
+      "fastenerWorldAfter": [
+        [
+          0.0468828651380599,
+          1.8300000131130219,
+          -1.3471604387958667
+        ],
+        [
+          0.0468828651380599,
+          2.669999986886978,
+          -1.3471604387958667
+        ]
+      ]
+    }
+  ],
+  "recoveryArticulation": {
+    "pivotId": "front-bumper-pivot",
+    "hardwareIds": [
+      "front-winch",
+      "winch-drum",
+      "recovery-hook--1",
+      "recovery-hook-1"
+    ],
+    "allParented": true,
+    "allMoved": true,
+    "before": {
+      "front-winch": [
+        -3.2374083455815685,
+        1.1400000000000001,
+        -0.1295654427646947
+      ],
+      "winch-drum": [
+        -3.397280362647325,
+        1.1400000000000001,
+        -0.13596373623455615
+      ],
+      "recovery-hook--1": [
+        -3.372486975451612,
+        0.8200000000000001,
+        -0.7554678023643625
+      ],
+      "recovery-hook-1": [
+        -3.422073749843038,
+        0.8200000000000001,
+        0.4835403298952502
+      ]
+    },
+    "after": {
+      "front-winch": [
+        -3.276894608340706,
+        1.0835064867548698,
+        -0.1311457361881342
+      ],
+      "winch-drum": [
+        -3.427074018720148,
+        1.0286428375619976,
+        -0.13715611848251164
+      ],
+      "recovery-hook--1": [
+        -3.2926411032737777,
+        0.7280435694508365,
+        -0.752272263007774
+      ],
+      "recovery-hook-1": [
+        -3.3422278776652043,
+        0.7280435694508365,
+        0.48673586925183876
+      ]
+    }
+  },
+  "lifecycleCheck": {
+    "counts": {
+      "geometries": 122,
+      "materials": 12,
+      "textures": 48,
+      "instancedMeshes": 16
+    },
+    "disposed": {
+      "geometries": 122,
+      "materials": 12,
+      "textures": 48,
+      "instancedMeshes": 16
+    },
+    "complete": true,
+    "removedFromScene": true,
+    "postDisposeFrames": 6,
+    "memoryBefore": {
+      "geometries": 125,
+      "textures": 52
+    },
+    "memoryDisposed": {
+      "geometries": 3,
+      "textures": 4
+    },
+    "memoryPostRender": {
+      "geometries": 3,
+      "textures": 4
+    },
+    "allocationsBefore": {
+      "buffers": 704,
+      "textures": 56
+    },
+    "allocationsDisposed": {
+      "buffers": 704,
+      "textures": 56
+    },
+    "allocationsPostRender": {
+      "buffers": 704,
+      "textures": 56
+    },
+    "rendererMemoryDidNotRebound": true,
+    "webglAllocationsDidNotRebound": true
+  },
+  "referenceSha256": {
+    "source": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+    "heroCopy": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82"
+  },
+  "sourceSha256": {
+    "index.html": "c86fecea7bd2d9d9deb0173d4b5c1ac2b9706d86118ad27be6808fc1b6a32a11",
+    "main.js": "a50b225f202f794c7a57509333965a716b6280f174c97dbd1b84b51c03604724",
+    "style.css": "89a5c428b8ced325d1b8ca5b928fe85fbfed0f9576e71b5670b615df55b12b51",
+    "package.json": "0af01640413136e602cd9c223b0ebe69e041572384e8b726ac2d4dadeb3b2f41",
+    "package-lock.json": "e045d74a051632d5036ceddece0cb707e14ba0431deb29216c0512aeb10c1980",
+    "vite.config.js": "a71333093cca0f55d91530cfd89d51df4aae9c816b252f377b72a7953d011340",
+    "scripts/capture.mjs": "783ce61af77fd85ec4be71b125f3ecd65b4cfa483467b81657ce0d841bac5e2e",
+    "brick-output/createBrickOffroad.js": "a30e75ee10fbdc23baedd77cfdb593eecd7de52081122e6974b40e56d590a3b6",
+    "brick-output/createBrickOffroad.d.ts": "40ddc97f23f544ed1d735f4f0784554301b68ca31f5fe143b1293beded0df039",
+    "brick-output/brick-variant-config.json": "b851b1ea0b8981aeea81f699994a9e551461f3e8f89f672e5cb1e3f3178ea4a9",
+    "brick-output/brick-offroad-profile.json": "aa7bcc9c8c552ef53aa56565b12a25750e388c5596542ccf67fa7bd1d4c8fa5c",
+    "../../scripts/append_sculpt_review.py": "898ea7decffe8ab6acb9053137b657b03c0ec58a3d16321a7007b6edeb4cb140",
+    "../../scripts/make_visual_comparison_sheet.py": "85fb27acca3ef9d8c0f1a13c6a0267ce61bb46e3f8bca7257404084237f43858",
+    "../../scripts/sculpt_dna.py": "d8afd9b8f50033498027b31c757dc7b30b856c51f191dfeada4f68e0cd6cb7be",
+    "../../scripts/sculpt_pass_orchestrator.py": "853de5a04cdbc92115b29abd8aed20f79138d9d6150820293e6c450d59136325",
+    "../../scripts/validate_sculpt_spec.py": "14dc45811b95ed6623cff1ad5d77f73545297788af74ef89ee82048a15611ff9",
+    "../../scripts/visual_evidence_hashes.py": "6fcfbc8400d6c316579bdabfb0253ac2aa016a32a4588f751568653e243bd571",
+    "../../scripts/migrate_review_policy.py": "96a0b67a353b6133660d457141f6f04eab532e1eaa80dd2b62d416d64fc09546",
+    "../../scripts/refresh_brick_reviews.py": "cab356d9dc707c97fb367c0c2a81c8bb2ac355f12a3b556deb92d5376d886dde",
+    "../../scripts/verify_release.py": "59b1e64be906ce5bbaf6f9e5ed22893889cb93e608da12f37697fb77d5136f29",
+    "../brick-offroad/object-sculpt-spec.json": "a42660533bff26330a63b25f9476f703cec1d8672e45aeb7fa4df08b77465251",
+    "../showcase/variants/brick/brick-offroad-v001.json": "2ddbee5c0c92ed0fdb658fd8bb7c035077515af4fb390e7ea87f91a67cd91e6a",
+    "../showcase/variants/brick/brick-offroad-v002.json": "03e1c9a7c116bb8f54646cc79d9637c065bb0f6d4c977cfda1b76038a7db46c6",
+    "../showcase/variants/brick/brick-offroad-v003.json": "b766023fa03343cb94645a0475356f0ec430ed744f7d8c6b7a106dcda5248235",
+    "../showcase/variants/brick/sculpt-dna-manifest.json": "921c73492e25f430520ed458a612781c665e5548f1e945f7c5023143ae4cbeef",
+    "../showcase/showcase-review.json": "f5357a58c7cc94cd414507ae2a21259e5838611d6e80e2db0aed2e3186b36411",
+    "reference/brick-offroad-reference.jpeg": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82"
+  },
+  "outputSha256": {
+    "../../assets/brick-offroad-hero.png": "bb0f782e2e0541e24972b763878fa9cf736a0fad987b5eab569866a99ee02db8",
+    "../../assets/brick-offroad-hero.gif": "7ce23d3af137e91b876070a614147316fc7aa8ac73ef05bad928768ef035aa1f",
+    "../../assets/brick-offroad-sculpt-dna-result.png": "122a33c8e7dc7a10c1d832e0c46977e78ffbaed7c62b2a9b057b15c00d616bd2",
+    "evidence/door-articulation.webp": "70dc03c1a77b21ca06d04167c07286f56aaceb8a07902edbfe3742f4231551ac",
+    "evidence/showcase-comparison.webp": "ed7b7d15be8ea1d006a65d89079ca0b90db0f6d73045be28565836fd2a4a19af",
+    "evidence/blockout.webp": "a0b0d5df7741cb5d7947a1f3a6988395795992275abd027b7748b14a1b40697f",
+    "evidence/blockout-comparison.webp": "50a8cbda4d80bd11f8265f2617ee0b22a84fbcce1a955e8958290e959518370c",
+    "evidence/structural-pass.webp": "43cda59283ce9be8cad1ea8ff0bab066c54f80b0e7a18cd4d434cf178c5e6032",
+    "evidence/structural-pass-comparison.webp": "5e174120fd7be7d8b2d9959c583a6989e7639466261d55248a011b0b1f12bd32",
+    "evidence/form-refinement.webp": "86be62ce02d5a82d234f34acd49283d15b3cc34e6a85506c142c711f461f4386",
+    "evidence/form-refinement-comparison.webp": "6112f9f618fa3640a0db4fe2f31204d9adef7beb523fa5a7f821a6bc21dbc7c6",
+    "evidence/material-pass.webp": "26be6a1c55767b49ab94715726ff83a361dd0a13506fd00da418a93dc4241f08",
+    "evidence/material-pass-comparison.webp": "be9b6964030b02610e6cdf73bfc542e9a48f00b44e85084914fc32a006eb070e",
+    "evidence/surface-pass.webp": "b915c02a83f1ea46f30cd14e9272745ea5be93a6a45c47de8e8e7005ccc9704d",
+    "evidence/surface-pass-comparison.webp": "00bf968cedfb49ca330a5e3f9b58d059456419eb749681387f0b4ac1ed511baa",
+    "evidence/final.webp": "b915c02a83f1ea46f30cd14e9272745ea5be93a6a45c47de8e8e7005ccc9704d",
+    "evidence/final-comparison.webp": "00bf968cedfb49ca330a5e3f9b58d059456419eb749681387f0b4ac1ed511baa",
+    "evidence/variant-1.webp": "279126891ec53c48ddbd86c3a3bea51613847565018c5bd10569014329d75457",
+    "evidence/variant-1-comparison.webp": "8dfe63baee383bca9b927474389fcfc70b2ac9fd837510f58705f6d5c69e758e",
+    "evidence/variant-2.webp": "a8d84547c14dd5d3f7e05cc2f42588f25073f417cdd52e8c25d054beac785e65",
+    "evidence/variant-2-comparison.webp": "824225aae178c9278df3e26cb6e809907802336209b56d990ae1b14f18c41de2",
+    "evidence/variant-3.webp": "3dc79fb282c678313ab088aadf2db73b6dc146a903a4774d85571dd4a3d4031c",
+    "evidence/variant-3-comparison.webp": "7c5173bcc83fbf7563774dd74f51390734f98616288b0de91bc0ac8f4ada5507"
+  }
+}

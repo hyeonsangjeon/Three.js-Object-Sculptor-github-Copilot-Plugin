@@ -128,19 +128,46 @@ def load_image(path: Path) -> tuple[int, int, list[tuple[int, int, int, int]]]:
     try:
         return read_png(path)
     except Exception as direct_error:
+        ffmpeg = shutil.which("ffmpeg")
         sips = shutil.which("sips")
-        if not sips:
-            raise ValueError(f"could not decode {path.name} as PNG and sips is unavailable: {direct_error}") from direct_error
+        if not ffmpeg and not sips:
+            raise ValueError(
+                f"could not decode {path.name} as PNG; ffmpeg and sips are unavailable: "
+                f"{direct_error}"
+            ) from direct_error
         with tempfile.TemporaryDirectory() as tmpdir:
             converted = Path(tmpdir) / "converted.png"
-            result = subprocess.run(
-                [sips, "-s", "format", "png", str(path), "--out", str(converted)],
-                capture_output=True,
-                text=True,
-                check=False,
-            )
+            if ffmpeg:
+                command = [
+                    ffmpeg,
+                    "-hide_banner",
+                    "-loglevel",
+                    "error",
+                    "-y",
+                    "-i",
+                    str(path),
+                    "-frames:v",
+                    "1",
+                    str(converted),
+                ]
+            else:
+                command = [
+                    sips,
+                    "-s",
+                    "format",
+                    "png",
+                    str(path),
+                    "--out",
+                    str(converted),
+                ]
+            result = subprocess.run(command, capture_output=True, text=True, check=False)
             if result.returncode != 0:
-                raise ValueError(result.stderr.strip() or result.stdout.strip() or "sips conversion failed")
+                converter = "ffmpeg" if ffmpeg else "sips"
+                raise ValueError(
+                    result.stderr.strip()
+                    or result.stdout.strip()
+                    or f"{converter} conversion failed"
+                )
             return read_png(converted)
 
 

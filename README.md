@@ -90,26 +90,38 @@ Read the [complete user guide](docs/USER_GUIDE.md) for production vs preview var
 
 ## Additional Demo Families
 
-Brick and Seoul remain explicit preview families. Every generated variant resets its own visual evidence before promotion.
+Brick is now a second evidence-backed flagship. Seoul remains an explicit preview family, and every generated variant still resets its visual evidence before promotion.
 
 ### Brick Off-Road Explorer
 
+[Open the interactive Brick Off-Road Explorer](https://hyeonsangjeon.github.io/threejs-sculpt-dna/brick/)
+
+**Reference** → **Sculpt DNA variants** → **Flagship**
+
+![Rotating procedural Brick Off-Road Explorer](assets/brick-offroad-hero.gif)
+
 <table>
   <tr>
-    <th>Reference</th>
-    <th>Sculpt DNA variants</th>
+    <th>01 · Reference</th>
+    <th>02 · Sculpt DNA variants — intermediate</th>
+    <th>03 · Flagship — final</th>
   </tr>
   <tr>
     <td><img src="assets/brick-offroad-reference.jpeg" alt="User-provided brick-built off-road vehicle reference"></td>
     <td><img src="assets/brick-offroad-sculpt-dna-result.png" alt="Three procedural brick off-road Sculpt DNA variants"></td>
+    <td><img src="assets/brick-offroad-hero.png" alt="Final Brick Off-Road Explorer flagship render"></td>
   </tr>
 </table>
 
-This hard-surface study preserves the raised four-wheel topology, olive body panels, light roof, cabin and hood hierarchy, tire treads, roof rack, lamps, and recovery accents while varying bounded material and repetition parameters.
+The final hard-surface flagship preserves exactly four correctly oriented wheels, the photographed olive hood/cabin/rear-body proportions, light roof, black structure, glazing, arches, suspension, tire treads, studs, fasteners, roof cargo, lamps, and warm recovery hardware. Its three curated configurations complete the base-sculpt and per-variant visual gates while preserving action-ready topology.
 
-[Base spec](examples/brick-offroad/object-sculpt-spec.json) ·
-[Variant manifest](examples/showcase/variants/brick/sculpt-dna-manifest.json) ·
-[Renderer](examples/showcase/showcase.js)
+The committed installed-Chrome manifest records per-run generation timings plus **63,564–68,324 instance-weighted geometry triangles**, **126 scene drawables**, **387 full-frame WebGL calls** including shadow/transmission/output passes, **512px independent PBR channels**, and **0 imported meshes**.
+
+[Evidence-backed base spec](examples/brick-offroad/object-sculpt-spec.json) ·
+[Production variant manifest](examples/showcase/variants/brick/sculpt-dna-manifest.json) ·
+[Reusable factory](examples/brick-offroad-hero/brick-output/createBrickOffroad.js) ·
+[Runtime profile](examples/brick-offroad-hero/brick-output/brick-offroad-profile.json) ·
+[Pass evidence](examples/brick-offroad-hero/evidence/)
 
 ### Seoul Palace Scene Challenge
 
@@ -395,6 +407,12 @@ python3 scripts/append_sculpt_review.py object-sculpt-spec.json \
 ```
 
 Repeat the locked render, comparison, review, and pipeline-sync loop for `structural-pass`, `form-refinement`, `material-pass`, and `surface-pass`. Production Sculpt DNA generation intentionally remains blocked until evidence-backed `reviewHistory` completes that sequence.
+
+`append_sculpt_review.py` SHA-256-binds every local reference, render, and
+comparison file. Pipeline sync, strict validation, and production variant
+generation recompute those hashes, so overwriting a reviewed capture invalidates
+the pass. URL, data, blob, and session-artifact evidence is retained as
+`remote-unverified` record-only evidence and cannot complete a production pass.
 
 ## Sculpt DNA Quick Start
 

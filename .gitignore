@@ -4,3 +4,6 @@ __pycache__/
 node_modules/
 examples/repolis-hero/dist/
 examples/repolis-hero/.capture-frames/
+examples/brick-offroad-hero/dist/
+examples/brick-offroad-hero/.capture-frames/
+examples/showcase/dist/

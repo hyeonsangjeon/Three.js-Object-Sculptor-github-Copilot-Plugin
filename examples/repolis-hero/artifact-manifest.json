@@ -30,7 +30,7 @@
     "style.css": "8b6d750509d7744091551ba6893c03ec8d6178d758e270d05c2856225887b977",
     "repolis-output/createRepolisHero.js": "65bd7fc76013ee0f11898174095556d581be64ea8f15e76e090fb8955a17d0e3",
     "repolis-output/repolis-hero-profile.json": "dbd376bb180aae1d1d93ed579ea3a3558cbd8e397f6da9ed853f0b1325916351",
-    "../repolis-tree/object-sculpt-spec.json": "973c8a52903ddc986f88b185ea3cc5731fab5c64279738e9c2e5ab969b7ac1fb"
+    "../repolis-tree/object-sculpt-spec.json": "2ecff4affb5dc5283f591ff54f59c5e68e7c39c56b7bca7dcd4a0204fda4ddd6"
   },
   "outputSha256": {
     "../../assets/repolis-tree-hero.png": "c8f11b9f8b4f01cfdfbe1c3098be6996567550558bdca69ed5f21b14ace74faa",

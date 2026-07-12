@@ -1,8 +1,17 @@
 {
   "reviewType": "readme-showcase-family",
-  "reviewedAt": "2026-07-11",
+  "reviewedAt": "2026-07-12T02:00:26Z",
+  "reviewPolicy": {
+    "version": 1,
+    "authoritativeReview": "latest",
+    "evidenceBinding": "local-sha256",
+    "staleCaptureBehavior": "invalidate-scores"
+  },
   "renderer": "examples/showcase/showcase.js",
-  "viewport": [1200, 675],
+  "viewport": [
+    1200,
+    675
+  ],
   "families": [
     {
       "id": "repolis-tree",
@@ -13,7 +22,11 @@
       "passGateStatus": "pending-per-variant-visual-review",
       "coverageCurator": {
         "poolSize": 24,
-        "selectedCandidateIndexes": [10, 17, 12],
+        "selectedCandidateIndexes": [
+          10,
+          17,
+          12
+        ],
         "coverageScore": 0.484356
       },
       "scores": {
@@ -29,22 +42,36 @@
       "id": "brick-offroad",
       "reference": "assets/brick-offroad-reference.jpeg",
       "render": "assets/brick-offroad-sculpt-dna-result.png",
-      "decision": "document-family-preview",
-      "baseSculptStatus": "preview",
-      "passGateStatus": "pending-per-variant-visual-review",
+      "decision": "promote-to-evidence-backed-flagship",
+      "baseSculptStatus": "complete",
+      "passGateStatus": "evidence-backed-production",
       "coverageCurator": {
         "poolSize": 24,
-        "selectedCandidateIndexes": [19, 8, 14],
-        "coverageScore": 0.543732
+        "selectedCandidateIndexes": [
+          22,
+          19,
+          6
+        ],
+        "coverageScore": 0.499511
       },
       "scores": {
-        "silhouetteProportion": 0.76,
-        "componentStructure": 0.78,
-        "formDetail": 0.67,
-        "materialSurface": 0.72,
-        "lightingCamera": 0.74
+        "silhouetteProportion": 0.83,
+        "componentStructure": 0.83,
+        "formDetail": 0.81,
+        "materialSurface": 0.82,
+        "lightingCamera": 0.82
       },
-      "notes": "A refine-spec pass corrected the initial six-wheel interpretation to the reference four-wheel topology and restored olive panels, a light roof, roof gear, treads, and lamps."
+      "notes": "Fresh inspection of the exact SHA-bound comparison confirms the centered candidate and visible flanking variants retain the four-wheel expedition silhouette, olive/light-roof identity, recovery hardware, generated surface separation, and action-ready body hierarchy. The procedural forms remain cleaner and less connector-dense than the photographed model.",
+      "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+      "renderSha256": "122a33c8e7dc7a10c1d832e0c46977e78ffbaed7c62b2a9b057b15c00d616bd2",
+      "comparisonSha256": "ed7b7d15be8ea1d006a65d89079ca0b90db0f6d73045be28565836fd2a4a19af",
+      "referenceBinding": "local-sha256",
+      "renderBinding": "local-sha256",
+      "comparisonBinding": "local-sha256",
+      "comparison": "examples/brick-offroad-hero/evidence/showcase-comparison.webp",
+      "reviewStatus": "accepted",
+      "reviewId": "brick-showcase-review-2026-07-12T02:00:26Z",
+      "reviewedAt": "2026-07-12T02:00:26Z"
     },
     {
       "id": "seoul-challenge",
@@ -55,7 +82,11 @@
       "passGateStatus": "pending-per-variant-visual-review",
       "coverageCurator": {
         "poolSize": 24,
-        "selectedCandidateIndexes": [15, 11, 24],
+        "selectedCandidateIndexes": [
+          15,
+          11,
+          24
+        ],
         "coverageScore": 0.554063
       },
       "scores": {

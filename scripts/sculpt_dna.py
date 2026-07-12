@@ -19,6 +19,10 @@ from sculpt_dna_core import (
     make_default_sculpt_dna,
     validate_sculpt_dna_block,
 )
+from visual_evidence_hashes import (
+    latest_review_for_pass,
+    review_visual_evidence_failures,
+)
 
 REQUIRED_BASE_PASSES = [
     "blockout",
@@ -53,45 +57,20 @@ def write_output(path: Path, value: Any, force: bool) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json_payload(value), encoding="utf-8")
 
-def resolve_evidence_path(value: str, spec_path: Path) -> Path | None:
-    if value.startswith(("http://", "https://", "data:", "session-artifact:")):
-        return None
-    candidate = Path(value).expanduser()
-    if candidate.is_absolute():
-        return candidate if candidate.is_file() else None
-    for base in (Path.cwd(), *spec_path.resolve().parents):
-        resolved = (base / candidate).resolve()
-        if resolved.is_file():
-            return resolved
-    return None
-
-
 def validate_production_evidence(
     spec: dict[str, Any],
     spec_path: Path,
 ) -> None:
-    history = spec.get("reviewHistory", [])
-    missing: list[str] = []
+    failures: list[str] = []
     for pass_id in REQUIRED_BASE_PASSES:
-        entry = next(
-            (
-                item
-                for item in history
-                if isinstance(item, dict)
-                and item.get("passId") == pass_id
-                and item.get("action") == "continue"
-            ),
-            None,
-        )
+        entry = latest_review_for_pass(spec, pass_id)
         visual = entry.get("visualEvidence") if isinstance(entry, dict) else None
-        for field in ("renderScreenshot", "comparisonImage"):
-            value = visual.get(field) if isinstance(visual, dict) else None
-            if not isinstance(value, str) or resolve_evidence_path(value, spec_path) is None:
-                missing.append(f"{pass_id}.{field}")
-    if missing:
+        for failure in review_visual_evidence_failures(spec, visual, spec_path):
+            failures.append(f"{pass_id}.{failure}")
+    if failures:
         raise ValueError(
-            "production variant generation requires existing local visual evidence files: "
-            + ", ".join(missing)
+            "production variant generation requires matching local visual evidence hashes: "
+            + "; ".join(failures)
         )
 
 
@@ -107,7 +86,7 @@ def variant_gate(
         else []
     )
     cached_ids = [str(item) for item in cached]
-    completed_ids = completed_passes(spec, pass_order(spec))
+    completed_ids = completed_passes(spec, pass_order(spec), spec_path)
     if cached_ids != completed_ids and not preview:
         raise ValueError(
             "sculptPipeline.completedPasses is out of sync with evidence-backed reviewHistory; "
@@ -256,12 +235,34 @@ def write_variant_family(
                     )
                     if key in provenance
                 },
+                **(
+                    {"visualEvidence": provenance["visualAcceptance"]}
+                    if isinstance(provenance.get("visualAcceptance"), dict)
+                    else {}
+                ),
             }
             for output_path, _, provenance in output_variants
         ],
     }
     if manifest_extra:
         manifest.update(manifest_extra)
+    reviewed = [
+        item["visualEvidence"]
+        for item in manifest["variants"]
+        if isinstance(item.get("visualEvidence"), dict)
+    ]
+    if len(reviewed) == len(manifest["variants"]) and reviewed:
+        reviewed_at = {item.get("reviewedAt") for item in reviewed}
+        review_ids = [item.get("reviewId") for item in reviewed]
+        if (
+            len(reviewed_at) == 1
+            and all(isinstance(value, str) and value for value in review_ids)
+        ):
+            manifest["visualReviewSet"] = {
+                "reviewedAt": reviewed_at.pop(),
+                "authority": "SHA-256-bound per-variant visual review",
+                "variantReviewIds": review_ids,
+            }
     with tempfile.TemporaryDirectory(prefix=".sculpt-dna-", dir=output_dir) as staging_dir:
         staging = Path(staging_dir)
         staged_outputs: list[tuple[Path, Path]] = []

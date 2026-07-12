@@ -1,0 +1,53 @@
+{
+  "name": "Brick Off-Road Explorer",
+  "version": "1.0.0",
+  "seed": 20260712,
+  "sourceReference": "../../../assets/brick-offroad-reference.jpeg",
+  "factory": "createBrickOffroad.js",
+  "generation": {
+    "geometry": "rounded boxes, torus arches and tires, cylinders, procedural rails, and instanced repetition systems",
+    "materials": "runtime-generated independent albedo, roughness, normal, and ambient-occlusion textures",
+    "transientHeightFieldForNormalGeneration": "non-retained scalar field used only to derive the normal texture; ambient occlusion is derived independently from cavity and dirt fields",
+    "retainedTextureChannels": [
+      "albedo",
+      "roughness",
+      "normal",
+      "ambient-occlusion"
+    ],
+    "textureResolution": 512,
+    "repetition": [
+      "64-76 tire tread blocks with equal cadence on all four wheels",
+      "60-81 body studs from curated DNA",
+      "4-5 roof lamps from curated DNA",
+      "12 fixed and 8 door-mounted panel fasteners",
+      "wheel hub spokes"
+    ],
+    "importedMeshes": 0
+  },
+  "actionReadiness": {
+    "root": "brick-offroad-root",
+    "chassis": "chassis",
+    "wheelPivots": 4,
+    "steeringPivots": 2,
+    "suspensionAnchors": 4,
+    "hingedPanels": [
+      "hood-pivot",
+      "left-door-pivot",
+      "left-rear-door-pivot",
+      "right-door-pivot",
+      "right-rear-door-pivot",
+      "tailgate-pivot"
+    ],
+    "roofSockets": 3,
+    "colliders": true,
+    "destructionGroups": true,
+    "runtimeMetadata": "Serializable IDs stay in root.userData; live Object3D references are returned as result.runtime"
+  },
+  "variants": [
+    "brick-offroad-v001",
+    "brick-offroad-v002",
+    "brick-offroad-v003"
+  ],
+  "baseConfiguration": "brick-offroad-base exactly mirrors the base ObjectSculptSpec palettes, roughness values, and repetition counts",
+  "variantControls": "brick-variant-config.json is validated against the production ObjectSculptSpec variants"
+}
