@@ -108,7 +108,7 @@ Brick is now a second evidence-backed flagship. Seoul remains an explicit previe
   </tr>
   <tr>
     <td><img src="assets/brick-offroad-reference.jpeg" alt="User-provided brick-built off-road vehicle reference"></td>
-    <td><img src="assets/brick-offroad-sculpt-dna-result.png" alt="Three procedural brick off-road Sculpt DNA variants"></td>
+    <td><img src="assets/brick-offroad-sculpt-dna-intermediate.png" alt="Three intermediate brick off-road blockout variants selected by the Coverage Curator"></td>
     <td><img src="assets/brick-offroad-hero.png" alt="Final Brick Off-Road Explorer flagship render"></td>
   </tr>
 </table>

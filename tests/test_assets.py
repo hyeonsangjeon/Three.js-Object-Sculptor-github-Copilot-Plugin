@@ -30,6 +30,7 @@ class AssetTests(unittest.TestCase):
 
     def test_showcase_renders_have_readme_dimensions(self) -> None:
         for filename in (
+            "brick-offroad-sculpt-dna-intermediate.png",
             "brick-offroad-sculpt-dna-result.png",
             "repolis-tree-sculpt-dna-result.png",
             "seoul-challenge-sculpt-dna-result.png",
