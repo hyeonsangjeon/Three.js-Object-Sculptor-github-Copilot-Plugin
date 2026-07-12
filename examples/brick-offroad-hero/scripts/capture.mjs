@@ -412,28 +412,6 @@ async function main() {
         return result;
       });
     });
-    const heroScreenshot = path.join(framesDir, 'hero-with-ui.png');
-    await page.screenshot({ path: heroScreenshot });
-    run(
-      ffmpeg,
-      [
-        '-hide_banner',
-        '-loglevel',
-        'error',
-        '-y',
-        '-i',
-        heroScreenshot,
-        '-vf',
-        "format=rgb24,lutrgb=r='floor(val/8)*8':g='floor(val/8)*8':b='floor(val/8)*8'",
-        '-frames:v',
-        '1',
-        '-compression_level',
-        '9',
-        path.join(assetsDir, 'brick-offroad-hero.png'),
-      ],
-      { quiet: true },
-    );
-
     await page.goto(
       `${baseUrl}/?stage=full&variant=base&motion=0&ui=0&capture=1&time=${canonicalElapsed}`,
       { waitUntil: 'networkidle0' },
@@ -504,6 +482,23 @@ async function main() {
       page,
       'final',
       `${baseUrl}/?stage=full&variant=base&motion=0&ui=0&capture=1&time=${canonicalElapsed}`,
+    );
+    run(
+      ffmpeg,
+      [
+        '-hide_banner',
+        '-loglevel',
+        'error',
+        '-y',
+        '-i',
+        path.join(evidenceDir, 'final.webp'),
+        '-frames:v',
+        '1',
+        '-compression_level',
+        '9',
+        path.join(assetsDir, 'brick-offroad-hero.png'),
+      ],
+      { quiet: true },
     );
     const variantStats = [];
     for (let variant = 0; variant < 3; variant += 1) {

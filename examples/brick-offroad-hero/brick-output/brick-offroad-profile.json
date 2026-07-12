@@ -7,7 +7,7 @@
   "generation": {
     "geometry": "rounded boxes, torus arches and tires, cylinders, procedural rails, and instanced repetition systems",
     "materials": "runtime-generated independent albedo, roughness, normal, and ambient-occlusion textures",
-    "transientHeightFieldForNormalGeneration": "non-retained scalar field used only to derive normal and ambient-occlusion textures",
+    "transientHeightFieldForNormalGeneration": "non-retained scalar field used only to derive the normal texture; ambient occlusion is derived independently from cavity and dirt fields",
     "retainedTextureChannels": [
       "albedo",
       "roughness",

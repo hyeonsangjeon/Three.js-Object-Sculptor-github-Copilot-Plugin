@@ -24,7 +24,7 @@ Query parameters:
 
 The page imports `brick-output/createBrickOffroad.js`, the same zero-import factory intended for application reuse. Its live runtime maps are returned outside `userData`; only serializable IDs and deterministic provenance are stored on the root.
 
-The committed capture measured 752–834ms generation, 63,564–68,324 instance-weighted geometry triangles, 126 scene drawables, and 387 full-frame WebGL calls including shadow, transmission, scene, and output passes. All configurations retain independent 512px albedo, roughness, normal, and AO textures; a transient scalar height field only generates the normal and AO pixels and is not retained or bound. Every configuration keeps exactly four wheels, equal tread cadence per wheel, and zero imported meshes. The measured full-frame count remains below the 400-call ObjectSculptSpec budget.
+The committed manifest records per-run generation timings, 63,564–68,324 instance-weighted geometry triangles, 126 scene drawables, and 387 full-frame WebGL calls including shadow, transmission, scene, and output passes. All configurations retain independent 512px albedo, roughness, normal, and AO textures; a transient scalar height field only generates normal pixels, while AO comes independently from cavity and dirt fields. The height field is not retained or bound. Every configuration keeps exactly four wheels, equal tread cadence per wheel, and zero imported meshes. The measured full-frame count remains below the 400-call ObjectSculptSpec budget.
 
 ## Regenerate media and evidence
 

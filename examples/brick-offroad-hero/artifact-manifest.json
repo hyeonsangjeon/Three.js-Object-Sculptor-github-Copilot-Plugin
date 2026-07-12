@@ -17,7 +17,7 @@
     "deterministicFrameSha256": "99a6b96a8846e70abf576579d8d9c0eab04d790a75eb9d415587485d09313c54"
   },
   "runtimeStats": {
-    "generationMs": 834.3000000119209,
+    "generationMs": 632,
     "meshes": 126,
     "triangles": 64148,
     "sceneDrawables": 126,
@@ -90,7 +90,7 @@
         }
       },
       "stats": {
-        "generationMs": 751.5,
+        "generationMs": 730.0999999940395,
         "meshes": 126,
         "triangles": 63564,
         "sceneDrawables": 126,
@@ -139,7 +139,7 @@
         }
       },
       "stats": {
-        "generationMs": 779.4000000059605,
+        "generationMs": 704.5,
         "meshes": 126,
         "triangles": 68324,
         "sceneDrawables": 126,
@@ -188,7 +188,7 @@
         }
       },
       "stats": {
-        "generationMs": 759.5,
+        "generationMs": 717.7999999821186,
         "meshes": 126,
         "triangles": 66980,
         "sceneDrawables": 126,
@@ -673,11 +673,11 @@
     "package.json": "83f4101ff2e99fd7aa121ec5641f277f828980c3507def68ceaa82e7b9e25310",
     "package-lock.json": "e045d74a051632d5036ceddece0cb707e14ba0431deb29216c0512aeb10c1980",
     "vite.config.js": "c0b41abe92801d9299863d33a57871a02898dfe390ba5de11e17d96c86c77990",
-    "scripts/capture.mjs": "d73b962fca130c45349e6dbf8aeac00ce247118161c855c4f79776118dca0b73",
+    "scripts/capture.mjs": "5286f723ddbcbdacf0e53b108bb9b952b53f4cc263386a5057865f06eb2fc285",
     "brick-output/createBrickOffroad.js": "ac43f933f85135ff762d34620c9d70ca1046c598a0c3a2431bb3b60fd781b042",
     "brick-output/createBrickOffroad.d.ts": "4d106c37749d27ae12b19ec82c257d5d9240d89797bbfaf2eb15a8f4022575c9",
     "brick-output/brick-variant-config.json": "b46d148e2f511063627e10e04e6e665fe61d4aca37c3b7d3ec124c5857152464",
-    "brick-output/brick-offroad-profile.json": "3f9ad6c575e8a6d911b387499d55360c9c8f99ab5ed0d0ae07bc7a3da4cea869",
+    "brick-output/brick-offroad-profile.json": "aa7bcc9c8c552ef53aa56565b12a25750e388c5596542ccf67fa7bd1d4c8fa5c",
     "../../scripts/append_sculpt_review.py": "62076f70b6dd443fa5c798457056ca3fc954f624a6c4405739446a48e5b5557c",
     "../../scripts/make_visual_comparison_sheet.py": "85fb27acca3ef9d8c0f1a13c6a0267ce61bb46e3f8bca7257404084237f43858",
     "../../scripts/sculpt_dna.py": "598ca6f5825f9cda32457aa44a151b5164f846407d660d5b62ef2056e1c64a27",
@@ -692,7 +692,7 @@
     "reference/brick-offroad-reference.jpeg": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82"
   },
   "outputSha256": {
-    "../../assets/brick-offroad-hero.png": "32a2aa8b69347aedcb4e3dbde3d4b76957017e8b2f91063f82b229be26c60f79",
+    "../../assets/brick-offroad-hero.png": "f43e8881d0795d3b3bff242eb68a0a0ef7b21c4a30f431d670025d6b155e89d1",
     "../../assets/brick-offroad-hero.gif": "47303100ed3893e77064fffcf88e881e0f0bd2551c845ebb7986e7b811e9824f",
     "../../assets/brick-offroad-sculpt-dna-result.png": "0f2b14dd9b1dc5012ec691bd80266146bdfc443b18a94d63ea070be897fb946d",
     "evidence/door-articulation.webp": "93b79ee2ebb8a41c33a209df77d2603b365e42c9ca175f527b795605e776651a",
