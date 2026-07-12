@@ -174,7 +174,9 @@ function rebuildExplorer() {
     lines: renderer.info.render.lines,
     points: renderer.info.render.points,
     frame: renderer.info.render.frame,
+    memory: { ...renderer.info.memory },
   });
+  window.__renderBrickFrame = renderFrame;
 }
 
 rebuildExplorer();

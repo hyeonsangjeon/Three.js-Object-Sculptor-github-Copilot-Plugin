@@ -11,6 +11,11 @@ from pathlib import Path
 
 from sculpt_pass_orchestrator import next_required_evidence
 from visual_feature_gate import feature_gate_failures
+from visual_evidence_hashes import (
+    bind_visual_evidence_hashes,
+    is_remote_or_virtual_path,
+    visual_evidence_hash_failures,
+)
 
 
 VALID_ACTIONS = {"continue", "refine-spec", "refine-code", "request-input", "stop"}
@@ -65,10 +70,6 @@ def load_json_argument(value: str | None, label: str) -> object | None:
 
 def clamp_score(value: float) -> float:
     return max(0.0, min(1.0, float(value)))
-
-
-def is_remote_or_virtual_path(value: str) -> bool:
-    return "://" in value or value.startswith("data:") or value.startswith("blob:")
 
 
 def validate_optional_file(value: str | None, label: str) -> None:
@@ -147,7 +148,12 @@ def pass_specific_evidence(spec: dict, pass_id: str) -> list[str]:
     return []
 
 
-def review_completes_pass(spec: dict, entry: dict, pass_id: str) -> bool:
+def review_completes_pass(
+    spec: dict,
+    entry: dict,
+    pass_id: str,
+    spec_path: Path | None = None,
+) -> bool:
     if entry.get("passId") != pass_id or entry.get("action") != "continue":
         return False
     visual = entry.get("visualEvidence")
@@ -162,19 +168,22 @@ def review_completes_pass(spec: dict, entry: dict, pass_id: str) -> bool:
             return False
         if not (isinstance(visual, dict) and visual.get("comparisonImage")):
             return False
+        if visual_evidence_hash_failures(visual, spec_path):
+            return False
         if feature_gate_failures(spec, entry, pass_id):
             return False
     return True
 
 
-def sync_pipeline(spec: dict) -> None:
+def sync_pipeline(spec: dict, spec_path: Path | None = None) -> None:
     ids = pass_order(spec)
     history = spec.get("reviewHistory", [])
     completed: list[str] = []
     if isinstance(history, list):
         for pass_id in ids:
             if any(
-                isinstance(entry, dict) and review_completes_pass(spec, entry, pass_id)
+                isinstance(entry, dict)
+                and review_completes_pass(spec, entry, pass_id, spec_path)
                 for entry in history
             ):
                 completed.append(pass_id)
@@ -307,8 +316,10 @@ def main(argv: list[str]) -> int:
                     + ", ".join(missing_layers)
                 )
 
+    timestamp = datetime.now(timezone.utc).isoformat()
+    review_id = f"{args.pass_id}-review-{timestamp}"
     entry = {
-        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "timestamp": timestamp,
         "passId": args.pass_id,
         "estimatedFidelity": clamp_score(args.fidelity),
         "aiVisionScore": clamp_score(args.ai_vision_score) if args.ai_vision_score is not None else None,
@@ -342,6 +353,8 @@ def main(argv: list[str]) -> int:
     )
     if has_visual_evidence:
         visual_evidence = {
+            "reviewId": review_id,
+            "reviewedAt": timestamp,
             "referenceScreenshot": args.reference_screenshot or spec.get("sourceImage", ""),
             "renderScreenshot": args.render_screenshot or "",
             "comparisonImage": args.comparison_image or "",
@@ -349,6 +362,7 @@ def main(argv: list[str]) -> int:
             "notes": args.visual_notes or "",
             "aiVisionNotes": args.ai_vision_notes or "",
         }
+        bind_visual_evidence_hashes(visual_evidence, spec_path)
         entry["visualEvidence"] = visual_evidence
 
         visual_history = spec.setdefault("visualEvidence", [])
@@ -367,7 +381,7 @@ def main(argv: list[str]) -> int:
             }
         )
     history.append(entry)
-    sync_pipeline(spec)
+    sync_pipeline(spec, spec_path)
 
     output = spec_path if args.in_place else (args.out.expanduser().resolve() if args.out else None)
     payload = json.dumps(spec, indent=2, ensure_ascii=False) + "\n"

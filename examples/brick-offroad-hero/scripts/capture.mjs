@@ -1,5 +1,13 @@
 import { createHash } from 'node:crypto';
-import { access, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
+import {
+  access,
+  mkdir,
+  open,
+  readFile,
+  rm,
+  stat,
+  writeFile,
+} from 'node:fs/promises';
 import { spawn, spawnSync } from 'node:child_process';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -10,7 +18,8 @@ const heroDir = path.resolve(scriptDir, '..');
 const repoRoot = path.resolve(heroDir, '..', '..');
 const assetsDir = path.join(repoRoot, 'assets');
 const evidenceDir = path.join(heroDir, 'evidence');
-const framesDir = path.join(heroDir, '.capture-frames');
+const framesDir = path.join(heroDir, `.capture-frames-${process.pid}`);
+const captureLockPath = path.join(heroDir, '.capture.lock');
 const baseUrl = 'http://127.0.0.1:4176';
 const gifFrameCount = 24;
 const gifFps = 6;
@@ -61,7 +70,7 @@ function run(command, args, options = {}) {
 }
 
 async function waitForServer(url) {
-  for (let attempt = 0; attempt < 100; attempt += 1) {
+  for (let attempt = 0; attempt < 600; attempt += 1) {
     try {
       const response = await fetch(url);
       if (response.ok) return;
@@ -134,26 +143,125 @@ async function captureEvidence(page, name, url) {
   );
 }
 
+function processIsRunning(pid) {
+  try {
+    process.kill(pid, 0);
+    return true;
+  } catch (error) {
+    return error.code !== 'ESRCH';
+  }
+}
+
+async function acquireCaptureLock() {
+  try {
+    const handle = await open(captureLockPath, 'wx');
+    try {
+      await handle.writeFile(`${JSON.stringify({
+        pid: process.pid,
+        startedAt: new Date().toISOString(),
+      })}\n`);
+      const lockStat = await handle.stat();
+      return {
+        handle,
+        device: lockStat.dev,
+        inode: lockStat.ino,
+      };
+    } catch (error) {
+      try {
+        await handle.close();
+      } finally {
+        await rm(captureLockPath, { force: true });
+      }
+      throw error;
+    }
+  } catch (error) {
+    if (error.code !== 'EEXIST') throw error;
+    let owner;
+    try {
+      owner = JSON.parse(await readFile(captureLockPath, 'utf8'));
+    } catch {
+      throw new Error(
+        `Capture lock ${captureLockPath} is malformed; remove it only after verifying no capture is running.`,
+      );
+    }
+    if (Number.isInteger(owner?.pid) && processIsRunning(owner.pid)) {
+      throw new Error(
+        `Another capture (PID ${owner.pid}) owns ${captureLockPath}.`,
+      );
+    }
+    throw new Error(
+      `Stale capture lock from PID ${owner?.pid ?? 'unknown'} at ${captureLockPath}; `
+        + 'verify no capture is running, then remove the lock explicitly.',
+    );
+  }
+}
+
+async function releaseCaptureLock(lock) {
+  try {
+    await lock.handle.close();
+  } finally {
+    try {
+      const current = await stat(captureLockPath);
+      if (current.dev === lock.device && current.ino === lock.inode) {
+        await rm(captureLockPath, { force: true });
+      }
+    } catch (error) {
+      if (error.code !== 'ENOENT') throw error;
+    }
+  }
+}
+
+async function stopServer(server) {
+  if (!server || server.exitCode !== null || server.signalCode !== null) return;
+  const closed = new Promise((resolve) => server.once('close', resolve));
+  server.kill('SIGTERM');
+  let timeoutId;
+  const stopped = await Promise.race([
+    closed.then(() => true),
+    new Promise((resolve) => {
+      timeoutId = setTimeout(() => resolve(false), 5000);
+    }),
+  ]);
+  clearTimeout(timeoutId);
+  if (
+    !stopped
+    && server.exitCode === null
+    && server.signalCode === null
+  ) {
+    server.kill('SIGKILL');
+    await closed;
+  }
+}
+
 async function main() {
   const chromePath = await findChrome();
   const ffmpeg = process.env.FFMPEG_BIN ?? 'ffmpeg';
   run(ffmpeg, ['-version'], { quiet: true });
   run('cwebp', ['-version'], { quiet: true });
   run('python3', ['--version'], { quiet: true });
-  await rm(framesDir, { recursive: true, force: true });
-  await mkdir(framesDir, { recursive: true });
-  await mkdir(evidenceDir, { recursive: true });
-  const server = spawn(
-    process.platform === 'win32' ? 'npm.cmd' : 'npm',
-    ['run', 'dev', '--', '--port', '4176', '--strictPort'],
-    {
-      cwd: heroDir,
-      stdio: 'ignore',
-      detached: false,
-    },
-  );
+  const captureLock = await acquireCaptureLock();
+  let server;
   let browser;
   try {
+    await rm(framesDir, { recursive: true, force: true });
+    await mkdir(framesDir, { recursive: true });
+    await mkdir(evidenceDir, { recursive: true });
+    server = spawn(
+      process.execPath,
+      [
+        path.join(heroDir, 'node_modules', 'vite', 'bin', 'vite.js'),
+        '--host',
+        '127.0.0.1',
+        '--port',
+        '4176',
+        '--strictPort',
+      ],
+      {
+        cwd: heroDir,
+        stdio: 'ignore',
+        detached: false,
+      },
+    );
     await waitForServer(baseUrl);
     const gitProbe = await fetch(`${baseUrl}/.git/HEAD`);
     const gitProbeBody = await gitProbe.text();
@@ -167,6 +275,25 @@ async function main() {
       args: ['--no-sandbox', '--disable-dev-shm-usage'],
     });
     const page = await browser.newPage();
+    await page.evaluateOnNewDocument(() => {
+      window.__BRICK_WEBGL_ALLOCATIONS__ = { buffers: 0, textures: 0 };
+      for (const contextType of [window.WebGLRenderingContext, window.WebGL2RenderingContext]) {
+        if (!contextType) continue;
+        for (const [method, key] of [
+          ['createBuffer', 'buffers'],
+          ['createTexture', 'textures'],
+        ]) {
+          const original = contextType.prototype[method];
+          if (typeof original !== 'function' || original.__brickAllocationWrapped) continue;
+          const wrapped = function wrappedWebGLAllocation(...args) {
+            window.__BRICK_WEBGL_ALLOCATIONS__[key] += 1;
+            return original.apply(this, args);
+          };
+          wrapped.__brickAllocationWrapped = true;
+          contextType.prototype[method] = wrapped;
+        }
+      }
+    });
     await page.setViewport({ width: 1200, height: 675, deviceScaleFactor: 1 });
 
     await page.goto(
@@ -198,6 +325,7 @@ async function main() {
           'front-door-handle-left',
           'side-mirror-left',
           'mirror-arm-left',
+          'front-left-door-fasteners',
           'left-door-hinge',
           'door-hinge-left-front--0.38',
           'door-hinge-left-front-0.38',
@@ -206,6 +334,7 @@ async function main() {
           'left-rear-door-panel',
           'rear-side-window-left',
           'rear-door-handle-left',
+          'rear-left-door-fasteners',
           'left-rear-door-hinge',
           'door-hinge-left-rear--0.38',
           'door-hinge-left-rear-0.38',
@@ -216,6 +345,7 @@ async function main() {
           'front-door-handle-right',
           'side-mirror-right',
           'mirror-arm-right',
+          'front-right-door-fasteners',
           'right-door-hinge',
           'door-hinge-right-front--0.38',
           'door-hinge-right-front-0.38',
@@ -224,6 +354,7 @@ async function main() {
           'right-rear-door-panel',
           'rear-side-window-right',
           'rear-door-handle-right',
+          'rear-right-door-fasteners',
           'right-rear-door-hinge',
           'door-hinge-right-rear--0.38',
           'door-hinge-right-rear-0.38',
@@ -232,24 +363,76 @@ async function main() {
       return Object.entries(contracts).map(([pivotId, childIds]) => {
         const pivot = hero.runtime.nodes[pivotId];
         const target = pivot.getObjectByName(childIds[1]);
+        const fastenerId = childIds.find((id) => id.includes('fasteners'));
+        const fasteners = hero.runtime.meshes[fastenerId];
+        const fixedFasteners = hero.runtime.meshes['fixed-panel-fasteners'];
+        const instanceWorldPositions = (mesh) => {
+          const local = mesh.matrixWorld.clone();
+          const world = mesh.matrixWorld.clone();
+          const positions = [];
+          mesh.updateMatrixWorld(true);
+          for (let index = 0; index < mesh.count; index += 1) {
+            mesh.getMatrixAt(index, local);
+            world.multiplyMatrices(mesh.matrixWorld, local);
+            positions.push([world.elements[12], world.elements[13], world.elements[14]]);
+          }
+          return positions;
+        };
         const before = target.getWorldPosition(target.position.clone()).toArray();
+        const fastenerWorldBefore = instanceWorldPositions(fasteners);
+        const fixedWorldBefore = instanceWorldPositions(fixedFasteners);
         pivot.rotation.y = pivotId.startsWith('left') ? -0.65 : 0.65;
         pivot.updateMatrixWorld(true);
         const after = target.getWorldPosition(target.position.clone()).toArray();
+        const fastenerWorldAfter = instanceWorldPositions(fasteners);
+        const fixedWorldAfter = instanceWorldPositions(fixedFasteners);
+        const positionsDiffer = (first, second) => first.some(
+          (position, positionIndex) => position.some(
+            (value, axis) => Math.abs(value - second[positionIndex][axis]) > 1e-4,
+          ),
+        );
         const result = {
           pivotId,
           childIds,
           allParented: childIds.every((id) => Boolean(pivot.getObjectByName(id))),
+          fastenerParentedDirectly: fasteners.parent === pivot,
           childMoved: before.some(
             (value, index) => Math.abs(value - after[index]) > 1e-4,
           ),
+          fastenerInstancesMoved: positionsDiffer(
+            fastenerWorldBefore,
+            fastenerWorldAfter,
+          ),
+          fixedFastenersStayed: !positionsDiffer(fixedWorldBefore, fixedWorldAfter),
+          fastenerWorldBefore,
+          fastenerWorldAfter,
         };
         pivot.rotation.y = 0;
         pivot.updateMatrixWorld(true);
         return result;
       });
     });
-    await page.screenshot({ path: path.join(assetsDir, 'brick-offroad-hero.png') });
+    const heroScreenshot = path.join(framesDir, 'hero-with-ui.png');
+    await page.screenshot({ path: heroScreenshot });
+    run(
+      ffmpeg,
+      [
+        '-hide_banner',
+        '-loglevel',
+        'error',
+        '-y',
+        '-i',
+        heroScreenshot,
+        '-vf',
+        "format=rgb24,lutrgb=r='floor(val/8)*8':g='floor(val/8)*8':b='floor(val/8)*8'",
+        '-frames:v',
+        '1',
+        '-compression_level',
+        '9',
+        path.join(assetsDir, 'brick-offroad-hero.png'),
+      ],
+      { quiet: true },
+    );
 
     await page.goto(
       `${baseUrl}/?stage=full&variant=base&motion=0&ui=0&capture=1&time=${canonicalElapsed}`,
@@ -331,6 +514,7 @@ async function main() {
       );
       variantStats.push(await page.evaluate(() => ({
         id: window.__BRICK_HERO__.variant.id,
+        controls: window.__BRICK_HERO__.root.userData.variantProvenance.visualControls,
         stats: {
           ...window.__BRICK_HERO__.stats,
           renderCalls: window.__getBrickRenderInfo().calls,
@@ -375,6 +559,8 @@ async function main() {
     const lifecycleCheck = await page.evaluate(() => {
       const hero = window.__BRICK_HERO__;
       const resources = hero.runtime.resources;
+      const memoryBefore = window.__getBrickRenderInfo().memory;
+      const allocationsBefore = { ...window.__BRICK_WEBGL_ALLOCATIONS__ };
       const counts = {
         geometries: resources.geometries.size,
         materials: resources.materials.size,
@@ -394,13 +580,60 @@ async function main() {
           });
         }
       }
+      hero.root.parent?.remove(hero.root);
+      const removedFromScene = hero.root.parent === null;
       hero.dispose();
+      window.__renderBrickFrame();
+      const memoryDisposed = window.__getBrickRenderInfo().memory;
+      const allocationsDisposed = { ...window.__BRICK_WEBGL_ALLOCATIONS__ };
+      const postDisposeFrames = 6;
+      for (let frame = 0; frame < postDisposeFrames; frame += 1) {
+        window.__renderBrickFrame();
+      }
+      const memoryPostRender = window.__getBrickRenderInfo().memory;
+      const allocationsPostRender = { ...window.__BRICK_WEBGL_ALLOCATIONS__ };
+      const rendererMemoryDidNotRebound = (
+        memoryPostRender.geometries <= memoryDisposed.geometries
+        && memoryPostRender.textures <= memoryDisposed.textures
+      );
+      const webglAllocationsDidNotRebound = (
+        allocationsPostRender.buffers === allocationsDisposed.buffers
+        && allocationsPostRender.textures === allocationsDisposed.textures
+      );
       return {
         counts,
         disposed,
         complete: Object.keys(counts).every((key) => counts[key] === disposed[key]),
+        removedFromScene,
+        postDisposeFrames,
+        memoryBefore,
+        memoryDisposed,
+        memoryPostRender,
+        allocationsBefore,
+        allocationsDisposed,
+        allocationsPostRender,
+        rendererMemoryDidNotRebound,
+        webglAllocationsDidNotRebound,
       };
     });
+    if (
+      !lifecycleCheck.complete
+      || !lifecycleCheck.removedFromScene
+      || !lifecycleCheck.rendererMemoryDidNotRebound
+      || !lifecycleCheck.webglAllocationsDidNotRebound
+    ) {
+      throw new Error(`Post-disposal lifecycle check failed: ${JSON.stringify(lifecycleCheck)}`);
+    }
+    if (
+      doorArticulation.some(
+        (item) => !item.allParented
+          || !item.fastenerParentedDirectly
+          || !item.fastenerInstancesMoved
+          || !item.fixedFastenersStayed,
+      )
+    ) {
+      throw new Error(`Door articulation contract failed: ${JSON.stringify(doorArticulation)}`);
+    }
 
     const sources = [
       'index.html',
@@ -416,7 +649,10 @@ async function main() {
       'brick-output/brick-offroad-profile.json',
       '../../scripts/append_sculpt_review.py',
       '../../scripts/make_visual_comparison_sheet.py',
+      '../../scripts/sculpt_dna.py',
       '../../scripts/sculpt_pass_orchestrator.py',
+      '../../scripts/validate_sculpt_spec.py',
+      '../../scripts/visual_evidence_hashes.py',
       '../brick-offroad/object-sculpt-spec.json',
       '../showcase/variants/brick/brick-offroad-v001.json',
       '../showcase/variants/brick/brick-offroad-v002.json',
@@ -491,9 +727,19 @@ async function main() {
       'utf8',
     );
   } finally {
-    await browser?.close();
-    server.kill('SIGTERM');
-    await rm(framesDir, { recursive: true, force: true });
+    try {
+      await browser?.close();
+    } finally {
+      try {
+        await stopServer(server);
+      } finally {
+        try {
+          await rm(framesDir, { recursive: true, force: true });
+        } finally {
+          await releaseCaptureLock(captureLock);
+        }
+      }
+    }
   }
 }
 

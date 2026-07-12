@@ -6,13 +6,20 @@
   "factory": "createBrickOffroad.js",
   "generation": {
     "geometry": "rounded boxes, torus arches and tires, cylinders, procedural rails, and instanced repetition systems",
-    "materials": "runtime-generated independent albedo, roughness, height, normal, and ambient-occlusion channels",
+    "materials": "runtime-generated independent albedo, roughness, normal, and ambient-occlusion textures",
+    "transientHeightFieldForNormalGeneration": "non-retained scalar field used only to derive normal and ambient-occlusion textures",
+    "retainedTextureChannels": [
+      "albedo",
+      "roughness",
+      "normal",
+      "ambient-occlusion"
+    ],
     "textureResolution": 512,
     "repetition": [
       "64-76 tire tread blocks with equal cadence on all four wheels",
       "60-81 body studs from curated DNA",
       "4-5 roof lamps from curated DNA",
-      "20 panel fasteners",
+      "12 fixed and 8 door-mounted panel fasteners",
       "wheel hub spokes"
     ],
     "importedMeshes": 0

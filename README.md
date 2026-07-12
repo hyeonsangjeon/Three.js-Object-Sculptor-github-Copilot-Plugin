@@ -115,7 +115,7 @@ Brick is now a second evidence-backed flagship. Seoul remains an explicit previe
 
 The final hard-surface flagship preserves exactly four correctly oriented wheels, the photographed olive hood/cabin/rear-body proportions, light roof, black structure, glazing, arches, suspension, tire treads, studs, fasteners, roof cargo, lamps, and warm recovery hardware. Its three curated configurations complete the base-sculpt and per-variant visual gates while preserving action-ready topology.
 
-The committed installed-Chrome capture measured **566–639ms generation**, **63,564–68,324 instance-weighted geometry triangles**, **122 scene drawables**, **375 full-frame WebGL calls** including shadow/transmission/output passes, **512px independent PBR channels**, and **0 imported meshes**.
+The committed installed-Chrome capture measured **752–834ms generation**, **63,564–68,324 instance-weighted geometry triangles**, **126 scene drawables**, **387 full-frame WebGL calls** including shadow/transmission/output passes, **512px independent PBR channels**, and **0 imported meshes**.
 
 [Evidence-backed base spec](examples/brick-offroad/object-sculpt-spec.json) ·
 [Production variant manifest](examples/showcase/variants/brick/sculpt-dna-manifest.json) ·
@@ -407,6 +407,12 @@ python3 scripts/append_sculpt_review.py object-sculpt-spec.json \
 ```
 
 Repeat the locked render, comparison, review, and pipeline-sync loop for `structural-pass`, `form-refinement`, `material-pass`, and `surface-pass`. Production Sculpt DNA generation intentionally remains blocked until evidence-backed `reviewHistory` completes that sequence.
+
+`append_sculpt_review.py` SHA-256-binds every local reference, render, and
+comparison file. Pipeline sync, strict validation, and production variant
+generation recompute those hashes, so overwriting a reviewed capture invalidates
+the pass. URL, data, blob, and session-artifact evidence is retained as
+`remote-unverified` record-only evidence and cannot complete a production pass.
 
 ## Sculpt DNA Quick Start
 

@@ -118,6 +118,11 @@ The installed workflow should:
 7. Reset review evidence whenever a variant changes visible geometry or materials.
 8. Use Coverage Curator for representative families instead of taking the first random samples.
 
+Production reviews require local render and comparison files. The review tool
+records SHA-256 digests and all production gates recompute them; changed pixels
+invalidate completion. Remote or virtual evidence can be recorded for context,
+but is explicitly unverified and cannot unlock production generation.
+
 ## 5. Useful commands
 
 Validate a spec:

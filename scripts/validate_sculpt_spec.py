@@ -12,6 +12,7 @@ from typing import Any
 
 from sculpt_dna_core import validate_sculpt_dna_block
 from visual_feature_gate import feature_gate_failures, feature_review_policy
+from visual_evidence_hashes import visual_evidence_hash_failures
 
 
 REQUIRED_TOP_LEVEL = {
@@ -969,6 +970,14 @@ def validate_visual_evidence_item(item: Any, label: str, errors: list[str]) -> N
         "cameraView",
         "notes",
         "aiVisionNotes",
+        "reviewId",
+        "reviewedAt",
+        "referenceSha256",
+        "renderSha256",
+        "comparisonSha256",
+        "referenceBinding",
+        "renderBinding",
+        "comparisonBinding",
     ):
         value = item.get(field)
         if value is not None and not isinstance(value, str):
@@ -1125,7 +1134,12 @@ def validate_feature_reviews(
             errors.append(f"{item_label}.visible must be boolean")
 
 
-def validate_review_history(spec: dict[str, Any], errors: list[str], warnings: list[str]) -> None:
+def validate_review_history(
+    spec: dict[str, Any],
+    errors: list[str],
+    warnings: list[str],
+    spec_path: Path | None = None,
+) -> None:
     history = spec.get("reviewHistory", [])
     if history is None:
         return
@@ -1158,6 +1172,10 @@ def validate_review_history(spec: dict[str, Any], errors: list[str], warnings: l
                 f"reviewHistory[{index}] continues visual pass {pass_id!r} without a render screenshot"
             )
         if pass_id in VISUAL_PASS_IDS and action == "continue":
+            for failure in visual_evidence_hash_failures(visual, spec_path):
+                errors.append(
+                    f"reviewHistory[{index}] visual evidence binding failed: {failure}"
+                )
             if not isinstance(visual, dict) or not visual.get("comparisonImage"):
                 warnings.append(
                     f"quality: reviewHistory[{index}] continues visual pass {pass_id!r} without an AI vision comparison image"
@@ -1200,7 +1218,11 @@ def validate_review_history(spec: dict[str, Any], errors: list[str], warnings: l
                 )
 
 
-def validate_visual_evidence_history(spec: dict[str, Any], errors: list[str]) -> None:
+def validate_visual_evidence_history(
+    spec: dict[str, Any],
+    errors: list[str],
+    spec_path: Path | None = None,
+) -> None:
     visual_history = spec.get("visualEvidence", [])
     if visual_history is None:
         return
@@ -1209,6 +1231,12 @@ def validate_visual_evidence_history(spec: dict[str, Any], errors: list[str]) ->
         return
     for index, item in enumerate(visual_history):
         validate_visual_evidence_item(item, f"visualEvidence[{index}]", errors)
+        for failure in visual_evidence_hash_failures(
+            item,
+            spec_path,
+            require_local=False,
+        ):
+            errors.append(f"visualEvidence[{index}] binding failed: {failure}")
 
 
 def validate_build_passes(spec: dict[str, Any], errors: list[str], warnings: list[str]) -> list[str]:
@@ -1251,6 +1279,7 @@ def review_completes_pass(
     spec: dict[str, Any],
     entry: dict[str, Any],
     pass_id: str,
+    spec_path: Path | None = None,
 ) -> bool:
     if entry.get("passId") != pass_id or entry.get("action") != "continue":
         return False
@@ -1266,19 +1295,26 @@ def review_completes_pass(
         threshold = entry.get("visualAcceptanceThreshold", 0.7)
         if not is_number(score) or not is_number(threshold) or float(score) < float(threshold):
             return False
+        if visual_evidence_hash_failures(visual, spec_path):
+            return False
         if feature_gate_failures(spec, entry, pass_id):
             return False
     return True
 
 
-def completed_passes_from_history(spec: dict[str, Any], pass_ids: list[str]) -> list[str]:
+def completed_passes_from_history(
+    spec: dict[str, Any],
+    pass_ids: list[str],
+    spec_path: Path | None = None,
+) -> list[str]:
     history = spec.get("reviewHistory", [])
     if not isinstance(history, list):
         return []
     completed: list[str] = []
     for pass_id in pass_ids:
         if any(
-            isinstance(entry, dict) and review_completes_pass(spec, entry, pass_id)
+            isinstance(entry, dict)
+            and review_completes_pass(spec, entry, pass_id, spec_path)
             for entry in history
         ):
             completed.append(pass_id)
@@ -1292,6 +1328,7 @@ def validate_sculpt_pipeline(
     build_pass_ids: list[str],
     errors: list[str],
     warnings: list[str],
+    spec_path: Path | None = None,
 ) -> None:
     pipeline = spec.get("sculptPipeline")
     if pipeline is None:
@@ -1315,7 +1352,11 @@ def validate_sculpt_pipeline(
     completed = pipeline.get("completedPasses", [])
     validate_string_array(completed, "sculptPipeline.completedPasses", errors)
     if isinstance(completed, list):
-        expected = completed_passes_from_history(spec, pass_order_ids or build_pass_ids)
+        expected = completed_passes_from_history(
+            spec,
+            pass_order_ids or build_pass_ids,
+            spec_path,
+        )
         if list(completed) != expected:
             warnings.append("sculptPipeline.completedPasses is out of sync with reviewHistory; run sculpt_pass_orchestrator.py sync")
         for pass_id in completed:
@@ -1504,7 +1545,10 @@ def validate_look_dev_targets(spec: dict[str, Any], errors: list[str], warnings:
             warnings.append("quality: lighting-pass needs contact shadow or ground shadow behavior")
 
 
-def validate_spec(spec: dict[str, Any]) -> tuple[list[str], list[str]]:
+def validate_spec(
+    spec: dict[str, Any],
+    spec_path: Path | None = None,
+) -> tuple[list[str], list[str]]:
     errors: list[str] = []
     warnings: list[str] = []
     for key, expected_type in REQUIRED_TOP_LEVEL.items():
@@ -1523,10 +1567,10 @@ def validate_spec(spec: dict[str, Any]) -> tuple[list[str], list[str]]:
     validate_action_readiness(spec, errors, warnings)
     validate_self_correct_loop(spec, errors, warnings)
     validate_feature_review_targets(spec, errors, warnings)
-    validate_review_history(spec, errors, warnings)
-    validate_visual_evidence_history(spec, errors)
+    validate_review_history(spec, errors, warnings, spec_path)
+    validate_visual_evidence_history(spec, errors, spec_path)
     build_pass_ids = validate_build_passes(spec, errors, warnings)
-    validate_sculpt_pipeline(spec, build_pass_ids, errors, warnings)
+    validate_sculpt_pipeline(spec, build_pass_ids, errors, warnings, spec_path)
     validate_look_dev_targets(spec, errors, warnings)
     dna_errors, dna_warnings = validate_sculpt_dna_block(spec)
     errors.extend(dna_errors)
@@ -1559,7 +1603,7 @@ def main(argv: list[str]) -> int:
 
     try:
         spec = load_spec(args.spec)
-        errors, warnings = validate_spec(spec)
+        errors, warnings = validate_spec(spec, args.spec)
     except ValueError as exc:
         errors, warnings = [str(exc)], []
 

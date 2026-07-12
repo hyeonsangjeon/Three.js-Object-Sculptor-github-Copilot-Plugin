@@ -24,7 +24,7 @@ Query parameters:
 
 The page imports `brick-output/createBrickOffroad.js`, the same zero-import factory intended for application reuse. Its live runtime maps are returned outside `userData`; only serializable IDs and deterministic provenance are stored on the root.
 
-The committed capture measured 566–639ms generation, 63,564–68,324 instance-weighted geometry triangles, 122 scene drawables, and 375 full-frame WebGL calls including shadow, transmission, scene, and output passes. All configurations use 512px independent PBR channels, exactly four wheels, equal tread cadence per wheel, and zero imported meshes. The measured full-frame count remains below the 400-call ObjectSculptSpec budget.
+The committed capture measured 752–834ms generation, 63,564–68,324 instance-weighted geometry triangles, 126 scene drawables, and 387 full-frame WebGL calls including shadow, transmission, scene, and output passes. All configurations retain independent 512px albedo, roughness, normal, and AO textures; a transient scalar height field only generates the normal and AO pixels and is not retained or bound. Every configuration keeps exactly four wheels, equal tread cadence per wheel, and zero imported meshes. The measured full-frame count remains below the 400-call ObjectSculptSpec budget.
 
 ## Regenerate media and evidence
 
@@ -34,4 +34,4 @@ The capture command uses installed Chrome through `puppeteer-core`; it does not 
 npm run capture
 ```
 
-This regenerates the hero PNG, four-second rotating GIF, exact-base stage/final comparisons, variant comparisons, opened-door evidence, lifecycle checks, and an SHA-256 artifact manifest. The command captures the canonical frame twice and fails if the pixels differ.
+This regenerates the hero PNG, four-second rotating GIF, exact-base stage/final comparisons, variant comparisons, opened-door evidence, lifecycle checks, and an SHA-256 artifact manifest. The command captures the canonical frame twice and fails if the pixels differ. Lifecycle evidence removes the hero, disposes it, then renders subsequent frames while checking renderer memory and intercepted WebGL buffer/texture allocations for rebound.

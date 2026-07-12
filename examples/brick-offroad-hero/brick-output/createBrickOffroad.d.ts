@@ -12,7 +12,6 @@ export type BrickVariant = {
   id: string;
   label: string;
   body: string;
-  bodyDark: string;
   bodyRoughness: number;
   roof: string;
   roofRoughness: number;

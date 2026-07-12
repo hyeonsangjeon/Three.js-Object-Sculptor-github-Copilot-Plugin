@@ -229,7 +229,7 @@ function createMaterials(seed, variant, detailed) {
       ? {
         albedo: `${id}-albedo`,
         roughness: `${id}-roughness`,
-        heightField: `${id}-height-field-derived`,
+        transientHeightFieldForNormalGeneration: `${id}-non-retained-height-field`,
         normal: `${id}-normal`,
         ambientOcclusion: `${id}-ao`,
       }
@@ -241,7 +241,11 @@ function createMaterials(seed, variant, detailed) {
 
   const materials = {
     body: create('olive-body', variant.body, { roughness: variant.bodyRoughness }),
-    bodyDark: create('olive-shadow-panels', variant.bodyDark, { roughness: 0.66 }),
+    bodyDark: create(
+      'olive-shadow-panels',
+      new THREE.Color(variant.body).multiplyScalar(0.72),
+      { roughness: 0.66 },
+    ),
     roof: create('light-roof', variant.roof, { roughness: variant.roofRoughness }),
     trim: create('black-structural-trim', variant.trim, {
       roughness: variant.trimRoughness,
@@ -768,22 +772,28 @@ export function createBrickOffroad(options = {}) {
 
     const fastenerGeometry = new THREE.CylinderGeometry(0.045, 0.045, 0.04, 12);
     fastenerGeometry.rotateX(Math.PI / 2);
-    const fasteners = new THREE.InstancedMesh(fastenerGeometry, materials.brightMetal, 20);
-    let index = 0;
+    const fixedFastenerPositions = [];
     for (const side of [-1, 1]) {
-      for (const x of [-2.55, -1.75, -0.72, 0.05, 0.72, 1.55, 2.35, 2.75]) {
-        matrix.makeTranslation(x, 1.9 + (index % 2) * 0.42, side * 1.32);
-        fasteners.setMatrixAt(index, matrix);
-        index += 1;
-      }
-      for (const x of [-0.65, 0.65]) {
-        matrix.makeTranslation(x, 2.12, side * 1.34);
-        fasteners.setMatrixAt(index, matrix);
-        index += 1;
+      for (const [index, x] of [-2.72, -2.28, 1.5, 2.02, 2.5, 2.88].entries()) {
+        fixedFastenerPositions.push([x, 1.9 + (index % 2) * 0.42, side * 1.32]);
       }
     }
-    fasteners.instanceMatrix.needsUpdate = true;
-    registerMesh('panel-fasteners', fasteners, chassis, 'surface-details');
+    const fixedFasteners = new THREE.InstancedMesh(
+      fastenerGeometry,
+      materials.brightMetal,
+      fixedFastenerPositions.length,
+    );
+    fixedFastenerPositions.forEach((position, index) => {
+      matrix.makeTranslation(...position);
+      fixedFasteners.setMatrixAt(index, matrix);
+    });
+    fixedFasteners.instanceMatrix.needsUpdate = true;
+    registerMesh(
+      'fixed-panel-fasteners',
+      fixedFasteners,
+      chassis,
+      'surface-details',
+    );
 
     for (const side of [-1, 1]) {
       const sideName = side > 0 ? 'left' : 'right';
@@ -806,6 +816,22 @@ export function createBrickOffroad(options = {}) {
         [0.7, 0.09, side * 0.12],
         0.025,
       );
+      for (const [fastenerId, door] of [
+        [`front-${sideName}-door-fasteners`, frontDoor],
+        [`rear-${sideName}-door-fasteners`, rearDoor],
+      ]) {
+        const doorFasteners = new THREE.InstancedMesh(
+          fastenerGeometry,
+          materials.brightMetal,
+          2,
+        );
+        for (const [fastenerIndex, y] of [-0.42, 0.42].entries()) {
+          matrix.makeTranslation(0.09, y, side * 0.13);
+          doorFasteners.setMatrixAt(fastenerIndex, matrix);
+        }
+        doorFasteners.instanceMatrix.needsUpdate = true;
+        registerMesh(fastenerId, doorFasteners, door, 'surface-details');
+      }
       for (const [doorId, door] of [
         [`${sideName}-front`, frontDoor],
         [`${sideName}-rear`, rearDoor],
@@ -905,6 +931,32 @@ export function createBrickOffroad(options = {}) {
     variantId: variant.id,
     deterministic: true,
     evidencePolicy: 'evidence-backed-production',
+    visualControls: {
+      body: variant.body,
+      bodyRoughness: variant.bodyRoughness,
+      roof: variant.roof,
+      roofRoughness: variant.roofRoughness,
+      trim: variant.trim,
+      trimRoughness: variant.trimRoughness,
+      accent: variant.accent,
+      accentRoughness: variant.accentRoughness,
+      rubber: variant.rubber,
+      rubberRoughness: variant.rubberRoughness,
+      glass: variant.glass,
+      glassRoughness: variant.glassRoughness,
+      lamp: variant.lamp,
+      lampRoughness: variant.lampRoughness,
+      dust: variant.dust,
+      wear: variant.wear,
+      dirtAmount: variant.dirtAmount,
+      treadCount: variant.treadCount,
+      studCount: variant.studCount,
+      roofLampCount: variant.roofLampCount,
+      derivedBodyDark: {
+        source: 'body',
+        multiplier: 0.72,
+      },
+    },
   };
 
   let meshCount = 0;

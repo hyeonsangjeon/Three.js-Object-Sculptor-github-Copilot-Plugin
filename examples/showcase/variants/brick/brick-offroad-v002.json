@@ -3179,17 +3179,17 @@
   ],
   "visualEvidence": [
     {
-      "timestamp": "2026-07-11T22:30:31.865795+00:00",
+      "timestamp": "2026-07-11T23:15:20.269382+00:00",
       "passId": "blockout",
-      "estimatedFidelity": 0.76,
-      "aiVisionScore": 0.76,
+      "estimatedFidelity": 0.77,
+      "aiVisionScore": 0.77,
       "visualAcceptanceThreshold": 0.74,
       "layerScores": {
-        "silhouetteProportion": 0.82,
-        "componentStructure": 0.78,
+        "silhouetteProportion": 0.81,
+        "componentStructure": 0.79,
         "formDetail": 0.77,
         "materialSurface": 0.76,
-        "lightingCamera": 0.81
+        "lightingCamera": 0.75
       },
       "featureReviews": [
         {
@@ -3209,21 +3209,29 @@
       "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-2.webp",
       "comparisonImage": "examples/brick-offroad-hero/evidence/variant-2-comparison.webp",
       "cameraView": "reference-three-quarter",
-      "notes": "",
-      "aiVisionNotes": "The final same-camera pair is used as a conservative regression gate because Sculpt DNA mutates only reviewed material and repetition parameters; protected topology is unchanged."
+      "notes": "The inspected v002 pair keeps the four-wheel silhouette and distinct amber recovery hardware, blue-green glazing, and moderate wear. Lighting remains darker than the reference.",
+      "aiVisionNotes": "The inspected v002 pair keeps the four-wheel silhouette and distinct amber recovery hardware, blue-green glazing, and moderate wear. Lighting remains darker than the reference.",
+      "renderSha256": "da05029aac0fb71dc729afcfbba560736bd4581d0d82deba1e29d6cf28d1da68",
+      "comparisonSha256": "8fcfb7fa559e8fb59b26ad253d48bff479df1f61f89f4c1d265afc78c2fcea8c",
+      "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
+      "reviewId": "brick-offroad-v002-fresh-review-2026-07-11T23:15:20.269382+00:00",
+      "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+      "referenceBinding": "local-sha256",
+      "renderBinding": "local-sha256",
+      "comparisonBinding": "local-sha256"
     },
     {
-      "timestamp": "2026-07-11T22:30:31.923769+00:00",
+      "timestamp": "2026-07-11T23:15:20.269382+00:00",
       "passId": "structural-pass",
-      "estimatedFidelity": 0.76,
-      "aiVisionScore": 0.76,
+      "estimatedFidelity": 0.77,
+      "aiVisionScore": 0.77,
       "visualAcceptanceThreshold": 0.74,
       "layerScores": {
-        "silhouetteProportion": 0.82,
-        "componentStructure": 0.78,
+        "silhouetteProportion": 0.81,
+        "componentStructure": 0.79,
         "formDetail": 0.77,
         "materialSurface": 0.76,
-        "lightingCamera": 0.81
+        "lightingCamera": 0.75
       },
       "featureReviews": [
         {
@@ -3249,21 +3257,29 @@
       "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-2.webp",
       "comparisonImage": "examples/brick-offroad-hero/evidence/variant-2-comparison.webp",
       "cameraView": "reference-three-quarter",
-      "notes": "",
-      "aiVisionNotes": "The final same-camera pair is used as a conservative regression gate because Sculpt DNA mutates only reviewed material and repetition parameters; protected topology is unchanged."
+      "notes": "The inspected v002 pair keeps the four-wheel silhouette and distinct amber recovery hardware, blue-green glazing, and moderate wear. Lighting remains darker than the reference.",
+      "aiVisionNotes": "The inspected v002 pair keeps the four-wheel silhouette and distinct amber recovery hardware, blue-green glazing, and moderate wear. Lighting remains darker than the reference.",
+      "renderSha256": "da05029aac0fb71dc729afcfbba560736bd4581d0d82deba1e29d6cf28d1da68",
+      "comparisonSha256": "8fcfb7fa559e8fb59b26ad253d48bff479df1f61f89f4c1d265afc78c2fcea8c",
+      "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
+      "reviewId": "brick-offroad-v002-fresh-review-2026-07-11T23:15:20.269382+00:00",
+      "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+      "referenceBinding": "local-sha256",
+      "renderBinding": "local-sha256",
+      "comparisonBinding": "local-sha256"
     },
     {
-      "timestamp": "2026-07-11T22:30:31.971490+00:00",
+      "timestamp": "2026-07-11T23:15:20.269382+00:00",
       "passId": "form-refinement",
-      "estimatedFidelity": 0.76,
-      "aiVisionScore": 0.76,
+      "estimatedFidelity": 0.77,
+      "aiVisionScore": 0.77,
       "visualAcceptanceThreshold": 0.74,
       "layerScores": {
-        "silhouetteProportion": 0.82,
-        "componentStructure": 0.78,
+        "silhouetteProportion": 0.81,
+        "componentStructure": 0.79,
         "formDetail": 0.77,
         "materialSurface": 0.76,
-        "lightingCamera": 0.81
+        "lightingCamera": 0.75
       },
       "featureReviews": [
         {
@@ -3289,21 +3305,29 @@
       "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-2.webp",
       "comparisonImage": "examples/brick-offroad-hero/evidence/variant-2-comparison.webp",
       "cameraView": "reference-three-quarter",
-      "notes": "",
-      "aiVisionNotes": "The final same-camera pair is used as a conservative regression gate because Sculpt DNA mutates only reviewed material and repetition parameters; protected topology is unchanged."
+      "notes": "The inspected v002 pair keeps the four-wheel silhouette and distinct amber recovery hardware, blue-green glazing, and moderate wear. Lighting remains darker than the reference.",
+      "aiVisionNotes": "The inspected v002 pair keeps the four-wheel silhouette and distinct amber recovery hardware, blue-green glazing, and moderate wear. Lighting remains darker than the reference.",
+      "renderSha256": "da05029aac0fb71dc729afcfbba560736bd4581d0d82deba1e29d6cf28d1da68",
+      "comparisonSha256": "8fcfb7fa559e8fb59b26ad253d48bff479df1f61f89f4c1d265afc78c2fcea8c",
+      "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
+      "reviewId": "brick-offroad-v002-fresh-review-2026-07-11T23:15:20.269382+00:00",
+      "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+      "referenceBinding": "local-sha256",
+      "renderBinding": "local-sha256",
+      "comparisonBinding": "local-sha256"
     },
     {
-      "timestamp": "2026-07-11T22:30:32.036625+00:00",
+      "timestamp": "2026-07-11T23:15:20.269382+00:00",
       "passId": "material-pass",
-      "estimatedFidelity": 0.76,
-      "aiVisionScore": 0.76,
+      "estimatedFidelity": 0.77,
+      "aiVisionScore": 0.77,
       "visualAcceptanceThreshold": 0.74,
       "layerScores": {
-        "silhouetteProportion": 0.82,
-        "componentStructure": 0.78,
+        "silhouetteProportion": 0.81,
+        "componentStructure": 0.79,
         "formDetail": 0.77,
         "materialSurface": 0.76,
-        "lightingCamera": 0.81
+        "lightingCamera": 0.75
       },
       "featureReviews": [
         {
@@ -3317,21 +3341,29 @@
       "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-2.webp",
       "comparisonImage": "examples/brick-offroad-hero/evidence/variant-2-comparison.webp",
       "cameraView": "reference-three-quarter",
-      "notes": "",
-      "aiVisionNotes": "The final same-camera pair is used as a conservative regression gate because Sculpt DNA mutates only reviewed material and repetition parameters; protected topology is unchanged."
+      "notes": "The inspected v002 pair keeps the four-wheel silhouette and distinct amber recovery hardware, blue-green glazing, and moderate wear. Lighting remains darker than the reference.",
+      "aiVisionNotes": "The inspected v002 pair keeps the four-wheel silhouette and distinct amber recovery hardware, blue-green glazing, and moderate wear. Lighting remains darker than the reference.",
+      "renderSha256": "da05029aac0fb71dc729afcfbba560736bd4581d0d82deba1e29d6cf28d1da68",
+      "comparisonSha256": "8fcfb7fa559e8fb59b26ad253d48bff479df1f61f89f4c1d265afc78c2fcea8c",
+      "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
+      "reviewId": "brick-offroad-v002-fresh-review-2026-07-11T23:15:20.269382+00:00",
+      "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+      "referenceBinding": "local-sha256",
+      "renderBinding": "local-sha256",
+      "comparisonBinding": "local-sha256"
     },
     {
-      "timestamp": "2026-07-11T22:30:32.103252+00:00",
+      "timestamp": "2026-07-11T23:15:20.269382+00:00",
       "passId": "surface-pass",
-      "estimatedFidelity": 0.76,
-      "aiVisionScore": 0.76,
+      "estimatedFidelity": 0.77,
+      "aiVisionScore": 0.77,
       "visualAcceptanceThreshold": 0.74,
       "layerScores": {
-        "silhouetteProportion": 0.82,
-        "componentStructure": 0.78,
+        "silhouetteProportion": 0.81,
+        "componentStructure": 0.79,
         "formDetail": 0.77,
         "materialSurface": 0.76,
-        "lightingCamera": 0.81
+        "lightingCamera": 0.75
       },
       "featureReviews": [
         {
@@ -3357,21 +3389,29 @@
       "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-2.webp",
       "comparisonImage": "examples/brick-offroad-hero/evidence/variant-2-comparison.webp",
       "cameraView": "reference-three-quarter",
-      "notes": "",
-      "aiVisionNotes": "The final same-camera pair is used as a conservative regression gate because Sculpt DNA mutates only reviewed material and repetition parameters; protected topology is unchanged."
+      "notes": "The inspected v002 pair keeps the four-wheel silhouette and distinct amber recovery hardware, blue-green glazing, and moderate wear. Lighting remains darker than the reference.",
+      "aiVisionNotes": "The inspected v002 pair keeps the four-wheel silhouette and distinct amber recovery hardware, blue-green glazing, and moderate wear. Lighting remains darker than the reference.",
+      "renderSha256": "da05029aac0fb71dc729afcfbba560736bd4581d0d82deba1e29d6cf28d1da68",
+      "comparisonSha256": "8fcfb7fa559e8fb59b26ad253d48bff479df1f61f89f4c1d265afc78c2fcea8c",
+      "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
+      "reviewId": "brick-offroad-v002-fresh-review-2026-07-11T23:15:20.269382+00:00",
+      "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+      "referenceBinding": "local-sha256",
+      "renderBinding": "local-sha256",
+      "comparisonBinding": "local-sha256"
     },
     {
-      "timestamp": "2026-07-11T22:30:32.165258+00:00",
+      "timestamp": "2026-07-11T23:15:20.269382+00:00",
       "passId": "lighting-pass",
-      "estimatedFidelity": 0.76,
-      "aiVisionScore": 0.76,
+      "estimatedFidelity": 0.77,
+      "aiVisionScore": 0.77,
       "visualAcceptanceThreshold": 0.74,
       "layerScores": {
-        "silhouetteProportion": 0.82,
-        "componentStructure": 0.78,
+        "silhouetteProportion": 0.81,
+        "componentStructure": 0.79,
         "formDetail": 0.77,
         "materialSurface": 0.76,
-        "lightingCamera": 0.81
+        "lightingCamera": 0.75
       },
       "featureReviews": [
         {
@@ -3385,21 +3425,29 @@
       "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-2.webp",
       "comparisonImage": "examples/brick-offroad-hero/evidence/variant-2-comparison.webp",
       "cameraView": "reference-three-quarter",
-      "notes": "",
-      "aiVisionNotes": "The final same-camera pair is used as a conservative regression gate because Sculpt DNA mutates only reviewed material and repetition parameters; protected topology is unchanged."
+      "notes": "The inspected v002 pair keeps the four-wheel silhouette and distinct amber recovery hardware, blue-green glazing, and moderate wear. Lighting remains darker than the reference.",
+      "aiVisionNotes": "The inspected v002 pair keeps the four-wheel silhouette and distinct amber recovery hardware, blue-green glazing, and moderate wear. Lighting remains darker than the reference.",
+      "renderSha256": "da05029aac0fb71dc729afcfbba560736bd4581d0d82deba1e29d6cf28d1da68",
+      "comparisonSha256": "8fcfb7fa559e8fb59b26ad253d48bff479df1f61f89f4c1d265afc78c2fcea8c",
+      "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
+      "reviewId": "brick-offroad-v002-fresh-review-2026-07-11T23:15:20.269382+00:00",
+      "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+      "referenceBinding": "local-sha256",
+      "renderBinding": "local-sha256",
+      "comparisonBinding": "local-sha256"
     },
     {
-      "timestamp": "2026-07-11T22:30:32.228644+00:00",
+      "timestamp": "2026-07-11T23:15:20.269382+00:00",
       "passId": "interaction-pass",
-      "estimatedFidelity": 0.76,
-      "aiVisionScore": 0.76,
+      "estimatedFidelity": 0.77,
+      "aiVisionScore": 0.77,
       "visualAcceptanceThreshold": 0.74,
       "layerScores": {
-        "silhouetteProportion": 0.82,
-        "componentStructure": 0.78,
+        "silhouetteProportion": 0.81,
+        "componentStructure": 0.79,
         "formDetail": 0.77,
         "materialSurface": 0.76,
-        "lightingCamera": 0.81
+        "lightingCamera": 0.75
       },
       "featureReviews": [
         {
@@ -3413,44 +3461,60 @@
       "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-2.webp",
       "comparisonImage": "examples/brick-offroad-hero/evidence/variant-2-comparison.webp",
       "cameraView": "reference-three-quarter",
-      "notes": "",
-      "aiVisionNotes": "The final same-camera pair is used as a conservative regression gate because Sculpt DNA mutates only reviewed material and repetition parameters; protected topology is unchanged."
+      "notes": "The inspected v002 pair keeps the four-wheel silhouette and distinct amber recovery hardware, blue-green glazing, and moderate wear. Lighting remains darker than the reference.",
+      "aiVisionNotes": "The inspected v002 pair keeps the four-wheel silhouette and distinct amber recovery hardware, blue-green glazing, and moderate wear. Lighting remains darker than the reference.",
+      "renderSha256": "da05029aac0fb71dc729afcfbba560736bd4581d0d82deba1e29d6cf28d1da68",
+      "comparisonSha256": "8fcfb7fa559e8fb59b26ad253d48bff479df1f61f89f4c1d265afc78c2fcea8c",
+      "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
+      "reviewId": "brick-offroad-v002-fresh-review-2026-07-11T23:15:20.269382+00:00",
+      "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+      "referenceBinding": "local-sha256",
+      "renderBinding": "local-sha256",
+      "comparisonBinding": "local-sha256"
     },
     {
-      "timestamp": "2026-07-11T22:30:32.291101+00:00",
+      "timestamp": "2026-07-11T23:15:20.269382+00:00",
       "passId": "optimization-pass",
-      "estimatedFidelity": 0.76,
-      "aiVisionScore": 0.76,
+      "estimatedFidelity": 0.77,
+      "aiVisionScore": 0.77,
       "visualAcceptanceThreshold": 0.74,
       "layerScores": {
-        "silhouetteProportion": 0.82,
-        "componentStructure": 0.78,
+        "silhouetteProportion": 0.81,
+        "componentStructure": 0.79,
         "formDetail": 0.77,
         "materialSurface": 0.76,
-        "lightingCamera": 0.81
+        "lightingCamera": 0.75
       },
       "featureReviews": [],
       "referenceScreenshot": "assets/brick-offroad-reference.jpeg",
       "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-2.webp",
       "comparisonImage": "examples/brick-offroad-hero/evidence/variant-2-comparison.webp",
       "cameraView": "reference-three-quarter",
-      "notes": "",
-      "aiVisionNotes": "The final same-camera pair is used as a conservative regression gate because Sculpt DNA mutates only reviewed material and repetition parameters; protected topology is unchanged."
+      "notes": "The inspected v002 pair keeps the four-wheel silhouette and distinct amber recovery hardware, blue-green glazing, and moderate wear. Lighting remains darker than the reference.",
+      "aiVisionNotes": "The inspected v002 pair keeps the four-wheel silhouette and distinct amber recovery hardware, blue-green glazing, and moderate wear. Lighting remains darker than the reference.",
+      "renderSha256": "da05029aac0fb71dc729afcfbba560736bd4581d0d82deba1e29d6cf28d1da68",
+      "comparisonSha256": "8fcfb7fa559e8fb59b26ad253d48bff479df1f61f89f4c1d265afc78c2fcea8c",
+      "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
+      "reviewId": "brick-offroad-v002-fresh-review-2026-07-11T23:15:20.269382+00:00",
+      "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+      "referenceBinding": "local-sha256",
+      "renderBinding": "local-sha256",
+      "comparisonBinding": "local-sha256"
     }
   ],
   "reviewHistory": [
     {
-      "timestamp": "2026-07-11T22:30:31.865795+00:00",
+      "timestamp": "2026-07-11T23:15:20.269382+00:00",
       "passId": "blockout",
-      "estimatedFidelity": 0.76,
-      "aiVisionScore": 0.76,
+      "estimatedFidelity": 0.77,
+      "aiVisionScore": 0.77,
       "visualAcceptanceThreshold": 0.74,
       "layerScores": {
-        "silhouetteProportion": 0.82,
-        "componentStructure": 0.78,
+        "silhouetteProportion": 0.81,
+        "componentStructure": 0.79,
         "formDetail": 0.77,
         "materialSurface": 0.76,
-        "lightingCamera": 0.81
+        "lightingCamera": 0.75
       },
       "featureReviews": [
         {
@@ -3467,7 +3531,7 @@
         }
       ],
       "action": "continue",
-      "summary": "Variant 2 regression review preserves the completed base blockout contract under its curated palette and surface controls.",
+      "summary": "Fresh inspection of current brick-offroad-v002 comparison for blockout.",
       "matched": [
         "protected component IDs and parent links",
         "four-wheel topology and action hierarchy",
@@ -3480,26 +3544,41 @@
       "codeFixes": [],
       "evidence": [],
       "visualEvidence": {
+        "reviewId": "brick-offroad-v002-fresh-review-2026-07-11T23:15:20.269382+00:00",
+        "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
         "referenceScreenshot": "assets/brick-offroad-reference.jpeg",
+        "aiVisionScore": 0.77,
+        "layerScores": {
+          "silhouetteProportion": 0.81,
+          "componentStructure": 0.79,
+          "formDetail": 0.77,
+          "materialSurface": 0.76,
+          "lightingCamera": 0.75
+        },
+        "notes": "The inspected v002 pair keeps the four-wheel silhouette and distinct amber recovery hardware, blue-green glazing, and moderate wear. Lighting remains darker than the reference.",
+        "aiVisionNotes": "The inspected v002 pair keeps the four-wheel silhouette and distinct amber recovery hardware, blue-green glazing, and moderate wear. Lighting remains darker than the reference.",
         "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-2.webp",
         "comparisonImage": "examples/brick-offroad-hero/evidence/variant-2-comparison.webp",
-        "cameraView": "reference-three-quarter",
-        "notes": "",
-        "aiVisionNotes": "The final same-camera pair is used as a conservative regression gate because Sculpt DNA mutates only reviewed material and repetition parameters; protected topology is unchanged."
+        "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+        "referenceBinding": "local-sha256",
+        "renderSha256": "da05029aac0fb71dc729afcfbba560736bd4581d0d82deba1e29d6cf28d1da68",
+        "renderBinding": "local-sha256",
+        "comparisonSha256": "8fcfb7fa559e8fb59b26ad253d48bff479df1f61f89f4c1d265afc78c2fcea8c",
+        "comparisonBinding": "local-sha256"
       }
     },
     {
-      "timestamp": "2026-07-11T22:30:31.923769+00:00",
+      "timestamp": "2026-07-11T23:15:20.269382+00:00",
       "passId": "structural-pass",
-      "estimatedFidelity": 0.76,
-      "aiVisionScore": 0.76,
+      "estimatedFidelity": 0.77,
+      "aiVisionScore": 0.77,
       "visualAcceptanceThreshold": 0.74,
       "layerScores": {
-        "silhouetteProportion": 0.82,
-        "componentStructure": 0.78,
+        "silhouetteProportion": 0.81,
+        "componentStructure": 0.79,
         "formDetail": 0.77,
         "materialSurface": 0.76,
-        "lightingCamera": 0.81
+        "lightingCamera": 0.75
       },
       "featureReviews": [
         {
@@ -3522,7 +3601,7 @@
         }
       ],
       "action": "continue",
-      "summary": "Variant 2 regression review preserves the completed base structural-pass contract under its curated palette and surface controls.",
+      "summary": "Fresh inspection of current brick-offroad-v002 comparison for structural-pass.",
       "matched": [
         "protected component IDs and parent links",
         "four-wheel topology and action hierarchy",
@@ -3535,26 +3614,41 @@
       "codeFixes": [],
       "evidence": [],
       "visualEvidence": {
+        "reviewId": "brick-offroad-v002-fresh-review-2026-07-11T23:15:20.269382+00:00",
+        "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
         "referenceScreenshot": "assets/brick-offroad-reference.jpeg",
+        "aiVisionScore": 0.77,
+        "layerScores": {
+          "silhouetteProportion": 0.81,
+          "componentStructure": 0.79,
+          "formDetail": 0.77,
+          "materialSurface": 0.76,
+          "lightingCamera": 0.75
+        },
+        "notes": "The inspected v002 pair keeps the four-wheel silhouette and distinct amber recovery hardware, blue-green glazing, and moderate wear. Lighting remains darker than the reference.",
+        "aiVisionNotes": "The inspected v002 pair keeps the four-wheel silhouette and distinct amber recovery hardware, blue-green glazing, and moderate wear. Lighting remains darker than the reference.",
         "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-2.webp",
         "comparisonImage": "examples/brick-offroad-hero/evidence/variant-2-comparison.webp",
-        "cameraView": "reference-three-quarter",
-        "notes": "",
-        "aiVisionNotes": "The final same-camera pair is used as a conservative regression gate because Sculpt DNA mutates only reviewed material and repetition parameters; protected topology is unchanged."
+        "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+        "referenceBinding": "local-sha256",
+        "renderSha256": "da05029aac0fb71dc729afcfbba560736bd4581d0d82deba1e29d6cf28d1da68",
+        "renderBinding": "local-sha256",
+        "comparisonSha256": "8fcfb7fa559e8fb59b26ad253d48bff479df1f61f89f4c1d265afc78c2fcea8c",
+        "comparisonBinding": "local-sha256"
       }
     },
     {
-      "timestamp": "2026-07-11T22:30:31.971490+00:00",
+      "timestamp": "2026-07-11T23:15:20.269382+00:00",
       "passId": "form-refinement",
-      "estimatedFidelity": 0.76,
-      "aiVisionScore": 0.76,
+      "estimatedFidelity": 0.77,
+      "aiVisionScore": 0.77,
       "visualAcceptanceThreshold": 0.74,
       "layerScores": {
-        "silhouetteProportion": 0.82,
-        "componentStructure": 0.78,
+        "silhouetteProportion": 0.81,
+        "componentStructure": 0.79,
         "formDetail": 0.77,
         "materialSurface": 0.76,
-        "lightingCamera": 0.81
+        "lightingCamera": 0.75
       },
       "featureReviews": [
         {
@@ -3577,7 +3671,7 @@
         }
       ],
       "action": "continue",
-      "summary": "Variant 2 regression review preserves the completed base form-refinement contract under its curated palette and surface controls.",
+      "summary": "Fresh inspection of current brick-offroad-v002 comparison for form-refinement.",
       "matched": [
         "protected component IDs and parent links",
         "four-wheel topology and action hierarchy",
@@ -3590,26 +3684,41 @@
       "codeFixes": [],
       "evidence": [],
       "visualEvidence": {
+        "reviewId": "brick-offroad-v002-fresh-review-2026-07-11T23:15:20.269382+00:00",
+        "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
         "referenceScreenshot": "assets/brick-offroad-reference.jpeg",
+        "aiVisionScore": 0.77,
+        "layerScores": {
+          "silhouetteProportion": 0.81,
+          "componentStructure": 0.79,
+          "formDetail": 0.77,
+          "materialSurface": 0.76,
+          "lightingCamera": 0.75
+        },
+        "notes": "The inspected v002 pair keeps the four-wheel silhouette and distinct amber recovery hardware, blue-green glazing, and moderate wear. Lighting remains darker than the reference.",
+        "aiVisionNotes": "The inspected v002 pair keeps the four-wheel silhouette and distinct amber recovery hardware, blue-green glazing, and moderate wear. Lighting remains darker than the reference.",
         "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-2.webp",
         "comparisonImage": "examples/brick-offroad-hero/evidence/variant-2-comparison.webp",
-        "cameraView": "reference-three-quarter",
-        "notes": "",
-        "aiVisionNotes": "The final same-camera pair is used as a conservative regression gate because Sculpt DNA mutates only reviewed material and repetition parameters; protected topology is unchanged."
+        "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+        "referenceBinding": "local-sha256",
+        "renderSha256": "da05029aac0fb71dc729afcfbba560736bd4581d0d82deba1e29d6cf28d1da68",
+        "renderBinding": "local-sha256",
+        "comparisonSha256": "8fcfb7fa559e8fb59b26ad253d48bff479df1f61f89f4c1d265afc78c2fcea8c",
+        "comparisonBinding": "local-sha256"
       }
     },
     {
-      "timestamp": "2026-07-11T22:30:32.036625+00:00",
+      "timestamp": "2026-07-11T23:15:20.269382+00:00",
       "passId": "material-pass",
-      "estimatedFidelity": 0.76,
-      "aiVisionScore": 0.76,
+      "estimatedFidelity": 0.77,
+      "aiVisionScore": 0.77,
       "visualAcceptanceThreshold": 0.74,
       "layerScores": {
-        "silhouetteProportion": 0.82,
-        "componentStructure": 0.78,
+        "silhouetteProportion": 0.81,
+        "componentStructure": 0.79,
         "formDetail": 0.77,
         "materialSurface": 0.76,
-        "lightingCamera": 0.81
+        "lightingCamera": 0.75
       },
       "featureReviews": [
         {
@@ -3620,7 +3729,7 @@
         }
       ],
       "action": "continue",
-      "summary": "Variant 2 regression review preserves the completed base material-pass contract under its curated palette and surface controls.",
+      "summary": "Fresh inspection of current brick-offroad-v002 comparison for material-pass.",
       "matched": [
         "protected component IDs and parent links",
         "four-wheel topology and action hierarchy",
@@ -3633,26 +3742,41 @@
       "codeFixes": [],
       "evidence": [],
       "visualEvidence": {
+        "reviewId": "brick-offroad-v002-fresh-review-2026-07-11T23:15:20.269382+00:00",
+        "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
         "referenceScreenshot": "assets/brick-offroad-reference.jpeg",
+        "aiVisionScore": 0.77,
+        "layerScores": {
+          "silhouetteProportion": 0.81,
+          "componentStructure": 0.79,
+          "formDetail": 0.77,
+          "materialSurface": 0.76,
+          "lightingCamera": 0.75
+        },
+        "notes": "The inspected v002 pair keeps the four-wheel silhouette and distinct amber recovery hardware, blue-green glazing, and moderate wear. Lighting remains darker than the reference.",
+        "aiVisionNotes": "The inspected v002 pair keeps the four-wheel silhouette and distinct amber recovery hardware, blue-green glazing, and moderate wear. Lighting remains darker than the reference.",
         "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-2.webp",
         "comparisonImage": "examples/brick-offroad-hero/evidence/variant-2-comparison.webp",
-        "cameraView": "reference-three-quarter",
-        "notes": "",
-        "aiVisionNotes": "The final same-camera pair is used as a conservative regression gate because Sculpt DNA mutates only reviewed material and repetition parameters; protected topology is unchanged."
+        "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+        "referenceBinding": "local-sha256",
+        "renderSha256": "da05029aac0fb71dc729afcfbba560736bd4581d0d82deba1e29d6cf28d1da68",
+        "renderBinding": "local-sha256",
+        "comparisonSha256": "8fcfb7fa559e8fb59b26ad253d48bff479df1f61f89f4c1d265afc78c2fcea8c",
+        "comparisonBinding": "local-sha256"
       }
     },
     {
-      "timestamp": "2026-07-11T22:30:32.103252+00:00",
+      "timestamp": "2026-07-11T23:15:20.269382+00:00",
       "passId": "surface-pass",
-      "estimatedFidelity": 0.76,
-      "aiVisionScore": 0.76,
+      "estimatedFidelity": 0.77,
+      "aiVisionScore": 0.77,
       "visualAcceptanceThreshold": 0.74,
       "layerScores": {
-        "silhouetteProportion": 0.82,
-        "componentStructure": 0.78,
+        "silhouetteProportion": 0.81,
+        "componentStructure": 0.79,
         "formDetail": 0.77,
         "materialSurface": 0.76,
-        "lightingCamera": 0.81
+        "lightingCamera": 0.75
       },
       "featureReviews": [
         {
@@ -3675,7 +3799,7 @@
         }
       ],
       "action": "continue",
-      "summary": "Variant 2 regression review preserves the completed base surface-pass contract under its curated palette and surface controls.",
+      "summary": "Fresh inspection of current brick-offroad-v002 comparison for surface-pass.",
       "matched": [
         "protected component IDs and parent links",
         "four-wheel topology and action hierarchy",
@@ -3688,26 +3812,41 @@
       "codeFixes": [],
       "evidence": [],
       "visualEvidence": {
+        "reviewId": "brick-offroad-v002-fresh-review-2026-07-11T23:15:20.269382+00:00",
+        "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
         "referenceScreenshot": "assets/brick-offroad-reference.jpeg",
+        "aiVisionScore": 0.77,
+        "layerScores": {
+          "silhouetteProportion": 0.81,
+          "componentStructure": 0.79,
+          "formDetail": 0.77,
+          "materialSurface": 0.76,
+          "lightingCamera": 0.75
+        },
+        "notes": "The inspected v002 pair keeps the four-wheel silhouette and distinct amber recovery hardware, blue-green glazing, and moderate wear. Lighting remains darker than the reference.",
+        "aiVisionNotes": "The inspected v002 pair keeps the four-wheel silhouette and distinct amber recovery hardware, blue-green glazing, and moderate wear. Lighting remains darker than the reference.",
         "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-2.webp",
         "comparisonImage": "examples/brick-offroad-hero/evidence/variant-2-comparison.webp",
-        "cameraView": "reference-three-quarter",
-        "notes": "",
-        "aiVisionNotes": "The final same-camera pair is used as a conservative regression gate because Sculpt DNA mutates only reviewed material and repetition parameters; protected topology is unchanged."
+        "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+        "referenceBinding": "local-sha256",
+        "renderSha256": "da05029aac0fb71dc729afcfbba560736bd4581d0d82deba1e29d6cf28d1da68",
+        "renderBinding": "local-sha256",
+        "comparisonSha256": "8fcfb7fa559e8fb59b26ad253d48bff479df1f61f89f4c1d265afc78c2fcea8c",
+        "comparisonBinding": "local-sha256"
       }
     },
     {
-      "timestamp": "2026-07-11T22:30:32.165258+00:00",
+      "timestamp": "2026-07-11T23:15:20.269382+00:00",
       "passId": "lighting-pass",
-      "estimatedFidelity": 0.76,
-      "aiVisionScore": 0.76,
+      "estimatedFidelity": 0.77,
+      "aiVisionScore": 0.77,
       "visualAcceptanceThreshold": 0.74,
       "layerScores": {
-        "silhouetteProportion": 0.82,
-        "componentStructure": 0.78,
+        "silhouetteProportion": 0.81,
+        "componentStructure": 0.79,
         "formDetail": 0.77,
         "materialSurface": 0.76,
-        "lightingCamera": 0.81
+        "lightingCamera": 0.75
       },
       "featureReviews": [
         {
@@ -3718,7 +3857,7 @@
         }
       ],
       "action": "continue",
-      "summary": "Variant 2 regression review preserves the completed base lighting-pass contract under its curated palette and surface controls.",
+      "summary": "Fresh inspection of current brick-offroad-v002 comparison for lighting-pass.",
       "matched": [
         "protected component IDs and parent links",
         "four-wheel topology and action hierarchy",
@@ -3731,26 +3870,41 @@
       "codeFixes": [],
       "evidence": [],
       "visualEvidence": {
+        "reviewId": "brick-offroad-v002-fresh-review-2026-07-11T23:15:20.269382+00:00",
+        "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
         "referenceScreenshot": "assets/brick-offroad-reference.jpeg",
+        "aiVisionScore": 0.77,
+        "layerScores": {
+          "silhouetteProportion": 0.81,
+          "componentStructure": 0.79,
+          "formDetail": 0.77,
+          "materialSurface": 0.76,
+          "lightingCamera": 0.75
+        },
+        "notes": "The inspected v002 pair keeps the four-wheel silhouette and distinct amber recovery hardware, blue-green glazing, and moderate wear. Lighting remains darker than the reference.",
+        "aiVisionNotes": "The inspected v002 pair keeps the four-wheel silhouette and distinct amber recovery hardware, blue-green glazing, and moderate wear. Lighting remains darker than the reference.",
         "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-2.webp",
         "comparisonImage": "examples/brick-offroad-hero/evidence/variant-2-comparison.webp",
-        "cameraView": "reference-three-quarter",
-        "notes": "",
-        "aiVisionNotes": "The final same-camera pair is used as a conservative regression gate because Sculpt DNA mutates only reviewed material and repetition parameters; protected topology is unchanged."
+        "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+        "referenceBinding": "local-sha256",
+        "renderSha256": "da05029aac0fb71dc729afcfbba560736bd4581d0d82deba1e29d6cf28d1da68",
+        "renderBinding": "local-sha256",
+        "comparisonSha256": "8fcfb7fa559e8fb59b26ad253d48bff479df1f61f89f4c1d265afc78c2fcea8c",
+        "comparisonBinding": "local-sha256"
       }
     },
     {
-      "timestamp": "2026-07-11T22:30:32.228644+00:00",
+      "timestamp": "2026-07-11T23:15:20.269382+00:00",
       "passId": "interaction-pass",
-      "estimatedFidelity": 0.76,
-      "aiVisionScore": 0.76,
+      "estimatedFidelity": 0.77,
+      "aiVisionScore": 0.77,
       "visualAcceptanceThreshold": 0.74,
       "layerScores": {
-        "silhouetteProportion": 0.82,
-        "componentStructure": 0.78,
+        "silhouetteProportion": 0.81,
+        "componentStructure": 0.79,
         "formDetail": 0.77,
         "materialSurface": 0.76,
-        "lightingCamera": 0.81
+        "lightingCamera": 0.75
       },
       "featureReviews": [
         {
@@ -3761,7 +3915,7 @@
         }
       ],
       "action": "continue",
-      "summary": "Variant 2 regression review preserves the completed base interaction-pass contract under its curated palette and surface controls.",
+      "summary": "Fresh inspection of current brick-offroad-v002 comparison for interaction-pass.",
       "matched": [
         "protected component IDs and parent links",
         "four-wheel topology and action hierarchy",
@@ -3774,30 +3928,45 @@
       "codeFixes": [],
       "evidence": [],
       "visualEvidence": {
+        "reviewId": "brick-offroad-v002-fresh-review-2026-07-11T23:15:20.269382+00:00",
+        "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
         "referenceScreenshot": "assets/brick-offroad-reference.jpeg",
+        "aiVisionScore": 0.77,
+        "layerScores": {
+          "silhouetteProportion": 0.81,
+          "componentStructure": 0.79,
+          "formDetail": 0.77,
+          "materialSurface": 0.76,
+          "lightingCamera": 0.75
+        },
+        "notes": "The inspected v002 pair keeps the four-wheel silhouette and distinct amber recovery hardware, blue-green glazing, and moderate wear. Lighting remains darker than the reference.",
+        "aiVisionNotes": "The inspected v002 pair keeps the four-wheel silhouette and distinct amber recovery hardware, blue-green glazing, and moderate wear. Lighting remains darker than the reference.",
         "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-2.webp",
         "comparisonImage": "examples/brick-offroad-hero/evidence/variant-2-comparison.webp",
-        "cameraView": "reference-three-quarter",
-        "notes": "",
-        "aiVisionNotes": "The final same-camera pair is used as a conservative regression gate because Sculpt DNA mutates only reviewed material and repetition parameters; protected topology is unchanged."
+        "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+        "referenceBinding": "local-sha256",
+        "renderSha256": "da05029aac0fb71dc729afcfbba560736bd4581d0d82deba1e29d6cf28d1da68",
+        "renderBinding": "local-sha256",
+        "comparisonSha256": "8fcfb7fa559e8fb59b26ad253d48bff479df1f61f89f4c1d265afc78c2fcea8c",
+        "comparisonBinding": "local-sha256"
       }
     },
     {
-      "timestamp": "2026-07-11T22:30:32.291101+00:00",
+      "timestamp": "2026-07-11T23:15:20.269382+00:00",
       "passId": "optimization-pass",
-      "estimatedFidelity": 0.76,
-      "aiVisionScore": 0.76,
+      "estimatedFidelity": 0.77,
+      "aiVisionScore": 0.77,
       "visualAcceptanceThreshold": 0.74,
       "layerScores": {
-        "silhouetteProportion": 0.82,
-        "componentStructure": 0.78,
+        "silhouetteProportion": 0.81,
+        "componentStructure": 0.79,
         "formDetail": 0.77,
         "materialSurface": 0.76,
-        "lightingCamera": 0.81
+        "lightingCamera": 0.75
       },
       "featureReviews": [],
       "action": "continue",
-      "summary": "Variant 2 regression review preserves the completed base optimization-pass contract under its curated palette and surface controls.",
+      "summary": "Fresh inspection of current brick-offroad-v002 comparison for optimization-pass.",
       "matched": [
         "protected component IDs and parent links",
         "four-wheel topology and action hierarchy",
@@ -3810,12 +3979,27 @@
       "codeFixes": [],
       "evidence": [],
       "visualEvidence": {
+        "reviewId": "brick-offroad-v002-fresh-review-2026-07-11T23:15:20.269382+00:00",
+        "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
         "referenceScreenshot": "assets/brick-offroad-reference.jpeg",
+        "aiVisionScore": 0.77,
+        "layerScores": {
+          "silhouetteProportion": 0.81,
+          "componentStructure": 0.79,
+          "formDetail": 0.77,
+          "materialSurface": 0.76,
+          "lightingCamera": 0.75
+        },
+        "notes": "The inspected v002 pair keeps the four-wheel silhouette and distinct amber recovery hardware, blue-green glazing, and moderate wear. Lighting remains darker than the reference.",
+        "aiVisionNotes": "The inspected v002 pair keeps the four-wheel silhouette and distinct amber recovery hardware, blue-green glazing, and moderate wear. Lighting remains darker than the reference.",
         "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-2.webp",
         "comparisonImage": "examples/brick-offroad-hero/evidence/variant-2-comparison.webp",
-        "cameraView": "reference-three-quarter",
-        "notes": "",
-        "aiVisionNotes": "The final same-camera pair is used as a conservative regression gate because Sculpt DNA mutates only reviewed material and repetition parameters; protected topology is unchanged."
+        "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+        "referenceBinding": "local-sha256",
+        "renderSha256": "da05029aac0fb71dc729afcfbba560736bd4581d0d82deba1e29d6cf28d1da68",
+        "renderBinding": "local-sha256",
+        "comparisonSha256": "8fcfb7fa559e8fb59b26ad253d48bff479df1f61f89f4c1d265afc78c2fcea8c",
+        "comparisonBinding": "local-sha256"
       }
     }
   ],
@@ -4082,21 +4266,27 @@
     "previewMode": false,
     "passGateStatus": "evidence-backed-production",
     "visualAcceptance": {
-      "reviewed": true,
-      "cameraView": "reference-three-quarter",
-      "aiVisionScore": 0.76,
+      "reviewId": "brick-offroad-v002-fresh-review-2026-07-11T23:15:20.269382+00:00",
+      "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
+      "referenceScreenshot": "assets/brick-offroad-reference.jpeg",
+      "aiVisionScore": 0.77,
+      "layerScores": {
+        "silhouetteProportion": 0.81,
+        "componentStructure": 0.79,
+        "formDetail": 0.77,
+        "materialSurface": 0.76,
+        "lightingCamera": 0.75
+      },
+      "notes": "The inspected v002 pair keeps the four-wheel silhouette and distinct amber recovery hardware, blue-green glazing, and moderate wear. Lighting remains darker than the reference.",
+      "aiVisionNotes": "The inspected v002 pair keeps the four-wheel silhouette and distinct amber recovery hardware, blue-green glazing, and moderate wear. Lighting remains darker than the reference.",
       "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-2.webp",
       "comparisonImage": "examples/brick-offroad-hero/evidence/variant-2-comparison.webp",
-      "reviewedPasses": [
-        "blockout",
-        "structural-pass",
-        "form-refinement",
-        "material-pass",
-        "surface-pass",
-        "lighting-pass",
-        "interaction-pass",
-        "optimization-pass"
-      ]
+      "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+      "referenceBinding": "local-sha256",
+      "renderSha256": "da05029aac0fb71dc729afcfbba560736bd4581d0d82deba1e29d6cf28d1da68",
+      "renderBinding": "local-sha256",
+      "comparisonSha256": "8fcfb7fa559e8fb59b26ad253d48bff479df1f61f89f4c1d265afc78c2fcea8c",
+      "comparisonBinding": "local-sha256"
     }
   }
 }

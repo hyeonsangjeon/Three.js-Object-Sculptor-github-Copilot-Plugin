@@ -67,6 +67,12 @@ class BrickOffroadHeroTests(unittest.TestCase):
         self.assertEqual(profile["actionReadiness"]["wheelPivots"], 4)
         self.assertEqual(profile["actionReadiness"]["steeringPivots"], 2)
         self.assertEqual(profile["actionReadiness"]["suspensionAnchors"], 4)
+        self.assertIn(
+            "transientHeightFieldForNormalGeneration",
+            profile["generation"],
+        )
+        self.assertNotIn(", height,", profile["generation"]["materials"])
+        self.assertNotIn("height", profile["generation"]["retainedTextureChannels"])
         self.assertEqual(manifest["runtimeStats"]["wheels"], 4)
         self.assertEqual(manifest["runtimeStats"]["importedMeshes"], 0)
         self.assertFalse(manifest["capture"]["localGitMetadataExposed"])
@@ -90,6 +96,7 @@ class BrickOffroadHeroTests(unittest.TestCase):
             ).read_text(encoding="utf-8")
         )
         base_config, *variant_config = config
+        self.assertTrue(all("bodyDark" not in item for item in config))
         variant_dir = ROOT / "examples" / "showcase" / "variants" / "brick"
         material_fields = {
             "body-shell": ("body", "bodyRoughness"),
@@ -218,9 +225,31 @@ class BrickOffroadHeroTests(unittest.TestCase):
         manifest = json.loads(
             (variant_dir / "sculpt-dna-manifest.json").read_text(encoding="utf-8")
         )
+        artifact_manifest = json.loads(
+            (HERO / "artifact-manifest.json").read_text(encoding="utf-8")
+        )
+        expected_scores = {
+            "brick-offroad-v001": 0.78,
+            "brick-offroad-v002": 0.77,
+            "brick-offroad-v003": 0.78,
+        }
         self.assertFalse(manifest["previewMode"])
         self.assertEqual(manifest["passGateStatus"], "evidence-backed-production")
         self.assertEqual(manifest["missingBasePasses"], [])
+        self.assertEqual(
+            manifest["visualReviewSet"]["variantReviewIds"],
+            [
+                item["visualEvidence"]["reviewId"]
+                for item in manifest["variants"]
+            ],
+        )
+        self.assertEqual(
+            {manifest["visualReviewSet"]["reviewedAt"]},
+            {
+                item["visualEvidence"]["reviewedAt"]
+                for item in manifest["variants"]
+            },
+        )
         for index, item in enumerate(manifest["variants"], start=1):
             with self.subTest(variant=index):
                 self.assertEqual(
@@ -234,6 +263,54 @@ class BrickOffroadHeroTests(unittest.TestCase):
                     variant["sculptPipeline"]["currentPass"], "complete"
                 )
                 self.assertEqual(len(variant["reviewHistory"]), 8)
+                acceptance = variant["variantProvenance"]["visualAcceptance"]
+                self.assertEqual(
+                    acceptance["aiVisionScore"],
+                    expected_scores[variant["targetId"]],
+                )
+                render_path = ROOT / acceptance["renderScreenshot"]
+                comparison_path = ROOT / acceptance["comparisonImage"]
+                self.assertEqual(
+                    acceptance["renderSha256"],
+                    sha256(render_path.read_bytes()).hexdigest(),
+                )
+                self.assertEqual(
+                    acceptance["comparisonSha256"],
+                    sha256(comparison_path.read_bytes()).hexdigest(),
+                )
+                render_key = str(render_path.relative_to(HERO))
+                comparison_key = str(comparison_path.relative_to(HERO))
+                self.assertEqual(
+                    acceptance["renderSha256"],
+                    artifact_manifest["outputSha256"][render_key],
+                )
+                self.assertEqual(
+                    acceptance["comparisonSha256"],
+                    artifact_manifest["outputSha256"][comparison_key],
+                )
+                for review in variant["reviewHistory"]:
+                    visual = review["visualEvidence"]
+                    self.assertEqual(
+                        visual["reviewedAt"],
+                        acceptance["reviewedAt"],
+                    )
+                    self.assertEqual(
+                        visual["renderSha256"],
+                        acceptance["renderSha256"],
+                    )
+                    self.assertEqual(
+                        visual["comparisonSha256"],
+                        acceptance["comparisonSha256"],
+                    )
+                manifest_visual = item["visualEvidence"]
+                self.assertEqual(
+                    manifest_visual["renderSha256"],
+                    acceptance["renderSha256"],
+                )
+                self.assertEqual(
+                    manifest_visual["comparisonSha256"],
+                    acceptance["comparisonSha256"],
+                )
 
     def test_capture_artifacts_match_hash_manifest_and_media_budget(self) -> None:
         manifest = json.loads(
@@ -268,6 +345,29 @@ class BrickOffroadHeroTests(unittest.TestCase):
         self.assertEqual(manifest["runtimeStats"]["generatedTextureCount"], 48)
         self.assertEqual(manifest["runtimeStats"]["wear"], 0.08)
         self.assertTrue(manifest["lifecycleCheck"]["complete"])
+        self.assertTrue(manifest["lifecycleCheck"]["removedFromScene"])
+        self.assertTrue(
+            manifest["lifecycleCheck"]["rendererMemoryDidNotRebound"]
+        )
+        self.assertTrue(
+            manifest["lifecycleCheck"]["webglAllocationsDidNotRebound"]
+        )
+        self.assertGreaterEqual(
+            manifest["lifecycleCheck"]["postDisposeFrames"],
+            5,
+        )
+        self.assertLessEqual(
+            manifest["lifecycleCheck"]["memoryPostRender"]["geometries"],
+            manifest["lifecycleCheck"]["memoryDisposed"]["geometries"],
+        )
+        self.assertLessEqual(
+            manifest["lifecycleCheck"]["memoryPostRender"]["textures"],
+            manifest["lifecycleCheck"]["memoryDisposed"]["textures"],
+        )
+        self.assertEqual(
+            manifest["lifecycleCheck"]["allocationsDisposed"],
+            manifest["lifecycleCheck"]["allocationsPostRender"],
+        )
         self.assertEqual(
             manifest["lifecycleCheck"]["counts"],
             manifest["lifecycleCheck"]["disposed"],
@@ -281,7 +381,27 @@ class BrickOffroadHeroTests(unittest.TestCase):
         )
         self.assertTrue(
             all(
+                item["fastenerParentedDirectly"]
+                and item["fastenerInstancesMoved"]
+                and item["fixedFastenersStayed"]
+                for item in manifest["doorArticulation"]
+            )
+        )
+        self.assertTrue(
+            all(
+                item["fastenerWorldBefore"] != item["fastenerWorldAfter"]
+                for item in manifest["doorArticulation"]
+            )
+        )
+        self.assertTrue(
+            all(
                 len([child for child in item["childIds"] if "hinge" in child]) >= 3
+                for item in manifest["doorArticulation"]
+            )
+        )
+        self.assertTrue(
+            all(
+                any("fasteners" in child for child in item["childIds"])
                 for item in manifest["doorArticulation"]
             )
         )
@@ -326,6 +446,27 @@ class BrickOffroadHeroTests(unittest.TestCase):
         }
         for item in manifest["variantStats"]:
             stats = item["stats"]
+            runtime_config = next(
+                value
+                for value in json.loads(
+                    (
+                        HERO / "brick-output" / "brick-variant-config.json"
+                    ).read_text(encoding="utf-8")
+                )
+                if value["id"] == item["id"]
+            )
+            expected_controls = {
+                key: value
+                for key, value in runtime_config.items()
+                if key not in {"id", "label"}
+            }
+            actual_controls = dict(item["controls"])
+            derived = actual_controls.pop("derivedBodyDark")
+            self.assertEqual(actual_controls, expected_controls)
+            self.assertEqual(
+                derived,
+                {"source": "body", "multiplier": 0.72},
+            )
             self.assertEqual(
                 (
                     stats["treadInstances"],
@@ -347,6 +488,9 @@ class BrickOffroadHeroTests(unittest.TestCase):
             "../../scripts/append_sculpt_review.py",
             "../../scripts/make_visual_comparison_sheet.py",
             "../../scripts/sculpt_pass_orchestrator.py",
+            "../../scripts/sculpt_dna.py",
+            "../../scripts/validate_sculpt_spec.py",
+            "../../scripts/visual_evidence_hashes.py",
         ):
             self.assertIn(relative, manifest["sourceSha256"])
         self.assertEqual(

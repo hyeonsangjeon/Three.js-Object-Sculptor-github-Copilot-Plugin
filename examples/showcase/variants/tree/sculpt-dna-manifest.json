@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0",
   "sourceSpec": "object-sculpt-spec.json",
-  "sourceSpecSha256": "973c8a52903ddc986f88b185ea3cc5731fab5c64279738e9c2e5ab969b7ac1fb",
+  "sourceSpecSha256": "2ecff4affb5dc5283f591ff54f59c5e68e7c39c56b7bca7dcd4a0204fda4ddd6",
   "rootSeed": 20260711,
   "count": 3,
   "variants": [

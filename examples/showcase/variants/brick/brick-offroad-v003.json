@@ -3179,17 +3179,17 @@
   ],
   "visualEvidence": [
     {
-      "timestamp": "2026-07-11T22:30:32.341241+00:00",
+      "timestamp": "2026-07-11T23:15:20.269382+00:00",
       "passId": "blockout",
-      "estimatedFidelity": 0.79,
-      "aiVisionScore": 0.79,
+      "estimatedFidelity": 0.78,
+      "aiVisionScore": 0.78,
       "visualAcceptanceThreshold": 0.74,
       "layerScores": {
-        "silhouetteProportion": 0.83,
+        "silhouetteProportion": 0.81,
         "componentStructure": 0.8,
         "formDetail": 0.78,
-        "materialSurface": 0.79,
-        "lightingCamera": 0.81
+        "materialSurface": 0.77,
+        "lightingCamera": 0.76
       },
       "featureReviews": [
         {
@@ -3209,21 +3209,29 @@
       "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-3.webp",
       "comparisonImage": "examples/brick-offroad-hero/evidence/variant-3-comparison.webp",
       "cameraView": "reference-three-quarter",
-      "notes": "",
-      "aiVisionNotes": "The final same-camera pair is used as a conservative regression gate because Sculpt DNA mutates only reviewed material and repetition parameters; protected topology is unchanged."
+      "notes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+      "aiVisionNotes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+      "renderSha256": "cb878c56f3c0334793ac58063fcabbcc50506fe0f8b54cd3186d77c08e002d0e",
+      "comparisonSha256": "051521e32ad3a84636078f95f3baf7bc55c63ac6ff6bcbd2944e2651e0a05297",
+      "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
+      "reviewId": "brick-offroad-v003-fresh-review-2026-07-11T23:15:20.269382+00:00",
+      "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+      "referenceBinding": "local-sha256",
+      "renderBinding": "local-sha256",
+      "comparisonBinding": "local-sha256"
     },
     {
-      "timestamp": "2026-07-11T22:30:32.398728+00:00",
+      "timestamp": "2026-07-11T23:15:20.269382+00:00",
       "passId": "structural-pass",
-      "estimatedFidelity": 0.79,
-      "aiVisionScore": 0.79,
+      "estimatedFidelity": 0.78,
+      "aiVisionScore": 0.78,
       "visualAcceptanceThreshold": 0.74,
       "layerScores": {
-        "silhouetteProportion": 0.83,
+        "silhouetteProportion": 0.81,
         "componentStructure": 0.8,
         "formDetail": 0.78,
-        "materialSurface": 0.79,
-        "lightingCamera": 0.81
+        "materialSurface": 0.77,
+        "lightingCamera": 0.76
       },
       "featureReviews": [
         {
@@ -3249,21 +3257,29 @@
       "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-3.webp",
       "comparisonImage": "examples/brick-offroad-hero/evidence/variant-3-comparison.webp",
       "cameraView": "reference-three-quarter",
-      "notes": "",
-      "aiVisionNotes": "The final same-camera pair is used as a conservative regression gate because Sculpt DNA mutates only reviewed material and repetition parameters; protected topology is unchanged."
+      "notes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+      "aiVisionNotes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+      "renderSha256": "cb878c56f3c0334793ac58063fcabbcc50506fe0f8b54cd3186d77c08e002d0e",
+      "comparisonSha256": "051521e32ad3a84636078f95f3baf7bc55c63ac6ff6bcbd2944e2651e0a05297",
+      "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
+      "reviewId": "brick-offroad-v003-fresh-review-2026-07-11T23:15:20.269382+00:00",
+      "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+      "referenceBinding": "local-sha256",
+      "renderBinding": "local-sha256",
+      "comparisonBinding": "local-sha256"
     },
     {
-      "timestamp": "2026-07-11T22:30:32.451858+00:00",
+      "timestamp": "2026-07-11T23:15:20.269382+00:00",
       "passId": "form-refinement",
-      "estimatedFidelity": 0.79,
-      "aiVisionScore": 0.79,
+      "estimatedFidelity": 0.78,
+      "aiVisionScore": 0.78,
       "visualAcceptanceThreshold": 0.74,
       "layerScores": {
-        "silhouetteProportion": 0.83,
+        "silhouetteProportion": 0.81,
         "componentStructure": 0.8,
         "formDetail": 0.78,
-        "materialSurface": 0.79,
-        "lightingCamera": 0.81
+        "materialSurface": 0.77,
+        "lightingCamera": 0.76
       },
       "featureReviews": [
         {
@@ -3289,21 +3305,29 @@
       "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-3.webp",
       "comparisonImage": "examples/brick-offroad-hero/evidence/variant-3-comparison.webp",
       "cameraView": "reference-three-quarter",
-      "notes": "",
-      "aiVisionNotes": "The final same-camera pair is used as a conservative regression gate because Sculpt DNA mutates only reviewed material and repetition parameters; protected topology is unchanged."
+      "notes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+      "aiVisionNotes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+      "renderSha256": "cb878c56f3c0334793ac58063fcabbcc50506fe0f8b54cd3186d77c08e002d0e",
+      "comparisonSha256": "051521e32ad3a84636078f95f3baf7bc55c63ac6ff6bcbd2944e2651e0a05297",
+      "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
+      "reviewId": "brick-offroad-v003-fresh-review-2026-07-11T23:15:20.269382+00:00",
+      "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+      "referenceBinding": "local-sha256",
+      "renderBinding": "local-sha256",
+      "comparisonBinding": "local-sha256"
     },
     {
-      "timestamp": "2026-07-11T22:30:32.510258+00:00",
+      "timestamp": "2026-07-11T23:15:20.269382+00:00",
       "passId": "material-pass",
-      "estimatedFidelity": 0.79,
-      "aiVisionScore": 0.79,
+      "estimatedFidelity": 0.78,
+      "aiVisionScore": 0.78,
       "visualAcceptanceThreshold": 0.74,
       "layerScores": {
-        "silhouetteProportion": 0.83,
+        "silhouetteProportion": 0.81,
         "componentStructure": 0.8,
         "formDetail": 0.78,
-        "materialSurface": 0.79,
-        "lightingCamera": 0.81
+        "materialSurface": 0.77,
+        "lightingCamera": 0.76
       },
       "featureReviews": [
         {
@@ -3317,21 +3341,29 @@
       "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-3.webp",
       "comparisonImage": "examples/brick-offroad-hero/evidence/variant-3-comparison.webp",
       "cameraView": "reference-three-quarter",
-      "notes": "",
-      "aiVisionNotes": "The final same-camera pair is used as a conservative regression gate because Sculpt DNA mutates only reviewed material and repetition parameters; protected topology is unchanged."
+      "notes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+      "aiVisionNotes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+      "renderSha256": "cb878c56f3c0334793ac58063fcabbcc50506fe0f8b54cd3186d77c08e002d0e",
+      "comparisonSha256": "051521e32ad3a84636078f95f3baf7bc55c63ac6ff6bcbd2944e2651e0a05297",
+      "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
+      "reviewId": "brick-offroad-v003-fresh-review-2026-07-11T23:15:20.269382+00:00",
+      "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+      "referenceBinding": "local-sha256",
+      "renderBinding": "local-sha256",
+      "comparisonBinding": "local-sha256"
     },
     {
-      "timestamp": "2026-07-11T22:30:32.595702+00:00",
+      "timestamp": "2026-07-11T23:15:20.269382+00:00",
       "passId": "surface-pass",
-      "estimatedFidelity": 0.79,
-      "aiVisionScore": 0.79,
+      "estimatedFidelity": 0.78,
+      "aiVisionScore": 0.78,
       "visualAcceptanceThreshold": 0.74,
       "layerScores": {
-        "silhouetteProportion": 0.83,
+        "silhouetteProportion": 0.81,
         "componentStructure": 0.8,
         "formDetail": 0.78,
-        "materialSurface": 0.79,
-        "lightingCamera": 0.81
+        "materialSurface": 0.77,
+        "lightingCamera": 0.76
       },
       "featureReviews": [
         {
@@ -3357,21 +3389,29 @@
       "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-3.webp",
       "comparisonImage": "examples/brick-offroad-hero/evidence/variant-3-comparison.webp",
       "cameraView": "reference-three-quarter",
-      "notes": "",
-      "aiVisionNotes": "The final same-camera pair is used as a conservative regression gate because Sculpt DNA mutates only reviewed material and repetition parameters; protected topology is unchanged."
+      "notes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+      "aiVisionNotes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+      "renderSha256": "cb878c56f3c0334793ac58063fcabbcc50506fe0f8b54cd3186d77c08e002d0e",
+      "comparisonSha256": "051521e32ad3a84636078f95f3baf7bc55c63ac6ff6bcbd2944e2651e0a05297",
+      "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
+      "reviewId": "brick-offroad-v003-fresh-review-2026-07-11T23:15:20.269382+00:00",
+      "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+      "referenceBinding": "local-sha256",
+      "renderBinding": "local-sha256",
+      "comparisonBinding": "local-sha256"
     },
     {
-      "timestamp": "2026-07-11T22:30:32.649462+00:00",
+      "timestamp": "2026-07-11T23:15:20.269382+00:00",
       "passId": "lighting-pass",
-      "estimatedFidelity": 0.79,
-      "aiVisionScore": 0.79,
+      "estimatedFidelity": 0.78,
+      "aiVisionScore": 0.78,
       "visualAcceptanceThreshold": 0.74,
       "layerScores": {
-        "silhouetteProportion": 0.83,
+        "silhouetteProportion": 0.81,
         "componentStructure": 0.8,
         "formDetail": 0.78,
-        "materialSurface": 0.79,
-        "lightingCamera": 0.81
+        "materialSurface": 0.77,
+        "lightingCamera": 0.76
       },
       "featureReviews": [
         {
@@ -3385,21 +3425,29 @@
       "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-3.webp",
       "comparisonImage": "examples/brick-offroad-hero/evidence/variant-3-comparison.webp",
       "cameraView": "reference-three-quarter",
-      "notes": "",
-      "aiVisionNotes": "The final same-camera pair is used as a conservative regression gate because Sculpt DNA mutates only reviewed material and repetition parameters; protected topology is unchanged."
+      "notes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+      "aiVisionNotes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+      "renderSha256": "cb878c56f3c0334793ac58063fcabbcc50506fe0f8b54cd3186d77c08e002d0e",
+      "comparisonSha256": "051521e32ad3a84636078f95f3baf7bc55c63ac6ff6bcbd2944e2651e0a05297",
+      "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
+      "reviewId": "brick-offroad-v003-fresh-review-2026-07-11T23:15:20.269382+00:00",
+      "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+      "referenceBinding": "local-sha256",
+      "renderBinding": "local-sha256",
+      "comparisonBinding": "local-sha256"
     },
     {
-      "timestamp": "2026-07-11T22:30:32.710825+00:00",
+      "timestamp": "2026-07-11T23:15:20.269382+00:00",
       "passId": "interaction-pass",
-      "estimatedFidelity": 0.79,
-      "aiVisionScore": 0.79,
+      "estimatedFidelity": 0.78,
+      "aiVisionScore": 0.78,
       "visualAcceptanceThreshold": 0.74,
       "layerScores": {
-        "silhouetteProportion": 0.83,
+        "silhouetteProportion": 0.81,
         "componentStructure": 0.8,
         "formDetail": 0.78,
-        "materialSurface": 0.79,
-        "lightingCamera": 0.81
+        "materialSurface": 0.77,
+        "lightingCamera": 0.76
       },
       "featureReviews": [
         {
@@ -3413,44 +3461,60 @@
       "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-3.webp",
       "comparisonImage": "examples/brick-offroad-hero/evidence/variant-3-comparison.webp",
       "cameraView": "reference-three-quarter",
-      "notes": "",
-      "aiVisionNotes": "The final same-camera pair is used as a conservative regression gate because Sculpt DNA mutates only reviewed material and repetition parameters; protected topology is unchanged."
+      "notes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+      "aiVisionNotes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+      "renderSha256": "cb878c56f3c0334793ac58063fcabbcc50506fe0f8b54cd3186d77c08e002d0e",
+      "comparisonSha256": "051521e32ad3a84636078f95f3baf7bc55c63ac6ff6bcbd2944e2651e0a05297",
+      "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
+      "reviewId": "brick-offroad-v003-fresh-review-2026-07-11T23:15:20.269382+00:00",
+      "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+      "referenceBinding": "local-sha256",
+      "renderBinding": "local-sha256",
+      "comparisonBinding": "local-sha256"
     },
     {
-      "timestamp": "2026-07-11T22:30:32.759159+00:00",
+      "timestamp": "2026-07-11T23:15:20.269382+00:00",
       "passId": "optimization-pass",
-      "estimatedFidelity": 0.79,
-      "aiVisionScore": 0.79,
+      "estimatedFidelity": 0.78,
+      "aiVisionScore": 0.78,
       "visualAcceptanceThreshold": 0.74,
       "layerScores": {
-        "silhouetteProportion": 0.83,
+        "silhouetteProportion": 0.81,
         "componentStructure": 0.8,
         "formDetail": 0.78,
-        "materialSurface": 0.79,
-        "lightingCamera": 0.81
+        "materialSurface": 0.77,
+        "lightingCamera": 0.76
       },
       "featureReviews": [],
       "referenceScreenshot": "assets/brick-offroad-reference.jpeg",
       "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-3.webp",
       "comparisonImage": "examples/brick-offroad-hero/evidence/variant-3-comparison.webp",
       "cameraView": "reference-three-quarter",
-      "notes": "",
-      "aiVisionNotes": "The final same-camera pair is used as a conservative regression gate because Sculpt DNA mutates only reviewed material and repetition parameters; protected topology is unchanged."
+      "notes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+      "aiVisionNotes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+      "renderSha256": "cb878c56f3c0334793ac58063fcabbcc50506fe0f8b54cd3186d77c08e002d0e",
+      "comparisonSha256": "051521e32ad3a84636078f95f3baf7bc55c63ac6ff6bcbd2944e2651e0a05297",
+      "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
+      "reviewId": "brick-offroad-v003-fresh-review-2026-07-11T23:15:20.269382+00:00",
+      "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+      "referenceBinding": "local-sha256",
+      "renderBinding": "local-sha256",
+      "comparisonBinding": "local-sha256"
     }
   ],
   "reviewHistory": [
     {
-      "timestamp": "2026-07-11T22:30:32.341241+00:00",
+      "timestamp": "2026-07-11T23:15:20.269382+00:00",
       "passId": "blockout",
-      "estimatedFidelity": 0.79,
-      "aiVisionScore": 0.79,
+      "estimatedFidelity": 0.78,
+      "aiVisionScore": 0.78,
       "visualAcceptanceThreshold": 0.74,
       "layerScores": {
-        "silhouetteProportion": 0.83,
+        "silhouetteProportion": 0.81,
         "componentStructure": 0.8,
         "formDetail": 0.78,
-        "materialSurface": 0.79,
-        "lightingCamera": 0.81
+        "materialSurface": 0.77,
+        "lightingCamera": 0.76
       },
       "featureReviews": [
         {
@@ -3467,7 +3531,7 @@
         }
       ],
       "action": "continue",
-      "summary": "Variant 3 regression review preserves the completed base blockout contract under its curated palette and surface controls.",
+      "summary": "Fresh inspection of current brick-offroad-v003 comparison for blockout.",
       "matched": [
         "protected component IDs and parent links",
         "four-wheel topology and action hierarchy",
@@ -3480,26 +3544,41 @@
       "codeFixes": [],
       "evidence": [],
       "visualEvidence": {
+        "reviewId": "brick-offroad-v003-fresh-review-2026-07-11T23:15:20.269382+00:00",
+        "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
         "referenceScreenshot": "assets/brick-offroad-reference.jpeg",
+        "aiVisionScore": 0.78,
+        "layerScores": {
+          "silhouetteProportion": 0.81,
+          "componentStructure": 0.8,
+          "formDetail": 0.78,
+          "materialSurface": 0.77,
+          "lightingCamera": 0.76
+        },
+        "notes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+        "aiVisionNotes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
         "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-3.webp",
         "comparisonImage": "examples/brick-offroad-hero/evidence/variant-3-comparison.webp",
-        "cameraView": "reference-three-quarter",
-        "notes": "",
-        "aiVisionNotes": "The final same-camera pair is used as a conservative regression gate because Sculpt DNA mutates only reviewed material and repetition parameters; protected topology is unchanged."
+        "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+        "referenceBinding": "local-sha256",
+        "renderSha256": "cb878c56f3c0334793ac58063fcabbcc50506fe0f8b54cd3186d77c08e002d0e",
+        "renderBinding": "local-sha256",
+        "comparisonSha256": "051521e32ad3a84636078f95f3baf7bc55c63ac6ff6bcbd2944e2651e0a05297",
+        "comparisonBinding": "local-sha256"
       }
     },
     {
-      "timestamp": "2026-07-11T22:30:32.398728+00:00",
+      "timestamp": "2026-07-11T23:15:20.269382+00:00",
       "passId": "structural-pass",
-      "estimatedFidelity": 0.79,
-      "aiVisionScore": 0.79,
+      "estimatedFidelity": 0.78,
+      "aiVisionScore": 0.78,
       "visualAcceptanceThreshold": 0.74,
       "layerScores": {
-        "silhouetteProportion": 0.83,
+        "silhouetteProportion": 0.81,
         "componentStructure": 0.8,
         "formDetail": 0.78,
-        "materialSurface": 0.79,
-        "lightingCamera": 0.81
+        "materialSurface": 0.77,
+        "lightingCamera": 0.76
       },
       "featureReviews": [
         {
@@ -3522,7 +3601,7 @@
         }
       ],
       "action": "continue",
-      "summary": "Variant 3 regression review preserves the completed base structural-pass contract under its curated palette and surface controls.",
+      "summary": "Fresh inspection of current brick-offroad-v003 comparison for structural-pass.",
       "matched": [
         "protected component IDs and parent links",
         "four-wheel topology and action hierarchy",
@@ -3535,26 +3614,41 @@
       "codeFixes": [],
       "evidence": [],
       "visualEvidence": {
+        "reviewId": "brick-offroad-v003-fresh-review-2026-07-11T23:15:20.269382+00:00",
+        "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
         "referenceScreenshot": "assets/brick-offroad-reference.jpeg",
+        "aiVisionScore": 0.78,
+        "layerScores": {
+          "silhouetteProportion": 0.81,
+          "componentStructure": 0.8,
+          "formDetail": 0.78,
+          "materialSurface": 0.77,
+          "lightingCamera": 0.76
+        },
+        "notes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+        "aiVisionNotes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
         "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-3.webp",
         "comparisonImage": "examples/brick-offroad-hero/evidence/variant-3-comparison.webp",
-        "cameraView": "reference-three-quarter",
-        "notes": "",
-        "aiVisionNotes": "The final same-camera pair is used as a conservative regression gate because Sculpt DNA mutates only reviewed material and repetition parameters; protected topology is unchanged."
+        "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+        "referenceBinding": "local-sha256",
+        "renderSha256": "cb878c56f3c0334793ac58063fcabbcc50506fe0f8b54cd3186d77c08e002d0e",
+        "renderBinding": "local-sha256",
+        "comparisonSha256": "051521e32ad3a84636078f95f3baf7bc55c63ac6ff6bcbd2944e2651e0a05297",
+        "comparisonBinding": "local-sha256"
       }
     },
     {
-      "timestamp": "2026-07-11T22:30:32.451858+00:00",
+      "timestamp": "2026-07-11T23:15:20.269382+00:00",
       "passId": "form-refinement",
-      "estimatedFidelity": 0.79,
-      "aiVisionScore": 0.79,
+      "estimatedFidelity": 0.78,
+      "aiVisionScore": 0.78,
       "visualAcceptanceThreshold": 0.74,
       "layerScores": {
-        "silhouetteProportion": 0.83,
+        "silhouetteProportion": 0.81,
         "componentStructure": 0.8,
         "formDetail": 0.78,
-        "materialSurface": 0.79,
-        "lightingCamera": 0.81
+        "materialSurface": 0.77,
+        "lightingCamera": 0.76
       },
       "featureReviews": [
         {
@@ -3577,7 +3671,7 @@
         }
       ],
       "action": "continue",
-      "summary": "Variant 3 regression review preserves the completed base form-refinement contract under its curated palette and surface controls.",
+      "summary": "Fresh inspection of current brick-offroad-v003 comparison for form-refinement.",
       "matched": [
         "protected component IDs and parent links",
         "four-wheel topology and action hierarchy",
@@ -3590,26 +3684,41 @@
       "codeFixes": [],
       "evidence": [],
       "visualEvidence": {
+        "reviewId": "brick-offroad-v003-fresh-review-2026-07-11T23:15:20.269382+00:00",
+        "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
         "referenceScreenshot": "assets/brick-offroad-reference.jpeg",
+        "aiVisionScore": 0.78,
+        "layerScores": {
+          "silhouetteProportion": 0.81,
+          "componentStructure": 0.8,
+          "formDetail": 0.78,
+          "materialSurface": 0.77,
+          "lightingCamera": 0.76
+        },
+        "notes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+        "aiVisionNotes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
         "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-3.webp",
         "comparisonImage": "examples/brick-offroad-hero/evidence/variant-3-comparison.webp",
-        "cameraView": "reference-three-quarter",
-        "notes": "",
-        "aiVisionNotes": "The final same-camera pair is used as a conservative regression gate because Sculpt DNA mutates only reviewed material and repetition parameters; protected topology is unchanged."
+        "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+        "referenceBinding": "local-sha256",
+        "renderSha256": "cb878c56f3c0334793ac58063fcabbcc50506fe0f8b54cd3186d77c08e002d0e",
+        "renderBinding": "local-sha256",
+        "comparisonSha256": "051521e32ad3a84636078f95f3baf7bc55c63ac6ff6bcbd2944e2651e0a05297",
+        "comparisonBinding": "local-sha256"
       }
     },
     {
-      "timestamp": "2026-07-11T22:30:32.510258+00:00",
+      "timestamp": "2026-07-11T23:15:20.269382+00:00",
       "passId": "material-pass",
-      "estimatedFidelity": 0.79,
-      "aiVisionScore": 0.79,
+      "estimatedFidelity": 0.78,
+      "aiVisionScore": 0.78,
       "visualAcceptanceThreshold": 0.74,
       "layerScores": {
-        "silhouetteProportion": 0.83,
+        "silhouetteProportion": 0.81,
         "componentStructure": 0.8,
         "formDetail": 0.78,
-        "materialSurface": 0.79,
-        "lightingCamera": 0.81
+        "materialSurface": 0.77,
+        "lightingCamera": 0.76
       },
       "featureReviews": [
         {
@@ -3620,7 +3729,7 @@
         }
       ],
       "action": "continue",
-      "summary": "Variant 3 regression review preserves the completed base material-pass contract under its curated palette and surface controls.",
+      "summary": "Fresh inspection of current brick-offroad-v003 comparison for material-pass.",
       "matched": [
         "protected component IDs and parent links",
         "four-wheel topology and action hierarchy",
@@ -3633,26 +3742,41 @@
       "codeFixes": [],
       "evidence": [],
       "visualEvidence": {
+        "reviewId": "brick-offroad-v003-fresh-review-2026-07-11T23:15:20.269382+00:00",
+        "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
         "referenceScreenshot": "assets/brick-offroad-reference.jpeg",
+        "aiVisionScore": 0.78,
+        "layerScores": {
+          "silhouetteProportion": 0.81,
+          "componentStructure": 0.8,
+          "formDetail": 0.78,
+          "materialSurface": 0.77,
+          "lightingCamera": 0.76
+        },
+        "notes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+        "aiVisionNotes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
         "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-3.webp",
         "comparisonImage": "examples/brick-offroad-hero/evidence/variant-3-comparison.webp",
-        "cameraView": "reference-three-quarter",
-        "notes": "",
-        "aiVisionNotes": "The final same-camera pair is used as a conservative regression gate because Sculpt DNA mutates only reviewed material and repetition parameters; protected topology is unchanged."
+        "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+        "referenceBinding": "local-sha256",
+        "renderSha256": "cb878c56f3c0334793ac58063fcabbcc50506fe0f8b54cd3186d77c08e002d0e",
+        "renderBinding": "local-sha256",
+        "comparisonSha256": "051521e32ad3a84636078f95f3baf7bc55c63ac6ff6bcbd2944e2651e0a05297",
+        "comparisonBinding": "local-sha256"
       }
     },
     {
-      "timestamp": "2026-07-11T22:30:32.595702+00:00",
+      "timestamp": "2026-07-11T23:15:20.269382+00:00",
       "passId": "surface-pass",
-      "estimatedFidelity": 0.79,
-      "aiVisionScore": 0.79,
+      "estimatedFidelity": 0.78,
+      "aiVisionScore": 0.78,
       "visualAcceptanceThreshold": 0.74,
       "layerScores": {
-        "silhouetteProportion": 0.83,
+        "silhouetteProportion": 0.81,
         "componentStructure": 0.8,
         "formDetail": 0.78,
-        "materialSurface": 0.79,
-        "lightingCamera": 0.81
+        "materialSurface": 0.77,
+        "lightingCamera": 0.76
       },
       "featureReviews": [
         {
@@ -3675,7 +3799,7 @@
         }
       ],
       "action": "continue",
-      "summary": "Variant 3 regression review preserves the completed base surface-pass contract under its curated palette and surface controls.",
+      "summary": "Fresh inspection of current brick-offroad-v003 comparison for surface-pass.",
       "matched": [
         "protected component IDs and parent links",
         "four-wheel topology and action hierarchy",
@@ -3688,26 +3812,41 @@
       "codeFixes": [],
       "evidence": [],
       "visualEvidence": {
+        "reviewId": "brick-offroad-v003-fresh-review-2026-07-11T23:15:20.269382+00:00",
+        "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
         "referenceScreenshot": "assets/brick-offroad-reference.jpeg",
+        "aiVisionScore": 0.78,
+        "layerScores": {
+          "silhouetteProportion": 0.81,
+          "componentStructure": 0.8,
+          "formDetail": 0.78,
+          "materialSurface": 0.77,
+          "lightingCamera": 0.76
+        },
+        "notes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+        "aiVisionNotes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
         "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-3.webp",
         "comparisonImage": "examples/brick-offroad-hero/evidence/variant-3-comparison.webp",
-        "cameraView": "reference-three-quarter",
-        "notes": "",
-        "aiVisionNotes": "The final same-camera pair is used as a conservative regression gate because Sculpt DNA mutates only reviewed material and repetition parameters; protected topology is unchanged."
+        "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+        "referenceBinding": "local-sha256",
+        "renderSha256": "cb878c56f3c0334793ac58063fcabbcc50506fe0f8b54cd3186d77c08e002d0e",
+        "renderBinding": "local-sha256",
+        "comparisonSha256": "051521e32ad3a84636078f95f3baf7bc55c63ac6ff6bcbd2944e2651e0a05297",
+        "comparisonBinding": "local-sha256"
       }
     },
     {
-      "timestamp": "2026-07-11T22:30:32.649462+00:00",
+      "timestamp": "2026-07-11T23:15:20.269382+00:00",
       "passId": "lighting-pass",
-      "estimatedFidelity": 0.79,
-      "aiVisionScore": 0.79,
+      "estimatedFidelity": 0.78,
+      "aiVisionScore": 0.78,
       "visualAcceptanceThreshold": 0.74,
       "layerScores": {
-        "silhouetteProportion": 0.83,
+        "silhouetteProportion": 0.81,
         "componentStructure": 0.8,
         "formDetail": 0.78,
-        "materialSurface": 0.79,
-        "lightingCamera": 0.81
+        "materialSurface": 0.77,
+        "lightingCamera": 0.76
       },
       "featureReviews": [
         {
@@ -3718,7 +3857,7 @@
         }
       ],
       "action": "continue",
-      "summary": "Variant 3 regression review preserves the completed base lighting-pass contract under its curated palette and surface controls.",
+      "summary": "Fresh inspection of current brick-offroad-v003 comparison for lighting-pass.",
       "matched": [
         "protected component IDs and parent links",
         "four-wheel topology and action hierarchy",
@@ -3731,26 +3870,41 @@
       "codeFixes": [],
       "evidence": [],
       "visualEvidence": {
+        "reviewId": "brick-offroad-v003-fresh-review-2026-07-11T23:15:20.269382+00:00",
+        "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
         "referenceScreenshot": "assets/brick-offroad-reference.jpeg",
+        "aiVisionScore": 0.78,
+        "layerScores": {
+          "silhouetteProportion": 0.81,
+          "componentStructure": 0.8,
+          "formDetail": 0.78,
+          "materialSurface": 0.77,
+          "lightingCamera": 0.76
+        },
+        "notes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+        "aiVisionNotes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
         "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-3.webp",
         "comparisonImage": "examples/brick-offroad-hero/evidence/variant-3-comparison.webp",
-        "cameraView": "reference-three-quarter",
-        "notes": "",
-        "aiVisionNotes": "The final same-camera pair is used as a conservative regression gate because Sculpt DNA mutates only reviewed material and repetition parameters; protected topology is unchanged."
+        "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+        "referenceBinding": "local-sha256",
+        "renderSha256": "cb878c56f3c0334793ac58063fcabbcc50506fe0f8b54cd3186d77c08e002d0e",
+        "renderBinding": "local-sha256",
+        "comparisonSha256": "051521e32ad3a84636078f95f3baf7bc55c63ac6ff6bcbd2944e2651e0a05297",
+        "comparisonBinding": "local-sha256"
       }
     },
     {
-      "timestamp": "2026-07-11T22:30:32.710825+00:00",
+      "timestamp": "2026-07-11T23:15:20.269382+00:00",
       "passId": "interaction-pass",
-      "estimatedFidelity": 0.79,
-      "aiVisionScore": 0.79,
+      "estimatedFidelity": 0.78,
+      "aiVisionScore": 0.78,
       "visualAcceptanceThreshold": 0.74,
       "layerScores": {
-        "silhouetteProportion": 0.83,
+        "silhouetteProportion": 0.81,
         "componentStructure": 0.8,
         "formDetail": 0.78,
-        "materialSurface": 0.79,
-        "lightingCamera": 0.81
+        "materialSurface": 0.77,
+        "lightingCamera": 0.76
       },
       "featureReviews": [
         {
@@ -3761,7 +3915,7 @@
         }
       ],
       "action": "continue",
-      "summary": "Variant 3 regression review preserves the completed base interaction-pass contract under its curated palette and surface controls.",
+      "summary": "Fresh inspection of current brick-offroad-v003 comparison for interaction-pass.",
       "matched": [
         "protected component IDs and parent links",
         "four-wheel topology and action hierarchy",
@@ -3774,30 +3928,45 @@
       "codeFixes": [],
       "evidence": [],
       "visualEvidence": {
+        "reviewId": "brick-offroad-v003-fresh-review-2026-07-11T23:15:20.269382+00:00",
+        "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
         "referenceScreenshot": "assets/brick-offroad-reference.jpeg",
+        "aiVisionScore": 0.78,
+        "layerScores": {
+          "silhouetteProportion": 0.81,
+          "componentStructure": 0.8,
+          "formDetail": 0.78,
+          "materialSurface": 0.77,
+          "lightingCamera": 0.76
+        },
+        "notes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+        "aiVisionNotes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
         "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-3.webp",
         "comparisonImage": "examples/brick-offroad-hero/evidence/variant-3-comparison.webp",
-        "cameraView": "reference-three-quarter",
-        "notes": "",
-        "aiVisionNotes": "The final same-camera pair is used as a conservative regression gate because Sculpt DNA mutates only reviewed material and repetition parameters; protected topology is unchanged."
+        "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+        "referenceBinding": "local-sha256",
+        "renderSha256": "cb878c56f3c0334793ac58063fcabbcc50506fe0f8b54cd3186d77c08e002d0e",
+        "renderBinding": "local-sha256",
+        "comparisonSha256": "051521e32ad3a84636078f95f3baf7bc55c63ac6ff6bcbd2944e2651e0a05297",
+        "comparisonBinding": "local-sha256"
       }
     },
     {
-      "timestamp": "2026-07-11T22:30:32.759159+00:00",
+      "timestamp": "2026-07-11T23:15:20.269382+00:00",
       "passId": "optimization-pass",
-      "estimatedFidelity": 0.79,
-      "aiVisionScore": 0.79,
+      "estimatedFidelity": 0.78,
+      "aiVisionScore": 0.78,
       "visualAcceptanceThreshold": 0.74,
       "layerScores": {
-        "silhouetteProportion": 0.83,
+        "silhouetteProportion": 0.81,
         "componentStructure": 0.8,
         "formDetail": 0.78,
-        "materialSurface": 0.79,
-        "lightingCamera": 0.81
+        "materialSurface": 0.77,
+        "lightingCamera": 0.76
       },
       "featureReviews": [],
       "action": "continue",
-      "summary": "Variant 3 regression review preserves the completed base optimization-pass contract under its curated palette and surface controls.",
+      "summary": "Fresh inspection of current brick-offroad-v003 comparison for optimization-pass.",
       "matched": [
         "protected component IDs and parent links",
         "four-wheel topology and action hierarchy",
@@ -3810,12 +3979,27 @@
       "codeFixes": [],
       "evidence": [],
       "visualEvidence": {
+        "reviewId": "brick-offroad-v003-fresh-review-2026-07-11T23:15:20.269382+00:00",
+        "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
         "referenceScreenshot": "assets/brick-offroad-reference.jpeg",
+        "aiVisionScore": 0.78,
+        "layerScores": {
+          "silhouetteProportion": 0.81,
+          "componentStructure": 0.8,
+          "formDetail": 0.78,
+          "materialSurface": 0.77,
+          "lightingCamera": 0.76
+        },
+        "notes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+        "aiVisionNotes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
         "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-3.webp",
         "comparisonImage": "examples/brick-offroad-hero/evidence/variant-3-comparison.webp",
-        "cameraView": "reference-three-quarter",
-        "notes": "",
-        "aiVisionNotes": "The final same-camera pair is used as a conservative regression gate because Sculpt DNA mutates only reviewed material and repetition parameters; protected topology is unchanged."
+        "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+        "referenceBinding": "local-sha256",
+        "renderSha256": "cb878c56f3c0334793ac58063fcabbcc50506fe0f8b54cd3186d77c08e002d0e",
+        "renderBinding": "local-sha256",
+        "comparisonSha256": "051521e32ad3a84636078f95f3baf7bc55c63ac6ff6bcbd2944e2651e0a05297",
+        "comparisonBinding": "local-sha256"
       }
     }
   ],
@@ -4082,21 +4266,27 @@
     "previewMode": false,
     "passGateStatus": "evidence-backed-production",
     "visualAcceptance": {
-      "reviewed": true,
-      "cameraView": "reference-three-quarter",
-      "aiVisionScore": 0.79,
+      "reviewId": "brick-offroad-v003-fresh-review-2026-07-11T23:15:20.269382+00:00",
+      "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
+      "referenceScreenshot": "assets/brick-offroad-reference.jpeg",
+      "aiVisionScore": 0.78,
+      "layerScores": {
+        "silhouetteProportion": 0.81,
+        "componentStructure": 0.8,
+        "formDetail": 0.78,
+        "materialSurface": 0.77,
+        "lightingCamera": 0.76
+      },
+      "notes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
+      "aiVisionNotes": "The inspected v003 pair preserves the flagship silhouette with the cleanest sage treatment and reduced dirt. The source still carries finer brick connector detail.",
       "renderScreenshot": "examples/brick-offroad-hero/evidence/variant-3.webp",
       "comparisonImage": "examples/brick-offroad-hero/evidence/variant-3-comparison.webp",
-      "reviewedPasses": [
-        "blockout",
-        "structural-pass",
-        "form-refinement",
-        "material-pass",
-        "surface-pass",
-        "lighting-pass",
-        "interaction-pass",
-        "optimization-pass"
-      ]
+      "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
+      "referenceBinding": "local-sha256",
+      "renderSha256": "cb878c56f3c0334793ac58063fcabbcc50506fe0f8b54cd3186d77c08e002d0e",
+      "renderBinding": "local-sha256",
+      "comparisonSha256": "051521e32ad3a84636078f95f3baf7bc55c63ac6ff6bcbd2944e2651e0a05297",
+      "comparisonBinding": "local-sha256"
     }
   }
 }
