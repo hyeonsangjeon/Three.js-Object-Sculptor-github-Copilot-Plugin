@@ -19,7 +19,10 @@ from sculpt_dna_core import (
     make_default_sculpt_dna,
     validate_sculpt_dna_block,
 )
-from visual_evidence_hashes import visual_evidence_hash_failures
+from visual_evidence_hashes import (
+    latest_review_for_pass,
+    review_visual_evidence_failures,
+)
 
 REQUIRED_BASE_PASSES = [
     "blockout",
@@ -58,21 +61,11 @@ def validate_production_evidence(
     spec: dict[str, Any],
     spec_path: Path,
 ) -> None:
-    history = spec.get("reviewHistory", [])
     failures: list[str] = []
     for pass_id in REQUIRED_BASE_PASSES:
-        entry = next(
-            (
-                item
-                for item in history
-                if isinstance(item, dict)
-                and item.get("passId") == pass_id
-                and item.get("action") == "continue"
-            ),
-            None,
-        )
+        entry = latest_review_for_pass(spec, pass_id)
         visual = entry.get("visualEvidence") if isinstance(entry, dict) else None
-        for failure in visual_evidence_hash_failures(visual, spec_path):
+        for failure in review_visual_evidence_failures(spec, visual, spec_path):
             failures.append(f"{pass_id}.{failure}")
     if failures:
         raise ValueError(

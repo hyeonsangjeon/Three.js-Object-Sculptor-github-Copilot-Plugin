@@ -11,7 +11,10 @@ from pathlib import Path
 from typing import Any
 
 from visual_feature_gate import feature_gate_failures
-from visual_evidence_hashes import visual_evidence_hash_failures
+from visual_evidence_hashes import (
+    latest_review_for_pass,
+    review_visual_evidence_failures,
+)
 
 
 DEFAULT_PASS_ORDER = [
@@ -99,7 +102,7 @@ def review_completes_pass(
         threshold = entry.get("visualAcceptanceThreshold", 0.7)
         if not has_number(score) or not has_number(threshold) or float(score) < float(threshold):
             return False
-        if visual_evidence_hash_failures(visual, spec_path):
+        if review_visual_evidence_failures(spec, visual, spec_path):
             return False
         if feature_gate_failures(spec, entry, pass_id):
             return False
@@ -111,15 +114,11 @@ def completed_passes(
     ids: list[str],
     spec_path: Path | None = None,
 ) -> list[str]:
-    history = spec.get("reviewHistory", [])
-    if not isinstance(history, list):
-        return []
     completed: list[str] = []
     for pass_id in ids:
-        if any(
-            isinstance(entry, dict)
-            and review_completes_pass(spec, entry, pass_id, spec_path)
-            for entry in history
+        entry = latest_review_for_pass(spec, pass_id)
+        if isinstance(entry, dict) and review_completes_pass(
+            spec, entry, pass_id, spec_path
         ):
             completed.append(pass_id)
         else:

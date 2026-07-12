@@ -3,6 +3,7 @@ from __future__ import annotations
 from copy import deepcopy
 import json
 from hashlib import sha256
+import subprocess
 import sys
 import unittest
 from pathlib import Path
@@ -25,6 +26,16 @@ from sculpt_pass_orchestrator import (  # noqa: E402
 
 
 class BrickOffroadHeroTests(unittest.TestCase):
+    def run_factory_probe(self, source: str) -> dict:
+        result = subprocess.run(
+            ["node", "--input-type=module", "--eval", source],
+            cwd=HERO,
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+        return json.loads(result.stdout)
+
     def test_factory_is_vehicle_specific_code_native_and_action_ready(self) -> None:
         source = FACTORY.read_text(encoding="utf-8")
         for forbidden in ("GLTFLoader", "FBXLoader", "OBJLoader", ".glb", ".gltf"):
@@ -129,6 +140,14 @@ class BrickOffroadHeroTests(unittest.TestCase):
                 base_materials[material_id]["roughness"]["base"],
             )
         self.assertEqual(
+            base_config["lampEmissive"],
+            base_materials["lamp"]["emissive"]["color"],
+        )
+        self.assertEqual(
+            base_config["lampEmissiveIntensity"],
+            base_materials["lamp"]["emissive"]["intensity"],
+        )
+        self.assertEqual(
             base_config["wear"],
             base_materials["body-shell"]["wear"]["edgeWear"],
         )
@@ -161,6 +180,14 @@ class BrickOffroadHeroTests(unittest.TestCase):
                         runtime_variant[roughness_field],
                         materials[material_id]["roughness"]["base"],
                     )
+                self.assertEqual(
+                    runtime_variant["lampEmissive"],
+                    materials["lamp"]["emissive"]["color"],
+                )
+                self.assertEqual(
+                    runtime_variant["lampEmissiveIntensity"],
+                    materials["lamp"]["emissive"]["intensity"],
+                )
                 repetition = {
                     item["id"]: item["count"] for item in spec["repetitionSystems"]
                 }
@@ -181,6 +208,86 @@ class BrickOffroadHeroTests(unittest.TestCase):
                     runtime_variant["dust"],
                     materials["body-shell"]["dirt"]["color"],
                 )
+
+    def test_albedo_encoding_preserves_srgb_hex_intent(self) -> None:
+        probe = self.run_factory_probe(
+            """
+            import * as THREE from 'three';
+            import { encodeLinearRGBToSRGBBytes } from './brick-output/createBrickOffroad.js';
+            const color = new THREE.Color('#65704A');
+            console.log(JSON.stringify({
+              encoded: encodeLinearRGBToSRGBBytes(color),
+              linearBytes: [color.r, color.g, color.b].map((value) => Math.round(value * 255)),
+            }));
+            """
+        )
+        self.assertEqual(probe["encoded"], [101, 112, 74])
+        self.assertEqual(probe["linearBytes"], [33, 41, 17])
+
+    def test_configs_are_frozen_and_factory_results_are_isolated(self) -> None:
+        probe = self.run_factory_probe(
+            """
+            import {
+              BRICK_BASE_CONFIG,
+              BRICK_VARIANTS,
+              createBrickOffroad,
+            } from './brick-output/createBrickOffroad.js';
+            const first = createBrickOffroad({ variant: 'base', stage: 'blockout' });
+            const originalBody = first.variant.body;
+            first.variant.body = '#000000';
+            const second = createBrickOffroad({ variant: 'base', stage: 'blockout' });
+            console.log(JSON.stringify({
+              baseFrozen: Object.isFrozen(BRICK_BASE_CONFIG),
+              variantsFrozen: Object.isFrozen(BRICK_VARIANTS),
+              variantFrozen: Object.isFrozen(BRICK_VARIANTS[0]),
+              distinctSnapshots: first.variant !== second.variant,
+              firstMutated: first.variant.body === '#000000',
+              secondBody: second.variant.body,
+              canonicalBody: BRICK_BASE_CONFIG.body,
+              originalBody,
+            }));
+            first.dispose();
+            second.dispose();
+            """
+        )
+        self.assertTrue(probe["baseFrozen"])
+        self.assertTrue(probe["variantsFrozen"])
+        self.assertTrue(probe["variantFrozen"])
+        self.assertTrue(probe["distinctSnapshots"])
+        self.assertTrue(probe["firstMutated"])
+        self.assertEqual(probe["secondBody"], probe["originalBody"])
+        self.assertEqual(probe["canonicalBody"], probe["originalBody"])
+
+    def test_front_recovery_hardware_follows_bumper_articulation(self) -> None:
+        probe = self.run_factory_probe(
+            """
+            import * as THREE from 'three';
+            import { createBrickOffroad } from './brick-output/createBrickOffroad.js';
+            const result = createBrickOffroad({ variant: 'base', stage: 'full' });
+            const pivot = result.runtime.nodes['front-bumper-pivot'];
+            const ids = ['front-winch', 'winch-drum', 'recovery-hook--1', 'recovery-hook-1'];
+            result.root.updateMatrixWorld(true);
+            const before = Object.fromEntries(ids.map((id) => [
+              id,
+              result.runtime.meshes[id].getWorldPosition(new THREE.Vector3()).toArray(),
+            ]));
+            pivot.rotation.z = 0.35;
+            result.root.updateMatrixWorld(true);
+            const after = Object.fromEntries(ids.map((id) => [
+              id,
+              result.runtime.meshes[id].getWorldPosition(new THREE.Vector3()).toArray(),
+            ]));
+            console.log(JSON.stringify({
+              allParented: ids.every((id) => result.runtime.meshes[id].parent === pivot),
+              allMoved: ids.every((id) => before[id].some(
+                (value, index) => Math.abs(value - after[id][index]) > 1e-4,
+              )),
+            }));
+            result.dispose();
+            """
+        )
+        self.assertTrue(probe["allParented"])
+        self.assertTrue(probe["allMoved"])
 
     def test_spec_and_curated_variants_are_evidence_backed_production(self) -> None:
         base = json.loads(
@@ -335,6 +442,8 @@ class BrickOffroadHeroTests(unittest.TestCase):
         self.assertEqual(manifest["capture"]["rotationSeconds"], 4)
         self.assertEqual(manifest["capture"]["variant"], "brick-offroad-base")
         self.assertTrue(manifest["capture"]["deterministic"])
+        self.assertEqual(manifest["capture"]["portAllocation"], "ephemeral-os-assigned")
+        self.assertEqual(len(manifest["capture"]["sourceFingerprint"]), 64)
         self.assertEqual(manifest["capture"]["canonicalElapsed"], 1.25)
         self.assertEqual(
             manifest["baseConfiguration"]["id"], "brick-offroad-base"
@@ -349,6 +458,8 @@ class BrickOffroadHeroTests(unittest.TestCase):
         self.assertTrue(
             manifest["lifecycleCheck"]["rendererMemoryDidNotRebound"]
         )
+        self.assertTrue(manifest["recoveryArticulation"]["allParented"])
+        self.assertTrue(manifest["recoveryArticulation"]["allMoved"])
         self.assertTrue(
             manifest["lifecycleCheck"]["webglAllocationsDidNotRebound"]
         )
@@ -500,8 +611,9 @@ class BrickOffroadHeroTests(unittest.TestCase):
         self.assertLess((ROOT / "assets" / "brick-offroad-hero.png").stat().st_size, 1_500_000)
         self.assertLess((ROOT / "assets" / "brick-offroad-hero.gif").stat().st_size, 5_000_000)
         evidence = list((HERO / "evidence").glob("*.webp"))
-        self.assertEqual(len(evidence), 19)
+        self.assertEqual(len(evidence), 20)
         self.assertTrue((HERO / "evidence" / "door-articulation.webp").exists())
+        self.assertTrue((HERO / "evidence" / "showcase-comparison.webp").exists())
         self.assertLess(sum(path.stat().st_size for path in evidence), 3_000_000)
 
     def test_capture_is_portable_and_preflights_before_overwrite(self) -> None:
@@ -518,6 +630,9 @@ class BrickOffroadHeroTests(unittest.TestCase):
         self.assertIn('"-frames:v"', comparison)
         self.assertIn("capture=1", capture)
         self.assertIn("deterministicFrameSha256", capture)
+        self.assertIn("allocateEphemeralPort", capture)
+        self.assertIn("verifySourceFingerprint", capture)
+        self.assertNotIn("const baseUrl = 'http://127.0.0.1:4176'", capture)
         factory = FACTORY.read_text(encoding="utf-8")
         self.assertNotIn("height: createDataTexture", factory)
         self.assertNotIn("write(height", factory)
@@ -531,6 +646,15 @@ class BrickOffroadHeroTests(unittest.TestCase):
         ).read_text(encoding="utf-8")
         self.assertIn("examples/repolis-hero/dist/. pages/", workflow)
         self.assertIn("examples/brick-offroad-hero/dist/. pages/brick/", workflow)
+        self.assertIn("examples/showcase/dist/. pages/showcase/", workflow)
+        self.assertIn('- "examples/showcase/**"', workflow)
+        self.assertIn('- "scripts/**"', workflow)
+        self.assertIn('- "tests/**"', workflow)
+        self.assertIn("python3 scripts/verify_release.py", workflow)
+        self.assertIn("python3 -m unittest discover -s tests -q", workflow)
+        self.assertIn("npm run test:capture", workflow)
+        self.assertIn("diff -qr examples/brick-offroad-hero/dist pages/brick", workflow)
+        self.assertIn("diff -qr examples/showcase/dist pages/showcase", workflow)
         self.assertIn("path: pages", workflow)
 
     def test_readme_preserves_repolis_primary_and_adds_brick_flow(self) -> None:

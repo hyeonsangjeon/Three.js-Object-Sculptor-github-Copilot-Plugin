@@ -9,9 +9,11 @@ import {
   writeFile,
 } from 'node:fs/promises';
 import { spawn, spawnSync } from 'node:child_process';
+import { createServer } from 'node:net';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import puppeteer from 'puppeteer-core';
+import { brickSourceFingerprint } from '../vite.config.js';
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const heroDir = path.resolve(scriptDir, '..');
@@ -20,7 +22,7 @@ const assetsDir = path.join(repoRoot, 'assets');
 const evidenceDir = path.join(heroDir, 'evidence');
 const framesDir = path.join(heroDir, `.capture-frames-${process.pid}`);
 const captureLockPath = path.join(heroDir, '.capture.lock');
-const baseUrl = 'http://127.0.0.1:4176';
+const fingerprintPath = path.join(heroDir, '__brick-source-fingerprint.txt');
 const gifFrameCount = 24;
 const gifFps = 6;
 const canonicalElapsed = 1.25;
@@ -69,17 +71,68 @@ function run(command, args, options = {}) {
   }
 }
 
-async function waitForServer(url) {
-  for (let attempt = 0; attempt < 600; attempt += 1) {
-    try {
-      const response = await fetch(url);
-      if (response.ok) return;
-    } catch {
-      // Vite is still starting.
+export async function allocateEphemeralPort(host = '127.0.0.1') {
+  const reservation = createServer();
+  await new Promise((resolve, reject) => {
+    reservation.once('error', reject);
+    reservation.listen(0, host, resolve);
+  });
+  const address = reservation.address();
+  const port = typeof address === 'object' && address ? address.port : null;
+  await new Promise((resolve, reject) => reservation.close((error) => (
+    error ? reject(error) : resolve()
+  )));
+  if (!Number.isInteger(port)) throw new Error('Could not allocate an ephemeral capture port.');
+  return port;
+}
+
+export async function waitForServer(url, server, serverOutput = () => '') {
+  let settled = false;
+  let onExit;
+  const exited = new Promise((_, reject) => {
+    onExit = (code, signal) => {
+      reject(new Error(
+        `Vite exited before capture readiness (code=${code}, signal=${signal}): ${serverOutput()}`,
+      ));
+    };
+    server.once('exit', onExit);
+  });
+  const ready = (async () => {
+    for (let attempt = 0; attempt < 600 && !settled; attempt += 1) {
+      try {
+        const response = await fetch(url, { cache: 'no-store' });
+        if (response.ok) return;
+      } catch {
+        // Vite is still starting.
+      }
+      await new Promise((resolve) => setTimeout(resolve, 100));
     }
-    await new Promise((resolve) => setTimeout(resolve, 100));
+    if (settled) return;
+    throw new Error(`Timed out waiting for ${url}`);
+  })();
+  try {
+    await Promise.race([ready, exited]);
+  } finally {
+    settled = true;
+    server.removeListener('exit', onExit);
   }
-  throw new Error(`Timed out waiting for ${url}`);
+}
+
+export async function verifySourceFingerprint(baseUrl, expected) {
+  const response = await fetch(
+    `${baseUrl}/threejs-sculpt-dna/brick/__brick-source-fingerprint.txt`,
+    { cache: 'no-store' },
+  );
+  if (!response.ok) {
+    throw new Error(`Capture source fingerprint endpoint failed (${response.status}).`);
+  }
+  const actual = (await response.text()).trim();
+  if (actual !== expected) {
+    throw new Error(
+      `Capture source fingerprint mismatch: expected ${expected}, served ${actual || '<empty>'}.`,
+    );
+  }
+  return actual;
 }
 
 async function waitForHero(page) {
@@ -101,6 +154,35 @@ async function readRuntimeStats(page) {
 
 async function sha256(filePath) {
   return createHash('sha256').update(await readFile(filePath)).digest('hex');
+}
+
+async function invalidateStaleShowcaseReview(referencePath, renderPath, comparisonPath) {
+  const reviewPath = path.join(repoRoot, 'examples', 'showcase', 'showcase-review.json');
+  const review = JSON.parse(await readFile(reviewPath, 'utf8'));
+  const brick = review.families?.find((family) => family.id === 'brick-offroad');
+  if (!brick) throw new Error('showcase-review.json is missing the Brick family.');
+  const hashes = {
+    referenceSha256: await sha256(referencePath),
+    renderSha256: await sha256(renderPath),
+    comparisonSha256: await sha256(comparisonPath),
+  };
+  const stale = Object.entries(hashes).some(([field, value]) => brick[field] !== value);
+  Object.assign(brick, hashes, {
+    referenceBinding: 'local-sha256',
+    renderBinding: 'local-sha256',
+    comparisonBinding: 'local-sha256',
+    comparison: path.relative(repoRoot, comparisonPath),
+  });
+  if (stale) {
+    delete brick.scores;
+    delete brick.reviewId;
+    delete brick.reviewedAt;
+    brick.reviewStatus = 'stale';
+    brick.decision = 'pending-fresh-visual-review';
+    brick.passGateStatus = 'pending-fresh-showcase-review';
+    brick.staleReason = 'Capture pixels changed; inspect the new comparison before restoring scores.';
+  }
+  await writeFile(reviewPath, `${JSON.stringify(review, null, 2)}\n`, 'utf8');
 }
 
 function comparison(renderPath, outputPath) {
@@ -246,6 +328,11 @@ async function main() {
     await rm(framesDir, { recursive: true, force: true });
     await mkdir(framesDir, { recursive: true });
     await mkdir(evidenceDir, { recursive: true });
+    const port = await allocateEphemeralPort();
+    const baseUrl = `http://127.0.0.1:${port}`;
+    const expectedFingerprint = await brickSourceFingerprint();
+    await writeFile(fingerprintPath, `${expectedFingerprint}\n`, 'utf8');
+    let serverOutput = '';
     server = spawn(
       process.execPath,
       [
@@ -253,16 +340,22 @@ async function main() {
         '--host',
         '127.0.0.1',
         '--port',
-        '4176',
+        String(port),
         '--strictPort',
       ],
       {
         cwd: heroDir,
-        stdio: 'ignore',
+        stdio: ['ignore', 'pipe', 'pipe'],
         detached: false,
       },
     );
-    await waitForServer(baseUrl);
+    for (const stream of [server.stdout, server.stderr]) {
+      stream.on('data', (chunk) => {
+        serverOutput = `${serverOutput}${chunk}`.slice(-8000);
+      });
+    }
+    await waitForServer(baseUrl, server, () => serverOutput);
+    const servedFingerprint = await verifySourceFingerprint(baseUrl, expectedFingerprint);
     const gitProbe = await fetch(`${baseUrl}/.git/HEAD`);
     const gitProbeBody = await gitProbe.text();
     if (/^ref: refs\//m.test(gitProbeBody) || /^[0-9a-f]{40}$/m.test(gitProbeBody)) {
@@ -412,6 +505,39 @@ async function main() {
         return result;
       });
     });
+    const recoveryArticulation = await page.evaluate(() => {
+      const hero = window.__BRICK_HERO__;
+      const pivot = hero.runtime.nodes['front-bumper-pivot'];
+      const hardwareIds = [
+        'front-winch',
+        'winch-drum',
+        'recovery-hook--1',
+        'recovery-hook-1',
+      ];
+      const positions = () => Object.fromEntries(hardwareIds.map((id) => {
+        const elements = hero.runtime.meshes[id].matrixWorld.elements;
+        return [id, [elements[12], elements[13], elements[14]]];
+      }));
+      hero.root.updateMatrixWorld(true);
+      const before = positions();
+      pivot.rotation.z = 0.35;
+      hero.root.updateMatrixWorld(true);
+      const after = positions();
+      const moved = (id) => before[id].some(
+        (value, index) => Math.abs(value - after[id][index]) > 1e-4,
+      );
+      const result = {
+        pivotId: pivot.name,
+        hardwareIds,
+        allParented: hardwareIds.every((id) => hero.runtime.meshes[id].parent === pivot),
+        allMoved: hardwareIds.every(moved),
+        before,
+        after,
+      };
+      pivot.rotation.z = 0;
+      hero.root.updateMatrixWorld(true);
+      return result;
+    });
     await page.goto(
       `${baseUrl}/?stage=full&variant=base&motion=0&ui=0&capture=1&time=${canonicalElapsed}`,
       { waitUntil: 'networkidle0' },
@@ -534,10 +660,7 @@ async function main() {
         '[0:v]crop=720:675:240:0,scale=400:375,pad=400:675:0:150:color=0x11130f[a];'
           + '[1:v]crop=720:675:240:0,scale=400:375,pad=400:675:0:150:color=0x11130f[b];'
           + '[2:v]crop=720:675:240:0,scale=400:375,pad=400:675:0:150:color=0x11130f[c];'
-          + '[a][b][c]hstack=inputs=3[sheet];'
-          + '[sheet]split[s0][s1];'
-          + '[s0]palettegen=max_colors=192[p];'
-          + '[s1][p]paletteuse=dither=bayer:bayer_scale=3[out]',
+          + '[a][b][c]hstack=inputs=3[out]',
         '-map',
         '[out]',
         '-frames:v',
@@ -545,6 +668,18 @@ async function main() {
         path.join(assetsDir, 'brick-offroad-sculpt-dna-result.png'),
       ],
       { quiet: true },
+    );
+    const showcaseComparisonPng = path.join(framesDir, 'showcase-comparison.png');
+    comparison(
+      path.join(assetsDir, 'brick-offroad-sculpt-dna-result.png'),
+      showcaseComparisonPng,
+    );
+    const showcaseComparison = path.join(evidenceDir, 'showcase-comparison.webp');
+    toWebp(showcaseComparisonPng, showcaseComparison, 82);
+    await invalidateStaleShowcaseReview(
+      path.join(assetsDir, 'brick-offroad-reference.jpeg'),
+      path.join(assetsDir, 'brick-offroad-sculpt-dna-result.png'),
+      showcaseComparison,
     );
     await page.goto(
       `${baseUrl}/?stage=full&variant=base&motion=0&ui=0&capture=1&time=${canonicalElapsed}`,
@@ -629,6 +764,11 @@ async function main() {
     ) {
       throw new Error(`Door articulation contract failed: ${JSON.stringify(doorArticulation)}`);
     }
+    if (!recoveryArticulation.allParented || !recoveryArticulation.allMoved) {
+      throw new Error(
+        `Front recovery articulation contract failed: ${JSON.stringify(recoveryArticulation)}`,
+      );
+    }
 
     const sources = [
       'index.html',
@@ -648,11 +788,15 @@ async function main() {
       '../../scripts/sculpt_pass_orchestrator.py',
       '../../scripts/validate_sculpt_spec.py',
       '../../scripts/visual_evidence_hashes.py',
+      '../../scripts/migrate_review_policy.py',
+      '../../scripts/refresh_brick_reviews.py',
+      '../../scripts/verify_release.py',
       '../brick-offroad/object-sculpt-spec.json',
       '../showcase/variants/brick/brick-offroad-v001.json',
       '../showcase/variants/brick/brick-offroad-v002.json',
       '../showcase/variants/brick/brick-offroad-v003.json',
       '../showcase/variants/brick/sculpt-dna-manifest.json',
+      '../showcase/showcase-review.json',
       'reference/brick-offroad-reference.jpeg',
     ];
     const evidenceNames = [
@@ -667,6 +811,7 @@ async function main() {
       '../../assets/brick-offroad-hero.gif',
       '../../assets/brick-offroad-sculpt-dna-result.png',
       'evidence/door-articulation.webp',
+      'evidence/showcase-comparison.webp',
       ...evidenceNames.flatMap((name) => [
         `evidence/${name}.webp`,
         `evidence/${name}-comparison.webp`,
@@ -686,12 +831,15 @@ async function main() {
         deterministic: true,
         canonicalElapsed,
         deterministicFrameSha256: deterministicHashA,
+        portAllocation: 'ephemeral-os-assigned',
+        sourceFingerprint: servedFingerprint,
       },
       runtimeStats: stats,
       baseConfiguration,
       variantStats,
       serializationCheck: serializableRoot,
       doorArticulation,
+      recoveryArticulation,
       lifecycleCheck,
       referenceSha256: {
         source: await sha256(path.join(assetsDir, 'brick-offroad-reference.jpeg')),
@@ -731,14 +879,23 @@ async function main() {
         try {
           await rm(framesDir, { recursive: true, force: true });
         } finally {
-          await releaseCaptureLock(captureLock);
+          try {
+            await rm(fingerprintPath, { force: true });
+          } finally {
+            await releaseCaptureLock(captureLock);
+          }
         }
       }
     }
   }
 }
 
-main().catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
-});
+if (
+  process.argv[1]
+  && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)
+) {
+  main().catch((error) => {
+    console.error(error);
+    process.exitCode = 1;
+  });
+}

@@ -11,8 +11,19 @@ export const BRICK_STAGES = [
   'full',
 ];
 
-export const BRICK_BASE_CONFIG = variantConfig[0];
-export const BRICK_VARIANTS = variantConfig.slice(1);
+function deepFreeze(value) {
+  if (!value || typeof value !== 'object' || Object.isFrozen(value)) return value;
+  Object.values(value).forEach(deepFreeze);
+  return Object.freeze(value);
+}
+
+function snapshot(value) {
+  return structuredClone(value);
+}
+
+const canonicalConfigs = deepFreeze(snapshot(variantConfig));
+export const BRICK_BASE_CONFIG = canonicalConfigs[0];
+export const BRICK_VARIANTS = deepFreeze(canonicalConfigs.slice(1));
 
 const STAGE_LEVEL = Object.fromEntries(
   BRICK_STAGES.map((stage, index) => [stage, index]),
@@ -79,6 +90,21 @@ function createDataTexture(data, size, colorSpace = THREE.NoColorSpace) {
   return texture;
 }
 
+function linearChannelToSRGB(value) {
+  const linear = THREE.MathUtils.clamp(value, 0, 1);
+  return linear <= 0.0031308
+    ? linear * 12.92
+    : 1.055 * linear ** (1 / 2.4) - 0.055;
+}
+
+export function encodeLinearRGBToSRGBBytes(color) {
+  return [
+    linearChannelToSRGB(color.r) * 255,
+    linearChannelToSRGB(color.g) * 255,
+    linearChannelToSRGB(color.b) * 255,
+  ].map((channel) => Math.round(channel));
+}
+
 function createSurfaceTextures(seed, color, kind, wear, dirtAmount, size = 512) {
   const base = new THREE.Color(color);
   const wearStrength = THREE.MathUtils.clamp(wear, 0, 1);
@@ -126,13 +152,12 @@ function createSurfaceTextures(seed, color, kind, wear, dirtAmount, size = 512) 
       const colorLift = 0.84 + macro * 0.18 + meso * 0.035
         - dirt
         - scratch * wearStrength * 0.18;
-      write(
-        albedo,
-        offset,
-        base.r * 255 * colorLift,
-        base.g * 255 * colorLift,
-        base.b * 255 * colorLift,
-      );
+      const encodedAlbedo = encodeLinearRGBToSRGBBytes({
+        r: base.r * colorLift,
+        g: base.g * colorLift,
+        b: base.b * colorLift,
+      });
+      write(albedo, offset, ...encodedAlbedo);
       const rough = THREE.MathUtils.clamp(
         (kind === 'rubber' ? 0.73 : kind === 'metal' ? 0.36 : 0.52)
           + (roughField - 0.5) * 0.24
@@ -284,8 +309,8 @@ function createMaterials(seed, variant, detailed) {
       roughness: variant.lampRoughness,
       transparent: true,
       opacity: 0.92,
-      emissive: new THREE.Color('#ff9b42'),
-      emissiveIntensity: 2.0,
+      emissive: new THREE.Color(variant.lampEmissive),
+      emissiveIntensity: variant.lampEmissiveIntensity,
     }),
     redLamp: create('rear-lamp', '#9e2d22', {
       roughness: 0.26,
@@ -313,7 +338,7 @@ function resolveVariant(value) {
 export function createBrickOffroad(options = {}) {
   const started = performance.now();
   const seed = options.seed ?? 20260712;
-  const variant = resolveVariant(options.variant ?? 0);
+  const variant = snapshot(resolveVariant(options.variant ?? 0));
   const stage = BRICK_STAGES.includes(options.stage) ? options.stage : 'full';
   const stageLevel = STAGE_LEVEL[stage];
   const detailedMaterials = stageLevel >= STAGE_LEVEL['material-pass'];
@@ -561,6 +586,7 @@ export function createBrickOffroad(options = {}) {
     }
   }
 
+  let frontAssembly;
   if (stageLevel >= STAGE_LEVEL['structural-pass']) {
     cylinder('front-axle', 0.09, 2.72, materials.metal, chassis, [-2.22, 0.85, 0], [Math.PI / 2, 0, 0]);
     cylinder('rear-axle', 0.1, 2.72, materials.metal, chassis, [2.12, 0.85, 0], [Math.PI / 2, 0, 0]);
@@ -587,7 +613,7 @@ export function createBrickOffroad(options = {}) {
       );
     }
 
-    const frontAssembly = group('front-bumper-pivot', chassis);
+    frontAssembly = group('front-bumper-pivot', chassis);
     frontAssembly.position.set(-3.1, 1.0, 0);
     roundedBox('front-bumper', [0.32, 0.42, 2.62], materials.trim, frontAssembly, [0, 0, 0], 0.08);
     roundedBox('front-skid', [0.7, 0.36, 1.92], materials.brightMetal, frontAssembly, [-0.04, -0.3, 0], 0.06).rotation.z = -0.2;
@@ -886,16 +912,16 @@ export function createBrickOffroad(options = {}) {
     socket('roof-cargo-socket', rack, [1.0, 3.93, 0]);
     socket('roof-rear-socket', rack, [2.62, 3.55, 0]);
 
-    roundedBox('front-winch', [0.32, 0.32, 0.72], materials.accent, chassis, [-3.24, 1.14, 0], 0.08);
-    cylinder('winch-drum', 0.13, 0.84, materials.brightMetal, chassis, [-3.4, 1.14, 0], [Math.PI / 2, 0, 0], 20);
+    roundedBox('front-winch', [0.32, 0.32, 0.72], materials.accent, frontAssembly, [-0.14, 0.14, 0], 0.08);
+    cylinder('winch-drum', 0.13, 0.84, materials.brightMetal, frontAssembly, [-0.3, 0.14, 0], [Math.PI / 2, 0, 0], 20);
     for (const side of [-1, 1]) {
       const hook = new THREE.Mesh(
         new THREE.TorusGeometry(0.14, 0.04, 8, 16, Math.PI * 1.4),
         materials.accent,
       );
-      hook.position.set(-3.4, 0.82, side * 0.62);
+      hook.position.set(-0.3, -0.18, side * 0.62);
       hook.rotation.x = Math.PI / 2;
-      registerMesh(`recovery-hook-${side}`, hook, chassis, 'recovery-hardware');
+      registerMesh(`recovery-hook-${side}`, hook, frontAssembly, 'recovery-hardware');
       roundedBox(`rear-lamp-${side}`, [0.13, 0.3, 0.25], materials.redLamp, utility, [3.08, 2.3, side * 0.9], 0.04);
     }
     box('hood-left-seam', [2.0, 0.025, 0.025], materials.dust, hoodPivot, [-1.4, 0.31, 0.84]);
@@ -946,6 +972,8 @@ export function createBrickOffroad(options = {}) {
       glassRoughness: variant.glassRoughness,
       lamp: variant.lamp,
       lampRoughness: variant.lampRoughness,
+      lampEmissive: variant.lampEmissive,
+      lampEmissiveIntensity: variant.lampEmissiveIntensity,
       dust: variant.dust,
       wear: variant.wear,
       dirtAmount: variant.dirtAmount,
@@ -972,7 +1000,6 @@ export function createBrickOffroad(options = {}) {
   });
   const generationMs = performance.now() - started;
   const baseWheelY = runtime.suspensionAnchors.map((anchor) => anchor.position.y);
-  const lampMaterials = [materials.lamp, materials.redLamp];
   let disposed = false;
 
   return {
@@ -1010,10 +1037,9 @@ export function createBrickOffroad(options = {}) {
       runtime.steeringPivots.forEach((pivot, index) => {
         pivot.rotation.y = Math.sin(elapsedSeconds * 0.42 + index * 0.18) * 0.035;
       });
-      const pulse = 1.75 + Math.sin(elapsedSeconds * 1.8) * 0.18;
-      lampMaterials.forEach((material, index) => {
-        material.emissiveIntensity = pulse * (index === 0 ? 1 : 0.55);
-      });
+      const pulse = Math.sin(elapsedSeconds * 1.8);
+      materials.lamp.emissiveIntensity = variant.lampEmissiveIntensity + pulse * 0.18;
+      materials.redLamp.emissiveIntensity = 1.1 + pulse * 0.1;
     },
     dispose() {
       if (disposed) return;

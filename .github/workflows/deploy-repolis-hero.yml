@@ -6,6 +6,9 @@ on:
     paths:
       - "examples/repolis-hero/**"
       - "examples/brick-offroad-hero/**"
+      - "examples/showcase/**"
+      - "scripts/**"
+      - "tests/**"
       - ".github/workflows/deploy-repolis-hero.yml"
   workflow_dispatch:
 
@@ -30,6 +33,7 @@ jobs:
           cache-dependency-path: |
             examples/repolis-hero/package-lock.json
             examples/brick-offroad-hero/package-lock.json
+            examples/showcase/package-lock.json
       - name: Install Repolis dependencies
         working-directory: examples/repolis-hero
         run: npm ci
@@ -39,14 +43,31 @@ jobs:
       - name: Install Brick dependencies
         working-directory: examples/brick-offroad-hero
         run: npm ci
+      - name: Install showcase dependencies
+        working-directory: examples/showcase
+        run: npm ci
+      - name: Run release tests and evidence gate
+        run: |
+          python3 -m unittest discover -s tests -q
+          python3 scripts/verify_release.py
       - name: Build Brick route
         working-directory: examples/brick-offroad-hero
         run: npm run build
+      - name: Test Brick capture isolation
+        working-directory: examples/brick-offroad-hero
+        run: npm run test:capture
+      - name: Build showcase
+        working-directory: examples/showcase
+        run: npm run build
       - name: Assemble Pages artifact
         run: |
-          mkdir -p pages/brick
+          mkdir -p pages/brick pages/showcase
           cp -R examples/repolis-hero/dist/. pages/
           cp -R examples/brick-offroad-hero/dist/. pages/brick/
+          cp -R examples/showcase/dist/. pages/showcase/
+          diff -qr examples/repolis-hero/dist pages --exclude brick --exclude showcase
+          diff -qr examples/brick-offroad-hero/dist pages/brick
+          diff -qr examples/showcase/dist pages/showcase
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

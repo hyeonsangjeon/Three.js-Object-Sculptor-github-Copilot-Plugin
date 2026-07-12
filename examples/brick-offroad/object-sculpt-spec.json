@@ -2,6 +2,11 @@
   "targetName": "Brick Off-Road Explorer",
   "targetId": "brick-offroad",
   "schemaVersion": "2.0",
+  "reviewPolicy": {
+    "version": 2,
+    "authoritativeReview": "latest-per-pass",
+    "evidenceBinding": "local-sha256-required"
+  },
   "terminologyProfile": {
     "domain": "real-time procedural Three.js asset",
     "geometryTerms": [
@@ -3179,7 +3184,7 @@
   ],
   "visualEvidence": [
     {
-      "timestamp": "2026-07-11T23:15:20.269382+00:00",
+      "timestamp": "2026-07-12T02:00:26Z",
       "passId": "blockout",
       "estimatedFidelity": 0.76,
       "aiVisionScore": 0.76,
@@ -3211,17 +3216,17 @@
       "cameraView": "reference-three-quarter",
       "notes": "Recognizable four-wheel utility silhouette and stance; the intentionally coarse blockout omits the photographed grille, glazing, and roof systems.",
       "aiVisionNotes": "Recognizable four-wheel utility silhouette and stance; the intentionally coarse blockout omits the photographed grille, glazing, and roof systems.",
-      "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
+      "reviewedAt": "2026-07-12T02:00:26Z",
       "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
       "referenceBinding": "local-sha256",
       "renderSha256": "a0b0d5df7741cb5d7947a1f3a6988395795992275abd027b7748b14a1b40697f",
       "renderBinding": "local-sha256",
       "comparisonSha256": "50a8cbda4d80bd11f8265f2617ee0b22a84fbcce1a955e8958290e959518370c",
       "comparisonBinding": "local-sha256",
-      "reviewId": "blockout-review-2026-07-11T23:15:20.269382+00:00"
+      "reviewId": "blockout-review-2026-07-12T02:00:26Z"
     },
     {
-      "timestamp": "2026-07-11T23:15:20.269382+00:00",
+      "timestamp": "2026-07-12T02:00:26Z",
       "passId": "structural-pass",
       "estimatedFidelity": 0.77,
       "aiVisionScore": 0.77,
@@ -3259,17 +3264,17 @@
       "cameraView": "reference-three-quarter",
       "notes": "Wheel arches, doors, bumpers, and cabin/utility masses align convincingly; reference-specific roof tubing and front structure remain deferred.",
       "aiVisionNotes": "Wheel arches, doors, bumpers, and cabin/utility masses align convincingly; reference-specific roof tubing and front structure remain deferred.",
-      "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
+      "reviewedAt": "2026-07-12T02:00:26Z",
       "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
       "referenceBinding": "local-sha256",
       "renderSha256": "43cda59283ce9be8cad1ea8ff0bab066c54f80b0e7a18cd4d434cf178c5e6032",
       "renderBinding": "local-sha256",
       "comparisonSha256": "5e174120fd7be7d8b2d9959c583a6989e7639466261d55248a011b0b1f12bd32",
       "comparisonBinding": "local-sha256",
-      "reviewId": "structural-pass-review-2026-07-11T23:15:20.269382+00:00"
+      "reviewId": "structural-pass-review-2026-07-12T02:00:26Z"
     },
     {
-      "timestamp": "2026-07-11T23:15:20.269382+00:00",
+      "timestamp": "2026-07-12T02:00:26Z",
       "passId": "form-refinement",
       "estimatedFidelity": 0.79,
       "aiVisionScore": 0.79,
@@ -3313,17 +3318,17 @@
       "cameraView": "reference-three-quarter",
       "notes": "Glazing, pillars, wheel hubs, mirrors, and light roof strengthen the reference match while the procedural body remains cleaner than the brick-built source.",
       "aiVisionNotes": "Glazing, pillars, wheel hubs, mirrors, and light roof strengthen the reference match while the procedural body remains cleaner than the brick-built source.",
-      "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
+      "reviewedAt": "2026-07-12T02:00:26Z",
       "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
       "referenceBinding": "local-sha256",
-      "renderSha256": "426cf8da49f36b7000af5ab32c2c60c3333d1535c63add09590b77003b3ec1b4",
+      "renderSha256": "86be62ce02d5a82d234f34acd49283d15b3cc34e6a85506c142c711f461f4386",
       "renderBinding": "local-sha256",
-      "comparisonSha256": "e006eba06e4feb355c2722f555717d8304b0636ba0352bb3817b8ea8d0b48e1a",
+      "comparisonSha256": "6112f9f618fa3640a0db4fe2f31204d9adef7beb523fa5a7f821a6bc21dbc7c6",
       "comparisonBinding": "local-sha256",
-      "reviewId": "form-refinement-review-2026-07-11T23:15:20.269382+00:00"
+      "reviewId": "form-refinement-review-2026-07-12T02:00:26Z"
     },
     {
-      "timestamp": "2026-07-11T23:15:20.269382+00:00",
+      "timestamp": "2026-07-12T02:00:26Z",
       "passId": "material-pass",
       "estimatedFidelity": 0.78,
       "aiVisionScore": 0.78,
@@ -3349,17 +3354,17 @@
       "cameraView": "reference-three-quarter",
       "notes": "Olive, light roof, black trim, glass, and rubber separate clearly; the dark studio lighting is less diffuse than the source photograph.",
       "aiVisionNotes": "Olive, light roof, black trim, glass, and rubber separate clearly; the dark studio lighting is less diffuse than the source photograph.",
-      "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
+      "reviewedAt": "2026-07-12T02:00:26Z",
       "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
       "referenceBinding": "local-sha256",
-      "renderSha256": "84a31a9a0cf26c126ed1c5790933061c8d121d19e354523dfb6f8128501fd211",
+      "renderSha256": "26be6a1c55767b49ab94715726ff83a361dd0a13506fd00da418a93dc4241f08",
       "renderBinding": "local-sha256",
-      "comparisonSha256": "c131f2aa90597d5d519962d2cb2e0f4abbd8c3f79a1d5388f2ce17fa4a4e3301",
+      "comparisonSha256": "be9b6964030b02610e6cdf73bfc542e9a48f00b44e85084914fc32a006eb070e",
       "comparisonBinding": "local-sha256",
-      "reviewId": "material-pass-review-2026-07-11T23:15:20.269382+00:00"
+      "reviewId": "material-pass-review-2026-07-12T02:00:26Z"
     },
     {
-      "timestamp": "2026-07-11T23:15:20.269382+00:00",
+      "timestamp": "2026-07-12T02:00:26Z",
       "passId": "surface-pass",
       "estimatedFidelity": 0.79,
       "aiVisionScore": 0.79,
@@ -3403,17 +3408,17 @@
       "cameraView": "reference-three-quarter",
       "notes": "Studs, rack cargo, lamps, fasteners, recovery hardware, and tire cadence provide the expected tactile read; exact LEGO connector density is intentionally simplified.",
       "aiVisionNotes": "Studs, rack cargo, lamps, fasteners, recovery hardware, and tire cadence provide the expected tactile read; exact LEGO connector density is intentionally simplified.",
-      "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
+      "reviewedAt": "2026-07-12T02:00:26Z",
       "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
       "referenceBinding": "local-sha256",
-      "renderSha256": "0416b179264bea379f9b523963488368f1799da40c24a841cbffc7945f4f783e",
+      "renderSha256": "b915c02a83f1ea46f30cd14e9272745ea5be93a6a45c47de8e8e7005ccc9704d",
       "renderBinding": "local-sha256",
-      "comparisonSha256": "469b9e41c577888003352293ed81d7e7671a06063f22d5c011bbd7667ede3b01",
+      "comparisonSha256": "00bf968cedfb49ca330a5e3f9b58d059456419eb749681387f0b4ac1ed511baa",
       "comparisonBinding": "local-sha256",
-      "reviewId": "surface-pass-review-2026-07-11T23:15:20.269382+00:00"
+      "reviewId": "surface-pass-review-2026-07-12T02:00:26Z"
     },
     {
-      "timestamp": "2026-07-11T23:15:20.269382+00:00",
+      "timestamp": "2026-07-12T02:00:26Z",
       "passId": "lighting-pass",
       "estimatedFidelity": 0.78,
       "aiVisionScore": 0.78,
@@ -3439,17 +3444,17 @@
       "cameraView": "reference-three-quarter",
       "notes": "The final studio view preserves readable silhouette and material response, though shadows are deeper and the camera is lower than the reference.",
       "aiVisionNotes": "The final studio view preserves readable silhouette and material response, though shadows are deeper and the camera is lower than the reference.",
-      "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
+      "reviewedAt": "2026-07-12T02:00:26Z",
       "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
       "referenceBinding": "local-sha256",
-      "renderSha256": "0416b179264bea379f9b523963488368f1799da40c24a841cbffc7945f4f783e",
+      "renderSha256": "b915c02a83f1ea46f30cd14e9272745ea5be93a6a45c47de8e8e7005ccc9704d",
       "renderBinding": "local-sha256",
-      "comparisonSha256": "469b9e41c577888003352293ed81d7e7671a06063f22d5c011bbd7667ede3b01",
+      "comparisonSha256": "00bf968cedfb49ca330a5e3f9b58d059456419eb749681387f0b4ac1ed511baa",
       "comparisonBinding": "local-sha256",
-      "reviewId": "lighting-pass-review-2026-07-11T23:15:20.269382+00:00"
+      "reviewId": "lighting-pass-review-2026-07-12T02:00:26Z"
     },
     {
-      "timestamp": "2026-07-11T23:15:20.269382+00:00",
+      "timestamp": "2026-07-12T02:00:26Z",
       "passId": "interaction-pass",
       "estimatedFidelity": 0.79,
       "aiVisionScore": 0.79,
@@ -3475,17 +3480,17 @@
       "cameraView": "reference-three-quarter",
       "notes": "Fresh opened-door evidence confirms four articulated door assemblies, including door-owned fasteners, while fixed chassis fasteners remain stationary.",
       "aiVisionNotes": "Fresh opened-door evidence confirms four articulated door assemblies, including door-owned fasteners, while fixed chassis fasteners remain stationary.",
-      "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
+      "reviewedAt": "2026-07-12T02:00:26Z",
       "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
       "referenceBinding": "local-sha256",
-      "renderSha256": "0416b179264bea379f9b523963488368f1799da40c24a841cbffc7945f4f783e",
+      "renderSha256": "b915c02a83f1ea46f30cd14e9272745ea5be93a6a45c47de8e8e7005ccc9704d",
       "renderBinding": "local-sha256",
-      "comparisonSha256": "469b9e41c577888003352293ed81d7e7671a06063f22d5c011bbd7667ede3b01",
+      "comparisonSha256": "00bf968cedfb49ca330a5e3f9b58d059456419eb749681387f0b4ac1ed511baa",
       "comparisonBinding": "local-sha256",
-      "reviewId": "interaction-pass-review-2026-07-11T23:15:20.269382+00:00"
+      "reviewId": "interaction-pass-review-2026-07-12T02:00:26Z"
     },
     {
-      "timestamp": "2026-07-11T23:15:20.269382+00:00",
+      "timestamp": "2026-07-12T02:00:26Z",
       "passId": "optimization-pass",
       "estimatedFidelity": 0.8,
       "aiVisionScore": 0.8,
@@ -3504,19 +3509,19 @@
       "cameraView": "reference-three-quarter",
       "notes": "The inspected final asset retains four-wheel topology and detail within the declared triangle and draw-call budgets.",
       "aiVisionNotes": "The inspected final asset retains four-wheel topology and detail within the declared triangle and draw-call budgets.",
-      "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
+      "reviewedAt": "2026-07-12T02:00:26Z",
       "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
       "referenceBinding": "local-sha256",
-      "renderSha256": "0416b179264bea379f9b523963488368f1799da40c24a841cbffc7945f4f783e",
+      "renderSha256": "b915c02a83f1ea46f30cd14e9272745ea5be93a6a45c47de8e8e7005ccc9704d",
       "renderBinding": "local-sha256",
-      "comparisonSha256": "469b9e41c577888003352293ed81d7e7671a06063f22d5c011bbd7667ede3b01",
+      "comparisonSha256": "00bf968cedfb49ca330a5e3f9b58d059456419eb749681387f0b4ac1ed511baa",
       "comparisonBinding": "local-sha256",
-      "reviewId": "optimization-pass-review-2026-07-11T23:15:20.269382+00:00"
+      "reviewId": "optimization-pass-review-2026-07-12T02:00:26Z"
     }
   ],
   "reviewHistory": [
     {
-      "timestamp": "2026-07-11T23:15:20.269382+00:00",
+      "timestamp": "2026-07-12T02:00:26Z",
       "passId": "blockout",
       "estimatedFidelity": 0.76,
       "aiVisionScore": 0.76,
@@ -3565,18 +3570,18 @@
         "cameraView": "reference-three-quarter",
         "notes": "Recognizable four-wheel utility silhouette and stance; the intentionally coarse blockout omits the photographed grille, glazing, and roof systems.",
         "aiVisionNotes": "Recognizable four-wheel utility silhouette and stance; the intentionally coarse blockout omits the photographed grille, glazing, and roof systems.",
-        "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
+        "reviewedAt": "2026-07-12T02:00:26Z",
         "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
         "referenceBinding": "local-sha256",
         "renderSha256": "a0b0d5df7741cb5d7947a1f3a6988395795992275abd027b7748b14a1b40697f",
         "renderBinding": "local-sha256",
         "comparisonSha256": "50a8cbda4d80bd11f8265f2617ee0b22a84fbcce1a955e8958290e959518370c",
         "comparisonBinding": "local-sha256",
-        "reviewId": "blockout-review-2026-07-11T23:15:20.269382+00:00"
+        "reviewId": "blockout-review-2026-07-12T02:00:26Z"
       }
     },
     {
-      "timestamp": "2026-07-11T23:15:20.269382+00:00",
+      "timestamp": "2026-07-12T02:00:26Z",
       "passId": "structural-pass",
       "estimatedFidelity": 0.77,
       "aiVisionScore": 0.77,
@@ -3632,18 +3637,18 @@
         "cameraView": "reference-three-quarter",
         "notes": "Wheel arches, doors, bumpers, and cabin/utility masses align convincingly; reference-specific roof tubing and front structure remain deferred.",
         "aiVisionNotes": "Wheel arches, doors, bumpers, and cabin/utility masses align convincingly; reference-specific roof tubing and front structure remain deferred.",
-        "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
+        "reviewedAt": "2026-07-12T02:00:26Z",
         "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
         "referenceBinding": "local-sha256",
         "renderSha256": "43cda59283ce9be8cad1ea8ff0bab066c54f80b0e7a18cd4d434cf178c5e6032",
         "renderBinding": "local-sha256",
         "comparisonSha256": "5e174120fd7be7d8b2d9959c583a6989e7639466261d55248a011b0b1f12bd32",
         "comparisonBinding": "local-sha256",
-        "reviewId": "structural-pass-review-2026-07-11T23:15:20.269382+00:00"
+        "reviewId": "structural-pass-review-2026-07-12T02:00:26Z"
       }
     },
     {
-      "timestamp": "2026-07-11T23:15:20.269382+00:00",
+      "timestamp": "2026-07-12T02:00:26Z",
       "passId": "form-refinement",
       "estimatedFidelity": 0.79,
       "aiVisionScore": 0.79,
@@ -3706,18 +3711,18 @@
         "cameraView": "reference-three-quarter",
         "notes": "Glazing, pillars, wheel hubs, mirrors, and light roof strengthen the reference match while the procedural body remains cleaner than the brick-built source.",
         "aiVisionNotes": "Glazing, pillars, wheel hubs, mirrors, and light roof strengthen the reference match while the procedural body remains cleaner than the brick-built source.",
-        "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
+        "reviewedAt": "2026-07-12T02:00:26Z",
         "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
         "referenceBinding": "local-sha256",
-        "renderSha256": "426cf8da49f36b7000af5ab32c2c60c3333d1535c63add09590b77003b3ec1b4",
+        "renderSha256": "86be62ce02d5a82d234f34acd49283d15b3cc34e6a85506c142c711f461f4386",
         "renderBinding": "local-sha256",
-        "comparisonSha256": "e006eba06e4feb355c2722f555717d8304b0636ba0352bb3817b8ea8d0b48e1a",
+        "comparisonSha256": "6112f9f618fa3640a0db4fe2f31204d9adef7beb523fa5a7f821a6bc21dbc7c6",
         "comparisonBinding": "local-sha256",
-        "reviewId": "form-refinement-review-2026-07-11T23:15:20.269382+00:00"
+        "reviewId": "form-refinement-review-2026-07-12T02:00:26Z"
       }
     },
     {
-      "timestamp": "2026-07-11T23:15:20.269382+00:00",
+      "timestamp": "2026-07-12T02:00:26Z",
       "passId": "material-pass",
       "estimatedFidelity": 0.78,
       "aiVisionScore": 0.78,
@@ -3761,18 +3766,18 @@
         "cameraView": "reference-three-quarter",
         "notes": "Olive, light roof, black trim, glass, and rubber separate clearly; the dark studio lighting is less diffuse than the source photograph.",
         "aiVisionNotes": "Olive, light roof, black trim, glass, and rubber separate clearly; the dark studio lighting is less diffuse than the source photograph.",
-        "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
+        "reviewedAt": "2026-07-12T02:00:26Z",
         "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
         "referenceBinding": "local-sha256",
-        "renderSha256": "84a31a9a0cf26c126ed1c5790933061c8d121d19e354523dfb6f8128501fd211",
+        "renderSha256": "26be6a1c55767b49ab94715726ff83a361dd0a13506fd00da418a93dc4241f08",
         "renderBinding": "local-sha256",
-        "comparisonSha256": "c131f2aa90597d5d519962d2cb2e0f4abbd8c3f79a1d5388f2ce17fa4a4e3301",
+        "comparisonSha256": "be9b6964030b02610e6cdf73bfc542e9a48f00b44e85084914fc32a006eb070e",
         "comparisonBinding": "local-sha256",
-        "reviewId": "material-pass-review-2026-07-11T23:15:20.269382+00:00"
+        "reviewId": "material-pass-review-2026-07-12T02:00:26Z"
       }
     },
     {
-      "timestamp": "2026-07-11T23:15:20.269382+00:00",
+      "timestamp": "2026-07-12T02:00:26Z",
       "passId": "surface-pass",
       "estimatedFidelity": 0.79,
       "aiVisionScore": 0.79,
@@ -3833,18 +3838,18 @@
         "cameraView": "reference-three-quarter",
         "notes": "Studs, rack cargo, lamps, fasteners, recovery hardware, and tire cadence provide the expected tactile read; exact LEGO connector density is intentionally simplified.",
         "aiVisionNotes": "Studs, rack cargo, lamps, fasteners, recovery hardware, and tire cadence provide the expected tactile read; exact LEGO connector density is intentionally simplified.",
-        "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
+        "reviewedAt": "2026-07-12T02:00:26Z",
         "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
         "referenceBinding": "local-sha256",
-        "renderSha256": "0416b179264bea379f9b523963488368f1799da40c24a841cbffc7945f4f783e",
+        "renderSha256": "b915c02a83f1ea46f30cd14e9272745ea5be93a6a45c47de8e8e7005ccc9704d",
         "renderBinding": "local-sha256",
-        "comparisonSha256": "469b9e41c577888003352293ed81d7e7671a06063f22d5c011bbd7667ede3b01",
+        "comparisonSha256": "00bf968cedfb49ca330a5e3f9b58d059456419eb749681387f0b4ac1ed511baa",
         "comparisonBinding": "local-sha256",
-        "reviewId": "surface-pass-review-2026-07-11T23:15:20.269382+00:00"
+        "reviewId": "surface-pass-review-2026-07-12T02:00:26Z"
       }
     },
     {
-      "timestamp": "2026-07-11T23:15:20.269382+00:00",
+      "timestamp": "2026-07-12T02:00:26Z",
       "passId": "lighting-pass",
       "estimatedFidelity": 0.78,
       "aiVisionScore": 0.78,
@@ -3885,18 +3890,18 @@
         "cameraView": "reference-three-quarter",
         "notes": "The final studio view preserves readable silhouette and material response, though shadows are deeper and the camera is lower than the reference.",
         "aiVisionNotes": "The final studio view preserves readable silhouette and material response, though shadows are deeper and the camera is lower than the reference.",
-        "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
+        "reviewedAt": "2026-07-12T02:00:26Z",
         "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
         "referenceBinding": "local-sha256",
-        "renderSha256": "0416b179264bea379f9b523963488368f1799da40c24a841cbffc7945f4f783e",
+        "renderSha256": "b915c02a83f1ea46f30cd14e9272745ea5be93a6a45c47de8e8e7005ccc9704d",
         "renderBinding": "local-sha256",
-        "comparisonSha256": "469b9e41c577888003352293ed81d7e7671a06063f22d5c011bbd7667ede3b01",
+        "comparisonSha256": "00bf968cedfb49ca330a5e3f9b58d059456419eb749681387f0b4ac1ed511baa",
         "comparisonBinding": "local-sha256",
-        "reviewId": "lighting-pass-review-2026-07-11T23:15:20.269382+00:00"
+        "reviewId": "lighting-pass-review-2026-07-12T02:00:26Z"
       }
     },
     {
-      "timestamp": "2026-07-11T23:15:20.269382+00:00",
+      "timestamp": "2026-07-12T02:00:26Z",
       "passId": "interaction-pass",
       "estimatedFidelity": 0.79,
       "aiVisionScore": 0.79,
@@ -3940,18 +3945,18 @@
         "cameraView": "reference-three-quarter",
         "notes": "Fresh opened-door evidence confirms four articulated door assemblies, including door-owned fasteners, while fixed chassis fasteners remain stationary.",
         "aiVisionNotes": "Fresh opened-door evidence confirms four articulated door assemblies, including door-owned fasteners, while fixed chassis fasteners remain stationary.",
-        "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
+        "reviewedAt": "2026-07-12T02:00:26Z",
         "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
         "referenceBinding": "local-sha256",
-        "renderSha256": "0416b179264bea379f9b523963488368f1799da40c24a841cbffc7945f4f783e",
+        "renderSha256": "b915c02a83f1ea46f30cd14e9272745ea5be93a6a45c47de8e8e7005ccc9704d",
         "renderBinding": "local-sha256",
-        "comparisonSha256": "469b9e41c577888003352293ed81d7e7671a06063f22d5c011bbd7667ede3b01",
+        "comparisonSha256": "00bf968cedfb49ca330a5e3f9b58d059456419eb749681387f0b4ac1ed511baa",
         "comparisonBinding": "local-sha256",
-        "reviewId": "interaction-pass-review-2026-07-11T23:15:20.269382+00:00"
+        "reviewId": "interaction-pass-review-2026-07-12T02:00:26Z"
       }
     },
     {
-      "timestamp": "2026-07-11T23:15:20.269382+00:00",
+      "timestamp": "2026-07-12T02:00:26Z",
       "passId": "optimization-pass",
       "estimatedFidelity": 0.8,
       "aiVisionScore": 0.8,
@@ -3990,14 +3995,14 @@
         "cameraView": "reference-three-quarter",
         "notes": "The inspected final asset retains four-wheel topology and detail within the declared triangle and draw-call budgets.",
         "aiVisionNotes": "The inspected final asset retains four-wheel topology and detail within the declared triangle and draw-call budgets.",
-        "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
+        "reviewedAt": "2026-07-12T02:00:26Z",
         "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
         "referenceBinding": "local-sha256",
-        "renderSha256": "0416b179264bea379f9b523963488368f1799da40c24a841cbffc7945f4f783e",
+        "renderSha256": "b915c02a83f1ea46f30cd14e9272745ea5be93a6a45c47de8e8e7005ccc9704d",
         "renderBinding": "local-sha256",
-        "comparisonSha256": "469b9e41c577888003352293ed81d7e7671a06063f22d5c011bbd7667ede3b01",
+        "comparisonSha256": "00bf968cedfb49ca330a5e3f9b58d059456419eb749681387f0b4ac1ed511baa",
         "comparisonBinding": "local-sha256",
-        "reviewId": "optimization-pass-review-2026-07-11T23:15:20.269382+00:00"
+        "reviewId": "optimization-pass-review-2026-07-12T02:00:26Z"
       }
     }
   ],

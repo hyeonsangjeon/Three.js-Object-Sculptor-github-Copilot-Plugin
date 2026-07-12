@@ -14,7 +14,8 @@ from visual_feature_gate import feature_gate_failures
 from visual_evidence_hashes import (
     bind_visual_evidence_hashes,
     is_remote_or_virtual_path,
-    visual_evidence_hash_failures,
+    latest_review_for_pass,
+    review_visual_evidence_failures,
 )
 
 
@@ -168,7 +169,7 @@ def review_completes_pass(
             return False
         if not (isinstance(visual, dict) and visual.get("comparisonImage")):
             return False
-        if visual_evidence_hash_failures(visual, spec_path):
+        if review_visual_evidence_failures(spec, visual, spec_path):
             return False
         if feature_gate_failures(spec, entry, pass_id):
             return False
@@ -177,18 +178,15 @@ def review_completes_pass(
 
 def sync_pipeline(spec: dict, spec_path: Path | None = None) -> None:
     ids = pass_order(spec)
-    history = spec.get("reviewHistory", [])
     completed: list[str] = []
-    if isinstance(history, list):
-        for pass_id in ids:
-            if any(
-                isinstance(entry, dict)
-                and review_completes_pass(spec, entry, pass_id, spec_path)
-                for entry in history
-            ):
-                completed.append(pass_id)
-            else:
-                break
+    for pass_id in ids:
+        entry = latest_review_for_pass(spec, pass_id)
+        if isinstance(entry, dict) and review_completes_pass(
+            spec, entry, pass_id, spec_path
+        ):
+            completed.append(pass_id)
+        else:
+            break
     current = "complete" if len(completed) >= len(ids) else ids[len(completed)]
     required = next_required_evidence(spec, current)
     pipeline = spec.setdefault("sculptPipeline", {})

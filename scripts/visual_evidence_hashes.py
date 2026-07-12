@@ -16,6 +16,58 @@ EVIDENCE_FIELDS = {
     "comparisonImage": "comparisonSha256",
 }
 REQUIRED_LOCAL_FIELDS = ("renderScreenshot", "comparisonImage")
+REVIEW_POLICY_VERSION = 2
+SHA_REQUIRED_BINDING = "local-sha256-required"
+LATEST_REVIEW_SELECTION = "latest-per-pass"
+LEGACY_REVIEW_POLICY = {
+    "version": 1,
+    "authoritativeReview": LATEST_REVIEW_SELECTION,
+    "evidenceBinding": "legacy-path-check",
+}
+
+
+def review_policy(spec: dict[str, Any]) -> dict[str, Any]:
+    policy = spec.get("reviewPolicy")
+    return policy if isinstance(policy, dict) else LEGACY_REVIEW_POLICY
+
+
+def review_hashes_required(spec: dict[str, Any]) -> bool:
+    policy = review_policy(spec)
+    return (
+        policy.get("version") == REVIEW_POLICY_VERSION
+        and policy.get("evidenceBinding") == SHA_REQUIRED_BINDING
+    )
+
+
+def latest_review_for_pass(
+    spec: dict[str, Any],
+    pass_id: str,
+) -> dict[str, Any] | None:
+    history = spec.get("reviewHistory", [])
+    if not isinstance(history, list):
+        return None
+    return next(
+        (
+            entry
+            for entry in reversed(history)
+            if isinstance(entry, dict) and entry.get("passId") == pass_id
+        ),
+        None,
+    )
+
+
+def authoritative_reviews(spec: dict[str, Any]) -> dict[str, tuple[int, dict[str, Any]]]:
+    history = spec.get("reviewHistory", [])
+    if not isinstance(history, list):
+        return {}
+    latest: dict[str, tuple[int, dict[str, Any]]] = {}
+    for index, entry in enumerate(history):
+        if not isinstance(entry, dict):
+            continue
+        pass_id = entry.get("passId")
+        if isinstance(pass_id, str) and pass_id:
+            latest[pass_id] = (index, entry)
+    return latest
 
 
 def is_remote_or_virtual_path(value: str) -> bool:
@@ -90,11 +142,15 @@ def visual_evidence_hash_failures(
     spec_path: Path | None = None,
     *,
     require_local: bool = True,
+    require_hashes: bool = True,
+    require_identity: bool | None = None,
 ) -> list[str]:
     if not isinstance(visual, dict):
         return ["visualEvidence must be an object"]
     failures: list[str] = []
-    if require_local:
+    if require_identity is None:
+        require_identity = require_hashes and require_local
+    if require_identity:
         for field in ("reviewId", "reviewedAt"):
             value = visual.get(field)
             if not isinstance(value, str) or not value.strip():
@@ -118,6 +174,8 @@ def visual_evidence_hash_failures(
             failures.append(f"{path_field} local file is missing: {value}")
             continue
         expected = visual.get(hash_field)
+        if expected is None and not require_hashes:
+            continue
         if not isinstance(expected, str) or len(expected) != 64:
             failures.append(f"{hash_field} is required for local {path_field}")
             continue
@@ -128,3 +186,20 @@ def visual_evidence_hash_failures(
                 f"expected {expected.lower()}, actual {actual}"
             )
     return failures
+
+
+def review_visual_evidence_failures(
+    spec: dict[str, Any],
+    visual: Any,
+    spec_path: Path | None = None,
+    *,
+    require_local: bool = True,
+) -> list[str]:
+    require_hashes = review_hashes_required(spec)
+    return visual_evidence_hash_failures(
+        visual,
+        spec_path,
+        require_local=require_local,
+        require_hashes=require_hashes,
+        require_identity=require_hashes and require_local,
+    )

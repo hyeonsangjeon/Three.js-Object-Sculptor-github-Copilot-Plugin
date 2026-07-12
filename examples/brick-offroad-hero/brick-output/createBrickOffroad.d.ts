@@ -25,6 +25,8 @@ export type BrickVariant = {
   glassRoughness: number;
   lamp: string;
   lampRoughness: number;
+  lampEmissive: string;
+  lampEmissiveIntensity: number;
   dust: string;
   wear: number;
   dirtAmount: number;
@@ -92,6 +94,9 @@ export type BrickOffroadResult = {
 };
 
 export const BRICK_STAGES: BrickStage[];
-export const BRICK_BASE_CONFIG: BrickVariant;
-export const BRICK_VARIANTS: BrickVariant[];
+export const BRICK_BASE_CONFIG: Readonly<BrickVariant>;
+export const BRICK_VARIANTS: ReadonlyArray<Readonly<BrickVariant>>;
+export function encodeLinearRGBToSRGBBytes(
+  color: Pick<THREE.Color, 'r' | 'g' | 'b'>,
+): [number, number, number];
 export function createBrickOffroad(options?: BrickOffroadOptions): BrickOffroadResult;

@@ -14,10 +14,12 @@
     "localGitMetadataExposed": false,
     "deterministic": true,
     "canonicalElapsed": 1.25,
-    "deterministicFrameSha256": "99a6b96a8846e70abf576579d8d9c0eab04d790a75eb9d415587485d09313c54"
+    "deterministicFrameSha256": "05db81749b298a71b5ea6f6e559c0c64cfc3920eebb9042ab21f0ded96c2c8e9",
+    "portAllocation": "ephemeral-os-assigned",
+    "sourceFingerprint": "01b4560bcf329e778e100b3ab92cd74bf70e60af10a57792c702dbff55d4b8c3"
   },
   "runtimeStats": {
-    "generationMs": 632,
+    "generationMs": 1052.7000000178814,
     "meshes": 126,
     "triangles": 64148,
     "sceneDrawables": 126,
@@ -53,6 +55,8 @@
     "glassRoughness": 0.2,
     "lamp": "#FFB347",
     "lampRoughness": 0.3,
+    "lampEmissive": "#FFD782",
+    "lampEmissiveIntensity": 1.8,
     "dust": "#1A1A18",
     "wear": 0.08,
     "dirtAmount": 0.08,
@@ -78,6 +82,8 @@
         "glassRoughness": 0.2649,
         "lamp": "#FFB347",
         "lampRoughness": 0.2974,
+        "lampEmissive": "#FFD782",
+        "lampEmissiveIntensity": 1.8,
         "dust": "#1A1A18",
         "wear": 0.29,
         "dirtAmount": 0.22,
@@ -90,7 +96,7 @@
         }
       },
       "stats": {
-        "generationMs": 730.0999999940395,
+        "generationMs": 1034.300000011921,
         "meshes": 126,
         "triangles": 63564,
         "sceneDrawables": 126,
@@ -127,6 +133,8 @@
         "glassRoughness": 0.1293,
         "lamp": "#FFF3C4",
         "lampRoughness": 0.1994,
+        "lampEmissive": "#FFD782",
+        "lampEmissiveIntensity": 1.8,
         "dust": "#1A1A18",
         "wear": 0.21,
         "dirtAmount": 0.15,
@@ -139,7 +147,7 @@
         }
       },
       "stats": {
-        "generationMs": 704.5,
+        "generationMs": 1010,
         "meshes": 126,
         "triangles": 68324,
         "sceneDrawables": 126,
@@ -176,6 +184,8 @@
         "glassRoughness": 0.2269,
         "lamp": "#FFB347",
         "lampRoughness": 0.2423,
+        "lampEmissive": "#FFD782",
+        "lampEmissiveIntensity": 1.8,
         "dust": "#1A1A18",
         "wear": 0.27,
         "dirtAmount": 0.2,
@@ -188,7 +198,7 @@
         }
       },
       "stats": {
-        "generationMs": 717.7999999821186,
+        "generationMs": 1050,
         "meshes": 126,
         "triangles": 66980,
         "sceneDrawables": 126,
@@ -435,6 +445,8 @@
           "glassRoughness": 0.2,
           "lamp": "#FFB347",
           "lampRoughness": 0.3,
+          "lampEmissive": "#FFD782",
+          "lampEmissiveIntensity": 1.8,
           "dust": "#1A1A18",
           "wear": 0.08,
           "dirtAmount": 0.08,
@@ -619,6 +631,61 @@
       ]
     }
   ],
+  "recoveryArticulation": {
+    "pivotId": "front-bumper-pivot",
+    "hardwareIds": [
+      "front-winch",
+      "winch-drum",
+      "recovery-hook--1",
+      "recovery-hook-1"
+    ],
+    "allParented": true,
+    "allMoved": true,
+    "before": {
+      "front-winch": [
+        -3.2374083455815685,
+        1.1400000000000001,
+        -0.1295654427646947
+      ],
+      "winch-drum": [
+        -3.397280362647325,
+        1.1400000000000001,
+        -0.13596373623455615
+      ],
+      "recovery-hook--1": [
+        -3.372486975451612,
+        0.8200000000000001,
+        -0.7554678023643625
+      ],
+      "recovery-hook-1": [
+        -3.422073749843038,
+        0.8200000000000001,
+        0.4835403298952502
+      ]
+    },
+    "after": {
+      "front-winch": [
+        -3.276894608340706,
+        1.0835064867548698,
+        -0.1311457361881342
+      ],
+      "winch-drum": [
+        -3.427074018720148,
+        1.0286428375619976,
+        -0.13715611848251164
+      ],
+      "recovery-hook--1": [
+        -3.2926411032737777,
+        0.7280435694508365,
+        -0.752272263007774
+      ],
+      "recovery-hook-1": [
+        -3.3422278776652043,
+        0.7280435694508365,
+        0.48673586925183876
+      ]
+    }
+  },
   "lifecycleCheck": {
     "counts": {
       "geometries": 122,
@@ -670,49 +737,54 @@
     "index.html": "c86fecea7bd2d9d9deb0173d4b5c1ac2b9706d86118ad27be6808fc1b6a32a11",
     "main.js": "a50b225f202f794c7a57509333965a716b6280f174c97dbd1b84b51c03604724",
     "style.css": "89a5c428b8ced325d1b8ca5b928fe85fbfed0f9576e71b5670b615df55b12b51",
-    "package.json": "83f4101ff2e99fd7aa121ec5641f277f828980c3507def68ceaa82e7b9e25310",
+    "package.json": "0af01640413136e602cd9c223b0ebe69e041572384e8b726ac2d4dadeb3b2f41",
     "package-lock.json": "e045d74a051632d5036ceddece0cb707e14ba0431deb29216c0512aeb10c1980",
-    "vite.config.js": "c0b41abe92801d9299863d33a57871a02898dfe390ba5de11e17d96c86c77990",
-    "scripts/capture.mjs": "5286f723ddbcbdacf0e53b108bb9b952b53f4cc263386a5057865f06eb2fc285",
-    "brick-output/createBrickOffroad.js": "ac43f933f85135ff762d34620c9d70ca1046c598a0c3a2431bb3b60fd781b042",
-    "brick-output/createBrickOffroad.d.ts": "4d106c37749d27ae12b19ec82c257d5d9240d89797bbfaf2eb15a8f4022575c9",
-    "brick-output/brick-variant-config.json": "b46d148e2f511063627e10e04e6e665fe61d4aca37c3b7d3ec124c5857152464",
+    "vite.config.js": "a71333093cca0f55d91530cfd89d51df4aae9c816b252f377b72a7953d011340",
+    "scripts/capture.mjs": "783ce61af77fd85ec4be71b125f3ecd65b4cfa483467b81657ce0d841bac5e2e",
+    "brick-output/createBrickOffroad.js": "a30e75ee10fbdc23baedd77cfdb593eecd7de52081122e6974b40e56d590a3b6",
+    "brick-output/createBrickOffroad.d.ts": "40ddc97f23f544ed1d735f4f0784554301b68ca31f5fe143b1293beded0df039",
+    "brick-output/brick-variant-config.json": "b851b1ea0b8981aeea81f699994a9e551461f3e8f89f672e5cb1e3f3178ea4a9",
     "brick-output/brick-offroad-profile.json": "aa7bcc9c8c552ef53aa56565b12a25750e388c5596542ccf67fa7bd1d4c8fa5c",
-    "../../scripts/append_sculpt_review.py": "62076f70b6dd443fa5c798457056ca3fc954f624a6c4405739446a48e5b5557c",
+    "../../scripts/append_sculpt_review.py": "898ea7decffe8ab6acb9053137b657b03c0ec58a3d16321a7007b6edeb4cb140",
     "../../scripts/make_visual_comparison_sheet.py": "85fb27acca3ef9d8c0f1a13c6a0267ce61bb46e3f8bca7257404084237f43858",
-    "../../scripts/sculpt_dna.py": "598ca6f5825f9cda32457aa44a151b5164f846407d660d5b62ef2056e1c64a27",
-    "../../scripts/sculpt_pass_orchestrator.py": "840cd1489e56b362bac84c01d4e1abcf149f5c9dc978dd5fc1c1c76e5ee09d3b",
-    "../../scripts/validate_sculpt_spec.py": "fad3eb249e68a79a7a1b4aa0ec3205bbcb2d1d438e9c5bdd40cbd2488530e387",
-    "../../scripts/visual_evidence_hashes.py": "19a28d202d77fd100d862bb45ebb0de916035a74c0920d9418d01d7fd0ab6bc9",
-    "../brick-offroad/object-sculpt-spec.json": "779aadb082be7d4ed5aef0085a53b0d886c86efa23c881e86358478fdea68c6a",
-    "../showcase/variants/brick/brick-offroad-v001.json": "9b638fb5bb6c73f70ffa5604c8c3b8b4da36fa4130055d264ee4d3410d9b2ca8",
-    "../showcase/variants/brick/brick-offroad-v002.json": "0da904e03223c11b7172c6106ebc68f292726e401e9dbed4e3dda6dc30c95053",
-    "../showcase/variants/brick/brick-offroad-v003.json": "a5fa986f66ef445d10c0d0e6cb6fa76aeffc970be9971cdb7c081f6d4c6a056a",
-    "../showcase/variants/brick/sculpt-dna-manifest.json": "cda345e1ec490d7fc0fd5499ff50e39aab485ae6e9e816d032f39d988f6adfe6",
+    "../../scripts/sculpt_dna.py": "d8afd9b8f50033498027b31c757dc7b30b856c51f191dfeada4f68e0cd6cb7be",
+    "../../scripts/sculpt_pass_orchestrator.py": "853de5a04cdbc92115b29abd8aed20f79138d9d6150820293e6c450d59136325",
+    "../../scripts/validate_sculpt_spec.py": "14dc45811b95ed6623cff1ad5d77f73545297788af74ef89ee82048a15611ff9",
+    "../../scripts/visual_evidence_hashes.py": "6fcfbc8400d6c316579bdabfb0253ac2aa016a32a4588f751568653e243bd571",
+    "../../scripts/migrate_review_policy.py": "96a0b67a353b6133660d457141f6f04eab532e1eaa80dd2b62d416d64fc09546",
+    "../../scripts/refresh_brick_reviews.py": "cab356d9dc707c97fb367c0c2a81c8bb2ac355f12a3b556deb92d5376d886dde",
+    "../../scripts/verify_release.py": "59b1e64be906ce5bbaf6f9e5ed22893889cb93e608da12f37697fb77d5136f29",
+    "../brick-offroad/object-sculpt-spec.json": "a42660533bff26330a63b25f9476f703cec1d8672e45aeb7fa4df08b77465251",
+    "../showcase/variants/brick/brick-offroad-v001.json": "2ddbee5c0c92ed0fdb658fd8bb7c035077515af4fb390e7ea87f91a67cd91e6a",
+    "../showcase/variants/brick/brick-offroad-v002.json": "03e1c9a7c116bb8f54646cc79d9637c065bb0f6d4c977cfda1b76038a7db46c6",
+    "../showcase/variants/brick/brick-offroad-v003.json": "b766023fa03343cb94645a0475356f0ec430ed744f7d8c6b7a106dcda5248235",
+    "../showcase/variants/brick/sculpt-dna-manifest.json": "921c73492e25f430520ed458a612781c665e5548f1e945f7c5023143ae4cbeef",
+    "../showcase/showcase-review.json": "f5357a58c7cc94cd414507ae2a21259e5838611d6e80e2db0aed2e3186b36411",
     "reference/brick-offroad-reference.jpeg": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82"
   },
   "outputSha256": {
-    "../../assets/brick-offroad-hero.png": "f43e8881d0795d3b3bff242eb68a0a0ef7b21c4a30f431d670025d6b155e89d1",
-    "../../assets/brick-offroad-hero.gif": "47303100ed3893e77064fffcf88e881e0f0bd2551c845ebb7986e7b811e9824f",
-    "../../assets/brick-offroad-sculpt-dna-result.png": "0f2b14dd9b1dc5012ec691bd80266146bdfc443b18a94d63ea070be897fb946d",
-    "evidence/door-articulation.webp": "93b79ee2ebb8a41c33a209df77d2603b365e42c9ca175f527b795605e776651a",
+    "../../assets/brick-offroad-hero.png": "bb0f782e2e0541e24972b763878fa9cf736a0fad987b5eab569866a99ee02db8",
+    "../../assets/brick-offroad-hero.gif": "7ce23d3af137e91b876070a614147316fc7aa8ac73ef05bad928768ef035aa1f",
+    "../../assets/brick-offroad-sculpt-dna-result.png": "122a33c8e7dc7a10c1d832e0c46977e78ffbaed7c62b2a9b057b15c00d616bd2",
+    "evidence/door-articulation.webp": "70dc03c1a77b21ca06d04167c07286f56aaceb8a07902edbfe3742f4231551ac",
+    "evidence/showcase-comparison.webp": "ed7b7d15be8ea1d006a65d89079ca0b90db0f6d73045be28565836fd2a4a19af",
     "evidence/blockout.webp": "a0b0d5df7741cb5d7947a1f3a6988395795992275abd027b7748b14a1b40697f",
     "evidence/blockout-comparison.webp": "50a8cbda4d80bd11f8265f2617ee0b22a84fbcce1a955e8958290e959518370c",
     "evidence/structural-pass.webp": "43cda59283ce9be8cad1ea8ff0bab066c54f80b0e7a18cd4d434cf178c5e6032",
     "evidence/structural-pass-comparison.webp": "5e174120fd7be7d8b2d9959c583a6989e7639466261d55248a011b0b1f12bd32",
-    "evidence/form-refinement.webp": "426cf8da49f36b7000af5ab32c2c60c3333d1535c63add09590b77003b3ec1b4",
-    "evidence/form-refinement-comparison.webp": "e006eba06e4feb355c2722f555717d8304b0636ba0352bb3817b8ea8d0b48e1a",
-    "evidence/material-pass.webp": "84a31a9a0cf26c126ed1c5790933061c8d121d19e354523dfb6f8128501fd211",
-    "evidence/material-pass-comparison.webp": "c131f2aa90597d5d519962d2cb2e0f4abbd8c3f79a1d5388f2ce17fa4a4e3301",
-    "evidence/surface-pass.webp": "0416b179264bea379f9b523963488368f1799da40c24a841cbffc7945f4f783e",
-    "evidence/surface-pass-comparison.webp": "469b9e41c577888003352293ed81d7e7671a06063f22d5c011bbd7667ede3b01",
-    "evidence/final.webp": "0416b179264bea379f9b523963488368f1799da40c24a841cbffc7945f4f783e",
-    "evidence/final-comparison.webp": "469b9e41c577888003352293ed81d7e7671a06063f22d5c011bbd7667ede3b01",
-    "evidence/variant-1.webp": "50ab545a44e82b4b672487288c30e0415dbcd2b9fab4711ea484866bd6a3d9a2",
-    "evidence/variant-1-comparison.webp": "86356d76743826ea1d6751b5b8734d3386350e267f947e7a9ff0ef664cd8ef0f",
-    "evidence/variant-2.webp": "da05029aac0fb71dc729afcfbba560736bd4581d0d82deba1e29d6cf28d1da68",
-    "evidence/variant-2-comparison.webp": "8fcfb7fa559e8fb59b26ad253d48bff479df1f61f89f4c1d265afc78c2fcea8c",
-    "evidence/variant-3.webp": "cb878c56f3c0334793ac58063fcabbcc50506fe0f8b54cd3186d77c08e002d0e",
-    "evidence/variant-3-comparison.webp": "051521e32ad3a84636078f95f3baf7bc55c63ac6ff6bcbd2944e2651e0a05297"
+    "evidence/form-refinement.webp": "86be62ce02d5a82d234f34acd49283d15b3cc34e6a85506c142c711f461f4386",
+    "evidence/form-refinement-comparison.webp": "6112f9f618fa3640a0db4fe2f31204d9adef7beb523fa5a7f821a6bc21dbc7c6",
+    "evidence/material-pass.webp": "26be6a1c55767b49ab94715726ff83a361dd0a13506fd00da418a93dc4241f08",
+    "evidence/material-pass-comparison.webp": "be9b6964030b02610e6cdf73bfc542e9a48f00b44e85084914fc32a006eb070e",
+    "evidence/surface-pass.webp": "b915c02a83f1ea46f30cd14e9272745ea5be93a6a45c47de8e8e7005ccc9704d",
+    "evidence/surface-pass-comparison.webp": "00bf968cedfb49ca330a5e3f9b58d059456419eb749681387f0b4ac1ed511baa",
+    "evidence/final.webp": "b915c02a83f1ea46f30cd14e9272745ea5be93a6a45c47de8e8e7005ccc9704d",
+    "evidence/final-comparison.webp": "00bf968cedfb49ca330a5e3f9b58d059456419eb749681387f0b4ac1ed511baa",
+    "evidence/variant-1.webp": "279126891ec53c48ddbd86c3a3bea51613847565018c5bd10569014329d75457",
+    "evidence/variant-1-comparison.webp": "8dfe63baee383bca9b927474389fcfc70b2ac9fd837510f58705f6d5c69e758e",
+    "evidence/variant-2.webp": "a8d84547c14dd5d3f7e05cc2f42588f25073f417cdd52e8c25d054beac785e65",
+    "evidence/variant-2-comparison.webp": "824225aae178c9278df3e26cb6e809907802336209b56d990ae1b14f18c41de2",
+    "evidence/variant-3.webp": "3dc79fb282c678313ab088aadf2db73b6dc146a903a4774d85571dd4a3d4031c",
+    "evidence/variant-3-comparison.webp": "7c5173bcc83fbf7563774dd74f51390734f98616288b0de91bc0ac8f4ada5507"
   }
 }

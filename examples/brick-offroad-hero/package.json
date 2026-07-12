@@ -6,7 +6,8 @@
     "dev": "vite --host 127.0.0.1 --port 4176",
     "build": "vite build",
     "preview": "vite preview --host 127.0.0.1 --port 4176",
-    "capture": "node scripts/capture.mjs"
+    "capture": "node scripts/capture.mjs",
+    "test:capture": "node --test scripts/capture-isolation.test.mjs"
   },
   "dependencies": {
     "three": "0.180.0"

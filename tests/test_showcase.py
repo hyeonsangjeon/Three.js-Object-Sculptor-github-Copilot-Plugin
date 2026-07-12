@@ -83,6 +83,10 @@ class ShowcaseTests(unittest.TestCase):
         review_path = ROOT / "examples" / "showcase" / "showcase-review.json"
         review = json.loads(review_path.read_text(encoding="utf-8"))
         self.assertEqual(
+            review["reviewPolicy"]["staleCaptureBehavior"],
+            "invalidate-scores",
+        )
+        self.assertEqual(
             {item["id"] for item in review["families"]},
             {"repolis-tree", "brick-offroad", "seoul-challenge"},
         )
@@ -95,6 +99,20 @@ class ShowcaseTests(unittest.TestCase):
                 else "pending-per-variant-visual-review"
             )
             self.assertEqual(family["passGateStatus"], expected_status)
+            if family["id"] == "brick-offroad":
+                self.assertEqual(family["reviewStatus"], "accepted")
+                self.assertTrue(family["reviewId"])
+                self.assertTrue(family["reviewedAt"])
+                for path_field, hash_field in (
+                    ("reference", "referenceSha256"),
+                    ("render", "renderSha256"),
+                    ("comparison", "comparisonSha256"),
+                ):
+                    evidence_path = ROOT / family[path_field]
+                    self.assertEqual(
+                        family[hash_field],
+                        sha256(evidence_path.read_bytes()).hexdigest(),
+                    )
             manifest_dir = {
                 "repolis-tree": "tree",
                 "brick-offroad": "brick",

@@ -2,6 +2,11 @@
   "targetName": "Brick Off-Road Explorer",
   "targetId": "brick-offroad-v002",
   "schemaVersion": "2.0",
+  "reviewPolicy": {
+    "version": 2,
+    "authoritativeReview": "latest-per-pass",
+    "evidenceBinding": "local-sha256-required"
+  },
   "terminologyProfile": {
     "domain": "real-time procedural Three.js asset",
     "geometryTerms": [
@@ -3179,7 +3184,7 @@
   ],
   "visualEvidence": [
     {
-      "timestamp": "2026-07-11T23:15:20.269382+00:00",
+      "timestamp": "2026-07-12T02:00:26Z",
       "passId": "blockout",
       "estimatedFidelity": 0.77,
       "aiVisionScore": 0.77,
@@ -3211,17 +3216,17 @@
       "cameraView": "reference-three-quarter",
       "notes": "The inspected v002 pair keeps the four-wheel silhouette and distinct amber recovery hardware, blue-green glazing, and moderate wear. Lighting remains darker than the reference.",
       "aiVisionNotes": "The inspected v002 pair keeps the four-wheel silhouette and distinct amber recovery hardware, blue-green glazing, and moderate wear. Lighting remains darker than the reference.",
-      "renderSha256": "da05029aac0fb71dc729afcfbba560736bd4581d0d82deba1e29d6cf28d1da68",
-      "comparisonSha256": "8fcfb7fa559e8fb59b26ad253d48bff479df1f61f89f4c1d265afc78c2fcea8c",
-      "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
-      "reviewId": "brick-offroad-v002-fresh-review-2026-07-11T23:15:20.269382+00:00",
+      "renderSha256": "a8d84547c14dd5d3f7e05cc2f42588f25073f417cdd52e8c25d054beac785e65",
+      "comparisonSha256": "824225aae178c9278df3e26cb6e809907802336209b56d990ae1b14f18c41de2",
+      "reviewedAt": "2026-07-12T02:00:26Z",
+      "reviewId": "brick-offroad-v002-fresh-review-2026-07-12T02:00:26Z",
       "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
       "referenceBinding": "local-sha256",
       "renderBinding": "local-sha256",
       "comparisonBinding": "local-sha256"
     },
     {
-      "timestamp": "2026-07-11T23:15:20.269382+00:00",
+      "timestamp": "2026-07-12T02:00:26Z",
       "passId": "structural-pass",
       "estimatedFidelity": 0.77,
       "aiVisionScore": 0.77,
@@ -3259,17 +3264,17 @@
       "cameraView": "reference-three-quarter",
       "notes": "The inspected v002 pair keeps the four-wheel silhouette and distinct amber recovery hardware, blue-green glazing, and moderate wear. Lighting remains darker than the reference.",
       "aiVisionNotes": "The inspected v002 pair keeps the four-wheel silhouette and distinct amber recovery hardware, blue-green glazing, and moderate wear. Lighting remains darker than the reference.",
-      "renderSha256": "da05029aac0fb71dc729afcfbba560736bd4581d0d82deba1e29d6cf28d1da68",
-      "comparisonSha256": "8fcfb7fa559e8fb59b26ad253d48bff479df1f61f89f4c1d265afc78c2fcea8c",
-      "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
-      "reviewId": "brick-offroad-v002-fresh-review-2026-07-11T23:15:20.269382+00:00",
+      "renderSha256": "a8d84547c14dd5d3f7e05cc2f42588f25073f417cdd52e8c25d054beac785e65",
+      "comparisonSha256": "824225aae178c9278df3e26cb6e809907802336209b56d990ae1b14f18c41de2",
+      "reviewedAt": "2026-07-12T02:00:26Z",
+      "reviewId": "brick-offroad-v002-fresh-review-2026-07-12T02:00:26Z",
       "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
       "referenceBinding": "local-sha256",
       "renderBinding": "local-sha256",
       "comparisonBinding": "local-sha256"
     },
     {
-      "timestamp": "2026-07-11T23:15:20.269382+00:00",
+      "timestamp": "2026-07-12T02:00:26Z",
       "passId": "form-refinement",
       "estimatedFidelity": 0.77,
       "aiVisionScore": 0.77,
@@ -3307,17 +3312,17 @@
       "cameraView": "reference-three-quarter",
       "notes": "The inspected v002 pair keeps the four-wheel silhouette and distinct amber recovery hardware, blue-green glazing, and moderate wear. Lighting remains darker than the reference.",
       "aiVisionNotes": "The inspected v002 pair keeps the four-wheel silhouette and distinct amber recovery hardware, blue-green glazing, and moderate wear. Lighting remains darker than the reference.",
-      "renderSha256": "da05029aac0fb71dc729afcfbba560736bd4581d0d82deba1e29d6cf28d1da68",
-      "comparisonSha256": "8fcfb7fa559e8fb59b26ad253d48bff479df1f61f89f4c1d265afc78c2fcea8c",
-      "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
-      "reviewId": "brick-offroad-v002-fresh-review-2026-07-11T23:15:20.269382+00:00",
+      "renderSha256": "a8d84547c14dd5d3f7e05cc2f42588f25073f417cdd52e8c25d054beac785e65",
+      "comparisonSha256": "824225aae178c9278df3e26cb6e809907802336209b56d990ae1b14f18c41de2",
+      "reviewedAt": "2026-07-12T02:00:26Z",
+      "reviewId": "brick-offroad-v002-fresh-review-2026-07-12T02:00:26Z",
       "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
       "referenceBinding": "local-sha256",
       "renderBinding": "local-sha256",
       "comparisonBinding": "local-sha256"
     },
     {
-      "timestamp": "2026-07-11T23:15:20.269382+00:00",
+      "timestamp": "2026-07-12T02:00:26Z",
       "passId": "material-pass",
       "estimatedFidelity": 0.77,
       "aiVisionScore": 0.77,
@@ -3343,17 +3348,17 @@
       "cameraView": "reference-three-quarter",
       "notes": "The inspected v002 pair keeps the four-wheel silhouette and distinct amber recovery hardware, blue-green glazing, and moderate wear. Lighting remains darker than the reference.",
       "aiVisionNotes": "The inspected v002 pair keeps the four-wheel silhouette and distinct amber recovery hardware, blue-green glazing, and moderate wear. Lighting remains darker than the reference.",
-      "renderSha256": "da05029aac0fb71dc729afcfbba560736bd4581d0d82deba1e29d6cf28d1da68",
-      "comparisonSha256": "8fcfb7fa559e8fb59b26ad253d48bff479df1f61f89f4c1d265afc78c2fcea8c",
-      "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
-      "reviewId": "brick-offroad-v002-fresh-review-2026-07-11T23:15:20.269382+00:00",
+      "renderSha256": "a8d84547c14dd5d3f7e05cc2f42588f25073f417cdd52e8c25d054beac785e65",
+      "comparisonSha256": "824225aae178c9278df3e26cb6e809907802336209b56d990ae1b14f18c41de2",
+      "reviewedAt": "2026-07-12T02:00:26Z",
+      "reviewId": "brick-offroad-v002-fresh-review-2026-07-12T02:00:26Z",
       "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
       "referenceBinding": "local-sha256",
       "renderBinding": "local-sha256",
       "comparisonBinding": "local-sha256"
     },
     {
-      "timestamp": "2026-07-11T23:15:20.269382+00:00",
+      "timestamp": "2026-07-12T02:00:26Z",
       "passId": "surface-pass",
       "estimatedFidelity": 0.77,
       "aiVisionScore": 0.77,
@@ -3391,17 +3396,17 @@
       "cameraView": "reference-three-quarter",
       "notes": "The inspected v002 pair keeps the four-wheel silhouette and distinct amber recovery hardware, blue-green glazing, and moderate wear. Lighting remains darker than the reference.",
       "aiVisionNotes": "The inspected v002 pair keeps the four-wheel silhouette and distinct amber recovery hardware, blue-green glazing, and moderate wear. Lighting remains darker than the reference.",
-      "renderSha256": "da05029aac0fb71dc729afcfbba560736bd4581d0d82deba1e29d6cf28d1da68",
-      "comparisonSha256": "8fcfb7fa559e8fb59b26ad253d48bff479df1f61f89f4c1d265afc78c2fcea8c",
-      "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
-      "reviewId": "brick-offroad-v002-fresh-review-2026-07-11T23:15:20.269382+00:00",
+      "renderSha256": "a8d84547c14dd5d3f7e05cc2f42588f25073f417cdd52e8c25d054beac785e65",
+      "comparisonSha256": "824225aae178c9278df3e26cb6e809907802336209b56d990ae1b14f18c41de2",
+      "reviewedAt": "2026-07-12T02:00:26Z",
+      "reviewId": "brick-offroad-v002-fresh-review-2026-07-12T02:00:26Z",
       "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
       "referenceBinding": "local-sha256",
       "renderBinding": "local-sha256",
       "comparisonBinding": "local-sha256"
     },
     {
-      "timestamp": "2026-07-11T23:15:20.269382+00:00",
+      "timestamp": "2026-07-12T02:00:26Z",
       "passId": "lighting-pass",
       "estimatedFidelity": 0.77,
       "aiVisionScore": 0.77,
@@ -3427,17 +3432,17 @@
       "cameraView": "reference-three-quarter",
       "notes": "The inspected v002 pair keeps the four-wheel silhouette and distinct amber recovery hardware, blue-green glazing, and moderate wear. Lighting remains darker than the reference.",
       "aiVisionNotes": "The inspected v002 pair keeps the four-wheel silhouette and distinct amber recovery hardware, blue-green glazing, and moderate wear. Lighting remains darker than the reference.",
-      "renderSha256": "da05029aac0fb71dc729afcfbba560736bd4581d0d82deba1e29d6cf28d1da68",
-      "comparisonSha256": "8fcfb7fa559e8fb59b26ad253d48bff479df1f61f89f4c1d265afc78c2fcea8c",
-      "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
-      "reviewId": "brick-offroad-v002-fresh-review-2026-07-11T23:15:20.269382+00:00",
+      "renderSha256": "a8d84547c14dd5d3f7e05cc2f42588f25073f417cdd52e8c25d054beac785e65",
+      "comparisonSha256": "824225aae178c9278df3e26cb6e809907802336209b56d990ae1b14f18c41de2",
+      "reviewedAt": "2026-07-12T02:00:26Z",
+      "reviewId": "brick-offroad-v002-fresh-review-2026-07-12T02:00:26Z",
       "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
       "referenceBinding": "local-sha256",
       "renderBinding": "local-sha256",
       "comparisonBinding": "local-sha256"
     },
     {
-      "timestamp": "2026-07-11T23:15:20.269382+00:00",
+      "timestamp": "2026-07-12T02:00:26Z",
       "passId": "interaction-pass",
       "estimatedFidelity": 0.77,
       "aiVisionScore": 0.77,
@@ -3463,17 +3468,17 @@
       "cameraView": "reference-three-quarter",
       "notes": "The inspected v002 pair keeps the four-wheel silhouette and distinct amber recovery hardware, blue-green glazing, and moderate wear. Lighting remains darker than the reference.",
       "aiVisionNotes": "The inspected v002 pair keeps the four-wheel silhouette and distinct amber recovery hardware, blue-green glazing, and moderate wear. Lighting remains darker than the reference.",
-      "renderSha256": "da05029aac0fb71dc729afcfbba560736bd4581d0d82deba1e29d6cf28d1da68",
-      "comparisonSha256": "8fcfb7fa559e8fb59b26ad253d48bff479df1f61f89f4c1d265afc78c2fcea8c",
-      "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
-      "reviewId": "brick-offroad-v002-fresh-review-2026-07-11T23:15:20.269382+00:00",
+      "renderSha256": "a8d84547c14dd5d3f7e05cc2f42588f25073f417cdd52e8c25d054beac785e65",
+      "comparisonSha256": "824225aae178c9278df3e26cb6e809907802336209b56d990ae1b14f18c41de2",
+      "reviewedAt": "2026-07-12T02:00:26Z",
+      "reviewId": "brick-offroad-v002-fresh-review-2026-07-12T02:00:26Z",
       "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
       "referenceBinding": "local-sha256",
       "renderBinding": "local-sha256",
       "comparisonBinding": "local-sha256"
     },
     {
-      "timestamp": "2026-07-11T23:15:20.269382+00:00",
+      "timestamp": "2026-07-12T02:00:26Z",
       "passId": "optimization-pass",
       "estimatedFidelity": 0.77,
       "aiVisionScore": 0.77,
@@ -3492,10 +3497,10 @@
       "cameraView": "reference-three-quarter",
       "notes": "The inspected v002 pair keeps the four-wheel silhouette and distinct amber recovery hardware, blue-green glazing, and moderate wear. Lighting remains darker than the reference.",
       "aiVisionNotes": "The inspected v002 pair keeps the four-wheel silhouette and distinct amber recovery hardware, blue-green glazing, and moderate wear. Lighting remains darker than the reference.",
-      "renderSha256": "da05029aac0fb71dc729afcfbba560736bd4581d0d82deba1e29d6cf28d1da68",
-      "comparisonSha256": "8fcfb7fa559e8fb59b26ad253d48bff479df1f61f89f4c1d265afc78c2fcea8c",
-      "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
-      "reviewId": "brick-offroad-v002-fresh-review-2026-07-11T23:15:20.269382+00:00",
+      "renderSha256": "a8d84547c14dd5d3f7e05cc2f42588f25073f417cdd52e8c25d054beac785e65",
+      "comparisonSha256": "824225aae178c9278df3e26cb6e809907802336209b56d990ae1b14f18c41de2",
+      "reviewedAt": "2026-07-12T02:00:26Z",
+      "reviewId": "brick-offroad-v002-fresh-review-2026-07-12T02:00:26Z",
       "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
       "referenceBinding": "local-sha256",
       "renderBinding": "local-sha256",
@@ -3504,7 +3509,7 @@
   ],
   "reviewHistory": [
     {
-      "timestamp": "2026-07-11T23:15:20.269382+00:00",
+      "timestamp": "2026-07-12T02:00:26Z",
       "passId": "blockout",
       "estimatedFidelity": 0.77,
       "aiVisionScore": 0.77,
@@ -3544,8 +3549,8 @@
       "codeFixes": [],
       "evidence": [],
       "visualEvidence": {
-        "reviewId": "brick-offroad-v002-fresh-review-2026-07-11T23:15:20.269382+00:00",
-        "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
+        "reviewId": "brick-offroad-v002-fresh-review-2026-07-12T02:00:26Z",
+        "reviewedAt": "2026-07-12T02:00:26Z",
         "referenceScreenshot": "assets/brick-offroad-reference.jpeg",
         "aiVisionScore": 0.77,
         "layerScores": {
@@ -3561,14 +3566,14 @@
         "comparisonImage": "examples/brick-offroad-hero/evidence/variant-2-comparison.webp",
         "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
         "referenceBinding": "local-sha256",
-        "renderSha256": "da05029aac0fb71dc729afcfbba560736bd4581d0d82deba1e29d6cf28d1da68",
+        "renderSha256": "a8d84547c14dd5d3f7e05cc2f42588f25073f417cdd52e8c25d054beac785e65",
         "renderBinding": "local-sha256",
-        "comparisonSha256": "8fcfb7fa559e8fb59b26ad253d48bff479df1f61f89f4c1d265afc78c2fcea8c",
+        "comparisonSha256": "824225aae178c9278df3e26cb6e809907802336209b56d990ae1b14f18c41de2",
         "comparisonBinding": "local-sha256"
       }
     },
     {
-      "timestamp": "2026-07-11T23:15:20.269382+00:00",
+      "timestamp": "2026-07-12T02:00:26Z",
       "passId": "structural-pass",
       "estimatedFidelity": 0.77,
       "aiVisionScore": 0.77,
@@ -3614,8 +3619,8 @@
       "codeFixes": [],
       "evidence": [],
       "visualEvidence": {
-        "reviewId": "brick-offroad-v002-fresh-review-2026-07-11T23:15:20.269382+00:00",
-        "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
+        "reviewId": "brick-offroad-v002-fresh-review-2026-07-12T02:00:26Z",
+        "reviewedAt": "2026-07-12T02:00:26Z",
         "referenceScreenshot": "assets/brick-offroad-reference.jpeg",
         "aiVisionScore": 0.77,
         "layerScores": {
@@ -3631,14 +3636,14 @@
         "comparisonImage": "examples/brick-offroad-hero/evidence/variant-2-comparison.webp",
         "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
         "referenceBinding": "local-sha256",
-        "renderSha256": "da05029aac0fb71dc729afcfbba560736bd4581d0d82deba1e29d6cf28d1da68",
+        "renderSha256": "a8d84547c14dd5d3f7e05cc2f42588f25073f417cdd52e8c25d054beac785e65",
         "renderBinding": "local-sha256",
-        "comparisonSha256": "8fcfb7fa559e8fb59b26ad253d48bff479df1f61f89f4c1d265afc78c2fcea8c",
+        "comparisonSha256": "824225aae178c9278df3e26cb6e809907802336209b56d990ae1b14f18c41de2",
         "comparisonBinding": "local-sha256"
       }
     },
     {
-      "timestamp": "2026-07-11T23:15:20.269382+00:00",
+      "timestamp": "2026-07-12T02:00:26Z",
       "passId": "form-refinement",
       "estimatedFidelity": 0.77,
       "aiVisionScore": 0.77,
@@ -3684,8 +3689,8 @@
       "codeFixes": [],
       "evidence": [],
       "visualEvidence": {
-        "reviewId": "brick-offroad-v002-fresh-review-2026-07-11T23:15:20.269382+00:00",
-        "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
+        "reviewId": "brick-offroad-v002-fresh-review-2026-07-12T02:00:26Z",
+        "reviewedAt": "2026-07-12T02:00:26Z",
         "referenceScreenshot": "assets/brick-offroad-reference.jpeg",
         "aiVisionScore": 0.77,
         "layerScores": {
@@ -3701,14 +3706,14 @@
         "comparisonImage": "examples/brick-offroad-hero/evidence/variant-2-comparison.webp",
         "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
         "referenceBinding": "local-sha256",
-        "renderSha256": "da05029aac0fb71dc729afcfbba560736bd4581d0d82deba1e29d6cf28d1da68",
+        "renderSha256": "a8d84547c14dd5d3f7e05cc2f42588f25073f417cdd52e8c25d054beac785e65",
         "renderBinding": "local-sha256",
-        "comparisonSha256": "8fcfb7fa559e8fb59b26ad253d48bff479df1f61f89f4c1d265afc78c2fcea8c",
+        "comparisonSha256": "824225aae178c9278df3e26cb6e809907802336209b56d990ae1b14f18c41de2",
         "comparisonBinding": "local-sha256"
       }
     },
     {
-      "timestamp": "2026-07-11T23:15:20.269382+00:00",
+      "timestamp": "2026-07-12T02:00:26Z",
       "passId": "material-pass",
       "estimatedFidelity": 0.77,
       "aiVisionScore": 0.77,
@@ -3742,8 +3747,8 @@
       "codeFixes": [],
       "evidence": [],
       "visualEvidence": {
-        "reviewId": "brick-offroad-v002-fresh-review-2026-07-11T23:15:20.269382+00:00",
-        "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
+        "reviewId": "brick-offroad-v002-fresh-review-2026-07-12T02:00:26Z",
+        "reviewedAt": "2026-07-12T02:00:26Z",
         "referenceScreenshot": "assets/brick-offroad-reference.jpeg",
         "aiVisionScore": 0.77,
         "layerScores": {
@@ -3759,14 +3764,14 @@
         "comparisonImage": "examples/brick-offroad-hero/evidence/variant-2-comparison.webp",
         "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
         "referenceBinding": "local-sha256",
-        "renderSha256": "da05029aac0fb71dc729afcfbba560736bd4581d0d82deba1e29d6cf28d1da68",
+        "renderSha256": "a8d84547c14dd5d3f7e05cc2f42588f25073f417cdd52e8c25d054beac785e65",
         "renderBinding": "local-sha256",
-        "comparisonSha256": "8fcfb7fa559e8fb59b26ad253d48bff479df1f61f89f4c1d265afc78c2fcea8c",
+        "comparisonSha256": "824225aae178c9278df3e26cb6e809907802336209b56d990ae1b14f18c41de2",
         "comparisonBinding": "local-sha256"
       }
     },
     {
-      "timestamp": "2026-07-11T23:15:20.269382+00:00",
+      "timestamp": "2026-07-12T02:00:26Z",
       "passId": "surface-pass",
       "estimatedFidelity": 0.77,
       "aiVisionScore": 0.77,
@@ -3812,8 +3817,8 @@
       "codeFixes": [],
       "evidence": [],
       "visualEvidence": {
-        "reviewId": "brick-offroad-v002-fresh-review-2026-07-11T23:15:20.269382+00:00",
-        "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
+        "reviewId": "brick-offroad-v002-fresh-review-2026-07-12T02:00:26Z",
+        "reviewedAt": "2026-07-12T02:00:26Z",
         "referenceScreenshot": "assets/brick-offroad-reference.jpeg",
         "aiVisionScore": 0.77,
         "layerScores": {
@@ -3829,14 +3834,14 @@
         "comparisonImage": "examples/brick-offroad-hero/evidence/variant-2-comparison.webp",
         "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
         "referenceBinding": "local-sha256",
-        "renderSha256": "da05029aac0fb71dc729afcfbba560736bd4581d0d82deba1e29d6cf28d1da68",
+        "renderSha256": "a8d84547c14dd5d3f7e05cc2f42588f25073f417cdd52e8c25d054beac785e65",
         "renderBinding": "local-sha256",
-        "comparisonSha256": "8fcfb7fa559e8fb59b26ad253d48bff479df1f61f89f4c1d265afc78c2fcea8c",
+        "comparisonSha256": "824225aae178c9278df3e26cb6e809907802336209b56d990ae1b14f18c41de2",
         "comparisonBinding": "local-sha256"
       }
     },
     {
-      "timestamp": "2026-07-11T23:15:20.269382+00:00",
+      "timestamp": "2026-07-12T02:00:26Z",
       "passId": "lighting-pass",
       "estimatedFidelity": 0.77,
       "aiVisionScore": 0.77,
@@ -3870,8 +3875,8 @@
       "codeFixes": [],
       "evidence": [],
       "visualEvidence": {
-        "reviewId": "brick-offroad-v002-fresh-review-2026-07-11T23:15:20.269382+00:00",
-        "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
+        "reviewId": "brick-offroad-v002-fresh-review-2026-07-12T02:00:26Z",
+        "reviewedAt": "2026-07-12T02:00:26Z",
         "referenceScreenshot": "assets/brick-offroad-reference.jpeg",
         "aiVisionScore": 0.77,
         "layerScores": {
@@ -3887,14 +3892,14 @@
         "comparisonImage": "examples/brick-offroad-hero/evidence/variant-2-comparison.webp",
         "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
         "referenceBinding": "local-sha256",
-        "renderSha256": "da05029aac0fb71dc729afcfbba560736bd4581d0d82deba1e29d6cf28d1da68",
+        "renderSha256": "a8d84547c14dd5d3f7e05cc2f42588f25073f417cdd52e8c25d054beac785e65",
         "renderBinding": "local-sha256",
-        "comparisonSha256": "8fcfb7fa559e8fb59b26ad253d48bff479df1f61f89f4c1d265afc78c2fcea8c",
+        "comparisonSha256": "824225aae178c9278df3e26cb6e809907802336209b56d990ae1b14f18c41de2",
         "comparisonBinding": "local-sha256"
       }
     },
     {
-      "timestamp": "2026-07-11T23:15:20.269382+00:00",
+      "timestamp": "2026-07-12T02:00:26Z",
       "passId": "interaction-pass",
       "estimatedFidelity": 0.77,
       "aiVisionScore": 0.77,
@@ -3928,8 +3933,8 @@
       "codeFixes": [],
       "evidence": [],
       "visualEvidence": {
-        "reviewId": "brick-offroad-v002-fresh-review-2026-07-11T23:15:20.269382+00:00",
-        "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
+        "reviewId": "brick-offroad-v002-fresh-review-2026-07-12T02:00:26Z",
+        "reviewedAt": "2026-07-12T02:00:26Z",
         "referenceScreenshot": "assets/brick-offroad-reference.jpeg",
         "aiVisionScore": 0.77,
         "layerScores": {
@@ -3945,14 +3950,14 @@
         "comparisonImage": "examples/brick-offroad-hero/evidence/variant-2-comparison.webp",
         "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
         "referenceBinding": "local-sha256",
-        "renderSha256": "da05029aac0fb71dc729afcfbba560736bd4581d0d82deba1e29d6cf28d1da68",
+        "renderSha256": "a8d84547c14dd5d3f7e05cc2f42588f25073f417cdd52e8c25d054beac785e65",
         "renderBinding": "local-sha256",
-        "comparisonSha256": "8fcfb7fa559e8fb59b26ad253d48bff479df1f61f89f4c1d265afc78c2fcea8c",
+        "comparisonSha256": "824225aae178c9278df3e26cb6e809907802336209b56d990ae1b14f18c41de2",
         "comparisonBinding": "local-sha256"
       }
     },
     {
-      "timestamp": "2026-07-11T23:15:20.269382+00:00",
+      "timestamp": "2026-07-12T02:00:26Z",
       "passId": "optimization-pass",
       "estimatedFidelity": 0.77,
       "aiVisionScore": 0.77,
@@ -3979,8 +3984,8 @@
       "codeFixes": [],
       "evidence": [],
       "visualEvidence": {
-        "reviewId": "brick-offroad-v002-fresh-review-2026-07-11T23:15:20.269382+00:00",
-        "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
+        "reviewId": "brick-offroad-v002-fresh-review-2026-07-12T02:00:26Z",
+        "reviewedAt": "2026-07-12T02:00:26Z",
         "referenceScreenshot": "assets/brick-offroad-reference.jpeg",
         "aiVisionScore": 0.77,
         "layerScores": {
@@ -3996,9 +4001,9 @@
         "comparisonImage": "examples/brick-offroad-hero/evidence/variant-2-comparison.webp",
         "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
         "referenceBinding": "local-sha256",
-        "renderSha256": "da05029aac0fb71dc729afcfbba560736bd4581d0d82deba1e29d6cf28d1da68",
+        "renderSha256": "a8d84547c14dd5d3f7e05cc2f42588f25073f417cdd52e8c25d054beac785e65",
         "renderBinding": "local-sha256",
-        "comparisonSha256": "8fcfb7fa559e8fb59b26ad253d48bff479df1f61f89f4c1d265afc78c2fcea8c",
+        "comparisonSha256": "824225aae178c9278df3e26cb6e809907802336209b56d990ae1b14f18c41de2",
         "comparisonBinding": "local-sha256"
       }
     }
@@ -4266,8 +4271,8 @@
     "previewMode": false,
     "passGateStatus": "evidence-backed-production",
     "visualAcceptance": {
-      "reviewId": "brick-offroad-v002-fresh-review-2026-07-11T23:15:20.269382+00:00",
-      "reviewedAt": "2026-07-11T23:15:20.269382+00:00",
+      "reviewId": "brick-offroad-v002-fresh-review-2026-07-12T02:00:26Z",
+      "reviewedAt": "2026-07-12T02:00:26Z",
       "referenceScreenshot": "assets/brick-offroad-reference.jpeg",
       "aiVisionScore": 0.77,
       "layerScores": {
@@ -4283,9 +4288,9 @@
       "comparisonImage": "examples/brick-offroad-hero/evidence/variant-2-comparison.webp",
       "referenceSha256": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82",
       "referenceBinding": "local-sha256",
-      "renderSha256": "da05029aac0fb71dc729afcfbba560736bd4581d0d82deba1e29d6cf28d1da68",
+      "renderSha256": "a8d84547c14dd5d3f7e05cc2f42588f25073f417cdd52e8c25d054beac785e65",
       "renderBinding": "local-sha256",
-      "comparisonSha256": "8fcfb7fa559e8fb59b26ad253d48bff479df1f61f89f4c1d265afc78c2fcea8c",
+      "comparisonSha256": "824225aae178c9278df3e26cb6e809907802336209b56d990ae1b14f18c41de2",
       "comparisonBinding": "local-sha256"
     }
   }
