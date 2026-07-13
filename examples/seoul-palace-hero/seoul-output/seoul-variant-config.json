@@ -1,0 +1,89 @@
+{
+  "schemaVersion": "1.0",
+  "base": {
+    "id": "seoul-palace-hero-base",
+    "seed": 20260712,
+    "roofRoughness": 0.72,
+    "roofAccent": "#315B52",
+    "courtyardRoughness": 0.9,
+    "courtyardTone": "#C7AB77",
+    "treeDensity": 560,
+    "cityDensity": 148,
+    "mountainForestDensity": 720,
+    "mountainRockDensity": 46
+  },
+  "variants": [
+    {
+      "id": "seoul-palace-hero-v001",
+      "seed": 1987840204,
+      "roofRoughness": 0.7083,
+      "roofAccent": "#A4533C",
+      "courtyardRoughness": 0.8807,
+      "courtyardTone": "#D7C08E",
+      "treeDensity": 520,
+      "cityDensity": 165,
+      "mountainForestDensity": 667,
+      "mountainRockDensity": 44,
+      "provenance": {
+        "candidateIndex": 18,
+        "sourceVariantSeed": "1996682606581385420",
+        "runtimeSeedDerivation": "bigint-low-32",
+        "curatedIndex": 1,
+        "selectionScore": 0.355806,
+        "coverageScore": 0.506961,
+        "invariantsPassed": true,
+        "reviewEvidenceReset": true,
+        "passGateStatus": "evidence-backed-production",
+        "reviewEvidenceRenewed": true
+      }
+    },
+    {
+      "id": "seoul-palace-hero-v002",
+      "seed": 2314205476,
+      "roofRoughness": 0.6967,
+      "roofAccent": "#315B52",
+      "courtyardRoughness": 0.8517,
+      "courtyardTone": "#C7AB77",
+      "treeDensity": 575,
+      "cityDensity": 144,
+      "mountainForestDensity": 771,
+      "mountainRockDensity": 48,
+      "provenance": {
+        "candidateIndex": 21,
+        "sourceVariantSeed": "15943353861346949412",
+        "runtimeSeedDerivation": "bigint-low-32",
+        "curatedIndex": 2,
+        "selectionScore": 0.590199,
+        "coverageScore": 0.506961,
+        "invariantsPassed": true,
+        "reviewEvidenceReset": true,
+        "passGateStatus": "evidence-backed-production",
+        "reviewEvidenceRenewed": true
+      }
+    },
+    {
+      "id": "seoul-palace-hero-v003",
+      "seed": 2770380526,
+      "roofRoughness": 0.6757,
+      "roofAccent": "#A4533C",
+      "courtyardRoughness": 0.9344,
+      "courtyardTone": "#C7AB77",
+      "treeDensity": 558,
+      "cityDensity": 133,
+      "mountainForestDensity": 736,
+      "mountainRockDensity": 43,
+      "provenance": {
+        "candidateIndex": 22,
+        "sourceVariantSeed": "13524487735928202990",
+        "runtimeSeedDerivation": "bigint-low-32",
+        "curatedIndex": 3,
+        "selectionScore": 0.44228,
+        "coverageScore": 0.506961,
+        "invariantsPassed": true,
+        "reviewEvidenceReset": true,
+        "passGateStatus": "evidence-backed-production",
+        "reviewEvidenceRenewed": true
+      }
+    }
+  ]
+}

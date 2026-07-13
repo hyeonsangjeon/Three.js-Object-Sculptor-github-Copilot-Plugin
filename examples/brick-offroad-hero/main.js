@@ -18,6 +18,9 @@ if (['127.0.0.1', 'localhost'].includes(window.location.hostname)) {
   document.querySelectorAll('[data-flagship="brick"]').forEach((link) => {
     link.href = 'http://127.0.0.1:4176/';
   });
+  document.querySelectorAll('[data-flagship="seoul"]').forEach((link) => {
+    link.href = 'http://127.0.0.1:4178/threejs-sculpt-dna/seoul/';
+  });
 }
 if (query.get('ui') === '0') document.documentElement.dataset.ui = 'hidden';
 const requestedStage = query.get('stage');

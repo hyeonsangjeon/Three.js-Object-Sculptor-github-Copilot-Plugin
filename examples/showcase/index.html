@@ -3,11 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Compare three deterministic Three.js Sculpt DNA variant families."
+    />
+    <link rel="icon" href="data:," />
     <title>Three.js Sculpt DNA Showcase</title>
     <style>
       * { box-sizing: border-box; }
       html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: #071019; }
       body { font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      main { width: 100%; height: 100%; }
       canvas { display: block; width: 100%; height: 100%; }
       .label {
         position: fixed;
@@ -17,7 +23,7 @@
         text-shadow: 0 2px 14px rgba(0, 0, 0, 0.8);
         pointer-events: none;
       }
-      .label strong { display: block; font-size: 24px; letter-spacing: 0.02em; }
+      .label h1 { margin: 0; font-size: 24px; letter-spacing: 0.02em; }
       .label span { display: block; margin-top: 5px; color: #b7c7d8; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; }
       .badge {
         position: fixed;
@@ -36,11 +42,13 @@
     </style>
   </head>
   <body>
-    <div class="label">
-      <strong id="title">Sculpt DNA</strong>
-      <span id="subtitle">Loading deterministic variants</span>
-    </div>
-    <div class="badge">Coverage Curator · 24 → 3</div>
+    <main id="showcase" aria-label="Three.js Sculpt DNA variant showcase">
+      <div class="label">
+        <h1 id="title">Sculpt DNA</h1>
+        <span id="subtitle">Loading deterministic variants</span>
+      </div>
+      <div class="badge">Coverage Curator · 24 → 3</div>
+    </main>
     <script type="module" src="./showcase.js"></script>
   </body>
 </html>

@@ -6,7 +6,10 @@ on:
     paths:
       - "examples/repolis-hero/**"
       - "examples/brick-offroad-hero/**"
+      - "examples/seoul-palace-hero/**"
+      - "examples/seoul-challenge/**"
       - "examples/showcase/**"
+      - "assets/**"
       - "scripts/**"
       - "tests/**"
       - ".github/workflows/deploy-repolis-hero.yml"
@@ -33,6 +36,7 @@ jobs:
           cache-dependency-path: |
             examples/repolis-hero/package-lock.json
             examples/brick-offroad-hero/package-lock.json
+            examples/seoul-palace-hero/package-lock.json
             examples/showcase/package-lock.json
       - name: Install Repolis dependencies
         working-directory: examples/repolis-hero
@@ -46,6 +50,9 @@ jobs:
       - name: Install showcase dependencies
         working-directory: examples/showcase
         run: npm ci
+      - name: Install Seoul dependencies
+        working-directory: examples/seoul-palace-hero
+        run: npm ci
       - name: Run release tests and evidence gate
         run: |
           python3 -m unittest discover -s tests -q
@@ -56,22 +63,33 @@ jobs:
       - name: Test Brick capture isolation
         working-directory: examples/brick-offroad-hero
         run: npm run test:capture
+      - name: Build Seoul route
+        working-directory: examples/seoul-palace-hero
+        run: npm run build
+      - name: Test Seoul capture isolation
+        working-directory: examples/seoul-palace-hero
+        run: npm run test:capture
       - name: Build showcase
         working-directory: examples/showcase
         run: npm run build
       - name: Assemble Pages artifact
+        env:
+          PAGES_DIR: ${{ runner.temp }}/threejs-sculpt-dna-pages
         run: |
-          mkdir -p pages/brick pages/showcase
-          cp -R examples/repolis-hero/dist/. pages/
-          cp -R examples/brick-offroad-hero/dist/. pages/brick/
-          cp -R examples/showcase/dist/. pages/showcase/
-          diff -qr examples/repolis-hero/dist pages --exclude brick --exclude showcase
-          diff -qr examples/brick-offroad-hero/dist pages/brick
-          diff -qr examples/showcase/dist pages/showcase
+          test ! -e "$PAGES_DIR"
+          mkdir -p "$PAGES_DIR/brick" "$PAGES_DIR/seoul" "$PAGES_DIR/showcase"
+          cp -R examples/repolis-hero/dist/. "$PAGES_DIR/"
+          cp -R examples/brick-offroad-hero/dist/. "$PAGES_DIR/brick/"
+          cp -R examples/seoul-palace-hero/dist/. "$PAGES_DIR/seoul/"
+          cp -R examples/showcase/dist/. "$PAGES_DIR/showcase/"
+          diff -qr examples/repolis-hero/dist "$PAGES_DIR" --exclude brick --exclude seoul --exclude showcase
+          diff -qr examples/brick-offroad-hero/dist "$PAGES_DIR/brick"
+          diff -qr examples/seoul-palace-hero/dist "$PAGES_DIR/seoul"
+          diff -qr examples/showcase/dist "$PAGES_DIR/showcase"
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: pages
+          path: ${{ runner.temp }}/threejs-sculpt-dna-pages
 
   deploy:
     environment:

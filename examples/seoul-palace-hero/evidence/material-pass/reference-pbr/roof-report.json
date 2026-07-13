@@ -1,0 +1,85 @@
+{
+  "ok": true,
+  "verdict": "pass",
+  "confidence": 0.86,
+  "estimatedFidelity": 0.86,
+  "targetThreshold": 0.7,
+  "materialId": "roof-ceramic",
+  "sourceImage": "examples/seoul-palace-hero/evidence/material-pass/reference-crops/roof.png",
+  "outDir": "examples/seoul-palace-hero/evidence/material-pass/reference-pbr/roof",
+  "palette": [
+    "#354139",
+    "#232B2A",
+    "#4A5453",
+    "#D4CEBA",
+    "#8F9086"
+  ],
+  "maps": {
+    "albedo": {
+      "path": "examples/seoul-palace-hero/evidence/material-pass/reference-pbr/roof/roof-ceramic_albedo.png",
+      "url": "roof-ceramic_albedo.png",
+      "channel": "albedo",
+      "source": "reference-pixel-extraction"
+    },
+    "roughness": {
+      "path": "examples/seoul-palace-hero/evidence/material-pass/reference-pbr/roof/roof-ceramic_roughness.png",
+      "url": "roof-ceramic_roughness.png",
+      "channel": "roughness",
+      "source": "reference-pixel-extraction"
+    },
+    "height": {
+      "path": "examples/seoul-palace-hero/evidence/material-pass/reference-pbr/roof/roof-ceramic_height.png",
+      "url": "roof-ceramic_height.png",
+      "channel": "height",
+      "source": "reference-pixel-extraction"
+    },
+    "normal": {
+      "path": "examples/seoul-palace-hero/evidence/material-pass/reference-pbr/roof/roof-ceramic_normal.png",
+      "url": "roof-ceramic_normal.png",
+      "channel": "normal",
+      "source": "reference-pixel-extraction"
+    },
+    "ao": {
+      "path": "examples/seoul-palace-hero/evidence/material-pass/reference-pbr/roof/roof-ceramic_ao.png",
+      "url": "roof-ceramic_ao.png",
+      "channel": "ao",
+      "source": "reference-pixel-extraction"
+    }
+  },
+  "diagnostics": {
+    "sourceWidth": 390,
+    "sourceHeight": 115,
+    "mapSize": 1024,
+    "cropBBoxPixels": {
+      "x": 0,
+      "y": 0,
+      "width": 390,
+      "height": 115
+    },
+    "mask": {
+      "backgroundColor": "#3C454B",
+      "backgroundNoise": 35.903,
+      "transparentPixelFraction": 0.0,
+      "foregroundCoverage": 0.6416
+    },
+    "mapStats": {
+      "valueRange": 0.6939,
+      "heightP90Gradient": 0.06083,
+      "roughnessBase": 0.717,
+      "roughnessVariation": 0.107,
+      "normalStrength": 0.228,
+      "blurRadius": 21
+    },
+    "palette": [
+      "#354139",
+      "#232B2A",
+      "#4A5453",
+      "#D4CEBA",
+      "#8F9086"
+    ]
+  },
+  "warnings": [
+    "single-image inverse rendering cannot prove true physical PBR; confidence is capped"
+  ],
+  "limitation": "single-image PBR extraction is an estimate; 70%+ extraction confidence still needs render screenshot review"
+}

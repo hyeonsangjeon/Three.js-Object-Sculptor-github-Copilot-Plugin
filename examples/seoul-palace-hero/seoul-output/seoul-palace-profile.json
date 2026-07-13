@@ -1,0 +1,83 @@
+{
+  "name": "Seoul Palace Scene",
+  "version": "1.0.0",
+  "seed": 20260712,
+  "factory": "createSeoulPalaceHero.js",
+  "stage": {
+    "implemented": "optimization-pass",
+    "futureStagesRejected": true,
+    "productionLookdev": true,
+    "visualAcceptancePending": false,
+    "aiVisionScore": 0.89,
+    "completedPasses": 8
+  },
+  "generation": {
+    "geometry": "procedural tiered podiums, instanced column and beam bays, hinged gate pivots, merged hip-and-gable roof systems, instanced tree and city masses, and authored triangulated ridge terrain",
+    "materials": "seven deterministic procedural material families with independent 1024px albedo, roughness, height, normal, and AO buffers",
+    "importedMeshes": 0,
+    "generatedTextures": 35
+  },
+  "actionReadiness": {
+    "root": "seoul-palace-hero-root",
+    "macroGroups": [
+      "foreground",
+      "palace-axis",
+      "palace-side",
+      "vegetation",
+      "city",
+      "mountain"
+    ],
+    "runtimeMetadata": "Serializable IDs, exact semantic component aliases, socket parent contracts, and destruction-group indexes live in root.userData.sculptRuntime; live Object3D references include portal-safe pier colliders and pivot-parented gate-leaf colliders in result.runtime",
+    "semanticComponents": 33,
+    "sockets": 14,
+    "colliders": 27,
+    "gatePivots": 4
+  },
+  "performance": {
+    "instanceWeightedTriangles": 144472,
+    "sceneDrawables": 194,
+    "fullFrameWebglCalls": 388,
+    "instances": 2275,
+    "generatedTextures": 35,
+    "textureResolution": 1024,
+    "directionalShadowMaps": 1,
+    "importedMeshes": 0,
+    "budgets": {
+      "instanceWeightedTriangles": 200000,
+      "sceneDrawables": 220,
+      "fullFrameWebglCalls": 400
+    },
+    "lodPolicy": "Canonical review uses stable topology. Distant vegetation, city, tile rhythm, court markers, and rock patches use bounded instanced low-poly geometry with renderer frustum culling and linear texture minification.",
+    "targetFps": 60,
+    "p95FrameMs": 18.5,
+    "measuredDesktopFps": 59.99460048595638,
+    "p50FrameMs": 16.69999999999891,
+    "p99FrameMs": 18.600000000000364,
+    "droppedFrameCount": 0,
+    "probe": {
+      "runs": 3,
+      "warmupFramesPerRun": 180,
+      "measuredFramesPerRun": 600,
+      "viewport": "1200x675@1x",
+      "browser": "Chrome 149 headed on Apple M4 / ANGLE Metal",
+      "physicalRefreshHz": 60,
+      "accepted": true,
+      "rawSummarySha256": "652aaeb89207cd66a9fcda4d3ccb6669331dbc8db5322c7b1dee29d35cd7cb06",
+      "runtimeFingerprint": "54febd9233548b08a75064dd8bb1f8c708fb8ee461ec8b8516de9542edae53e6"
+    }
+  },
+  "variants": {
+    "poolSize": 24,
+    "curatedCount": 3,
+    "coverageScore": 0.506961,
+    "controls": [
+      "roof weathering and accent palette",
+      "courtyard tone and roughness",
+      "tree-belt density",
+      "city-belt density",
+      "mountain forest coverage",
+      "mountain rock exposure"
+    ],
+    "hardInvariant": "palace axis, gate order, main-hall and roof topology, parent links, sockets, pivots, reference camera, colliders, and review targets"
+  }
+}

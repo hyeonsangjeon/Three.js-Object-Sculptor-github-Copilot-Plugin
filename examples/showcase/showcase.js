@@ -10,7 +10,7 @@ renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.toneMappingExposure = 1.05;
-document.body.prepend(renderer.domElement);
+document.querySelector('#showcase').prepend(renderer.domElement);
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(38, window.innerWidth / window.innerHeight, 0.1, 200);
@@ -64,6 +64,12 @@ function repetitionCount(spec, id, fallback) {
 function roughnessValue(spec, id, fallback) {
   const roughness = materialSpec(spec, id).roughness;
   return typeof roughness?.base === 'number' ? roughness.base : fallback;
+}
+
+function mutationValue(spec, parameterId, fallback) {
+  return spec.variantProvenance?.mutations
+    ?.find((mutation) => mutation.parameterId === parameterId)?.after
+    ?? fallback;
 }
 
 function standard(color, roughness = 0.65, metalness = 0, emissive = 0x000000, intensity = 0) {
@@ -350,24 +356,40 @@ function palaceRoof(group, position, size, material) {
 function createSeoul(spec, index) {
   const group = new THREE.Group();
   const courtyard = standard(
-    paletteColor(spec, 'courtyard', '#c9b58b'),
-    roughnessValue(spec, 'courtyard', 0.88),
+    mutationValue(
+      spec,
+      'courtyard-tone',
+      paletteColor(spec, 'courtyard-sand', '#c9b58b'),
+    ),
+    mutationValue(
+      spec,
+      'courtyard-roughness',
+      roughnessValue(spec, 'courtyard-sand', 0.88),
+    ),
   );
   const wall = standard(
-    paletteColor(spec, 'palace-wall', '#bdae8c'),
-    roughnessValue(spec, 'palace-wall', 0.72),
+    paletteColor(spec, 'stone-plaster', '#bdae8c'),
+    roughnessValue(spec, 'stone-plaster', 0.72),
   );
   const roof = standard(
-    paletteColor(spec, 'roof', '#202827'),
-    roughnessValue(spec, 'roof', 0.78),
+    mutationValue(
+      spec,
+      'roof-accent-palette',
+      paletteColor(spec, 'roof-ceramic', '#202827'),
+    ),
+    mutationValue(
+      spec,
+      'roof-weathering',
+      roughnessValue(spec, 'roof-ceramic', 0.78),
+    ),
   );
   const mountain = standard(
-    paletteColor(spec, 'mountain', '#254d36'),
-    roughnessValue(spec, 'mountain', 0.94),
+    paletteColor(spec, 'mountain-forest', '#254d36'),
+    roughnessValue(spec, 'mountain-forest', 0.94),
   );
   const city = standard(
-    paletteColor(spec, 'city', '#cbd0cc'),
-    roughnessValue(spec, 'city', 0.8),
+    paletteColor(spec, 'city-masonry', '#cbd0cc'),
+    roughnessValue(spec, 'city-masonry', 0.8),
   );
   const vegetation = standard(
     paletteColor(spec, 'vegetation', '#39704a'),
@@ -378,7 +400,10 @@ function createSeoul(spec, index) {
   palaceRoof(group, [1.5, 1.75, -1.6], [2.8, 1.0, 1.6], roof);
   box(group, [3.2, 1.1, 1.0], [-3.0, 0.68, 2.5], wall);
   palaceRoof(group, [-3.0, 1.45, 2.5], [2.2, 0.85, 0.9], roof);
-  const roofCount = Math.min(18, Math.max(8, repetitionCount(spec, 'palace-roofs', 14)));
+  const roofCount = Math.min(
+    18,
+    Math.max(8, repetitionCount(spec, 'column-bays', 14)),
+  );
   for (let roofIndex = 0; roofIndex < roofCount; roofIndex += 1) {
     const side = roofIndex % 2 === 0 ? -1 : 1;
     const row = Math.floor(roofIndex / 4);
@@ -387,7 +412,17 @@ function createSeoul(spec, index) {
     box(group, [1.25, 0.55, 0.72], [x, 0.45, z], wall);
     palaceRoof(group, [x, 0.86, z], [0.9, 0.55, 0.55], roof);
   }
-  const buildingCount = Math.min(58, Math.max(24, repetitionCount(spec, 'urban-blocks', 48)));
+  const buildingCount = Math.min(
+    58,
+    Math.max(
+      24,
+      Math.round(mutationValue(
+        spec,
+        'city-belt-density',
+        repetitionCount(spec, 'urban-blocks', 144),
+      ) / 3),
+    ),
+  );
   const rng = mulberry32(stableVariantSeed(spec, `seoul-${index}`));
   for (let buildingIndex = 0; buildingIndex < buildingCount; buildingIndex += 1) {
     const width = 0.3 + rng() * 0.45;
@@ -396,7 +431,17 @@ function createSeoul(spec, index) {
     const z = -5.2 - rng() * 2.2;
     box(group, [width, height, width * (0.8 + rng() * 0.6)], [x, height / 2, z], city);
   }
-  const treeCount = Math.min(90, Math.max(36, repetitionCount(spec, 'tree-clusters', 72)));
+  const treeCount = Math.min(
+    90,
+    Math.max(
+      36,
+      Math.round(mutationValue(
+        spec,
+        'tree-belt-density',
+        repetitionCount(spec, 'vegetation-clusters', 520),
+      ) / 7),
+    ),
+  );
   const treeGeometry = new THREE.IcosahedronGeometry(0.18, 0);
   const trees = new THREE.InstancedMesh(treeGeometry, vegetation, treeCount);
   const matrix = new THREE.Matrix4();
@@ -408,7 +453,45 @@ function createSeoul(spec, index) {
     trees.setMatrixAt(treeIndex, matrix);
   }
   group.add(trees);
-  const peakCount = Math.min(9, Math.max(5, repetitionCount(spec, 'mountain-peaks', 7)));
+  const forestCount = Math.min(
+    72,
+    Math.max(
+      48,
+      Math.round(mutationValue(
+        spec,
+        'mountain-forest-balance',
+        repetitionCount(spec, 'mountain-forest-cells', 720),
+      ) / 11),
+    ),
+  );
+  const mountainForest = new THREE.InstancedMesh(
+    treeGeometry,
+    mountain,
+    forestCount,
+  );
+  for (let forestIndex = 0; forestIndex < forestCount; forestIndex += 1) {
+    const x = (rng() - 0.5) * 15;
+    const z = -7.1 - rng() * 2.1;
+    const scale = 0.5 + rng() * 0.9;
+    matrix.compose(
+      new THREE.Vector3(x, 0.18 + scale * 0.08, z),
+      new THREE.Quaternion(),
+      new THREE.Vector3(scale, scale * 1.45, scale),
+    );
+    mountainForest.setMatrixAt(forestIndex, matrix);
+  }
+  group.add(mountainForest);
+  const peakCount = Math.min(
+    9,
+    Math.max(
+      5,
+      Math.round(mutationValue(
+        spec,
+        'mountain-rock-balance',
+        repetitionCount(spec, 'mountain-rock-patches', 42),
+      ) / 6),
+    ),
+  );
   for (let peakIndex = 0; peakIndex < peakCount; peakIndex += 1) {
     const x = -7 + peakIndex * (14 / Math.max(1, peakCount - 1));
     const height = 2.2 + rng() * 2.2;
@@ -447,9 +530,10 @@ const config = {
     factory: createVehicle,
   },
   seoul: {
-    title: 'Seoul Palace Challenge · Sculpt DNA Family',
+    title: 'Seoul Palace Scene · Production Sculpt DNA Family',
     subtitle: 'Palace, city-density, vegetation, and mountain-layer variants',
-    prefix: 'seoul-challenge',
+    family: 'seoul-production',
+    prefix: 'seoul-palace-hero',
     background: 0x89b4dc,
     fog: 0xa9c7df,
     positions: [-10.5, 0, 10.5],
@@ -473,11 +557,14 @@ if (sceneId === 'tree') createStars(420, 20260711);
 
 const specs = await Promise.all(
   [1, 2, 3].map((index) =>
-    fetch(`./variants/${sceneId}/${config.prefix}-v${String(index).padStart(3, '0')}.json`).then((response) => {
+    fetch(`./variants/${config.family ?? sceneId}/${config.prefix}-v${String(index).padStart(3, '0')}.json`).then((response) => {
       if (!response.ok) throw new Error(`Could not load variant ${index}`);
       return response.json();
     }),
   ),
+);
+window.__SHOWCASE_VARIANT_IDS__ = specs.map(
+  (spec) => spec.variantProvenance?.variantId ?? spec.targetId,
 );
 specs.forEach((spec, index) => {
   const model = config.factory(spec, index);

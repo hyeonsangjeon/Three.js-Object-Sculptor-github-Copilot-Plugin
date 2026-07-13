@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import re
 import sys
 from pathlib import Path
@@ -87,7 +88,11 @@ ATTACHMENT_PRIMITIVES = {"cylinder", "cone", "capsule", "tube", "curve-sweep"}
 
 
 def is_number(value: Any) -> bool:
-    return isinstance(value, (int, float)) and not isinstance(value, bool)
+    return (
+        isinstance(value, (int, float))
+        and not isinstance(value, bool)
+        and math.isfinite(value)
+    )
 
 
 def validate_unit_interval(value: Any, label: str, errors: list[str]) -> None:
@@ -96,9 +101,15 @@ def validate_unit_interval(value: Any, label: str, errors: list[str]) -> None:
 
 
 def load_spec(path: Path) -> dict[str, Any]:
+    def reject_constant(value: str) -> None:
+        raise ValueError(f"non-standard JSON constant {value}")
+
     try:
-        payload = json.loads(path.read_text(encoding="utf-8"))
-    except json.JSONDecodeError as exc:
+        payload = json.loads(
+            path.read_text(encoding="utf-8"),
+            parse_constant=reject_constant,
+        )
+    except (json.JSONDecodeError, ValueError) as exc:
         raise ValueError(f"invalid JSON: {exc}") from exc
     if not isinstance(payload, dict):
         raise ValueError("spec must be a JSON object")
@@ -109,7 +120,7 @@ def as_number_list(value: Any, length: int) -> bool:
     return (
         isinstance(value, list)
         and len(value) == length
-        and all(isinstance(item, (int, float)) for item in value)
+        and all(is_number(item) for item in value)
     )
 
 
@@ -524,8 +535,21 @@ def validate_action_profile(component_id: str, profile: Any, errors: list[str], 
                     errors.append(f"component {component_id!r} actionProfile.sockets[{socket_index}] must be an object")
                     continue
                 socket_id = socket.get("id")
-                if socket_id is not None and not isinstance(socket_id, str):
-                    errors.append(f"component {component_id!r} actionProfile.sockets[{socket_index}].id must be a string")
+                if not isinstance(socket_id, str) or not socket_id:
+                    errors.append(
+                        f"component {component_id!r} "
+                        f"actionProfile.sockets[{socket_index}].id "
+                        "must be a non-empty string"
+                    )
+                parent_node_id = socket.get("parentNodeId")
+                if "parentNodeId" in socket and (
+                    not isinstance(parent_node_id, str) or not parent_node_id
+                ):
+                    errors.append(
+                        f"component {component_id!r} "
+                        f"actionProfile.sockets[{socket_index}].parentNodeId "
+                        "must be a non-empty string"
+                    )
                 for field in ("localPosition", "position", "localRotation", "rotation"):
                     if field in socket and not as_number_list(socket[field], 3):
                         errors.append(
@@ -542,8 +566,60 @@ def validate_action_profile(component_id: str, profile: Any, errors: list[str], 
             for field in ("offset", "scale"):
                 if field in collider and not as_number_list(collider[field], 3):
                     errors.append(f"component {component_id!r} actionProfile.collider.{field} must be [number, number, number]")
+                elif (
+                    field == "scale"
+                    and field in collider
+                    and any(value <= 0 for value in collider[field])
+                ):
+                    errors.append(
+                        f"component {component_id!r} "
+                        "actionProfile.collider.scale values must be positive"
+                    )
             if "isTrigger" in collider and not isinstance(collider["isTrigger"], bool):
                 errors.append(f"component {component_id!r} actionProfile.collider.isTrigger must be boolean")
+            parts = collider.get("parts")
+            if parts is not None:
+                if not isinstance(parts, list) or not parts:
+                    errors.append(
+                        f"component {component_id!r} actionProfile.collider.parts "
+                        "must be a non-empty array"
+                    )
+                else:
+                    part_ids: set[str] = set()
+                    for part_index, part in enumerate(parts):
+                        label = (
+                            f"component {component_id!r} "
+                            f"actionProfile.collider.parts[{part_index}]"
+                        )
+                        if not isinstance(part, dict):
+                            errors.append(f"{label} must be an object")
+                            continue
+                        part_id = part.get("id")
+                        if not isinstance(part_id, str) or not part_id:
+                            errors.append(f"{label}.id must be a non-empty string")
+                        elif part_id in part_ids:
+                            errors.append(f"{label}.id duplicates {part_id!r}")
+                        else:
+                            part_ids.add(part_id)
+                        for field in ("parentId", "parentNodeId"):
+                            if not isinstance(part.get(field), str) or not part[field]:
+                                errors.append(
+                                    f"{label}.{field} must be a non-empty string"
+                                )
+                        for field in ("offset", "scale"):
+                            if not as_number_list(part.get(field), 3):
+                                errors.append(
+                                    f"{label}.{field} must be "
+                                    "[number, number, number]"
+                                )
+                            elif field == "scale" and any(
+                                value <= 0 for value in part[field]
+                            ):
+                                errors.append(
+                                    f"{label}.scale values must be positive"
+                                )
+                        if not isinstance(part.get("dynamic"), bool):
+                            errors.append(f"{label}.dynamic must be boolean")
     constraints = profile.get("constraints")
     if constraints is not None and not isinstance(constraints, list):
         errors.append(f"component {component_id!r} actionProfile.constraints must be an array")

@@ -1,0 +1,237 @@
+{
+  "targetName": "Seoul Palace Scene Challenge",
+  "sourceImage": "assets/seoul-challenge-reference.jpeg",
+  "preSpecAssessment": {
+    "objectClass": {
+      "primaryType": "single-view architectural landscape flagship",
+      "formLanguage": [
+        "broad axial palace composition with large ceremonial negative spaces",
+        "layered Korean timber halls with dark hip-and-gable tiled roofs",
+        "low urban belt and dense green tree belt behind the palace",
+        "asymmetric mountain skyline with a lower rocky left ridge and a taller right peak",
+        "aerial perspective with warm foreground courts and cool hazed distance"
+      ],
+      "structureKind": [
+        "deep action-ready hierarchy of palace systems and repeated architectural bays",
+        "staged foreground, palace, vegetation, city, and mountain depth layers",
+        "deterministic instanced vegetation and urban massing",
+        "custom deformed roof and ridge terrain geometry"
+      ],
+      "motionPotential": [
+        "whole-scene turntable",
+        "hinged outer and inner gate leaves",
+        "restrained banner sway",
+        "camera tour between semantic sockets",
+        "topology-preserving Layer Lens visibility and emphasis states"
+      ],
+      "materialFamilies": [
+        "charcoal ceramic roof tile with layered ridge and eave response",
+        "painted timber and restrained dancheong accents",
+        "pale stone and plaster podiums and walls",
+        "warm sandy courtyard with compacted path variation",
+        "tree canopy and forest floor",
+        "mountain forest and exposed granite",
+        "cool receding city masonry and glazing",
+        "atmospheric sky and haze"
+      ],
+      "notes": "The target is the complete photographed palace campus and its city-tree-mountain context, not an exact survey model of a named building. The 842x476 source supports an approximate stylized real-time reconstruction. Existing preview geometry is provenance only and must not be promoted into the production base."
+    },
+    "complexity": {
+      "tier": "ultra-complex",
+      "scores": {
+        "silhouetteComplexity": 3,
+        "componentCount": 3,
+        "hierarchyDepth": 3,
+        "repetitionDensity": 3,
+        "materialLayerCount": 3,
+        "localDetailDensity": 3,
+        "occlusionRisk": 3,
+        "actionReadinessNeed": 3
+      },
+      "estimatedCounts": {
+        "macroComponents": 6,
+        "mesoComponents": 30,
+        "microFeatureGroups": 24,
+        "materialLayers": 9,
+        "repetitionSystems": 10
+      },
+      "reasoning": [
+        "The source is a crowded architectural landscape rather than an isolated object, so identity depends on the relationship between many systems rather than one silhouette.",
+        "The foreground outer gate, broad processional courts, inner gate, main hall, secondary halls, walls, corridors, tree belt, city, and mountains are all separately readable and require a deep hierarchy.",
+        "Korean roof identity depends on curved lifted eaves, layered fascia, pitch, overhang, ridge caps, end ornaments, rafters, and tile rhythm; plain prisms cannot satisfy the reference.",
+        "The mountain skyline is composition-critical and asymmetric. It requires custom seeded ridge geometry, layered forest and rock response, and atmospheric recession rather than cone primitives.",
+        "The low-resolution single aerial view hides rear faces, exact bay counts, and fine dancheong patterns. Those details must be inferred conservatively and documented instead of claimed as recovered geometry.",
+        "Production variants, camera sockets, gates, Layer Lens groups, colliders, and protected architecture require stable action-ready nodes even though most architecture remains static."
+      ]
+    },
+    "specDepthDecision": {
+      "requiredDepth": "ultra-complex",
+      "minimumComponentLevels": [
+        "macro",
+        "meso",
+        "micro"
+      ],
+      "needsRepetitionSystems": true,
+      "needsMaterialLocalOverrides": true,
+      "needsMultipleReviewViews": true,
+      "needsActionReadyHierarchy": true,
+      "rationale": "A shallow palace-block plus cone-mountain scene fails the reference. Production readiness requires six staged macro systems, separate halls/gates/courts/corridors, reusable roof topology, deterministic city/vegetation/terrain repetition, independent material layers, and multi-view visual evidence."
+    },
+    "unknownsToResolveBeforeImplementation": [],
+    "resolvedInferenceLimits": [
+      "Rear and hidden side elevations are not visible; infer them bilaterally from the visible axial and side-wing logic.",
+      "Exact historic building identity, dimensions, bay counts, and roof ornament profiles are below source resolution; use reference-consistent proportions rather than exact reconstruction claims.",
+      "The source contains baked midday lighting, haze, and camera response; material channels cannot be uniquely recovered and must pass confidence-gated extraction plus neutral relighting.",
+      "Distant city block identity is unreadable; preserve bounded massing, road gaps, and atmospheric value structure rather than individual buildings."
+    ],
+    "sourceImage": "assets/seoul-challenge-reference.jpeg"
+  },
+  "qualityContract": {
+    "qualityBar": "ultra-complex",
+    "definitionOfDone": [
+      "At the reference aerial camera, the scene immediately reads as the photographed Seoul palace campus rather than a generic East Asian compound.",
+      "The outer gate, inner gate, and main throne hall form a clear receding axis across broad warm courtyards with controlled entrances and side walls.",
+      "Every primary hall uses a reusable Korean hip-and-gable roof system with curved lifted eaves, layered fascia, ridge and end caps, tile or rafter rhythm, and credible podium-column-roof contact.",
+      "The palace remains the identity focus while the city, tree belt, and mountain layers create the source depth ordering without random clutter.",
+      "The mountain silhouette preserves the lower rocky left ridge, central saddle, and taller steep right peak under reference framing.",
+      "The asset exposes deterministic seeds, stable layer groups, named cameras and sockets, gate pivots, collider metadata, protected destruction groups, and production-safe variant controls.",
+      "The final base and every curated production variant have fresh full-image comparison evidence with an overall AI-vision score of at least 0.86 and every selected critical feature at least 0.86."
+    ],
+    "minimumSpecDepth": {
+      "macroComponents": 6,
+      "mesoComponents": 24,
+      "microFeatureGroups": 18,
+      "materialLayers": 8,
+      "repetitionSystems": 8,
+      "reviewViewpoints": 6
+    },
+    "featureGroups": [
+      {
+        "id": "palace-axial-hierarchy",
+        "name": "Outer gate to inner gate to main hall axial hierarchy",
+        "required": true,
+        "qualityCriteria": [
+          "The outer gate anchors the lower-left foreground, the inner gate crosses the central processional axis, and the main hall remains the largest palace focal mass.",
+          "Each gate and hall has a stable pivot, podium contact, controlled opening, and parent link inside the palace-axis system.",
+          "The hierarchy remains unchanged across all production variants."
+        ],
+        "evidenceRefs": [
+          "reference-aerial",
+          "palace-axis"
+        ],
+        "failureModes": [
+          "the gates and main hall read as equal toy blocks",
+          "the processional axis bends or loses the ordered gate count",
+          "secondary halls compete with or obscure the main hall"
+        ]
+      },
+      {
+        "id": "korean-roof-system",
+        "name": "Korean hip-and-gable tiled roof system",
+        "required": true,
+        "qualityCriteria": [
+          "Primary roofs show pitched hip-and-gable planes, center sag, lifted corners, layered eaves, fascia, ridge caps, hip ridges, and end ornaments.",
+          "Tile rows and rafters follow the deformed roof surface with deterministic spacing and safe instancing.",
+          "Columns and beams visibly support roof loads through podium contact; no roof floats above a generic box."
+        ],
+        "evidenceRefs": [
+          "reference-aerial",
+          "roof-grazing-closeup"
+        ],
+        "failureModes": [
+          "plain triangular prism or flat slab roofs",
+          "uniform eaves without lifted corners or layered fascia",
+          "tile, ridge, or ornament repetition detaches from the roof surface"
+        ]
+      },
+      {
+        "id": "ceremonial-negative-space",
+        "name": "Courtyard, wall, and ceremonial negative-space proportions",
+        "required": true,
+        "qualityCriteria": [
+          "The foreground and main processional courts remain broad enough to dominate the palace ground plane.",
+          "Perimeter walls and corridor wings frame rather than fill the courts, with entrances aligned to the palace axis.",
+          "Tree and city distributions preserve the large source clearings."
+        ],
+        "evidenceRefs": [
+          "reference-aerial",
+          "side-depth"
+        ],
+        "failureModes": [
+          "courtyards shrink into narrow paths between oversized halls",
+          "walls or vegetation close the ceremonial sightline",
+          "random detail removes the reference negative spaces"
+        ]
+      },
+      {
+        "id": "atmospheric-depth-layers",
+        "name": "City to tree belt to mountain atmospheric depth",
+        "required": true,
+        "qualityCriteria": [
+          "Low bounded city massing sits behind the palace with explicit road and green gaps.",
+          "A darker tree belt separates urban blocks from mountain foothills.",
+          "Successive mountain layers reduce contrast, saturation, and detail with haze while keeping the palace foreground readable."
+        ],
+        "evidenceRefs": [
+          "reference-aerial",
+          "side-depth",
+          "layer-lens-city",
+          "layer-lens-nature"
+        ],
+        "failureModes": [
+          "city blocks become random high-rise clutter",
+          "tree belt and mountains collapse into one green wall",
+          "haze crushes palace roof contrast or erases the skyline"
+        ]
+      },
+      {
+        "id": "asymmetric-mountain-composition",
+        "name": "Asymmetric mountain silhouette and aerial composition",
+        "required": true,
+        "qualityCriteria": [
+          "The left skyline stays lower, broad, and rock-patched; the central saddle remains open; the right peak is steeper and highest.",
+          "Mountain terrain is custom seeded ridge geometry rather than cones or symmetric noise mounds.",
+          "The reference camera preserves the palace-to-sky balance and the mountain peaks remain inside the 1.769 frame."
+        ],
+        "evidenceRefs": [
+          "reference-aerial",
+          "mountain-silhouette"
+        ],
+        "failureModes": [
+          "cone mountains or a mirrored skyline",
+          "the right peak is lower than the left ridge",
+          "camera framing crops the skyline or gives mountains more visual weight than the palace"
+        ]
+      }
+    ],
+    "visualDeltaChecks": [
+      "outer-gate, inner-gate, and main-hall centerline and projected-size delta",
+      "courtyard width-to-depth, wall-height, and occupied-to-empty ground-plane delta",
+      "roof pitch, overhang, eave lift, ridge length, and tile/rafter rhythm delta",
+      "city/tree/mountain depth ordering, value range, and haze delta",
+      "left-ridge, central-saddle, and right-peak skyline delta",
+      "roof, timber, stone, courtyard, vegetation, mountain, and city albedo/roughness/normal/AO response delta",
+      "reference camera field of view, elevation, target, horizon, and palace-to-sky balance delta",
+      "Layer Lens isolation delta without topology, parent-link, socket, or collider mutation"
+    ],
+    "antiShallowSpecRules": [
+      "Do not proceed to code if qualityContract.qualityBar is unassessed.",
+      "Do not proceed to code if the spec only contains a root component for a moderate or complex object.",
+      "Do not proceed to code if required featureGroups are not represented by componentTree, materials, or repetitionSystems.",
+      "Do not proceed to code if visible local features are described only in prose and not attached to components/materials/evidenceRefs.",
+      "Do not proceed past structural-pass if attached child parts lack attachment.parentSocket, localStart, localEnd, embedDepth/overlap, and gapTolerance.",
+      "Do not pass material look-dev when albedo is reused as roughness, height, normal, or AO.",
+      "Do not pass material look-dev without macro, meso, and micro surface frequency bands for close-up materials.",
+      "Do not pass reference-fidelity material look-dev from a source image without usable referencePbr maps or an explicit documented limitation.",
+      "Do not patch a spec with extracted PBR maps when extraction confidence is below the target threshold unless the user explicitly accepts lower fidelity.",
+      "Do not reuse, upscale, or cosmetically polish the preview cone-mountain or toy-block implementation as the production base.",
+      "Do not use cone primitives for mountains or triangular prisms as the final Korean roof system.",
+      "Do not continue a visual pass without a browser-rendered screenshot, one full reference/render comparison, AI-vision layer and semantic-feature scores, concrete mismatch notes, and an evidence-bound review entry.",
+      "Do not let a global score hide a selected critical feature below 0.86.",
+      "Do not change the palace axis, gate count or order, main-hall identity, roof topology, parent links, sockets, action pivots, reference camera, collider topology, or protected review targets in production variants.",
+      "Do not generate production variants until the production base is meaningful and accepted through the locked pass gates.",
+      "Do not claim exact palace dimensions, exact hidden elevations, or physically recovered PBR from this single low-resolution image."
+    ]
+  },
+  "authoringInstruction": "Assessment completed from direct visual inspection and technical probing. Generate the production ObjectSculptSpec from this contract, then replace all generic starter review targets before strict validation."
+}

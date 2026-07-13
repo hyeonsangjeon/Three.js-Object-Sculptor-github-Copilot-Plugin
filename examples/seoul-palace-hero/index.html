@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#b9cfda" />
+    <link rel="icon" href="data:," />
+    <meta
+      name="description"
+      content="Explore a production procedural Seoul palace campus with Korean roof rhythm, layered city and mountain depth, and Sculpt DNA variants."
+    />
+    <meta property="og:title" content="Seoul Palace Scene — Three.js Sculpt DNA" />
+    <meta property="og:type" content="website" />
+    <title>Seoul Palace Scene — Three.js Sculpt DNA Flagship</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main id="app" aria-labelledby="scene-title">
+      <header class="intro">
+        <p class="eyebrow">SCULPT DNA · PROCEDURAL FLAGSHIP 03</p>
+        <h1 id="scene-title">Seoul<br />Palace Scene</h1>
+        <p class="subtitle">
+          A single-view palace campus rebuilt from code with Korean roof rhythm,
+          ceremonial courts, a bounded city belt, and asymmetric mountain layers.
+        </p>
+        <div class="proof" aria-label="Generation facts">
+          <span>0 imported meshes</span>
+          <span id="generation-time">Generating</span>
+          <span id="geometry-stats">Measuring geometry</span>
+        </div>
+      </header>
+
+      <nav class="controls" aria-label="Scene controls">
+        <div class="layer-lens" role="group" aria-label="Layer Lens">
+          <span>Layer Lens</span>
+          <button type="button" data-lens="full" aria-pressed="true">Full</button>
+          <button type="button" data-lens="palace" aria-pressed="false">Palace</button>
+          <button type="button" data-lens="city" aria-pressed="false">City</button>
+          <button type="button" data-lens="nature" aria-pressed="false">Nature</button>
+        </div>
+        <label class="camera-picker">
+          <span>Camera</span>
+          <select id="camera-view">
+            <option value="reference">Reference aerial</option>
+            <option value="axis">Palace axis</option>
+            <option value="side">Side depth</option>
+            <option value="mountain">Mountain silhouette</option>
+            <option value="material">Material close-up</option>
+            <option value="hierarchy">Hierarchy</option>
+          </select>
+        </label>
+        <button id="toggle-gates" type="button" aria-pressed="false">Open gates</button>
+        <button id="toggle-tour" type="button" aria-pressed="false">Start tour</button>
+        <button id="toggle-motion" type="button" aria-pressed="false">Start turntable</button>
+        <button id="reset-view" type="button">Reference aerial</button>
+        <button id="next-variant" type="button">Next DNA</button>
+        <span class="flagship-pager" role="group" aria-label="Flagship demos">
+          <a href="../brick/" data-flagship="brick" aria-label="Previous flagship: Brick Explorer" title="Brick Explorer">‹</a>
+          <span aria-label="Flagship 3 of 3">03/03</span>
+          <a href="../" data-flagship="tree" aria-label="Next flagship: Living Archive" title="Living Archive">›</a>
+        </span>
+      </nav>
+
+      <aside class="stage-panel" aria-label="Current sculpt pass">
+        <span>PRODUCTION BUILD</span>
+        <strong id="stage-name">Blockout</strong>
+        <small id="stage-scope">Macro silhouette · flat materials</small>
+        <small id="variant-name">Base configuration</small>
+      </aside>
+
+      <p class="hint" id="interaction-hint">
+        DRAG OR ARROW KEYS TO ORBIT · SCROLL OR +/- TO ZOOM · HOME RESTORES REFERENCE
+      </p>
+      <div
+        id="scene"
+        role="region"
+        tabindex="0"
+        aria-describedby="interaction-hint"
+        aria-label="Interactive procedural Seoul palace campus. Use arrow keys to orbit, plus or minus to zoom, and Home to restore the reference view."
+      ></div>
+      <div id="loading" role="status" aria-live="polite" aria-atomic="true">
+        <span>Assembling Seoul palace hierarchy</span>
+      </div>
+    </main>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

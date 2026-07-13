@@ -1,0 +1,85 @@
+{
+  "ok": true,
+  "verdict": "pass",
+  "confidence": 0.86,
+  "estimatedFidelity": 0.86,
+  "targetThreshold": 0.7,
+  "materialId": "courtyard-sand",
+  "sourceImage": "examples/seoul-palace-hero/evidence/material-pass/reference-crops/courtyard.png",
+  "outDir": "examples/seoul-palace-hero/evidence/material-pass/reference-pbr/courtyard",
+  "palette": [
+    "#4B5555",
+    "#DBCEB4",
+    "#C6B292",
+    "#2A2E31",
+    "#7F7D55"
+  ],
+  "maps": {
+    "albedo": {
+      "path": "examples/seoul-palace-hero/evidence/material-pass/reference-pbr/courtyard/courtyard-sand_albedo.png",
+      "url": "courtyard-sand_albedo.png",
+      "channel": "albedo",
+      "source": "reference-pixel-extraction"
+    },
+    "roughness": {
+      "path": "examples/seoul-palace-hero/evidence/material-pass/reference-pbr/courtyard/courtyard-sand_roughness.png",
+      "url": "courtyard-sand_roughness.png",
+      "channel": "roughness",
+      "source": "reference-pixel-extraction"
+    },
+    "height": {
+      "path": "examples/seoul-palace-hero/evidence/material-pass/reference-pbr/courtyard/courtyard-sand_height.png",
+      "url": "courtyard-sand_height.png",
+      "channel": "height",
+      "source": "reference-pixel-extraction"
+    },
+    "normal": {
+      "path": "examples/seoul-palace-hero/evidence/material-pass/reference-pbr/courtyard/courtyard-sand_normal.png",
+      "url": "courtyard-sand_normal.png",
+      "channel": "normal",
+      "source": "reference-pixel-extraction"
+    },
+    "ao": {
+      "path": "examples/seoul-palace-hero/evidence/material-pass/reference-pbr/courtyard/courtyard-sand_ao.png",
+      "url": "courtyard-sand_ao.png",
+      "channel": "ao",
+      "source": "reference-pixel-extraction"
+    }
+  },
+  "diagnostics": {
+    "sourceWidth": 500,
+    "sourceHeight": 145,
+    "mapSize": 1024,
+    "cropBBoxPixels": {
+      "x": 0,
+      "y": 0,
+      "width": 500,
+      "height": 145
+    },
+    "mask": {
+      "backgroundColor": "#959593",
+      "backgroundNoise": 101.04,
+      "transparentPixelFraction": 0.0,
+      "foregroundCoverage": 0.4666
+    },
+    "mapStats": {
+      "valueRange": 0.679,
+      "heightP90Gradient": 0.06437,
+      "roughnessBase": 0.708,
+      "roughnessVariation": 0.128,
+      "normalStrength": 0.232,
+      "blurRadius": 21
+    },
+    "palette": [
+      "#4B5555",
+      "#DBCEB4",
+      "#C6B292",
+      "#2A2E31",
+      "#7F7D55"
+    ]
+  },
+  "warnings": [
+    "single-image inverse rendering cannot prove true physical PBR; confidence is capped"
+  ],
+  "limitation": "single-image PBR extraction is an estimate; 70%+ extraction confidence still needs render screenshot review"
+}

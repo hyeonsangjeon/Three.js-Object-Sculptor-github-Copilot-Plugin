@@ -21,6 +21,9 @@ if (['127.0.0.1', 'localhost'].includes(window.location.hostname)) {
   document.querySelectorAll('[data-flagship="brick"]').forEach((link) => {
     link.href = 'http://127.0.0.1:4176/';
   });
+  document.querySelectorAll('[data-flagship="seoul"]').forEach((link) => {
+    link.href = 'http://127.0.0.1:4178/threejs-sculpt-dna/seoul/';
+  });
 }
 const initialVariant = Number.parseInt(query.get('variant') ?? '0', 10);
 const stage = REPOLIS_STAGES.includes(query.get('stage'))

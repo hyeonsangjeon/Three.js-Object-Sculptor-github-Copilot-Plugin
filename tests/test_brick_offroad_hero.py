@@ -23,6 +23,11 @@ from sculpt_pass_orchestrator import (  # noqa: E402
     next_required_evidence,
     pass_specific_evidence as orchestrator_evidence,
 )
+from verify_release import (  # noqa: E402
+    verify_brick_capture_fingerprint,
+    verify_complete_latest_review_pipeline,
+    verify_production_review_policy,
+)
 
 
 class BrickOffroadHeroTests(unittest.TestCase):
@@ -99,6 +104,41 @@ class BrickOffroadHeroTests(unittest.TestCase):
             manifest["runtimeStats"]["renderCalls"], budget["maxDrawCalls"]
         )
         self.assertEqual(manifest["runtimeStats"]["generatedTextureResolution"], 512)
+
+    def test_release_enforces_latest_reviews_policy_and_capture_source(self) -> None:
+        base_path = ROOT / "examples" / "brick-offroad" / "object-sculpt-spec.json"
+        base = json.loads(base_path.read_text(encoding="utf-8"))
+        downgraded = deepcopy(base)
+        downgraded.pop("reviewPolicy")
+        with self.assertRaisesRegex(ValueError, "reviewPolicy v2"):
+            verify_production_review_policy(downgraded, base_path)
+
+        variant_path = (
+            ROOT
+            / "examples"
+            / "showcase"
+            / "variants"
+            / "brick"
+            / "brick-offroad-v001.json"
+        )
+        variant = json.loads(variant_path.read_text(encoding="utf-8"))
+        revoked = deepcopy(variant)
+        revoked["reviewHistory"].append(
+            {
+                **deepcopy(revoked["reviewHistory"][0]),
+                "action": "refine-code",
+            }
+        )
+        with self.assertRaisesRegex(ValueError, "latest evidence-backed pass"):
+            verify_complete_latest_review_pipeline(revoked, variant_path)
+
+        manifest = json.loads(
+            (HERO / "artifact-manifest.json").read_text(encoding="utf-8")
+        )
+        stale = deepcopy(manifest)
+        stale["capture"]["sourceFingerprint"] = "0" * 64
+        with self.assertRaisesRegex(ValueError, "source fingerprint is stale"):
+            verify_brick_capture_fingerprint(HERO, stale)
 
     def test_runtime_variant_config_matches_every_production_mutation(self) -> None:
         config = json.loads(
@@ -640,22 +680,42 @@ class BrickOffroadHeroTests(unittest.TestCase):
         for dependency in ("Python 3", "ffmpeg", "cwebp", "Chrome"):
             self.assertIn(dependency, readme)
 
-    def test_pages_workflow_keeps_repolis_root_and_brick_subroute(self) -> None:
+    def test_pages_workflow_builds_clean_isolated_routes(self) -> None:
         workflow = (
             ROOT / ".github" / "workflows" / "deploy-repolis-hero.yml"
         ).read_text(encoding="utf-8")
-        self.assertIn("examples/repolis-hero/dist/. pages/", workflow)
-        self.assertIn("examples/brick-offroad-hero/dist/. pages/brick/", workflow)
-        self.assertIn("examples/showcase/dist/. pages/showcase/", workflow)
+        self.assertIn(
+            "PAGES_DIR: ${{ runner.temp }}/threejs-sculpt-dna-pages",
+            workflow,
+        )
+        self.assertIn('test ! -e "$PAGES_DIR"', workflow)
+        self.assertIn('examples/repolis-hero/dist/. "$PAGES_DIR/"', workflow)
+        self.assertIn(
+            'examples/brick-offroad-hero/dist/. "$PAGES_DIR/brick/"',
+            workflow,
+        )
+        self.assertIn(
+            'examples/showcase/dist/. "$PAGES_DIR/showcase/"',
+            workflow,
+        )
         self.assertIn('- "examples/showcase/**"', workflow)
         self.assertIn('- "scripts/**"', workflow)
         self.assertIn('- "tests/**"', workflow)
         self.assertIn("python3 scripts/verify_release.py", workflow)
         self.assertIn("python3 -m unittest discover -s tests -q", workflow)
         self.assertIn("npm run test:capture", workflow)
-        self.assertIn("diff -qr examples/brick-offroad-hero/dist pages/brick", workflow)
-        self.assertIn("diff -qr examples/showcase/dist pages/showcase", workflow)
-        self.assertIn("path: pages", workflow)
+        self.assertIn(
+            'diff -qr examples/brick-offroad-hero/dist "$PAGES_DIR/brick"',
+            workflow,
+        )
+        self.assertIn(
+            'diff -qr examples/showcase/dist "$PAGES_DIR/showcase"',
+            workflow,
+        )
+        self.assertIn(
+            "path: ${{ runner.temp }}/threejs-sculpt-dna-pages",
+            workflow,
+        )
 
     def test_readme_preserves_repolis_primary_and_adds_brick_flow(self) -> None:
         readme = (ROOT / "README.md").read_text(encoding="utf-8")

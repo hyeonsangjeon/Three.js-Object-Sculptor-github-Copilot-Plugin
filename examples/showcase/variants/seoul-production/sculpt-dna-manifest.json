@@ -1,0 +1,589 @@
+{
+  "schemaVersion": "1.0",
+  "sourceSpec": "object-sculpt-spec.json",
+  "sourceSpecSha256": "4eb0fb00dacfc16ea280416c623aec7e232cfe661071e30b645f4d0fca48b386",
+  "rootSeed": 20260712,
+  "count": 3,
+  "variants": [
+    {
+      "variantId": "seoul-palace-hero-v001",
+      "path": "seoul-palace-hero-v001.json",
+      "variantSeed": "1996682606581385420",
+      "attempt": 1,
+      "mutations": [
+        {
+          "parameterId": "roof-weathering",
+          "target": {
+            "kind": "material",
+            "id": "roof-ceramic",
+            "path": "roughness.base"
+          },
+          "before": 0.72,
+          "after": 0.7083
+        },
+        {
+          "parameterId": "roof-accent-palette",
+          "target": {
+            "kind": "material",
+            "id": "dancheong-accent",
+            "path": "colorVariation.palette.0"
+          },
+          "before": "#315B52",
+          "after": "#A4533C"
+        },
+        {
+          "parameterId": "courtyard-roughness",
+          "target": {
+            "kind": "material",
+            "id": "courtyard-sand",
+            "path": "roughness.base"
+          },
+          "before": 0.9,
+          "after": 0.8807
+        },
+        {
+          "parameterId": "courtyard-tone",
+          "target": {
+            "kind": "material",
+            "id": "courtyard-sand",
+            "path": "colorVariation.palette.0"
+          },
+          "before": "#C7AB77",
+          "after": "#D7C08E"
+        },
+        {
+          "parameterId": "tree-belt-density",
+          "target": {
+            "kind": "repetition",
+            "id": "vegetation-clusters",
+            "path": "count"
+          },
+          "before": 560,
+          "after": 520
+        },
+        {
+          "parameterId": "city-belt-density",
+          "target": {
+            "kind": "repetition",
+            "id": "urban-blocks",
+            "path": "count"
+          },
+          "before": 148,
+          "after": 165
+        },
+        {
+          "parameterId": "mountain-forest-balance",
+          "target": {
+            "kind": "repetition",
+            "id": "mountain-forest-cells",
+            "path": "count"
+          },
+          "before": 720,
+          "after": 667
+        },
+        {
+          "parameterId": "mountain-rock-balance",
+          "target": {
+            "kind": "repetition",
+            "id": "mountain-rock-patches",
+            "path": "count"
+          },
+          "before": 46,
+          "after": 44
+        }
+      ],
+      "invariants": {
+        "ok": true,
+        "checked": [
+          "component-ids",
+          "parent-links",
+          "material-refs",
+          "socket-ids",
+          "fracture-groups",
+          "attachment-roots",
+          "build-pass-order",
+          "feature-review-targets"
+        ]
+      },
+      "reviewEvidenceReset": true,
+      "samplingMode": "coverage-curated",
+      "candidateIndex": 18,
+      "curatedIndex": 1,
+      "selectionScore": 0.355806,
+      "previewMode": false,
+      "passGateStatus": "evidence-backed-production",
+      "visualEvidence": {
+        "reviewId": "seoul-palace-hero-v001-sol-max-polish-fresh-review-2026-07-13T02:56:06Z",
+        "reviewedAt": "2026-07-13T02:56:06.071Z",
+        "authority": "fresh independent AI-vision review of the exact Sol Max polish render and comparison hashes",
+        "referenceScreenshot": "assets/seoul-challenge-reference.jpeg",
+        "renderScreenshot": "examples/seoul-palace-hero/evidence/variant-1.png",
+        "comparisonImage": "examples/seoul-palace-hero/evidence/variant-1-comparison.png",
+        "aiVisionScore": 0.87,
+        "visualAcceptanceThreshold": 0.86,
+        "layerScores": {
+          "silhouetteProportion": 0.89,
+          "componentStructure": 0.9,
+          "formDetail": 0.89,
+          "materialSurface": 0.87,
+          "lightingCamera": 0.87
+        },
+        "featureReviews": [
+          {
+            "id": "palace-axial-hierarchy",
+            "score": 0.89,
+            "visible": true,
+            "notes": "The exact SHA-bound full-image pair keeps palace-axial-hierarchy legible for seoul-palace-hero-v001 at full production pipeline."
+          },
+          {
+            "id": "korean-roof-system",
+            "score": 0.9,
+            "visible": true,
+            "notes": "The exact SHA-bound full-image pair keeps korean-roof-system legible for seoul-palace-hero-v001 at full production pipeline."
+          },
+          {
+            "id": "ceremonial-negative-space",
+            "score": 0.88,
+            "visible": true,
+            "notes": "The exact SHA-bound full-image pair keeps ceremonial-negative-space legible for seoul-palace-hero-v001 at full production pipeline."
+          },
+          {
+            "id": "atmospheric-depth-layers",
+            "score": 0.87,
+            "visible": true,
+            "notes": "The exact SHA-bound full-image pair keeps atmospheric-depth-layers legible for seoul-palace-hero-v001 at full production pipeline."
+          },
+          {
+            "id": "asymmetric-mountain-composition",
+            "score": 0.86,
+            "visible": true,
+            "notes": "The exact SHA-bound full-image pair keeps asymmetric-mountain-composition legible for seoul-palace-hero-v001 at full production pipeline."
+          }
+        ],
+        "notes": "Curated DNA 01 keeps the strengthened roof and gate hierarchy especially clear while retaining a lighter vegetation envelope.",
+        "aiVisionNotes": "Curated DNA 01 keeps the strengthened roof and gate hierarchy especially clear while retaining a lighter vegetation envelope. The exact full-image pair shows no roof tearing, floating geometry, seed-specific hierarchy collapse, or loss of gate, court, city, tree, and mountain systems. Simplified procedural detail and the single-view source remain explicit limitations.",
+        "referenceSha256": "c227a3ac8958b14cf64e7e95b0943f9cdc1ab9455beca2b9ab8fb1f6d0931290",
+        "referenceBinding": "local-sha256",
+        "renderSha256": "fdf5b694662ce0bd2fe53a93f12f638bcc86c73aeebd60e333f1dc307a74a787",
+        "renderBinding": "local-sha256",
+        "comparisonSha256": "708aa9bfa99a7468d888a8ef09da2a8cd399ab91ab3d710f9f22a23390009fe5",
+        "comparisonBinding": "local-sha256"
+      },
+      "reviewEvidenceRenewed": true,
+      "completedPasses": [
+        "blockout",
+        "structural-pass",
+        "form-refinement",
+        "material-pass",
+        "surface-pass",
+        "lighting-pass",
+        "interaction-pass",
+        "optimization-pass"
+      ],
+      "performanceEvidenceSha256": "d2dde3eb39ca9b619e79e9d50864806cee511322b785b3604d5f86eef609c798"
+    },
+    {
+      "variantId": "seoul-palace-hero-v002",
+      "path": "seoul-palace-hero-v002.json",
+      "variantSeed": "15943353861346949412",
+      "attempt": 1,
+      "mutations": [
+        {
+          "parameterId": "roof-weathering",
+          "target": {
+            "kind": "material",
+            "id": "roof-ceramic",
+            "path": "roughness.base"
+          },
+          "before": 0.72,
+          "after": 0.6967
+        },
+        {
+          "parameterId": "roof-accent-palette",
+          "target": {
+            "kind": "material",
+            "id": "dancheong-accent",
+            "path": "colorVariation.palette.0"
+          },
+          "before": "#315B52",
+          "after": "#315B52"
+        },
+        {
+          "parameterId": "courtyard-roughness",
+          "target": {
+            "kind": "material",
+            "id": "courtyard-sand",
+            "path": "roughness.base"
+          },
+          "before": 0.9,
+          "after": 0.8517
+        },
+        {
+          "parameterId": "courtyard-tone",
+          "target": {
+            "kind": "material",
+            "id": "courtyard-sand",
+            "path": "colorVariation.palette.0"
+          },
+          "before": "#C7AB77",
+          "after": "#C7AB77"
+        },
+        {
+          "parameterId": "tree-belt-density",
+          "target": {
+            "kind": "repetition",
+            "id": "vegetation-clusters",
+            "path": "count"
+          },
+          "before": 560,
+          "after": 575
+        },
+        {
+          "parameterId": "city-belt-density",
+          "target": {
+            "kind": "repetition",
+            "id": "urban-blocks",
+            "path": "count"
+          },
+          "before": 148,
+          "after": 144
+        },
+        {
+          "parameterId": "mountain-forest-balance",
+          "target": {
+            "kind": "repetition",
+            "id": "mountain-forest-cells",
+            "path": "count"
+          },
+          "before": 720,
+          "after": 771
+        },
+        {
+          "parameterId": "mountain-rock-balance",
+          "target": {
+            "kind": "repetition",
+            "id": "mountain-rock-patches",
+            "path": "count"
+          },
+          "before": 46,
+          "after": 48
+        }
+      ],
+      "invariants": {
+        "ok": true,
+        "checked": [
+          "component-ids",
+          "parent-links",
+          "material-refs",
+          "socket-ids",
+          "fracture-groups",
+          "attachment-roots",
+          "build-pass-order",
+          "feature-review-targets"
+        ]
+      },
+      "reviewEvidenceReset": true,
+      "samplingMode": "coverage-curated",
+      "candidateIndex": 21,
+      "curatedIndex": 2,
+      "selectionScore": 0.590199,
+      "previewMode": false,
+      "passGateStatus": "evidence-backed-production",
+      "visualEvidence": {
+        "reviewId": "seoul-palace-hero-v002-sol-max-polish-fresh-review-2026-07-13T02:56:06Z",
+        "reviewedAt": "2026-07-13T02:56:06.071Z",
+        "authority": "fresh independent AI-vision review of the exact Sol Max polish render and comparison hashes",
+        "referenceScreenshot": "assets/seoul-challenge-reference.jpeg",
+        "renderScreenshot": "examples/seoul-palace-hero/evidence/variant-2.png",
+        "comparisonImage": "examples/seoul-palace-hero/evidence/variant-2-comparison.png",
+        "aiVisionScore": 0.87,
+        "visualAcceptanceThreshold": 0.86,
+        "layerScores": {
+          "silhouetteProportion": 0.88,
+          "componentStructure": 0.9,
+          "formDetail": 0.89,
+          "materialSurface": 0.87,
+          "lightingCamera": 0.87
+        },
+        "featureReviews": [
+          {
+            "id": "palace-axial-hierarchy",
+            "score": 0.88,
+            "visible": true,
+            "notes": "The exact SHA-bound full-image pair keeps palace-axial-hierarchy legible for seoul-palace-hero-v002 at full production pipeline."
+          },
+          {
+            "id": "korean-roof-system",
+            "score": 0.9,
+            "visible": true,
+            "notes": "The exact SHA-bound full-image pair keeps korean-roof-system legible for seoul-palace-hero-v002 at full production pipeline."
+          },
+          {
+            "id": "ceremonial-negative-space",
+            "score": 0.88,
+            "visible": true,
+            "notes": "The exact SHA-bound full-image pair keeps ceremonial-negative-space legible for seoul-palace-hero-v002 at full production pipeline."
+          },
+          {
+            "id": "atmospheric-depth-layers",
+            "score": 0.87,
+            "visible": true,
+            "notes": "The exact SHA-bound full-image pair keeps atmospheric-depth-layers legible for seoul-palace-hero-v002 at full production pipeline."
+          },
+          {
+            "id": "asymmetric-mountain-composition",
+            "score": 0.86,
+            "visible": true,
+            "notes": "The exact SHA-bound full-image pair keeps asymmetric-mountain-composition legible for seoul-palace-hero-v002 at full production pipeline."
+          }
+        ],
+        "notes": "Curated DNA 02 preserves the complete palace axis and raised roof identity with a denser but still bounded environmental frame.",
+        "aiVisionNotes": "Curated DNA 02 preserves the complete palace axis and raised roof identity with a denser but still bounded environmental frame. The exact full-image pair shows no roof tearing, floating geometry, seed-specific hierarchy collapse, or loss of gate, court, city, tree, and mountain systems. Simplified procedural detail and the single-view source remain explicit limitations.",
+        "referenceSha256": "c227a3ac8958b14cf64e7e95b0943f9cdc1ab9455beca2b9ab8fb1f6d0931290",
+        "referenceBinding": "local-sha256",
+        "renderSha256": "132f8361638e4521b1fbf2e42508f210a31c23b94b742aa5880700e65e246474",
+        "renderBinding": "local-sha256",
+        "comparisonSha256": "4cb00c6d1521a58be68706c372a47027ee715bb86e79e8a35479b4962a7eac08",
+        "comparisonBinding": "local-sha256"
+      },
+      "reviewEvidenceRenewed": true,
+      "completedPasses": [
+        "blockout",
+        "structural-pass",
+        "form-refinement",
+        "material-pass",
+        "surface-pass",
+        "lighting-pass",
+        "interaction-pass",
+        "optimization-pass"
+      ],
+      "performanceEvidenceSha256": "d2dde3eb39ca9b619e79e9d50864806cee511322b785b3604d5f86eef609c798"
+    },
+    {
+      "variantId": "seoul-palace-hero-v003",
+      "path": "seoul-palace-hero-v003.json",
+      "variantSeed": "13524487735928202990",
+      "attempt": 1,
+      "mutations": [
+        {
+          "parameterId": "roof-weathering",
+          "target": {
+            "kind": "material",
+            "id": "roof-ceramic",
+            "path": "roughness.base"
+          },
+          "before": 0.72,
+          "after": 0.6757
+        },
+        {
+          "parameterId": "roof-accent-palette",
+          "target": {
+            "kind": "material",
+            "id": "dancheong-accent",
+            "path": "colorVariation.palette.0"
+          },
+          "before": "#315B52",
+          "after": "#A4533C"
+        },
+        {
+          "parameterId": "courtyard-roughness",
+          "target": {
+            "kind": "material",
+            "id": "courtyard-sand",
+            "path": "roughness.base"
+          },
+          "before": 0.9,
+          "after": 0.9344
+        },
+        {
+          "parameterId": "courtyard-tone",
+          "target": {
+            "kind": "material",
+            "id": "courtyard-sand",
+            "path": "colorVariation.palette.0"
+          },
+          "before": "#C7AB77",
+          "after": "#C7AB77"
+        },
+        {
+          "parameterId": "tree-belt-density",
+          "target": {
+            "kind": "repetition",
+            "id": "vegetation-clusters",
+            "path": "count"
+          },
+          "before": 560,
+          "after": 558
+        },
+        {
+          "parameterId": "city-belt-density",
+          "target": {
+            "kind": "repetition",
+            "id": "urban-blocks",
+            "path": "count"
+          },
+          "before": 148,
+          "after": 133
+        },
+        {
+          "parameterId": "mountain-forest-balance",
+          "target": {
+            "kind": "repetition",
+            "id": "mountain-forest-cells",
+            "path": "count"
+          },
+          "before": 720,
+          "after": 736
+        },
+        {
+          "parameterId": "mountain-rock-balance",
+          "target": {
+            "kind": "repetition",
+            "id": "mountain-rock-patches",
+            "path": "count"
+          },
+          "before": 46,
+          "after": 43
+        }
+      ],
+      "invariants": {
+        "ok": true,
+        "checked": [
+          "component-ids",
+          "parent-links",
+          "material-refs",
+          "socket-ids",
+          "fracture-groups",
+          "attachment-roots",
+          "build-pass-order",
+          "feature-review-targets"
+        ]
+      },
+      "reviewEvidenceReset": true,
+      "samplingMode": "coverage-curated",
+      "candidateIndex": 22,
+      "curatedIndex": 3,
+      "selectionScore": 0.44228,
+      "previewMode": false,
+      "passGateStatus": "evidence-backed-production",
+      "visualEvidence": {
+        "reviewId": "seoul-palace-hero-v003-sol-max-polish-fresh-review-2026-07-13T02:56:06Z",
+        "reviewedAt": "2026-07-13T02:56:06.071Z",
+        "authority": "fresh independent AI-vision review of the exact Sol Max polish render and comparison hashes",
+        "referenceScreenshot": "assets/seoul-challenge-reference.jpeg",
+        "renderScreenshot": "examples/seoul-palace-hero/evidence/variant-3.png",
+        "comparisonImage": "examples/seoul-palace-hero/evidence/variant-3-comparison.png",
+        "aiVisionScore": 0.88,
+        "visualAcceptanceThreshold": 0.86,
+        "layerScores": {
+          "silhouetteProportion": 0.89,
+          "componentStructure": 0.91,
+          "formDetail": 0.9,
+          "materialSurface": 0.88,
+          "lightingCamera": 0.88
+        },
+        "featureReviews": [
+          {
+            "id": "palace-axial-hierarchy",
+            "score": 0.89,
+            "visible": true,
+            "notes": "The exact SHA-bound full-image pair keeps palace-axial-hierarchy legible for seoul-palace-hero-v003 at full production pipeline."
+          },
+          {
+            "id": "korean-roof-system",
+            "score": 0.91,
+            "visible": true,
+            "notes": "The exact SHA-bound full-image pair keeps korean-roof-system legible for seoul-palace-hero-v003 at full production pipeline."
+          },
+          {
+            "id": "ceremonial-negative-space",
+            "score": 0.89,
+            "visible": true,
+            "notes": "The exact SHA-bound full-image pair keeps ceremonial-negative-space legible for seoul-palace-hero-v003 at full production pipeline."
+          },
+          {
+            "id": "atmospheric-depth-layers",
+            "score": 0.88,
+            "visible": true,
+            "notes": "The exact SHA-bound full-image pair keeps atmospheric-depth-layers legible for seoul-palace-hero-v003 at full production pipeline."
+          },
+          {
+            "id": "asymmetric-mountain-composition",
+            "score": 0.87,
+            "visible": true,
+            "notes": "The exact SHA-bound full-image pair keeps asymmetric-mountain-composition legible for seoul-palace-hero-v003 at full production pipeline."
+          }
+        ],
+        "notes": "Curated DNA 03 provides the strongest layered city, vegetation, and mountain recession while keeping ceremonial clearings intact.",
+        "aiVisionNotes": "Curated DNA 03 provides the strongest layered city, vegetation, and mountain recession while keeping ceremonial clearings intact. The exact full-image pair shows no roof tearing, floating geometry, seed-specific hierarchy collapse, or loss of gate, court, city, tree, and mountain systems. Simplified procedural detail and the single-view source remain explicit limitations.",
+        "referenceSha256": "c227a3ac8958b14cf64e7e95b0943f9cdc1ab9455beca2b9ab8fb1f6d0931290",
+        "referenceBinding": "local-sha256",
+        "renderSha256": "9fc1d13648444979c705e17944d2b4e3c35dd9819fa3819367051bba052e47e5",
+        "renderBinding": "local-sha256",
+        "comparisonSha256": "931dda66043fea201d1ddbb81c7f2b6a76989aeef85484b0af9c3240970cfbd0",
+        "comparisonBinding": "local-sha256"
+      },
+      "reviewEvidenceRenewed": true,
+      "completedPasses": [
+        "blockout",
+        "structural-pass",
+        "form-refinement",
+        "material-pass",
+        "surface-pass",
+        "lighting-pass",
+        "interaction-pass",
+        "optimization-pass"
+      ],
+      "performanceEvidenceSha256": "d2dde3eb39ca9b619e79e9d50864806cee511322b785b3604d5f86eef609c798"
+    }
+  ],
+  "samplingMode": "coverage-curated",
+  "poolSize": 24,
+  "selectedCandidateIndexes": [
+    18,
+    21,
+    22
+  ],
+  "parameterIds": [
+    "roof-weathering",
+    "roof-accent-palette",
+    "courtyard-roughness",
+    "courtyard-tone",
+    "tree-belt-density",
+    "city-belt-density",
+    "mountain-forest-balance",
+    "mountain-rock-balance"
+  ],
+  "coverageScore": 0.506961,
+  "selectionStrategy": "centroid-extreme then greedy max-min normalized parameter distance",
+  "previewMode": false,
+  "passGateStatus": "evidence-backed-production",
+  "baseCompletedPasses": [
+    "blockout",
+    "structural-pass",
+    "form-refinement",
+    "material-pass",
+    "surface-pass",
+    "lighting-pass",
+    "interaction-pass",
+    "optimization-pass"
+  ],
+  "missingBasePasses": [],
+  "visualReviewSet": {
+    "reviewedAt": "2026-07-13T02:56:06.071Z",
+    "authority": "fresh independent AI-vision review of exact Sol Max polish render/comparison hashes",
+    "latestAuthoritativeReview": "per-variant SHA-256-bound visualAcceptance at the raised 0.86 gate",
+    "variantReviewIds": [
+      "seoul-palace-hero-v001-sol-max-polish-fresh-review-2026-07-13T02:56:06Z",
+      "seoul-palace-hero-v002-sol-max-polish-fresh-review-2026-07-13T02:56:06Z",
+      "seoul-palace-hero-v003-sol-max-polish-fresh-review-2026-07-13T02:56:06Z"
+    ],
+    "variantPipelinesComplete": true,
+    "canonicalReleaseReviewId": "optimization-pass-canonical-release-2026-07-13T04:09:37.358Z",
+    "variantPerformanceEvidence": {
+      "path": "examples/seoul-palace-hero/evidence/variant-runtime-metrics.json",
+      "sha256": "d2dde3eb39ca9b619e79e9d50864806cee511322b785b3604d5f86eef609c798",
+      "binding": "local-sha256"
+    }
+  }
+}

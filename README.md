@@ -90,7 +90,7 @@ Read the [complete user guide](docs/USER_GUIDE.md) for production vs preview var
 
 ## Additional Demo Families
 
-Brick is now a second evidence-backed flagship. Seoul remains an explicit preview family, and every generated variant still resets its visual evidence before promotion.
+Brick and Seoul are now evidence-backed production flagships. Every generated variant resets inherited evidence and must pass a fresh SHA-bound visual review before promotion.
 
 ### Brick Off-Road Explorer
 
@@ -125,22 +125,34 @@ The committed installed-Chrome manifest records per-run generation timings plus 
 
 ### Seoul Palace Scene Challenge
 
+[Open the interactive Seoul Palace Scene](https://hyeonsangjeon.github.io/threejs-sculpt-dna/seoul/)
+
+**Reference** → **Intermediate preview** → **Flagship**
+
+![Cinematic procedural Seoul Palace Scene](assets/seoul-palace-hero.gif)
+
 <table>
   <tr>
-    <th>Reference crop</th>
-    <th>Sculpt DNA variants</th>
+    <th>01 · Reference crop</th>
+    <th>02 · Existing intermediate preview</th>
+    <th>03 · Production flagship</th>
   </tr>
   <tr>
     <td><img src="assets/seoul-challenge-reference.jpeg" alt="User-selected Seoul palace and city challenge crop"></td>
-    <td><img src="assets/seoul-challenge-sculpt-dna-result.png" alt="Three layered procedural Seoul palace scene variants"></td>
+    <td><img src="assets/seoul-challenge-sculpt-dna-result.png" alt="Earlier intermediate layered Seoul palace scene variants"></td>
+    <td><img src="assets/seoul-palace-hero.png" alt="Final production procedural Seoul Palace Scene"></td>
   </tr>
 </table>
 
-This is deliberately a **conditional scene reconstruction**, not one isolated object. The workflow decomposes the crop into palace halls, dark roof rhythms, courtyard, tree belt, city blocks, and mountain ridges, then varies their density and palette while preserving front-to-back layer order.
+This remains deliberately a **conditional stylized reconstruction** from one low-resolution aerial image, not photogrammetry or an exact reverse-engineered palace. The production flagship now completes all eight locked passes and reads as an axial campus with outer and inner gates, a main throne hall, curved Korean roof rhythm, broad ceremonial courts, side corridors, tree and city belts, and a custom asymmetric ridge skyline.
 
-[Base spec](examples/seoul-challenge/object-sculpt-spec.json) ·
-[Variant manifest](examples/showcase/variants/seoul/sculpt-dna-manifest.json) ·
-[Renderer](examples/showcase/showcase.js)
+The installed-Chrome manifest records **144,472 instance-weighted triangles**, **194 scene drawables**, **388 full-frame WebGL calls**, **2,275 instances**, **35 independent 1024px texture fields**, one directional shadow map, and **0 imported meshes**. The canonical 1200×675 capture is byte-identical across repeated runs. Three fresh evidence-backed variants were curated from 24 candidates with a 0.506961 coverage score while locking the palace axis, gate order, main-hall and roof topology, sockets, pivots, reference camera, and colliders.
+
+[Evidence-backed base spec](examples/seoul-challenge/object-sculpt-spec.json) ·
+[Production variant manifest](examples/showcase/variants/seoul-production/sculpt-dna-manifest.json) ·
+[Reusable factory](examples/seoul-palace-hero/seoul-output/createSeoulPalaceHero.js) ·
+[Runtime profile](examples/seoul-palace-hero/seoul-output/seoul-palace-profile.json) ·
+[Pass evidence](examples/seoul-palace-hero/evidence/)
 
 The two camera photos are stored as web-sized JPEGs with GPS, device, and original capture metadata removed.
 

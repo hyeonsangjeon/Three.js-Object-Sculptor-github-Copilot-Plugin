@@ -1,0 +1,299 @@
+{
+  "schemaVersion": "2.0",
+  "runtimeFingerprint": "54febd9233548b08a75064dd8bb1f8c708fb8ee461ec8b8516de9542edae53e6",
+  "authority": "three warmed 600-frame headed physical-60Hz probes per production variant",
+  "sourceBinding": {
+    "mode": "runtime-fingerprint-v1",
+    "manifest": "examples/seoul-palace-hero/artifact-manifest.json",
+    "rationale": "The cycle-free runtime fingerprint covers executable inputs while the manifest separately owns the canonical source fingerprint."
+  },
+  "conditions": {
+    "viewport": {
+      "width": 1200,
+      "height": 675,
+      "deviceScaleFactor": 1
+    },
+    "warmupFramesExcludedPerRun": 180,
+    "measuredFramesPerRun": 600,
+    "runsPerVariant": 3,
+    "physicalRefreshHz": 60,
+    "reducedMotion": true,
+    "canonicalState": "optimization-pass, reference view, full lens, gates closed, motion and tour disabled",
+    "forcedFullRenderPerSample": true
+  },
+  "gate": {
+    "meanFpsMinimum": 58.5,
+    "p50FrameMsMaximum": 16.9,
+    "p95FrameMsMaximum": 22,
+    "droppedFrameCountMaximum": 0,
+    "longTaskCountMaximum": 0
+  },
+  "variants": [
+    {
+      "variantId": "seoul-palace-hero-v001",
+      "renderScreenshot": "examples/seoul-palace-hero/evidence/variant-1.png",
+      "renderSha256": "fdf5b694662ce0bd2fe53a93f12f638bcc86c73aeebd60e333f1dc307a74a787",
+      "aggregate": {
+        "frameCount": 1800,
+        "meanFps": 59.99040153575427,
+        "meanFrameMs": 16.669333333333334,
+        "p50FrameMs": 16.69999999999891,
+        "p95FrameMs": 18.5,
+        "p99FrameMs": 18.700000000000728,
+        "droppedFrameCount": 0
+      },
+      "runs": [
+        {
+          "run": 1,
+          "frameCount": 600,
+          "meanFps": 59.99460048595627,
+          "p50FrameMs": 16.69999999999891,
+          "p95FrameMs": 18.5,
+          "p99FrameMs": 18.600000000000364,
+          "droppedFrameCount": 0,
+          "longTaskCount": 0,
+          "heapBeforeMiB": 109.68911838531494,
+          "heapAfterMiB": 109.54823303222656
+        },
+        {
+          "run": 2,
+          "frameCount": 600,
+          "meanFps": 59.985003749062734,
+          "p50FrameMs": 16.69999999999891,
+          "p95FrameMs": 18.5,
+          "p99FrameMs": 18.700000000000728,
+          "droppedFrameCount": 0,
+          "longTaskCount": 0,
+          "heapBeforeMiB": 109.75863742828369,
+          "heapAfterMiB": 108.7857894897461
+        },
+        {
+          "run": 3,
+          "frameCount": 600,
+          "meanFps": 59.991601175835385,
+          "p50FrameMs": 16.69999999999891,
+          "p95FrameMs": 18.299999999999272,
+          "p99FrameMs": 18.699999999999818,
+          "droppedFrameCount": 0,
+          "longTaskCount": 0,
+          "heapBeforeMiB": 108.06576251983643,
+          "heapAfterMiB": 108.05281066894531
+        }
+      ],
+      "runtime": {
+        "fullFrameWebglCalls": 388,
+        "renderedTriangles": 282928,
+        "instanceWeightedTriangles": 141464,
+        "sceneDrawables": 194,
+        "instances": 2282,
+        "colliders": 27,
+        "geometries": 187,
+        "textures": 29
+      },
+      "gcDiagnostics": [
+        {
+          "run": 1,
+          "primaryEvents": 125,
+          "primaryDurationMs": 23.758999999999997
+        },
+        {
+          "run": 2,
+          "primaryEvents": 103,
+          "primaryDurationMs": 21.639000000000003
+        },
+        {
+          "run": 3,
+          "primaryEvents": 104,
+          "primaryDurationMs": 22.372
+        }
+      ],
+      "allRunsPass": true,
+      "rawSummarySha256": "f0a7fb5d60adff05bf84480a8eee1d349680b2646ac67f35dcc3a689a66d4db4",
+      "browser": "Chrome/149.0.7827.201",
+      "renderer": "ANGLE Metal Renderer: Apple M4"
+    },
+    {
+      "variantId": "seoul-palace-hero-v002",
+      "renderScreenshot": "examples/seoul-palace-hero/evidence/variant-2.png",
+      "renderSha256": "132f8361638e4521b1fbf2e42508f210a31c23b94b742aa5880700e65e246474",
+      "aggregate": {
+        "frameCount": 1800,
+        "meanFps": 60.00060000600001,
+        "meanFrameMs": 16.666500000000013,
+        "p50FrameMs": 16.69999999999891,
+        "p95FrameMs": 18.5,
+        "p99FrameMs": 18.700000000000728,
+        "droppedFrameCount": 0
+      },
+      "runs": [
+        {
+          "run": 1,
+          "frameCount": 600,
+          "meanFps": 59.995800293979414,
+          "p50FrameMs": 16.699999999999818,
+          "p95FrameMs": 18.399999999999636,
+          "p99FrameMs": 18.69999999999891,
+          "droppedFrameCount": 0,
+          "longTaskCount": 0,
+          "heapBeforeMiB": 110.4528169631958,
+          "heapAfterMiB": 110.98757934570312
+        },
+        {
+          "run": 2,
+          "frameCount": 600,
+          "meanFps": 60,
+          "p50FrameMs": 16.699999999999818,
+          "p95FrameMs": 18.599999999999454,
+          "p99FrameMs": 18.700000000000728,
+          "droppedFrameCount": 0,
+          "longTaskCount": 0,
+          "heapBeforeMiB": 110.44885730743408,
+          "heapAfterMiB": 106.2789421081543
+        },
+        {
+          "run": 3,
+          "frameCount": 600,
+          "meanFps": 60.00600060006,
+          "p50FrameMs": 16.69999999999891,
+          "p95FrameMs": 18.599999999998545,
+          "p99FrameMs": 18.699999999999818,
+          "droppedFrameCount": 0,
+          "longTaskCount": 0,
+          "heapBeforeMiB": 111.24672412872314,
+          "heapAfterMiB": 109.59254455566406
+        }
+      ],
+      "runtime": {
+        "fullFrameWebglCalls": 388,
+        "renderedTriangles": 291360,
+        "instanceWeightedTriangles": 145680,
+        "sceneDrawables": 194,
+        "instances": 2280,
+        "colliders": 27,
+        "geometries": 187,
+        "textures": 29
+      },
+      "gcDiagnostics": [
+        {
+          "run": 1,
+          "primaryEvents": 67,
+          "primaryDurationMs": 16.299
+        },
+        {
+          "run": 2,
+          "primaryEvents": 107,
+          "primaryDurationMs": 20.009999999999994
+        },
+        {
+          "run": 3,
+          "primaryEvents": 122,
+          "primaryDurationMs": 23.186999999999994
+        }
+      ],
+      "allRunsPass": true,
+      "rawSummarySha256": "9d6c0f746365d66daa39ef35c2f136329bb1cccec2863ac65c33b699be385766",
+      "browser": "Chrome/149.0.7827.201",
+      "renderer": "ANGLE Metal Renderer: Apple M4"
+    },
+    {
+      "variantId": "seoul-palace-hero-v003",
+      "renderScreenshot": "examples/seoul-palace-hero/evidence/variant-3.png",
+      "renderSha256": "9fc1d13648444979c705e17944d2b4e3c35dd9819fa3819367051bba052e47e5",
+      "aggregate": {
+        "frameCount": 1800,
+        "meanFps": 60.002400096003875,
+        "meanFrameMs": 16.66599999999999,
+        "p50FrameMs": 16.69999999999891,
+        "p95FrameMs": 18.599999999999454,
+        "p99FrameMs": 18.69999999999891,
+        "droppedFrameCount": 0
+      },
+      "runs": [
+        {
+          "run": 1,
+          "frameCount": 600,
+          "meanFps": 59.99940000599994,
+          "p50FrameMs": 16.69999999999891,
+          "p95FrameMs": 18.599999999998545,
+          "p99FrameMs": 18.69999999999891,
+          "droppedFrameCount": 0,
+          "longTaskCount": 0,
+          "heapBeforeMiB": 110.50844287872314,
+          "heapAfterMiB": 109.5883674621582
+        },
+        {
+          "run": 2,
+          "frameCount": 600,
+          "meanFps": 60.006600726079874,
+          "p50FrameMs": 16.69999999999891,
+          "p95FrameMs": 18.599999999999454,
+          "p99FrameMs": 18.69999999999891,
+          "droppedFrameCount": 0,
+          "longTaskCount": 0,
+          "heapBeforeMiB": 108.1809434890747,
+          "heapAfterMiB": 108.07720565795898
+        },
+        {
+          "run": 3,
+          "frameCount": 600,
+          "meanFps": 60.001200024000475,
+          "p50FrameMs": 16.69999999999891,
+          "p95FrameMs": 18.599999999999454,
+          "p99FrameMs": 18.600000000000364,
+          "droppedFrameCount": 0,
+          "longTaskCount": 0,
+          "heapBeforeMiB": 109.6962776184082,
+          "heapAfterMiB": 113.25761413574219
+        }
+      ],
+      "runtime": {
+        "fullFrameWebglCalls": 388,
+        "renderedTriangles": 286912,
+        "instanceWeightedTriangles": 143456,
+        "sceneDrawables": 194,
+        "instances": 2214,
+        "colliders": 27,
+        "geometries": 187,
+        "textures": 29
+      },
+      "gcDiagnostics": [
+        {
+          "run": 1,
+          "primaryEvents": 103,
+          "primaryDurationMs": 21.763
+        },
+        {
+          "run": 2,
+          "primaryEvents": 74,
+          "primaryDurationMs": 18.897000000000002
+        },
+        {
+          "run": 3,
+          "primaryEvents": 67,
+          "primaryDurationMs": 18.157999999999994
+        }
+      ],
+      "allRunsPass": true,
+      "rawSummarySha256": "8e953ca9645a79a3ffd490429050d26adba87442fc00cc2075f3ba2fd915fc01",
+      "browser": "Chrome/149.0.7827.201",
+      "renderer": "ANGLE Metal Renderer: Apple M4"
+    }
+  ],
+  "rawArtifacts": {
+    "retention": "outside repository session artifacts",
+    "directorySha256": [
+      {
+        "variant": 1,
+        "summarySha256": "f0a7fb5d60adff05bf84480a8eee1d349680b2646ac67f35dcc3a689a66d4db4"
+      },
+      {
+        "variant": 2,
+        "summarySha256": "9d6c0f746365d66daa39ef35c2f136329bb1cccec2863ac65c33b699be385766"
+      },
+      {
+        "variant": 3,
+        "summarySha256": "8e953ca9645a79a3ffd490429050d26adba87442fc00cc2075f3ba2fd915fc01"
+      }
+    ]
+  }
+}

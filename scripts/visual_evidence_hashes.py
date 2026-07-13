@@ -16,6 +16,7 @@ EVIDENCE_FIELDS = {
     "comparisonImage": "comparisonSha256",
 }
 REQUIRED_LOCAL_FIELDS = ("renderScreenshot", "comparisonImage")
+SUPPLEMENTAL_EVIDENCE_FIELD = "supplementalEvidence"
 REVIEW_POLICY_VERSION = 2
 SHA_REQUIRED_BINDING = "local-sha256-required"
 LATEST_REVIEW_SELECTION = "latest-per-pass"
@@ -88,19 +89,29 @@ def resolve_local_evidence_path(
     if not value or is_remote_or_virtual_path(value):
         return None
     candidate = Path(value).expanduser()
+    candidates: list[Path] = []
     if candidate.is_absolute():
-        return candidate.resolve() if candidate.is_file() else None
-    bases: list[Path] = []
+        candidates.append(candidate)
     if spec_path is not None:
         resolved_spec = spec_path.expanduser().resolve()
-        bases.extend((resolved_spec.parent, *resolved_spec.parents))
-    bases.extend((Path.cwd(), REPO_ROOT))
+        try:
+            resolved_spec.relative_to(REPO_ROOT)
+        except ValueError:
+            pass
+        else:
+            candidates.append(resolved_spec.parent / candidate)
+    if not candidate.is_absolute():
+        candidates.append(REPO_ROOT / candidate)
     seen: set[Path] = set()
-    for base in bases:
-        resolved = (base / candidate).resolve()
+    for path in candidates:
+        resolved = path.resolve()
         if resolved in seen:
             continue
         seen.add(resolved)
+        try:
+            resolved.relative_to(REPO_ROOT)
+        except ValueError:
+            continue
         if resolved.is_file():
             return resolved
     return None
@@ -134,6 +145,32 @@ def bind_visual_evidence_hashes(
             raise FileNotFoundError(f"{path_field} does not exist: {value}")
         visual[hash_field] = file_sha256(resolved)
         visual[binding_field] = "local-sha256"
+    supplemental = visual.get(SUPPLEMENTAL_EVIDENCE_FIELD)
+    if supplemental is not None:
+        if not isinstance(supplemental, list):
+            raise ValueError(f"{SUPPLEMENTAL_EVIDENCE_FIELD} must be an array")
+        for index, item in enumerate(supplemental):
+            if not isinstance(item, dict):
+                raise ValueError(
+                    f"{SUPPLEMENTAL_EVIDENCE_FIELD}[{index}] must be an object"
+                )
+            value = item.get("path")
+            if not isinstance(value, str) or not value.strip():
+                raise ValueError(
+                    f"{SUPPLEMENTAL_EVIDENCE_FIELD}[{index}].path is required"
+                )
+            if is_remote_or_virtual_path(value):
+                item.pop("sha256", None)
+                item["binding"] = "remote-unverified"
+                continue
+            resolved = resolve_local_evidence_path(value, spec_path)
+            if resolved is None:
+                raise FileNotFoundError(
+                    f"{SUPPLEMENTAL_EVIDENCE_FIELD}[{index}].path does not exist: "
+                    f"{value}"
+                )
+            item["sha256"] = file_sha256(resolved)
+            item["binding"] = "local-sha256"
     return visual
 
 
@@ -185,6 +222,53 @@ def visual_evidence_hash_failures(
                 f"{hash_field} mismatch for {path_field}: "
                 f"expected {expected.lower()}, actual {actual}"
             )
+    supplemental = visual.get(SUPPLEMENTAL_EVIDENCE_FIELD)
+    if supplemental is not None:
+        if not isinstance(supplemental, list):
+            failures.append(f"{SUPPLEMENTAL_EVIDENCE_FIELD} must be an array")
+            return failures
+        seen_paths: set[str] = set()
+        for index, item in enumerate(supplemental):
+            label = f"{SUPPLEMENTAL_EVIDENCE_FIELD}[{index}]"
+            if not isinstance(item, dict):
+                failures.append(f"{label} must be an object")
+                continue
+            value = item.get("path")
+            if not isinstance(value, str) or not value.strip():
+                failures.append(f"{label}.path is required")
+                continue
+            if value in seen_paths:
+                failures.append(f"{label}.path duplicates {value}")
+                continue
+            seen_paths.add(value)
+            if is_remote_or_virtual_path(value):
+                if require_local:
+                    failures.append(
+                        f"{label}.path must be local SHA-256-bound evidence"
+                    )
+                elif item.get("binding") not in (None, "remote-unverified"):
+                    failures.append(
+                        f"{label}.binding must be remote-unverified"
+                    )
+                continue
+            resolved = resolve_local_evidence_path(value, spec_path)
+            if resolved is None:
+                failures.append(f"{label}.path local file is missing: {value}")
+                continue
+            if item.get("binding") != "local-sha256":
+                failures.append(f"{label}.binding must be local-sha256")
+            expected = item.get("sha256")
+            if expected is None and not require_hashes:
+                continue
+            if not isinstance(expected, str) or len(expected) != 64:
+                failures.append(f"{label}.sha256 is required for local evidence")
+                continue
+            actual = file_sha256(resolved)
+            if expected.lower() != actual:
+                failures.append(
+                    f"{label}.sha256 mismatch for {value}: "
+                    f"expected {expected.lower()}, actual {actual}"
+                )
     return failures
 
 

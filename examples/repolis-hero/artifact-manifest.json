@@ -27,8 +27,8 @@
     "stage": "full"
   },
   "sourceSha256": {
-    "index.html": "5497aad523c7198da5f066755a8874663dbaa16f038ac468e6e740cb7e173578",
-    "main.js": "8adf70e19da7a7151180e1dcf5bf2734d9e4cc9353e791958ec22ccbf339fc38",
+    "index.html": "bba181734ca146f40e427bb53644ed283785294f8b8f1650a7b2d42d169e8bbd",
+    "main.js": "2e58e88f1cdb79e132223096cace6246dc3483992d56effd58b86fe063d17e62",
     "style.css": "60b00a0fd810bd5073727768497646d71a0621ea33a4549a4b58aa8166e61587",
     "repolis-output/createRepolisHero.js": "65bd7fc76013ee0f11898174095556d581be64ea8f15e76e090fb8955a17d0e3",
     "repolis-output/repolis-hero-profile.json": "dbd376bb180aae1d1d93ed579ea3a3558cbd8e397f6da9ed853f0b1325916351",

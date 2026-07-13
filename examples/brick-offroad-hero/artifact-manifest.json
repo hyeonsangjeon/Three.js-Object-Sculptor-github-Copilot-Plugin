@@ -16,10 +16,10 @@
     "canonicalElapsed": 1.25,
     "deterministicFrameSha256": "05db81749b298a71b5ea6f6e559c0c64cfc3920eebb9042ab21f0ded96c2c8e9",
     "portAllocation": "ephemeral-os-assigned",
-    "sourceFingerprint": "5aa6de4bb12746055118d4d6d107cf3784659d61a48faa124bba5ef75797a0c0"
+    "sourceFingerprint": "a129bd85c33891b895cc096fd129d08370851c8c791745454d8d7f4b7d82f515"
   },
   "runtimeStats": {
-    "generationMs": 1241.699999988079,
+    "generationMs": 857.7999999821186,
     "meshes": 126,
     "triangles": 64148,
     "sceneDrawables": 126,
@@ -96,7 +96,7 @@
         }
       },
       "stats": {
-        "generationMs": 1364.0999999940395,
+        "generationMs": 882.2000000178814,
         "meshes": 126,
         "triangles": 63564,
         "sceneDrawables": 126,
@@ -147,7 +147,7 @@
         }
       },
       "stats": {
-        "generationMs": 1261.699999988079,
+        "generationMs": 871.8000000119209,
         "meshes": 126,
         "triangles": 68324,
         "sceneDrawables": 126,
@@ -198,7 +198,7 @@
         }
       },
       "stats": {
-        "generationMs": 1322.5999999940395,
+        "generationMs": 854.5,
         "meshes": 126,
         "triangles": 66980,
         "sceneDrawables": 126,
@@ -734,8 +734,8 @@
     "heroCopy": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82"
   },
   "sourceSha256": {
-    "index.html": "17f1ebe01578eef52c182a0fc0dfd3a9ca32d2668fb726e151c6173d375089f4",
-    "main.js": "747f7c2a38fb05b7068c84b5c1a964deb606dec556e5650dc9da8619a33f598c",
+    "index.html": "12ae472b54b37dbda404fa82feae0092614cdac5ab9cdb8ca8e5b153aec7527e",
+    "main.js": "50ab640a7875d0ffda6e69e87e9a1bc31431ecdd6c4ceecbb044f34255a7ddde",
     "style.css": "ca434c41fdf81a322ff712978b2efd7b90038566da4234a92a7122abed7a0d65",
     "package.json": "0af01640413136e602cd9c223b0ebe69e041572384e8b726ac2d4dadeb3b2f41",
     "package-lock.json": "e045d74a051632d5036ceddece0cb707e14ba0431deb29216c0512aeb10c1980",
@@ -749,17 +749,17 @@
     "../../scripts/make_visual_comparison_sheet.py": "85fb27acca3ef9d8c0f1a13c6a0267ce61bb46e3f8bca7257404084237f43858",
     "../../scripts/sculpt_dna.py": "d8afd9b8f50033498027b31c757dc7b30b856c51f191dfeada4f68e0cd6cb7be",
     "../../scripts/sculpt_pass_orchestrator.py": "853de5a04cdbc92115b29abd8aed20f79138d9d6150820293e6c450d59136325",
-    "../../scripts/validate_sculpt_spec.py": "14dc45811b95ed6623cff1ad5d77f73545297788af74ef89ee82048a15611ff9",
-    "../../scripts/visual_evidence_hashes.py": "6fcfbc8400d6c316579bdabfb0253ac2aa016a32a4588f751568653e243bd571",
+    "../../scripts/validate_sculpt_spec.py": "3becfda540d949df915e40c2cf3f7cceff82a8268bd1efd66dc4251a5e5e7ba5",
+    "../../scripts/visual_evidence_hashes.py": "f2a3304ec3ccc37b4809f75eabd39fd755704e790db1ed18f18eed0c8cb39c3f",
     "../../scripts/migrate_review_policy.py": "96a0b67a353b6133660d457141f6f04eab532e1eaa80dd2b62d416d64fc09546",
     "../../scripts/refresh_brick_reviews.py": "cab356d9dc707c97fb367c0c2a81c8bb2ac355f12a3b556deb92d5376d886dde",
-    "../../scripts/verify_release.py": "59b1e64be906ce5bbaf6f9e5ed22893889cb93e608da12f37697fb77d5136f29",
+    "../../scripts/verify_release.py": "67ea1709d9606c93c913ebbf219843c6dd49f34d8325224d8a9d3e31bc70eeb1",
     "../brick-offroad/object-sculpt-spec.json": "a42660533bff26330a63b25f9476f703cec1d8672e45aeb7fa4df08b77465251",
     "../showcase/variants/brick/brick-offroad-v001.json": "2ddbee5c0c92ed0fdb658fd8bb7c035077515af4fb390e7ea87f91a67cd91e6a",
     "../showcase/variants/brick/brick-offroad-v002.json": "03e1c9a7c116bb8f54646cc79d9637c065bb0f6d4c977cfda1b76038a7db46c6",
     "../showcase/variants/brick/brick-offroad-v003.json": "b766023fa03343cb94645a0475356f0ec430ed744f7d8c6b7a106dcda5248235",
     "../showcase/variants/brick/sculpt-dna-manifest.json": "921c73492e25f430520ed458a612781c665e5548f1e945f7c5023143ae4cbeef",
-    "../showcase/showcase-review.json": "f5357a58c7cc94cd414507ae2a21259e5838611d6e80e2db0aed2e3186b36411",
+    "../showcase/showcase-review.json": "aaddea550e7902386f5fba9d54e91369841796813c2cc644f2859e945cb08f87",
     "reference/brick-offroad-reference.jpeg": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82"
   },
   "outputSha256": {

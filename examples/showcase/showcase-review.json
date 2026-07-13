@@ -1,6 +1,6 @@
 {
   "reviewType": "readme-showcase-family",
-  "reviewedAt": "2026-07-12T02:00:26Z",
+  "reviewedAt": "2026-07-12T15:24:00Z",
   "reviewPolicy": {
     "version": 1,
     "authoritativeReview": "latest",
@@ -76,27 +76,37 @@
     {
       "id": "seoul-challenge",
       "reference": "assets/seoul-challenge-reference.jpeg",
-      "render": "assets/seoul-challenge-sculpt-dna-result.png",
-      "decision": "document-layered-family-preview",
-      "baseSculptStatus": "preview",
-      "passGateStatus": "pending-per-variant-visual-review",
+      "render": "assets/seoul-palace-hero.png",
+      "comparison": "examples/seoul-palace-hero/evidence/final-comparison.png",
+      "decision": "promote-to-evidence-backed-flagship",
+      "baseSculptStatus": "complete",
+      "passGateStatus": "evidence-backed-production",
       "coverageCurator": {
         "poolSize": 24,
         "selectedCandidateIndexes": [
-          15,
-          11,
-          24
+          18,
+          21,
+          22
         ],
-        "coverageScore": 0.554063
+        "coverageScore": 0.506961
       },
       "scores": {
-        "silhouetteProportion": 0.7,
-        "componentStructure": 0.77,
-        "formDetail": 0.58,
-        "materialSurface": 0.68,
-        "lightingCamera": 0.73
+        "silhouetteProportion": 0.89,
+        "componentStructure": 0.9,
+        "formDetail": 0.9,
+        "materialSurface": 0.88,
+        "lightingCamera": 0.88
       },
-      "notes": "The conditional challenge preserves palace, courtyard, tree-belt, city, and mountain ordering. It explicitly avoids claiming exact architectural or geospatial reconstruction from the cropped photograph."
+      "notes": "The Sol Max polish strengthens lifted Korean eaves, layered roof rhythm, gate-to-main-hall hierarchy, restrained courtyard scale cues, vegetation and city depth, grounded asymmetric mountains, and warm/cool separation while preserving the protected action-ready production contract. It remains an honest stylized reconstruction from one low-resolution aerial reference.",
+      "referenceSha256": "c227a3ac8958b14cf64e7e95b0943f9cdc1ab9455beca2b9ab8fb1f6d0931290",
+      "renderSha256": "949c602517b73ed10c6889ef8b62601ea4a182773513693308635157b638be10",
+      "comparisonSha256": "b3a7f8392d88ec4ab60ac1475ae2862112530d6fe9434cbf13d50b9b498bb101",
+      "referenceBinding": "local-sha256",
+      "renderBinding": "local-sha256",
+      "comparisonBinding": "local-sha256",
+      "reviewStatus": "accepted",
+      "reviewId": "seoul-showcase-sol-max-polish-2026-07-13T03:01:37.521Z",
+      "reviewedAt": "2026-07-13T03:01:37.521Z"
     }
   ]
 }

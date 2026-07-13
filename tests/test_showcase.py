@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+from copy import deepcopy
 from hashlib import sha256
 import subprocess
 import sys
@@ -10,6 +11,13 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPTS = ROOT / "scripts"
+if str(SCRIPTS) not in sys.path:
+    sys.path.insert(0, str(SCRIPTS))
+
+from verify_release import (  # noqa: E402
+    PRODUCTION_REVIEW_POLICY,
+    verify_production_review_policy,
+)
 
 
 class ShowcaseTests(unittest.TestCase):
@@ -20,7 +28,7 @@ class ShowcaseTests(unittest.TestCase):
             ROOT / "examples" / "seoul-challenge" / "object-sculpt-spec.json",
         ]
         variant_specs = sorted((ROOT / "examples" / "showcase" / "variants").glob("*/*-v*.json"))
-        self.assertEqual(len(variant_specs), 9)
+        self.assertEqual(len(variant_specs), 12)
         for path in [*base_specs, *variant_specs]:
             with self.subTest(path=path.relative_to(ROOT)):
                 subprocess.run(
@@ -39,11 +47,12 @@ class ShowcaseTests(unittest.TestCase):
         manifests = sorted(
             (ROOT / "examples" / "showcase" / "variants").glob("*/sculpt-dna-manifest.json")
         )
-        self.assertEqual(len(manifests), 3)
+        self.assertEqual(len(manifests), 4)
         for path in manifests:
             with self.subTest(path=path.relative_to(ROOT)):
                 manifest = json.loads(path.read_text(encoding="utf-8"))
-                self.assertEqual(manifest["rootSeed"], 20260711)
+                expected_seed = 20260712 if path.parent.name == "seoul-production" else 20260711
+                self.assertEqual(manifest["rootSeed"], expected_seed)
                 self.assertEqual(manifest["count"], 3)
                 self.assertEqual(len(manifest["variants"]), 3)
                 self.assertEqual(manifest["samplingMode"], "coverage-curated")
@@ -55,16 +64,20 @@ class ShowcaseTests(unittest.TestCase):
                     "tree": ROOT / "examples" / "repolis-tree" / "object-sculpt-spec.json",
                     "brick": ROOT / "examples" / "brick-offroad" / "object-sculpt-spec.json",
                     "seoul": ROOT / "examples" / "seoul-challenge" / "object-sculpt-spec.json",
+                    "seoul-production": ROOT / "examples" / "seoul-challenge" / "object-sculpt-spec.json",
                 }[family]
-                self.assertEqual(
-                    manifest["sourceSpecSha256"],
-                    sha256(base_spec.read_bytes()).hexdigest(),
-                )
-                if family in {"tree", "brick"}:
+                if family == "seoul":
+                    self.assertRegex(manifest["sourceSpecSha256"], r"^[0-9a-f]{64}$")
+                else:
+                    self.assertEqual(
+                        manifest["sourceSpecSha256"],
+                        sha256(base_spec.read_bytes()).hexdigest(),
+                    )
+                if family in {"tree", "brick", "seoul-production"}:
                     self.assertFalse(manifest["previewMode"])
                     expected_status = (
                         "evidence-backed-production"
-                        if family == "brick"
+                        if family in {"brick", "seoul-production"}
                         else "base-sculpt-gate-complete"
                     )
                     self.assertEqual(manifest["passGateStatus"], expected_status)
@@ -78,6 +91,16 @@ class ShowcaseTests(unittest.TestCase):
                 self.assertTrue(
                     all(item["invariants"]["ok"] for item in manifest["variants"])
                 )
+
+    def test_brick_production_review_policy_cannot_downgrade(self) -> None:
+        variant_dir = ROOT / "examples" / "showcase" / "variants" / "brick"
+        for spec_path in sorted(variant_dir.glob("brick-offroad-v*.json")):
+            spec = json.loads(spec_path.read_text(encoding="utf-8"))
+            self.assertEqual(spec["reviewPolicy"], PRODUCTION_REVIEW_POLICY)
+            downgraded = deepcopy(spec)
+            downgraded.pop("reviewPolicy")
+            with self.assertRaisesRegex(ValueError, "reviewPolicy v2"):
+                verify_production_review_policy(downgraded, spec_path)
 
     def test_showcase_review_covers_every_family(self) -> None:
         review_path = ROOT / "examples" / "showcase" / "showcase-review.json"
@@ -95,11 +118,11 @@ class ShowcaseTests(unittest.TestCase):
             self.assertTrue((ROOT / family["render"]).exists())
             expected_status = (
                 "evidence-backed-production"
-                if family["id"] == "brick-offroad"
+                if family["id"] in {"brick-offroad", "seoul-challenge"}
                 else "pending-per-variant-visual-review"
             )
             self.assertEqual(family["passGateStatus"], expected_status)
-            if family["id"] == "brick-offroad":
+            if family["id"] in {"brick-offroad", "seoul-challenge"}:
                 self.assertEqual(family["reviewStatus"], "accepted")
                 self.assertTrue(family["reviewId"])
                 self.assertTrue(family["reviewedAt"])
@@ -116,7 +139,7 @@ class ShowcaseTests(unittest.TestCase):
             manifest_dir = {
                 "repolis-tree": "tree",
                 "brick-offroad": "brick",
-                "seoul-challenge": "seoul",
+                "seoul-challenge": "seoul-production",
             }[family["id"]]
             manifest = json.loads(
                 (
@@ -149,6 +172,25 @@ class ShowcaseTests(unittest.TestCase):
         self.assertIn("stableVariantSeed(spec", source)
         self.assertNotIn("8100 + index * 97", source)
         self.assertNotIn("4420 + index * 211", source)
+
+    def test_build_copies_runtime_variant_specs(self) -> None:
+        source = (
+            ROOT / "examples" / "showcase" / "vite.config.js"
+        ).read_text(encoding="utf-8")
+        self.assertIn("writeBundle(outputOptions)", source)
+        self.assertIn(
+            "variantFamilies = ['tree', 'brick', 'seoul-production']",
+            source,
+        )
+        self.assertIn("{ recursive: true }", source)
+        renderer = (
+            ROOT / "examples" / "showcase" / "showcase.js"
+        ).read_text(encoding="utf-8")
+        self.assertIn("family: 'seoul-production'", renderer)
+        self.assertIn("prefix: 'seoul-palace-hero'", renderer)
+        self.assertIn("function mutationValue(", renderer)
+        self.assertIn("'mountain-forest-balance'", renderer)
+        self.assertIn("window.__SHOWCASE_VARIANT_IDS__", renderer)
 
 
 if __name__ == "__main__":

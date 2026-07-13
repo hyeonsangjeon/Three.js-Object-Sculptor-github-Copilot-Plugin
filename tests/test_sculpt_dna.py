@@ -32,7 +32,11 @@ from sculpt_pass_orchestrator import (  # noqa: E402
     sync_pipeline,
 )
 from validate_sculpt_spec import validate_spec, validate_visual_evidence_history  # noqa: E402
-from visual_evidence_hashes import bind_visual_evidence_hashes, file_sha256  # noqa: E402
+from visual_evidence_hashes import (  # noqa: E402
+    bind_visual_evidence_hashes,
+    file_sha256,
+    resolve_local_evidence_path,
+)
 
 
 class SculptDNATests(unittest.TestCase):
@@ -97,6 +101,8 @@ class SculptDNATests(unittest.TestCase):
         self.assertEqual(first["sculptPipeline"]["currentPass"], "blockout")
         self.assertEqual(first["sculptPipeline"]["completedPasses"], [])
         self.assertTrue(first["variantProvenance"]["invariants"]["ok"])
+        self.assertIsInstance(first_provenance["variantSeed"], str)
+        self.assertTrue(first_provenance["variantSeed"].isdigit())
 
     def test_production_gate_derives_completion_from_review_evidence(self) -> None:
         spec = self.make_dna_spec()
@@ -312,6 +318,44 @@ class SculptDNATests(unittest.TestCase):
                 "complete through surface-pass",
             ):
                 variant_gate(spec, False, source_path)
+        finally:
+            shutil.rmtree(probe_dir, ignore_errors=True)
+
+    def test_overwritten_supplemental_evidence_invalidates_completion(self) -> None:
+        source_path = ROOT / "examples" / "repolis-tree" / "object-sculpt-spec.json"
+        spec = json.loads(source_path.read_text(encoding="utf-8"))
+        probe_dir = ROOT / "tests" / ".supplemental-evidence-overwrite-probe"
+        try:
+            probe_dir.mkdir(exist_ok=True)
+            evidence_path = probe_dir / "supplemental.json"
+            evidence_path.write_text('{"accepted":true}\n', encoding="utf-8")
+            visual = spec["reviewHistory"][0]["visualEvidence"]
+            visual["supplementalEvidence"] = [{"path": str(evidence_path)}]
+            bind_visual_evidence_hashes(visual, source_path)
+            self.assertEqual(
+                completed_passes(spec, pass_order(spec), source_path),
+                pass_order(spec),
+            )
+            evidence_path.write_text('{"accepted":false}\n', encoding="utf-8")
+            self.assertEqual(
+                completed_passes(spec, pass_order(spec), source_path),
+                [],
+            )
+        finally:
+            shutil.rmtree(probe_dir, ignore_errors=True)
+
+    def test_evidence_resolution_cannot_escape_repository(self) -> None:
+        source_path = ROOT / "examples" / "repolis-tree" / "object-sculpt-spec.json"
+        self.assertIsNone(resolve_local_evidence_path("/etc/hosts", source_path))
+        self.assertIsNone(resolve_local_evidence_path("etc/hosts", source_path))
+        probe_dir = ROOT / "tests" / ".visual-evidence-symlink-probe"
+        link = probe_dir / "external"
+        try:
+            probe_dir.mkdir(exist_ok=True)
+            link.symlink_to("/etc/hosts")
+            self.assertIsNone(
+                resolve_local_evidence_path(str(link.relative_to(ROOT)), source_path)
+            )
         finally:
             shutil.rmtree(probe_dir, ignore_errors=True)
 

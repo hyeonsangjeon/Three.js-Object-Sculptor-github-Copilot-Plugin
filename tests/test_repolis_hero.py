@@ -108,22 +108,33 @@ class RepolisHeroTests(unittest.TestCase):
         self.assertIn("hero-ui-raw.png", capture)
         self.assertIn("'-map_metadata'", capture)
 
-    def test_flagship_pager_links_tree_and_brick_routes(self) -> None:
+    def test_flagship_pager_links_all_three_routes(self) -> None:
         tree_html = (
             ROOT / "examples" / "repolis-hero" / "index.html"
         ).read_text(encoding="utf-8")
         brick_html = (
             ROOT / "examples" / "brick-offroad-hero" / "index.html"
         ).read_text(encoding="utf-8")
-        self.assertIn('aria-label="Flagship 1 of 2"', tree_html)
-        self.assertEqual(tree_html.count('data-flagship="brick"'), 2)
-        self.assertIn('aria-label="Flagship 2 of 2"', brick_html)
-        self.assertEqual(brick_html.count('data-flagship="tree"'), 2)
+        seoul_html = (
+            ROOT / "examples" / "seoul-palace-hero" / "index.html"
+        ).read_text(encoding="utf-8")
+        self.assertIn('aria-label="Flagship 1 of 3"', tree_html)
+        self.assertIn('data-flagship="seoul"', tree_html)
+        self.assertIn('data-flagship="brick"', tree_html)
+        self.assertIn('aria-label="Flagship 2 of 3"', brick_html)
+        self.assertIn('data-flagship="tree"', brick_html)
+        self.assertIn('data-flagship="seoul"', brick_html)
+        self.assertIn('aria-label="Flagship 3 of 3"', seoul_html)
+        self.assertIn('data-flagship="tree"', seoul_html)
+        self.assertIn('data-flagship="brick"', seoul_html)
         self.assertIn("http://127.0.0.1:4176/", (
             ROOT / "examples" / "repolis-hero" / "main.js"
         ).read_text(encoding="utf-8"))
         self.assertIn("http://127.0.0.1:4174/", (
             ROOT / "examples" / "brick-offroad-hero" / "main.js"
+        ).read_text(encoding="utf-8"))
+        self.assertIn("http://127.0.0.1:4178/threejs-sculpt-dna/seoul/", (
+            ROOT / "examples" / "repolis-hero" / "main.js"
         ).read_text(encoding="utf-8"))
 
     def test_artifact_manifest_matches_current_sources_and_outputs(self) -> None:

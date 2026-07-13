@@ -895,7 +895,7 @@ def generate_variant(
             "sourceTargetId": source_target_id,
             "sourceTargetSlug": source_target_slug,
             "rootSeed": root_seed,
-            "variantSeed": seed,
+            "variantSeed": str(seed),
             "index": index,
             "attempt": attempt + 1,
             "mutations": mutations,

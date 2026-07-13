@@ -1,0 +1,85 @@
+{
+  "ok": true,
+  "verdict": "pass",
+  "confidence": 0.856,
+  "estimatedFidelity": 0.856,
+  "targetThreshold": 0.7,
+  "materialId": "mountain-forest",
+  "sourceImage": "examples/seoul-palace-hero/evidence/material-pass/reference-crops/mountain.png",
+  "outDir": "examples/seoul-palace-hero/evidence/material-pass/reference-pbr/mountain",
+  "palette": [
+    "#3C4F58",
+    "#799DBC",
+    "#2E3F44",
+    "#6D91AD",
+    "#556C7C"
+  ],
+  "maps": {
+    "albedo": {
+      "path": "examples/seoul-palace-hero/evidence/material-pass/reference-pbr/mountain/mountain-forest_albedo.png",
+      "url": "mountain-forest_albedo.png",
+      "channel": "albedo",
+      "source": "reference-pixel-extraction"
+    },
+    "roughness": {
+      "path": "examples/seoul-palace-hero/evidence/material-pass/reference-pbr/mountain/mountain-forest_roughness.png",
+      "url": "mountain-forest_roughness.png",
+      "channel": "roughness",
+      "source": "reference-pixel-extraction"
+    },
+    "height": {
+      "path": "examples/seoul-palace-hero/evidence/material-pass/reference-pbr/mountain/mountain-forest_height.png",
+      "url": "mountain-forest_height.png",
+      "channel": "height",
+      "source": "reference-pixel-extraction"
+    },
+    "normal": {
+      "path": "examples/seoul-palace-hero/evidence/material-pass/reference-pbr/mountain/mountain-forest_normal.png",
+      "url": "mountain-forest_normal.png",
+      "channel": "normal",
+      "source": "reference-pixel-extraction"
+    },
+    "ao": {
+      "path": "examples/seoul-palace-hero/evidence/material-pass/reference-pbr/mountain/mountain-forest_ao.png",
+      "url": "mountain-forest_ao.png",
+      "channel": "ao",
+      "source": "reference-pixel-extraction"
+    }
+  },
+  "diagnostics": {
+    "sourceWidth": 842,
+    "sourceHeight": 150,
+    "mapSize": 1024,
+    "cropBBoxPixels": {
+      "x": 0,
+      "y": 0,
+      "width": 842,
+      "height": 150
+    },
+    "mask": {
+      "backgroundColor": "#FEFEFF",
+      "backgroundNoise": 190.56,
+      "transparentPixelFraction": 0.0,
+      "foregroundCoverage": 0.8947
+    },
+    "mapStats": {
+      "valueRange": 0.3915,
+      "heightP90Gradient": 0.04289,
+      "roughnessBase": 0.706,
+      "roughnessVariation": 0.084,
+      "normalStrength": 0.207,
+      "blurRadius": 21
+    },
+    "palette": [
+      "#3C4F58",
+      "#799DBC",
+      "#2E3F44",
+      "#6D91AD",
+      "#556C7C"
+    ]
+  },
+  "warnings": [
+    "single-image inverse rendering cannot prove true physical PBR; confidence is capped"
+  ],
+  "limitation": "single-image PBR extraction is an estimate; 70%+ extraction confidence still needs render screenshot review"
+}
