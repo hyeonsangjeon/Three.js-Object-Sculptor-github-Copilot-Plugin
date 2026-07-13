@@ -56,6 +56,44 @@ class AssetTests(unittest.TestCase):
         self.assertEqual(result["technicalSuitability"], "pass")
         self.assertLess(path.stat().st_size, 1_000_000)
 
+    def test_flagship_reference_cards_share_one_contract(self) -> None:
+        demos = {
+            "repolis-hero": "repolis-tree-reference.jpeg",
+            "brick-offroad-hero": "brick-offroad-reference.jpeg",
+            "seoul-palace-hero": "seoul-challenge-reference.jpeg",
+        }
+        for demo, reference in demos.items():
+            with self.subTest(demo=demo):
+                root = ROOT / "examples" / demo
+                html = (root / "index.html").read_text(encoding="utf-8")
+                javascript = (root / "main.js").read_text(encoding="utf-8")
+                stylesheet = (root / "style.css").read_text(encoding="utf-8")
+                self.assertEqual(html.count('id="open-reference"'), 1)
+                self.assertEqual(
+                    html.count('aria-label="Open source reference"'),
+                    1,
+                )
+                self.assertEqual(html.count("<span>Source reference</span>"), 1)
+                self.assertEqual(html.count('id="reference-dialog"'), 1)
+                self.assertEqual(html.count('id="close-reference"'), 1)
+                self.assertIn("referenceDialog.showModal()", javascript)
+                self.assertIn("referenceDialog.close()", javascript)
+                self.assertIn(".reference-preview", stylesheet)
+                self.assertIn(
+                    'html[data-ui="hidden"] .reference-preview',
+                    stylesheet,
+                )
+                self.assertTrue((root / "reference" / reference).is_file())
+
+        seoul_reference = (
+            ROOT / "examples" / "seoul-palace-hero" / "reference"
+            / "seoul-challenge-reference.jpeg"
+        )
+        self.assertEqual(
+            seoul_reference.read_bytes(),
+            (ROOT / "assets" / "seoul-challenge-reference.jpeg").read_bytes(),
+        )
+
     def test_inherited_demo_images_are_not_released(self) -> None:
         for filename in (
             "ancient-autumn-tree-demo.png",

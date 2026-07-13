@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0",
-  "sourceFingerprint": "15a77a09411641e49a2786b067fc508a530075d9191f9d6f4f3ed860bbba93ed",
+  "sourceFingerprint": "ca0bdbf8af346ec1357347745a8d9445a4bdefad415ab6917ac2a420981e8e86",
   "sourceFiles": [
     "../seoul-challenge/assessment.json",
     "../seoul-challenge/object-sculpt-spec.json",
@@ -14,6 +14,7 @@
     "main.js",
     "package-lock.json",
     "package.json",
+    "reference/seoul-challenge-reference.jpeg",
     "scripts/capture-isolation.test.mjs",
     "scripts/capture.mjs",
     "scripts/factory-contract.test.mjs",
@@ -27,34 +28,36 @@
   ],
   "sourceSha256": {
     "../seoul-challenge/assessment.json": "a1fc1c5345c6bf651739c387e50565d74eb9aa68e74fa4fe57f8913f44aaef9d",
-    "../seoul-challenge/object-sculpt-spec.json": "4eb0fb00dacfc16ea280416c623aec7e232cfe661071e30b645f4d0fca48b386",
-    "../showcase/variants/seoul-production/sculpt-dna-manifest.json": "776ad8db628c31b621149fea65a88eb3663fd0a4953da804fb7d764df91bc9a7",
-    "../showcase/variants/seoul-production/seoul-palace-hero-v001.json": "b618429febf5d8d7649de6fdd2bf979e5f98bedb128e0c460705e62fd983411c",
-    "../showcase/variants/seoul-production/seoul-palace-hero-v002.json": "f68bd17093ce8af84e7523dd6487f3d78e5b4d0c7e82597d5340d70c5d721135",
-    "../showcase/variants/seoul-production/seoul-palace-hero-v003.json": "bfdb30cd2ceaf94049562a99fc02a3a3fd6ff0fb9c53e2daa5ca326b0519fdfe",
+    "../seoul-challenge/object-sculpt-spec.json": "3443f4bdf0fabd9f609324dd0235af668ff6ef3541dab8a78589898a674bbdea",
+    "../showcase/variants/seoul-production/sculpt-dna-manifest.json": "73b5710d711f902b1f0a94abc92febc852009834794b8041d4898c5d69c77b74",
+    "../showcase/variants/seoul-production/seoul-palace-hero-v001.json": "a276738f1c499540574d868e7cc338abf29acd78266ac6ac7a636220c054b593",
+    "../showcase/variants/seoul-production/seoul-palace-hero-v002.json": "0b2fcdc9cfff4cc92e7dad7e87b22d5bc212ac89a76fec171aded46168bfdabc",
+    "../showcase/variants/seoul-production/seoul-palace-hero-v003.json": "bc940a970da7eb21558d35be81ba1fa1dc084c8bc4033ba71b9421891406d4b2",
     "../../assets/seoul-challenge-reference.jpeg": "c227a3ac8958b14cf64e7e95b0943f9cdc1ab9455beca2b9ab8fb1f6d0931290",
     "../../scripts/make_visual_comparison_sheet.py": "85fb27acca3ef9d8c0f1a13c6a0267ce61bb46e3f8bca7257404084237f43858",
-    "index.html": "4785768790e5a200443382e0a22f5a930ff400bf6c926181324236860a88d469",
-    "main.js": "9acf728308f19f0dbd4d7a94ef444ee39a4f70498872f03e663ff21bbb36e753",
+    "index.html": "b9e527caad7c4a8ed74f7c299847d1d2660f6a01bedaa67e727b75bba8531b0b",
+    "main.js": "67caacd8daf36899628cc1b42154100844b8f2407ebf61cccf550ccb858f6a36",
     "package-lock.json": "dc5ec5074bfc4f272e38ffa5090b1000d07eb399acd824aa5e5113ed22590427",
     "package.json": "fdde61bd2e690dccb0f7a0136ff52207af95c8452a10eceb9a7bbdd26562d7f4",
+    "reference/seoul-challenge-reference.jpeg": "c227a3ac8958b14cf64e7e95b0943f9cdc1ab9455beca2b9ab8fb1f6d0931290",
     "scripts/capture-isolation.test.mjs": "d29f5894ceb8bbe98040721f51b2099a78de3a627c789cc5d0409bea260f9ff8",
     "scripts/capture.mjs": "8098ef857b0071b2e7c081516261263e41d06e752f394bce63b9aa6d96dded66",
     "scripts/factory-contract.test.mjs": "01989ff728985426d3656ad15b26475e54c4655d6f5ca830dc57d48200572dbe",
-    "style.css": "353d9c8c3269b961bc280f6607a092b228c3585f65f1263393e6f3656309ee97",
-    "vite.config.js": "a8ef492cec26fe229250a71d155004adca1293582fdc954b35f7956016ef1118",
+    "style.css": "86fe3387e246a9c2bb30efc7a8bef3383bf6713d4f6ec6ecc231fde563870c63",
+    "vite.config.js": "ca6231f11380f1f421763eb675c61d3b02305dbae5a4967d5f21881015a9df7c",
     "seoul-output/createSeoulPalaceHero.d.ts": "95ae0e67f6357c0650b4d6bc7a54f3090e9f5cbd3927e41866a9c2a91e3d3659",
     "seoul-output/createSeoulPalaceHero.js": "85d77613e6a0fe73ff61dcc37fbd8049920f6ad049c52e4c4247ef8e4b52fed2",
     "seoul-output/createProceduralMaterials.js": "fe0d123ff0de85645cd5b8868e9b4f63c0e427513af938ce7ae828fdb2509199",
-    "seoul-output/seoul-palace-profile.json": "bde0cfd343fd5a428d2e1198c407232124106626ca1b63dd8f9689e7daefe51b",
+    "seoul-output/seoul-palace-profile.json": "15b1a6331892c95cb73f6cf286ad42b05376c2a0d6d117c16cc883a8d070d6f9",
     "seoul-output/seoul-variant-config.json": "d5851b02af152fb96cf76a463f3b7584a9d4f1c7d85013133c22c049fa5229a7"
   },
-  "runtimeFingerprint": "54febd9233548b08a75064dd8bb1f8c708fb8ee461ec8b8516de9542edae53e6",
+  "runtimeFingerprint": "084ee9419b6a42d0054e0cd4ee7cf99cb588bd38067f0624f9e57ac0daa5627e",
   "runtimeFiles": [
     "index.html",
     "main.js",
     "package-lock.json",
     "package.json",
+    "reference/seoul-challenge-reference.jpeg",
     "style.css",
     "vite.config.js",
     "seoul-output/createSeoulPalaceHero.js",
@@ -62,12 +65,13 @@
     "seoul-output/seoul-variant-config.json"
   ],
   "runtimeSha256": {
-    "index.html": "4785768790e5a200443382e0a22f5a930ff400bf6c926181324236860a88d469",
-    "main.js": "9acf728308f19f0dbd4d7a94ef444ee39a4f70498872f03e663ff21bbb36e753",
+    "index.html": "b9e527caad7c4a8ed74f7c299847d1d2660f6a01bedaa67e727b75bba8531b0b",
+    "main.js": "67caacd8daf36899628cc1b42154100844b8f2407ebf61cccf550ccb858f6a36",
     "package-lock.json": "dc5ec5074bfc4f272e38ffa5090b1000d07eb399acd824aa5e5113ed22590427",
     "package.json": "fdde61bd2e690dccb0f7a0136ff52207af95c8452a10eceb9a7bbdd26562d7f4",
-    "style.css": "353d9c8c3269b961bc280f6607a092b228c3585f65f1263393e6f3656309ee97",
-    "vite.config.js": "a8ef492cec26fe229250a71d155004adca1293582fdc954b35f7956016ef1118",
+    "reference/seoul-challenge-reference.jpeg": "c227a3ac8958b14cf64e7e95b0943f9cdc1ab9455beca2b9ab8fb1f6d0931290",
+    "style.css": "86fe3387e246a9c2bb30efc7a8bef3383bf6713d4f6ec6ecc231fde563870c63",
+    "vite.config.js": "ca6231f11380f1f421763eb675c61d3b02305dbae5a4967d5f21881015a9df7c",
     "seoul-output/createSeoulPalaceHero.js": "85d77613e6a0fe73ff61dcc37fbd8049920f6ad049c52e4c4247ef8e4b52fed2",
     "seoul-output/createProceduralMaterials.js": "fe0d123ff0de85645cd5b8868e9b4f63c0e427513af938ce7ae828fdb2509199",
     "seoul-output/seoul-variant-config.json": "d5851b02af152fb96cf76a463f3b7584a9d4f1c7d85013133c22c049fa5229a7"
@@ -1319,8 +1323,8 @@
     "generatedTextureCount": 35,
     "renderCalls": 388,
     "renderedTriangles": 288944,
-    "sourceFingerprint": "15a77a09411641e49a2786b067fc508a530075d9191f9d6f4f3ed860bbba93ed",
-    "runtimeFingerprint": "54febd9233548b08a75064dd8bb1f8c708fb8ee461ec8b8516de9542edae53e6"
+    "sourceFingerprint": "ca0bdbf8af346ec1357347745a8d9445a4bdefad415ab6917ac2a420981e8e86",
+    "runtimeFingerprint": "084ee9419b6a42d0054e0cd4ee7cf99cb588bd38067f0624f9e57ac0daa5627e"
   },
   "variantRuntimeStats": [
     {
@@ -1342,8 +1346,8 @@
       "generatedTextureCount": 35,
       "renderCalls": 388,
       "renderedTriangles": 282928,
-      "sourceFingerprint": "15a77a09411641e49a2786b067fc508a530075d9191f9d6f4f3ed860bbba93ed",
-      "runtimeFingerprint": "54febd9233548b08a75064dd8bb1f8c708fb8ee461ec8b8516de9542edae53e6"
+      "sourceFingerprint": "ca0bdbf8af346ec1357347745a8d9445a4bdefad415ab6917ac2a420981e8e86",
+      "runtimeFingerprint": "084ee9419b6a42d0054e0cd4ee7cf99cb588bd38067f0624f9e57ac0daa5627e"
     },
     {
       "generationMs": 773.3000000119209,
@@ -1364,8 +1368,8 @@
       "generatedTextureCount": 35,
       "renderCalls": 388,
       "renderedTriangles": 291360,
-      "sourceFingerprint": "15a77a09411641e49a2786b067fc508a530075d9191f9d6f4f3ed860bbba93ed",
-      "runtimeFingerprint": "54febd9233548b08a75064dd8bb1f8c708fb8ee461ec8b8516de9542edae53e6"
+      "sourceFingerprint": "ca0bdbf8af346ec1357347745a8d9445a4bdefad415ab6917ac2a420981e8e86",
+      "runtimeFingerprint": "084ee9419b6a42d0054e0cd4ee7cf99cb588bd38067f0624f9e57ac0daa5627e"
     },
     {
       "generationMs": 733.4000000059605,
@@ -1386,8 +1390,8 @@
       "generatedTextureCount": 35,
       "renderCalls": 388,
       "renderedTriangles": 286912,
-      "sourceFingerprint": "15a77a09411641e49a2786b067fc508a530075d9191f9d6f4f3ed860bbba93ed",
-      "runtimeFingerprint": "54febd9233548b08a75064dd8bb1f8c708fb8ee461ec8b8516de9542edae53e6"
+      "sourceFingerprint": "ca0bdbf8af346ec1357347745a8d9445a4bdefad415ab6917ac2a420981e8e86",
+      "runtimeFingerprint": "084ee9419b6a42d0054e0cd4ee7cf99cb588bd38067f0624f9e57ac0daa5627e"
     }
   ],
   "capture": {

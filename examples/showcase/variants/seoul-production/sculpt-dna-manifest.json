@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0",
   "sourceSpec": "object-sculpt-spec.json",
-  "sourceSpecSha256": "4eb0fb00dacfc16ea280416c623aec7e232cfe661071e30b645f4d0fca48b386",
+  "sourceSpecSha256": "3443f4bdf0fabd9f609324dd0235af668ff6ef3541dab8a78589898a674bbdea",
   "rootSeed": 20260712,
   "count": 3,
   "variants": [
@@ -180,7 +180,7 @@
         "interaction-pass",
         "optimization-pass"
       ],
-      "performanceEvidenceSha256": "d2dde3eb39ca9b619e79e9d50864806cee511322b785b3604d5f86eef609c798"
+      "performanceEvidenceSha256": "416f4234e15efc2ea30ae72a435c03e9cdeca048cb8402e8dae1000c4cb48f75"
     },
     {
       "variantId": "seoul-palace-hero-v002",
@@ -357,7 +357,7 @@
         "interaction-pass",
         "optimization-pass"
       ],
-      "performanceEvidenceSha256": "d2dde3eb39ca9b619e79e9d50864806cee511322b785b3604d5f86eef609c798"
+      "performanceEvidenceSha256": "416f4234e15efc2ea30ae72a435c03e9cdeca048cb8402e8dae1000c4cb48f75"
     },
     {
       "variantId": "seoul-palace-hero-v003",
@@ -534,7 +534,7 @@
         "interaction-pass",
         "optimization-pass"
       ],
-      "performanceEvidenceSha256": "d2dde3eb39ca9b619e79e9d50864806cee511322b785b3604d5f86eef609c798"
+      "performanceEvidenceSha256": "416f4234e15efc2ea30ae72a435c03e9cdeca048cb8402e8dae1000c4cb48f75"
     }
   ],
   "samplingMode": "coverage-curated",
@@ -582,7 +582,7 @@
     "canonicalReleaseReviewId": "optimization-pass-canonical-release-2026-07-13T04:09:37.358Z",
     "variantPerformanceEvidence": {
       "path": "examples/seoul-palace-hero/evidence/variant-runtime-metrics.json",
-      "sha256": "d2dde3eb39ca9b619e79e9d50864806cee511322b785b3604d5f86eef609c798",
+      "sha256": "416f4234e15efc2ea30ae72a435c03e9cdeca048cb8402e8dae1000c4cb48f75",
       "binding": "local-sha256"
     }
   }

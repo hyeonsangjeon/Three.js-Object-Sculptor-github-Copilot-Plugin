@@ -734,7 +734,7 @@
     "heroCopy": "68c2950a4c00870aede8a9cfe7a43496c623d85c2156b26c346fd902cf1f2c82"
   },
   "sourceSha256": {
-    "index.html": "12ae472b54b37dbda404fa82feae0092614cdac5ab9cdb8ca8e5b153aec7527e",
+    "index.html": "09874a7a31b3faffb088e538114771cfa6465c2aa1e2414e175df55247fcd5e1",
     "main.js": "50ab640a7875d0ffda6e69e87e9a1bc31431ecdd6c4ceecbb044f34255a7ddde",
     "style.css": "ca434c41fdf81a322ff712978b2efd7b90038566da4234a92a7122abed7a0d65",
     "package.json": "0af01640413136e602cd9c223b0ebe69e041572384e8b726ac2d4dadeb3b2f41",
@@ -753,7 +753,7 @@
     "../../scripts/visual_evidence_hashes.py": "f2a3304ec3ccc37b4809f75eabd39fd755704e790db1ed18f18eed0c8cb39c3f",
     "../../scripts/migrate_review_policy.py": "96a0b67a353b6133660d457141f6f04eab532e1eaa80dd2b62d416d64fc09546",
     "../../scripts/refresh_brick_reviews.py": "cab356d9dc707c97fb367c0c2a81c8bb2ac355f12a3b556deb92d5376d886dde",
-    "../../scripts/verify_release.py": "67ea1709d9606c93c913ebbf219843c6dd49f34d8325224d8a9d3e31bc70eeb1",
+    "../../scripts/verify_release.py": "9d871ad3f9bb8cdef01dde1e8cb3072c4e9b9e51e24929765b2cb2fdf1c5c220",
     "../brick-offroad/object-sculpt-spec.json": "a42660533bff26330a63b25f9476f703cec1d8672e45aeb7fa4df08b77465251",
     "../showcase/variants/brick/brick-offroad-v001.json": "2ddbee5c0c92ed0fdb658fd8bb7c035077515af4fb390e7ea87f91a67cd91e6a",
     "../showcase/variants/brick/brick-offroad-v002.json": "03e1c9a7c116bb8f54646cc79d9637c065bb0f6d4c977cfda1b76038a7db46c6",

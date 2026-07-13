@@ -237,6 +237,84 @@ select:focus-visible {
   color: #596960;
 }
 
+.reference-preview {
+  position: fixed;
+  z-index: 5;
+  left: clamp(28px, 5vw, 72px);
+  bottom: 52px;
+  width: 158px;
+  padding: 8px;
+  border: 1px solid rgba(27, 44, 35, 0.15);
+  border-radius: 18px;
+  background: rgba(239, 241, 232, 0.78);
+  box-shadow: 0 18px 48px rgba(35, 46, 37, 0.24);
+}
+
+.reference-preview img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 842 / 476;
+  border-radius: 11px;
+  object-fit: cover;
+}
+
+.reference-preview span {
+  display: block;
+  padding: 7px 2px 1px;
+  color: #596960;
+  font-size: 9px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.reference-dialog {
+  width: min(920px, 90vw);
+  max-height: 92vh;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 18px;
+  background: #e9ebe2;
+  color: #17201b;
+}
+
+.reference-dialog::backdrop {
+  background: rgba(19, 28, 23, 0.72);
+  backdrop-filter: blur(8px);
+}
+
+.reference-dialog img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 76vh;
+  border-radius: 10px;
+  object-fit: contain;
+}
+
+.dialog-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 6px 12px 12px;
+}
+
+.dialog-heading .eyebrow {
+  margin-bottom: 3px;
+}
+
+.dialog-heading h2 {
+  margin: 0;
+  font: 400 23px/1.2 Georgia, "Times New Roman", serif;
+}
+
+.dialog-heading button {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  font-size: 20px;
+}
+
 .hint {
   position: fixed;
   z-index: 4;
@@ -277,13 +355,15 @@ body.ready #loading {
   display: none;
 }
 
-html[data-capture="true"] #loading {
+html[data-capture="true"] #loading,
+html[data-capture="true"] .reference-preview {
   display: none;
 }
 
 html[data-ui="hidden"] .intro,
 html[data-ui="hidden"] .controls,
 html[data-ui="hidden"] .stage-panel,
+html[data-ui="hidden"] .reference-preview,
 html[data-ui="hidden"] .hint {
   display: none;
 }
@@ -329,5 +409,11 @@ html[data-ui="hidden"] .hint {
     right: 16px;
     bottom: 20px;
     min-width: 170px;
+  }
+
+  .reference-preview {
+    left: 16px;
+    bottom: 20px;
+    width: 118px;
   }
 }

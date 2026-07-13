@@ -68,6 +68,39 @@
         <small id="variant-name">Base configuration</small>
       </aside>
 
+      <button
+        id="open-reference"
+        class="reference-preview"
+        type="button"
+        aria-haspopup="dialog"
+        aria-controls="reference-dialog"
+        aria-label="Open source reference"
+      >
+        <img
+          src="./reference/seoul-challenge-reference.jpeg"
+          alt="Source aerial reference of the Seoul palace campus, city, and mountains"
+          width="842"
+          height="476"
+        />
+        <span>Source reference</span>
+      </button>
+
+      <dialog id="reference-dialog" class="reference-dialog" aria-labelledby="reference-title">
+        <div class="dialog-heading">
+          <div>
+            <p class="eyebrow">SOURCE EVIDENCE</p>
+            <h2 id="reference-title">Seoul palace aerial reference</h2>
+          </div>
+          <button id="close-reference" type="button" aria-label="Close reference image">×</button>
+        </div>
+        <img
+          src="./reference/seoul-challenge-reference.jpeg"
+          alt="Large view of the Seoul palace campus, city, and mountain source reference"
+          width="842"
+          height="476"
+        />
+      </dialog>
+
       <p class="hint" id="interaction-hint">
         DRAG OR ARROW KEYS TO ORBIT · SCROLL OR +/- TO ZOOM · HOME RESTORES REFERENCE
       </p>

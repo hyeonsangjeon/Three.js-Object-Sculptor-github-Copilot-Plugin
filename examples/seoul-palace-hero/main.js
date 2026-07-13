@@ -369,10 +369,14 @@ const gateButton = document.querySelector('#toggle-gates');
 const tourButton = document.querySelector('#toggle-tour');
 const cameraPicker = document.querySelector('#camera-view');
 const lensButtons = [...document.querySelectorAll('[data-lens]')];
+const referenceDialog = document.querySelector('#reference-dialog');
 let gatesOpen = initialGateOpen >= 0.5;
 let tourActive = query.get('tour') === '1'
   && (!captureMode || query.get('captureTour') === '1')
   && !reducedMotion;
+
+document.querySelector('#open-reference').addEventListener('click', () => referenceDialog.showModal());
+document.querySelector('#close-reference').addEventListener('click', () => referenceDialog.close());
 
 function syncLensButtons(mode) {
   lensButtons.forEach((button) => {
