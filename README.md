@@ -9,11 +9,15 @@
 
 Turn an object reference image into a quality-gated, action-ready procedural Three.js model, then expand that model into a deterministic family of constraint-safe variants.
 
-This GitHub Copilot plugin is based on Vinh Hiển's MIT-licensed [Three.js Object Sculptor](https://github.com/vinhhien112/Three.js-Object-Sculptor-Codex-Plugin). It preserves the original image assessment, sculpt specification, pass locking, procedural PBR, action-ready hierarchy, and visual review workflow while porting the package to Copilot's `plugin.json` format.
+`threejs-sculpt-dna` is an evidence-gated GitHub Copilot workflow, not a one-click image-to-mesh converter or a manifest-only port. It treats every reconstruction as a versioned production system: semantic topology, action contracts, deterministic variation, browser evidence, and release integrity advance together.
 
-Our original capability is **Sculpt DNA**: a semantic parameter layer that varies proportions, material response, palette, and repetition systems without changing component identity, attachment roots, sockets, fracture groups, or quality gates.
+## What Makes It Different
 
-Its **Coverage Curator** generates a larger safe candidate pool and uses a deterministic centroid-extreme plus greedy max-min heuristic to select a broadly separated representative family. This prevents README contact sheets, product families, and art-direction reviews from showing three nearly identical random samples without claiming an expensive global combinatorial optimum.
+- **Sculpt DNA, not random variants.** Named semantic controls vary proportions, material response, palette, and repetition systems while protecting component identity, attachment roots, sockets, fracture groups, and action-ready topology.
+- **Coverage Curator, not cherry-picked samples.** A deterministic centroid-extreme plus greedy max-min heuristic selects a broadly separated representative family from a larger constraint-safe candidate pool.
+- **Evidence-bound production gates.** Every locked sculpt pass requires browser screenshots, full reference/render comparisons, semantic AI-vision review, and local SHA-256 bindings. Overwritten or stale evidence automatically invalidates production readiness.
+- **Action-ready by construction.** Stable pivots, sockets, colliders, constraints, detachable groups, and runtime maps are part of the model contract rather than an animation retrofit.
+- **Code-native and reproducible.** Flagship factories use procedural geometry, generated independent PBR channels, deterministic capture, measured performance budgets, and zero imported meshes.
 
 ## 03 · Flagship: Repolis Living Archive
 
@@ -520,6 +524,10 @@ The test suite covers DNA derivation, schema validation, immutable-target reject
 - Transparent glass, smoke, liquids, fur, and fine cloth may require more references or a reduced target.
 - Complex generated primitives such as lathe, tube, curve sweep, extrude, and instanced clusters still require object-specific hand refinement.
 - Variant constraints protect declared semantics, but visual acceptance still requires fresh browser evidence.
+
+## Reference
+
+- [Vinh Hiển's MIT-licensed Three.js Object Sculptor](https://github.com/vinhhien112/Three.js-Object-Sculptor-Codex-Plugin)
 
 ## License
 
