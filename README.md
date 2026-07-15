@@ -25,6 +25,8 @@ Turn an object reference image into a quality-gated, action-ready procedural Thr
 
 ![Rotating high-detail procedural Repolis Tree](assets/repolis-tree-hero.gif)
 
+<sub>Built and visually reviewed with GitHub Copilot · GPT-5.6 Sol.</sub>
+
 The final flagship is generated entirely with code: **0 imported meshes**, approximately **100ms generation**, **17,761 branch vertices**, **2,600 instanced leaves**, **220 moss instances**, and **72 branch-following code glyphs** in the Golden Canopy configuration.
 
 ![Repolis Living Archive interactive hero screen](assets/repolis-tree-hero.png)
@@ -104,6 +106,8 @@ Brick and Seoul are now evidence-backed production flagships. Every generated va
 
 ![Rotating procedural Brick Off-Road Explorer](assets/brick-offroad-hero.gif)
 
+<sub>Built and visually reviewed with GitHub Copilot · GPT-5.6 Sol.</sub>
+
 <table>
   <tr>
     <th>01 · Reference</th>
@@ -134,6 +138,8 @@ The committed installed-Chrome manifest records per-run generation timings plus 
 **Reference** → **Intermediate preview** → **Flagship**
 
 ![Cinematic procedural Seoul Palace Scene](assets/seoul-palace-hero.gif)
+
+<sub>Built and visually reviewed with GitHub Copilot · GPT-5.6 Sol.</sub>
 
 <table>
   <tr>
