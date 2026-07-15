@@ -14,6 +14,15 @@ All notable changes to `threejs-sculpt-dna` are documented here.
 - Additive manifest/report schema documentation that keeps AI vision as final
   authority and leaves existing `ObjectSculptSpec`, production, release, and
   evidence gates unchanged.
+- Dependency-free Render Integration Contract v1 CLI for comparing immutable
+  asset bindings and standalone/host runtime snapshots, with deterministic
+  missing/stale/passing/failing checks, strict unsafe/non-finite input
+  rejection, and explicit exit codes.
+- Renderer/output-pass/color-space/exposure/DPR, render-target, selective
+  layer/light and town-spill, fixed-view semantic/angle/town-exposure,
+  camera-direction performance, and console/network integration gates.
+- Copy/paste host-app workflow, full schema/browser-probe reference, and a
+  public Repolis-bound deterministic demonstration with a golden report.
 
 ## [0.4.3] - 2026-07-12
 

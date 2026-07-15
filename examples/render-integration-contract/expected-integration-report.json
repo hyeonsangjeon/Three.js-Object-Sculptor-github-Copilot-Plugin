@@ -1,0 +1,2511 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "render-integration-contract-report",
+  "ok": true,
+  "authority": {
+    "finalVisualAuthority": "ai-vision",
+    "runtimeMetrics": "diagnostic-gates-only",
+    "runtimeMetricsCanApproveVisualQuality": false,
+    "integrationPassIsVisualApproval": false
+  },
+  "inputs": {
+    "contract": {
+      "path": "examples/render-integration-contract/render-integration-contract.json",
+      "sha256": "50b8be82f9420caf97b260b93e66d96b7c0c5aa91090c4392cb7b862eb431077"
+    },
+    "standalone": {
+      "path": "examples/render-integration-contract/standalone-snapshot.json",
+      "sha256": "d4b48789c4a752715c32bb3a4feceeab54c96db3fa484e4dc30456a4978e5c34"
+    },
+    "host": {
+      "path": "examples/render-integration-contract/host-snapshot.json",
+      "sha256": "b5d744ebc8dd6a77bdc0abfcbc0b99d63625cf273d028a2f798525cb7225766f"
+    }
+  },
+  "identity": {
+    "contractId": "repolis-host-integration-demo",
+    "assetId": "repolis-tree",
+    "profileId": "repolis-living-archive"
+  },
+  "policy": {
+    "statusOrder": [
+      "missing",
+      "stale",
+      "passing",
+      "failing"
+    ],
+    "environmentOrder": [
+      "standalone",
+      "host"
+    ],
+    "checkOrder": "fixed-family-then-id-ascending",
+    "hostDifferences": "explicit-contract-thresholds-only",
+    "extraSnapshotData": "allowed-and-unchecked",
+    "computedPrecision": 12
+  },
+  "checks": [
+    {
+      "id": "binding.standalone.source",
+      "code": "source-binding",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "path": "examples/repolis-tree/object-sculpt-spec.json",
+        "sha256": "9556e708ace61dbd2a4128700e41ec8dac3d0c930f0e85e09cc2915013aa40d8"
+      },
+      "actual": {
+        "path": "examples/repolis-tree/object-sculpt-spec.json",
+        "sha256": "9556e708ace61dbd2a4128700e41ec8dac3d0c930f0e85e09cc2915013aa40d8"
+      },
+      "message": "standalone source binding is current"
+    },
+    {
+      "id": "binding.standalone.factory",
+      "code": "factory-binding",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "path": "examples/repolis-hero/repolis-output/createRepolisHero.js",
+        "sha256": "65bd7fc76013ee0f11898174095556d581be64ea8f15e76e090fb8955a17d0e3"
+      },
+      "actual": {
+        "path": "examples/repolis-hero/repolis-output/createRepolisHero.js",
+        "sha256": "65bd7fc76013ee0f11898174095556d581be64ea8f15e76e090fb8955a17d0e3"
+      },
+      "message": "standalone factory binding is current"
+    },
+    {
+      "id": "binding.host.source",
+      "code": "source-binding",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "path": "examples/repolis-tree/object-sculpt-spec.json",
+        "sha256": "9556e708ace61dbd2a4128700e41ec8dac3d0c930f0e85e09cc2915013aa40d8"
+      },
+      "actual": {
+        "path": "examples/repolis-tree/object-sculpt-spec.json",
+        "sha256": "9556e708ace61dbd2a4128700e41ec8dac3d0c930f0e85e09cc2915013aa40d8"
+      },
+      "message": "host source binding is current"
+    },
+    {
+      "id": "binding.host.factory",
+      "code": "factory-binding",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "path": "examples/repolis-hero/repolis-output/createRepolisHero.js",
+        "sha256": "65bd7fc76013ee0f11898174095556d581be64ea8f15e76e090fb8955a17d0e3"
+      },
+      "actual": {
+        "path": "examples/repolis-hero/repolis-output/createRepolisHero.js",
+        "sha256": "65bd7fc76013ee0f11898174095556d581be64ea8f15e76e090fb8955a17d0e3"
+      },
+      "message": "host factory binding is current"
+    },
+    {
+      "id": "renderer.standalone.tone-mapping",
+      "code": "tone-mapping",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": "ACESFilmicToneMapping",
+      "actual": "ACESFilmicToneMapping",
+      "message": "standalone renderer toneMapping matches the contract"
+    },
+    {
+      "id": "renderer.standalone.output-color-space",
+      "code": "output-color-space",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": "SRGBColorSpace",
+      "actual": "SRGBColorSpace",
+      "message": "standalone renderer outputColorSpace matches the contract"
+    },
+    {
+      "id": "renderer.standalone.tone-mapping-count",
+      "code": "tone-mapping-count",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": 1,
+      "actual": 1,
+      "message": "standalone output-pass count matches the contract"
+    },
+    {
+      "id": "renderer.standalone.pixel-ratio",
+      "code": "pixel-ratio",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "max": 2.0
+      },
+      "actual": 2.0,
+      "message": "standalone renderer pixel ratio is within the contract maximum"
+    },
+    {
+      "id": "renderer.host.tone-mapping",
+      "code": "tone-mapping",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": "ACESFilmicToneMapping",
+      "actual": "ACESFilmicToneMapping",
+      "message": "host renderer toneMapping matches the contract"
+    },
+    {
+      "id": "renderer.host.output-color-space",
+      "code": "output-color-space",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": "SRGBColorSpace",
+      "actual": "SRGBColorSpace",
+      "message": "host renderer outputColorSpace matches the contract"
+    },
+    {
+      "id": "renderer.host.tone-mapping-count",
+      "code": "tone-mapping-count",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": 1,
+      "actual": 1,
+      "message": "host output-pass count matches the contract"
+    },
+    {
+      "id": "renderer.host.pixel-ratio",
+      "code": "pixel-ratio",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "max": 2.0
+      },
+      "actual": 1.5,
+      "message": "host renderer pixel ratio is within the contract maximum"
+    },
+    {
+      "id": "renderer.standalone.exposure-baseline",
+      "code": "exposure-baseline",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": 1.0,
+      "actual": 1.0,
+      "message": "standalone renderer exposure matches the contract"
+    },
+    {
+      "id": "renderer.cross.exposure-delta",
+      "code": "exposure-delta",
+      "scope": "cross-snapshot",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "max": 0.05
+      },
+      "actual": 0.03,
+      "message": "host exposure delta is within the contract maximum"
+    },
+    {
+      "id": "target.standalone.hero-bloom.present",
+      "code": "render-target",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": true,
+      "actual": true,
+      "message": "standalone render target hero-bloom is present"
+    },
+    {
+      "id": "target.standalone.hero-bloom.type",
+      "code": "render-target-type",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": "HalfFloatType",
+      "actual": "HalfFloatType",
+      "message": "standalone render target hero-bloom type matches the contract"
+    },
+    {
+      "id": "target.standalone.hero-bloom.color-space",
+      "code": "render-target-color-space",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": "LinearSRGBColorSpace",
+      "actual": "LinearSRGBColorSpace",
+      "message": "standalone render target hero-bloom color space matches the contract"
+    },
+    {
+      "id": "target.standalone.hero-bloom.depth",
+      "code": "render-target-depth",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": false,
+      "actual": false,
+      "message": "standalone render target hero-bloom depthBuffer matches the contract"
+    },
+    {
+      "id": "target.standalone.hero-bloom.scale",
+      "code": "render-target-scale",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 0.5,
+        "max": 1.0
+      },
+      "actual": 1.0,
+      "message": "standalone render target hero-bloom scale is within the contract range"
+    },
+    {
+      "id": "target.standalone.hero-bloom.pixels",
+      "code": "render-target-pixels",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "max": 2073600
+      },
+      "actual": 1296000,
+      "message": "standalone render target hero-bloom pixel count is within the contract maximum"
+    },
+    {
+      "id": "target.host.hero-bloom.present",
+      "code": "render-target",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": true,
+      "actual": true,
+      "message": "host render target hero-bloom is present"
+    },
+    {
+      "id": "target.host.hero-bloom.type",
+      "code": "render-target-type",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": "HalfFloatType",
+      "actual": "HalfFloatType",
+      "message": "host render target hero-bloom type matches the contract"
+    },
+    {
+      "id": "target.host.hero-bloom.color-space",
+      "code": "render-target-color-space",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": "LinearSRGBColorSpace",
+      "actual": "LinearSRGBColorSpace",
+      "message": "host render target hero-bloom color space matches the contract"
+    },
+    {
+      "id": "target.host.hero-bloom.depth",
+      "code": "render-target-depth",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": false,
+      "actual": false,
+      "message": "host render target hero-bloom depthBuffer matches the contract"
+    },
+    {
+      "id": "target.host.hero-bloom.scale",
+      "code": "render-target-scale",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 0.5,
+        "max": 1.0
+      },
+      "actual": 0.75,
+      "message": "host render target hero-bloom scale is within the contract range"
+    },
+    {
+      "id": "target.host.hero-bloom.pixels",
+      "code": "render-target-pixels",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "max": 2073600
+      },
+      "actual": 729000,
+      "message": "host render target hero-bloom pixel count is within the contract maximum"
+    },
+    {
+      "id": "layer.standalone.hero-bloom.present",
+      "code": "selective-layer",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": true,
+      "actual": true,
+      "message": "standalone selective layer hero-bloom is present"
+    },
+    {
+      "id": "layer.standalone.hero-bloom.index",
+      "code": "layer-index",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": 1,
+      "actual": 1,
+      "message": "standalone selective layer hero-bloom index matches the contract"
+    },
+    {
+      "id": "layer.standalone.hero-bloom.owner",
+      "code": "layer-owner",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": "repolis-hero",
+      "actual": "repolis-hero",
+      "message": "standalone selective layer hero-bloom owner matches the contract"
+    },
+    {
+      "id": "layer.standalone.hero-bloom.required-members",
+      "code": "layer-required-members",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": [
+        "hero-emissive"
+      ],
+      "actual": [],
+      "message": "standalone selective layer hero-bloom contains required members"
+    },
+    {
+      "id": "layer.standalone.hero-bloom.forbidden-members",
+      "code": "layer-forbidden-members",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": [
+        "town"
+      ],
+      "actual": [],
+      "message": "standalone selective layer hero-bloom excludes forbidden members"
+    },
+    {
+      "id": "layer.host.hero-bloom.present",
+      "code": "selective-layer",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": true,
+      "actual": true,
+      "message": "host selective layer hero-bloom is present"
+    },
+    {
+      "id": "layer.host.hero-bloom.index",
+      "code": "layer-index",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": 1,
+      "actual": 1,
+      "message": "host selective layer hero-bloom index matches the contract"
+    },
+    {
+      "id": "layer.host.hero-bloom.owner",
+      "code": "layer-owner",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": "repolis-hero",
+      "actual": "repolis-hero",
+      "message": "host selective layer hero-bloom owner matches the contract"
+    },
+    {
+      "id": "layer.host.hero-bloom.required-members",
+      "code": "layer-required-members",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": [
+        "hero-emissive"
+      ],
+      "actual": [],
+      "message": "host selective layer hero-bloom contains required members"
+    },
+    {
+      "id": "layer.host.hero-bloom.forbidden-members",
+      "code": "layer-forbidden-members",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": [
+        "town"
+      ],
+      "actual": [],
+      "message": "host selective layer hero-bloom excludes forbidden members"
+    },
+    {
+      "id": "light.standalone.hero-energy-light.present",
+      "code": "selective-light",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": true,
+      "actual": true,
+      "message": "standalone selective light hero-energy-light is present"
+    },
+    {
+      "id": "light.standalone.hero-energy-light.owner",
+      "code": "light-owner",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": "repolis-hero",
+      "actual": "repolis-hero",
+      "message": "standalone selective light hero-energy-light owner matches the contract"
+    },
+    {
+      "id": "light.standalone.hero-energy-light.required-layers",
+      "code": "light-required-layers",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": [
+        "hero"
+      ],
+      "actual": [],
+      "message": "standalone selective light hero-energy-light targets required layers"
+    },
+    {
+      "id": "light.standalone.hero-energy-light.forbidden-layers",
+      "code": "light-forbidden-layers",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": [
+        "town"
+      ],
+      "actual": [],
+      "message": "standalone selective light hero-energy-light excludes forbidden layers"
+    },
+    {
+      "id": "light.standalone.hero-energy-light.town-spill",
+      "code": "town-light-spill",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "max": 0.01
+      },
+      "actual": 0.0,
+      "message": "standalone selective light hero-energy-light town spill is within the contract maximum"
+    },
+    {
+      "id": "light.host.hero-energy-light.present",
+      "code": "selective-light",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": true,
+      "actual": true,
+      "message": "host selective light hero-energy-light is present"
+    },
+    {
+      "id": "light.host.hero-energy-light.owner",
+      "code": "light-owner",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": "repolis-hero",
+      "actual": "repolis-hero",
+      "message": "host selective light hero-energy-light owner matches the contract"
+    },
+    {
+      "id": "light.host.hero-energy-light.required-layers",
+      "code": "light-required-layers",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": [
+        "hero"
+      ],
+      "actual": [],
+      "message": "host selective light hero-energy-light targets required layers"
+    },
+    {
+      "id": "light.host.hero-energy-light.forbidden-layers",
+      "code": "light-forbidden-layers",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": [
+        "town"
+      ],
+      "actual": [],
+      "message": "host selective light hero-energy-light excludes forbidden layers"
+    },
+    {
+      "id": "light.host.hero-energy-light.town-spill",
+      "code": "town-light-spill",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "max": 0.01
+      },
+      "actual": 0.005,
+      "message": "host selective light hero-energy-light town spill is within the contract maximum"
+    },
+    {
+      "id": "view.standalone.back.present",
+      "code": "view",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": true,
+      "actual": true,
+      "message": "standalone view back is present"
+    },
+    {
+      "id": "view.standalone.back.camera",
+      "code": "camera-binding",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": "repolis-back",
+      "actual": "repolis-back",
+      "message": "standalone view back camera matches the contract"
+    },
+    {
+      "id": "view.standalone.back.coverage",
+      "code": "view-coverage",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 0.35,
+        "max": 0.65
+      },
+      "actual": 0.4,
+      "message": "standalone view back coverage is within the contract range"
+    },
+    {
+      "id": "view.standalone.back.luminance-p50",
+      "code": "view-luminance-p50",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 0.2,
+        "max": null
+      },
+      "actual": 0.36,
+      "message": "standalone view back P50 luminance is within the contract range"
+    },
+    {
+      "id": "view.standalone.back.luminance-p90",
+      "code": "view-luminance-p90",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": null,
+        "max": 0.9
+      },
+      "actual": 0.76,
+      "message": "standalone view back P90 luminance is within the contract range"
+    },
+    {
+      "id": "view.standalone.back.semantic.hero-emissive.present",
+      "code": "semantic-system",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": true,
+      "actual": true,
+      "message": "standalone view back semantic system hero-emissive is present"
+    },
+    {
+      "id": "view.standalone.back.semantic.hero-emissive.visibility",
+      "code": "semantic-visibility",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": true,
+      "actual": true,
+      "message": "standalone view back semantic system hero-emissive visibility matches the contract"
+    },
+    {
+      "id": "view.standalone.back.semantic.hero-emissive.coverage",
+      "code": "semantic-coverage",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 0.03,
+        "max": 0.12
+      },
+      "actual": 0.05,
+      "message": "standalone view back semantic system hero-emissive coverage is within the contract range"
+    },
+    {
+      "id": "view.standalone.back.semantic.hero-emissive.luminance-p50",
+      "code": "semantic-luminance-p50",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 0.2,
+        "max": null
+      },
+      "actual": 0.47,
+      "message": "standalone view back semantic system hero-emissive P50 luminance is within the contract range"
+    },
+    {
+      "id": "view.standalone.back.semantic.hero-emissive.luminance-p90",
+      "code": "semantic-luminance-p90",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 0.45,
+        "max": null
+      },
+      "actual": 0.72,
+      "message": "standalone view back semantic system hero-emissive P90 luminance is within the contract range"
+    },
+    {
+      "id": "view.standalone.back.semantic.hero-occlusion-proxy.present",
+      "code": "semantic-system",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": true,
+      "actual": true,
+      "message": "standalone view back semantic system hero-occlusion-proxy is present"
+    },
+    {
+      "id": "view.standalone.back.semantic.hero-occlusion-proxy.visibility",
+      "code": "semantic-visibility",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": false,
+      "actual": false,
+      "message": "standalone view back semantic system hero-occlusion-proxy visibility matches the contract"
+    },
+    {
+      "id": "view.standalone.back.semantic.hero-occlusion-proxy.coverage",
+      "code": "semantic-coverage",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": null,
+        "max": 0.12
+      },
+      "actual": 0.08,
+      "message": "standalone view back semantic system hero-occlusion-proxy coverage is within the contract range"
+    },
+    {
+      "id": "view.standalone.back.semantic.town.present",
+      "code": "semantic-system",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": true,
+      "actual": true,
+      "message": "standalone view back semantic system town is present"
+    },
+    {
+      "id": "view.standalone.back.semantic.town.visibility",
+      "code": "semantic-visibility",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": true,
+      "actual": true,
+      "message": "standalone view back semantic system town visibility matches the contract"
+    },
+    {
+      "id": "view.standalone.back.semantic.town.coverage",
+      "code": "semantic-coverage",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 0.18,
+        "max": 0.5
+      },
+      "actual": 0.3,
+      "message": "standalone view back semantic system town coverage is within the contract range"
+    },
+    {
+      "id": "view.standalone.back.semantic.town.luminance-p50",
+      "code": "semantic-luminance-p50",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 0.12,
+        "max": null
+      },
+      "actual": 0.21,
+      "message": "standalone view back semantic system town P50 luminance is within the contract range"
+    },
+    {
+      "id": "view.standalone.back.semantic.town.luminance-p90",
+      "code": "semantic-luminance-p90",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": null,
+        "max": 0.55
+      },
+      "actual": 0.4,
+      "message": "standalone view back semantic system town P90 luminance is within the contract range"
+    },
+    {
+      "id": "view.standalone.front.present",
+      "code": "view",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": true,
+      "actual": true,
+      "message": "standalone view front is present"
+    },
+    {
+      "id": "view.standalone.front.camera",
+      "code": "camera-binding",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": "repolis-front",
+      "actual": "repolis-front",
+      "message": "standalone view front camera matches the contract"
+    },
+    {
+      "id": "view.standalone.front.coverage",
+      "code": "view-coverage",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 0.35,
+        "max": 0.65
+      },
+      "actual": 0.44,
+      "message": "standalone view front coverage is within the contract range"
+    },
+    {
+      "id": "view.standalone.front.luminance-p50",
+      "code": "view-luminance-p50",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 0.2,
+        "max": null
+      },
+      "actual": 0.38,
+      "message": "standalone view front P50 luminance is within the contract range"
+    },
+    {
+      "id": "view.standalone.front.luminance-p90",
+      "code": "view-luminance-p90",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": null,
+        "max": 0.9
+      },
+      "actual": 0.77,
+      "message": "standalone view front P90 luminance is within the contract range"
+    },
+    {
+      "id": "view.standalone.front.semantic.hero-emissive.present",
+      "code": "semantic-system",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": true,
+      "actual": true,
+      "message": "standalone view front semantic system hero-emissive is present"
+    },
+    {
+      "id": "view.standalone.front.semantic.hero-emissive.visibility",
+      "code": "semantic-visibility",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": true,
+      "actual": true,
+      "message": "standalone view front semantic system hero-emissive visibility matches the contract"
+    },
+    {
+      "id": "view.standalone.front.semantic.hero-emissive.coverage",
+      "code": "semantic-coverage",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 0.03,
+        "max": 0.12
+      },
+      "actual": 0.07,
+      "message": "standalone view front semantic system hero-emissive coverage is within the contract range"
+    },
+    {
+      "id": "view.standalone.front.semantic.hero-emissive.luminance-p50",
+      "code": "semantic-luminance-p50",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 0.2,
+        "max": null
+      },
+      "actual": 0.5,
+      "message": "standalone view front semantic system hero-emissive P50 luminance is within the contract range"
+    },
+    {
+      "id": "view.standalone.front.semantic.hero-emissive.luminance-p90",
+      "code": "semantic-luminance-p90",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 0.45,
+        "max": null
+      },
+      "actual": 0.75,
+      "message": "standalone view front semantic system hero-emissive P90 luminance is within the contract range"
+    },
+    {
+      "id": "view.standalone.front.semantic.hero-occlusion-proxy.present",
+      "code": "semantic-system",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": true,
+      "actual": true,
+      "message": "standalone view front semantic system hero-occlusion-proxy is present"
+    },
+    {
+      "id": "view.standalone.front.semantic.hero-occlusion-proxy.visibility",
+      "code": "semantic-visibility",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": false,
+      "actual": false,
+      "message": "standalone view front semantic system hero-occlusion-proxy visibility matches the contract"
+    },
+    {
+      "id": "view.standalone.front.semantic.hero-occlusion-proxy.coverage",
+      "code": "semantic-coverage",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": null,
+        "max": 0.12
+      },
+      "actual": 0.09,
+      "message": "standalone view front semantic system hero-occlusion-proxy coverage is within the contract range"
+    },
+    {
+      "id": "view.standalone.front.semantic.town.present",
+      "code": "semantic-system",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": true,
+      "actual": true,
+      "message": "standalone view front semantic system town is present"
+    },
+    {
+      "id": "view.standalone.front.semantic.town.visibility",
+      "code": "semantic-visibility",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": true,
+      "actual": true,
+      "message": "standalone view front semantic system town visibility matches the contract"
+    },
+    {
+      "id": "view.standalone.front.semantic.town.coverage",
+      "code": "semantic-coverage",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 0.18,
+        "max": 0.5
+      },
+      "actual": 0.28,
+      "message": "standalone view front semantic system town coverage is within the contract range"
+    },
+    {
+      "id": "view.standalone.front.semantic.town.luminance-p50",
+      "code": "semantic-luminance-p50",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 0.12,
+        "max": null
+      },
+      "actual": 0.22,
+      "message": "standalone view front semantic system town P50 luminance is within the contract range"
+    },
+    {
+      "id": "view.standalone.front.semantic.town.luminance-p90",
+      "code": "semantic-luminance-p90",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": null,
+        "max": 0.55
+      },
+      "actual": 0.42,
+      "message": "standalone view front semantic system town P90 luminance is within the contract range"
+    },
+    {
+      "id": "view.standalone.quarter.present",
+      "code": "view",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": true,
+      "actual": true,
+      "message": "standalone view quarter is present"
+    },
+    {
+      "id": "view.standalone.quarter.camera",
+      "code": "camera-binding",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": "repolis-quarter",
+      "actual": "repolis-quarter",
+      "message": "standalone view quarter camera matches the contract"
+    },
+    {
+      "id": "view.standalone.quarter.coverage",
+      "code": "view-coverage",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 0.35,
+        "max": 0.65
+      },
+      "actual": 0.41,
+      "message": "standalone view quarter coverage is within the contract range"
+    },
+    {
+      "id": "view.standalone.quarter.luminance-p50",
+      "code": "view-luminance-p50",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 0.2,
+        "max": null
+      },
+      "actual": 0.4,
+      "message": "standalone view quarter P50 luminance is within the contract range"
+    },
+    {
+      "id": "view.standalone.quarter.luminance-p90",
+      "code": "view-luminance-p90",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": null,
+        "max": 0.9
+      },
+      "actual": 0.8,
+      "message": "standalone view quarter P90 luminance is within the contract range"
+    },
+    {
+      "id": "view.standalone.quarter.semantic.hero-emissive.present",
+      "code": "semantic-system",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": true,
+      "actual": true,
+      "message": "standalone view quarter semantic system hero-emissive is present"
+    },
+    {
+      "id": "view.standalone.quarter.semantic.hero-emissive.visibility",
+      "code": "semantic-visibility",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": true,
+      "actual": true,
+      "message": "standalone view quarter semantic system hero-emissive visibility matches the contract"
+    },
+    {
+      "id": "view.standalone.quarter.semantic.hero-emissive.coverage",
+      "code": "semantic-coverage",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 0.03,
+        "max": 0.12
+      },
+      "actual": 0.06,
+      "message": "standalone view quarter semantic system hero-emissive coverage is within the contract range"
+    },
+    {
+      "id": "view.standalone.quarter.semantic.hero-emissive.luminance-p50",
+      "code": "semantic-luminance-p50",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 0.2,
+        "max": null
+      },
+      "actual": 0.52,
+      "message": "standalone view quarter semantic system hero-emissive P50 luminance is within the contract range"
+    },
+    {
+      "id": "view.standalone.quarter.semantic.hero-emissive.luminance-p90",
+      "code": "semantic-luminance-p90",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 0.45,
+        "max": null
+      },
+      "actual": 0.77,
+      "message": "standalone view quarter semantic system hero-emissive P90 luminance is within the contract range"
+    },
+    {
+      "id": "view.standalone.quarter.semantic.hero-occlusion-proxy.present",
+      "code": "semantic-system",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": true,
+      "actual": true,
+      "message": "standalone view quarter semantic system hero-occlusion-proxy is present"
+    },
+    {
+      "id": "view.standalone.quarter.semantic.hero-occlusion-proxy.visibility",
+      "code": "semantic-visibility",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": false,
+      "actual": false,
+      "message": "standalone view quarter semantic system hero-occlusion-proxy visibility matches the contract"
+    },
+    {
+      "id": "view.standalone.quarter.semantic.hero-occlusion-proxy.coverage",
+      "code": "semantic-coverage",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": null,
+        "max": 0.12
+      },
+      "actual": 0.08,
+      "message": "standalone view quarter semantic system hero-occlusion-proxy coverage is within the contract range"
+    },
+    {
+      "id": "view.standalone.quarter.semantic.town.present",
+      "code": "semantic-system",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": true,
+      "actual": true,
+      "message": "standalone view quarter semantic system town is present"
+    },
+    {
+      "id": "view.standalone.quarter.semantic.town.visibility",
+      "code": "semantic-visibility",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": true,
+      "actual": true,
+      "message": "standalone view quarter semantic system town visibility matches the contract"
+    },
+    {
+      "id": "view.standalone.quarter.semantic.town.coverage",
+      "code": "semantic-coverage",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 0.18,
+        "max": 0.5
+      },
+      "actual": 0.29,
+      "message": "standalone view quarter semantic system town coverage is within the contract range"
+    },
+    {
+      "id": "view.standalone.quarter.semantic.town.luminance-p50",
+      "code": "semantic-luminance-p50",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 0.12,
+        "max": null
+      },
+      "actual": 0.2,
+      "message": "standalone view quarter semantic system town P50 luminance is within the contract range"
+    },
+    {
+      "id": "view.standalone.quarter.semantic.town.luminance-p90",
+      "code": "semantic-luminance-p90",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": null,
+        "max": 0.55
+      },
+      "actual": 0.41,
+      "message": "standalone view quarter semantic system town P90 luminance is within the contract range"
+    },
+    {
+      "id": "view.host.back.present",
+      "code": "view",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": true,
+      "actual": true,
+      "message": "host view back is present"
+    },
+    {
+      "id": "view.host.back.camera",
+      "code": "camera-binding",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": "repolis-back",
+      "actual": "repolis-back",
+      "message": "host view back camera matches the contract"
+    },
+    {
+      "id": "view.host.back.coverage",
+      "code": "view-coverage",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 0.35,
+        "max": 0.65
+      },
+      "actual": 0.39,
+      "message": "host view back coverage is within the contract range"
+    },
+    {
+      "id": "view.host.back.luminance-p50",
+      "code": "view-luminance-p50",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 0.2,
+        "max": null
+      },
+      "actual": 0.35,
+      "message": "host view back P50 luminance is within the contract range"
+    },
+    {
+      "id": "view.host.back.luminance-p90",
+      "code": "view-luminance-p90",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": null,
+        "max": 0.9
+      },
+      "actual": 0.74,
+      "message": "host view back P90 luminance is within the contract range"
+    },
+    {
+      "id": "view.host.back.semantic.hero-emissive.present",
+      "code": "semantic-system",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": true,
+      "actual": true,
+      "message": "host view back semantic system hero-emissive is present"
+    },
+    {
+      "id": "view.host.back.semantic.hero-emissive.visibility",
+      "code": "semantic-visibility",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": true,
+      "actual": true,
+      "message": "host view back semantic system hero-emissive visibility matches the contract"
+    },
+    {
+      "id": "view.host.back.semantic.hero-emissive.coverage",
+      "code": "semantic-coverage",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 0.03,
+        "max": 0.12
+      },
+      "actual": 0.05,
+      "message": "host view back semantic system hero-emissive coverage is within the contract range"
+    },
+    {
+      "id": "view.host.back.semantic.hero-emissive.luminance-p50",
+      "code": "semantic-luminance-p50",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 0.2,
+        "max": null
+      },
+      "actual": 0.45,
+      "message": "host view back semantic system hero-emissive P50 luminance is within the contract range"
+    },
+    {
+      "id": "view.host.back.semantic.hero-emissive.luminance-p90",
+      "code": "semantic-luminance-p90",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 0.45,
+        "max": null
+      },
+      "actual": 0.7,
+      "message": "host view back semantic system hero-emissive P90 luminance is within the contract range"
+    },
+    {
+      "id": "view.host.back.semantic.hero-occlusion-proxy.present",
+      "code": "semantic-system",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": true,
+      "actual": true,
+      "message": "host view back semantic system hero-occlusion-proxy is present"
+    },
+    {
+      "id": "view.host.back.semantic.hero-occlusion-proxy.visibility",
+      "code": "semantic-visibility",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": false,
+      "actual": false,
+      "message": "host view back semantic system hero-occlusion-proxy visibility matches the contract"
+    },
+    {
+      "id": "view.host.back.semantic.hero-occlusion-proxy.coverage",
+      "code": "semantic-coverage",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": null,
+        "max": 0.12
+      },
+      "actual": 0.09,
+      "message": "host view back semantic system hero-occlusion-proxy coverage is within the contract range"
+    },
+    {
+      "id": "view.host.back.semantic.town.present",
+      "code": "semantic-system",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": true,
+      "actual": true,
+      "message": "host view back semantic system town is present"
+    },
+    {
+      "id": "view.host.back.semantic.town.visibility",
+      "code": "semantic-visibility",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": true,
+      "actual": true,
+      "message": "host view back semantic system town visibility matches the contract"
+    },
+    {
+      "id": "view.host.back.semantic.town.coverage",
+      "code": "semantic-coverage",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 0.18,
+        "max": 0.5
+      },
+      "actual": 0.31,
+      "message": "host view back semantic system town coverage is within the contract range"
+    },
+    {
+      "id": "view.host.back.semantic.town.luminance-p50",
+      "code": "semantic-luminance-p50",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 0.12,
+        "max": null
+      },
+      "actual": 0.22,
+      "message": "host view back semantic system town P50 luminance is within the contract range"
+    },
+    {
+      "id": "view.host.back.semantic.town.luminance-p90",
+      "code": "semantic-luminance-p90",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": null,
+        "max": 0.55
+      },
+      "actual": 0.41,
+      "message": "host view back semantic system town P90 luminance is within the contract range"
+    },
+    {
+      "id": "view.host.front.present",
+      "code": "view",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": true,
+      "actual": true,
+      "message": "host view front is present"
+    },
+    {
+      "id": "view.host.front.camera",
+      "code": "camera-binding",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": "repolis-front",
+      "actual": "repolis-front",
+      "message": "host view front camera matches the contract"
+    },
+    {
+      "id": "view.host.front.coverage",
+      "code": "view-coverage",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 0.35,
+        "max": 0.65
+      },
+      "actual": 0.43,
+      "message": "host view front coverage is within the contract range"
+    },
+    {
+      "id": "view.host.front.luminance-p50",
+      "code": "view-luminance-p50",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 0.2,
+        "max": null
+      },
+      "actual": 0.37,
+      "message": "host view front P50 luminance is within the contract range"
+    },
+    {
+      "id": "view.host.front.luminance-p90",
+      "code": "view-luminance-p90",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": null,
+        "max": 0.9
+      },
+      "actual": 0.75,
+      "message": "host view front P90 luminance is within the contract range"
+    },
+    {
+      "id": "view.host.front.semantic.hero-emissive.present",
+      "code": "semantic-system",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": true,
+      "actual": true,
+      "message": "host view front semantic system hero-emissive is present"
+    },
+    {
+      "id": "view.host.front.semantic.hero-emissive.visibility",
+      "code": "semantic-visibility",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": true,
+      "actual": true,
+      "message": "host view front semantic system hero-emissive visibility matches the contract"
+    },
+    {
+      "id": "view.host.front.semantic.hero-emissive.coverage",
+      "code": "semantic-coverage",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 0.03,
+        "max": 0.12
+      },
+      "actual": 0.065,
+      "message": "host view front semantic system hero-emissive coverage is within the contract range"
+    },
+    {
+      "id": "view.host.front.semantic.hero-emissive.luminance-p50",
+      "code": "semantic-luminance-p50",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 0.2,
+        "max": null
+      },
+      "actual": 0.48,
+      "message": "host view front semantic system hero-emissive P50 luminance is within the contract range"
+    },
+    {
+      "id": "view.host.front.semantic.hero-emissive.luminance-p90",
+      "code": "semantic-luminance-p90",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 0.45,
+        "max": null
+      },
+      "actual": 0.73,
+      "message": "host view front semantic system hero-emissive P90 luminance is within the contract range"
+    },
+    {
+      "id": "view.host.front.semantic.hero-occlusion-proxy.present",
+      "code": "semantic-system",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": true,
+      "actual": true,
+      "message": "host view front semantic system hero-occlusion-proxy is present"
+    },
+    {
+      "id": "view.host.front.semantic.hero-occlusion-proxy.visibility",
+      "code": "semantic-visibility",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": false,
+      "actual": false,
+      "message": "host view front semantic system hero-occlusion-proxy visibility matches the contract"
+    },
+    {
+      "id": "view.host.front.semantic.hero-occlusion-proxy.coverage",
+      "code": "semantic-coverage",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": null,
+        "max": 0.12
+      },
+      "actual": 0.1,
+      "message": "host view front semantic system hero-occlusion-proxy coverage is within the contract range"
+    },
+    {
+      "id": "view.host.front.semantic.town.present",
+      "code": "semantic-system",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": true,
+      "actual": true,
+      "message": "host view front semantic system town is present"
+    },
+    {
+      "id": "view.host.front.semantic.town.visibility",
+      "code": "semantic-visibility",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": true,
+      "actual": true,
+      "message": "host view front semantic system town visibility matches the contract"
+    },
+    {
+      "id": "view.host.front.semantic.town.coverage",
+      "code": "semantic-coverage",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 0.18,
+        "max": 0.5
+      },
+      "actual": 0.29,
+      "message": "host view front semantic system town coverage is within the contract range"
+    },
+    {
+      "id": "view.host.front.semantic.town.luminance-p50",
+      "code": "semantic-luminance-p50",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 0.12,
+        "max": null
+      },
+      "actual": 0.23,
+      "message": "host view front semantic system town P50 luminance is within the contract range"
+    },
+    {
+      "id": "view.host.front.semantic.town.luminance-p90",
+      "code": "semantic-luminance-p90",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": null,
+        "max": 0.55
+      },
+      "actual": 0.43,
+      "message": "host view front semantic system town P90 luminance is within the contract range"
+    },
+    {
+      "id": "view.host.quarter.present",
+      "code": "view",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": true,
+      "actual": true,
+      "message": "host view quarter is present"
+    },
+    {
+      "id": "view.host.quarter.camera",
+      "code": "camera-binding",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": "repolis-quarter",
+      "actual": "repolis-quarter",
+      "message": "host view quarter camera matches the contract"
+    },
+    {
+      "id": "view.host.quarter.coverage",
+      "code": "view-coverage",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 0.35,
+        "max": 0.65
+      },
+      "actual": 0.4,
+      "message": "host view quarter coverage is within the contract range"
+    },
+    {
+      "id": "view.host.quarter.luminance-p50",
+      "code": "view-luminance-p50",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 0.2,
+        "max": null
+      },
+      "actual": 0.39,
+      "message": "host view quarter P50 luminance is within the contract range"
+    },
+    {
+      "id": "view.host.quarter.luminance-p90",
+      "code": "view-luminance-p90",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": null,
+        "max": 0.9
+      },
+      "actual": 0.78,
+      "message": "host view quarter P90 luminance is within the contract range"
+    },
+    {
+      "id": "view.host.quarter.semantic.hero-emissive.present",
+      "code": "semantic-system",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": true,
+      "actual": true,
+      "message": "host view quarter semantic system hero-emissive is present"
+    },
+    {
+      "id": "view.host.quarter.semantic.hero-emissive.visibility",
+      "code": "semantic-visibility",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": true,
+      "actual": true,
+      "message": "host view quarter semantic system hero-emissive visibility matches the contract"
+    },
+    {
+      "id": "view.host.quarter.semantic.hero-emissive.coverage",
+      "code": "semantic-coverage",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 0.03,
+        "max": 0.12
+      },
+      "actual": 0.055,
+      "message": "host view quarter semantic system hero-emissive coverage is within the contract range"
+    },
+    {
+      "id": "view.host.quarter.semantic.hero-emissive.luminance-p50",
+      "code": "semantic-luminance-p50",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 0.2,
+        "max": null
+      },
+      "actual": 0.5,
+      "message": "host view quarter semantic system hero-emissive P50 luminance is within the contract range"
+    },
+    {
+      "id": "view.host.quarter.semantic.hero-emissive.luminance-p90",
+      "code": "semantic-luminance-p90",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 0.45,
+        "max": null
+      },
+      "actual": 0.75,
+      "message": "host view quarter semantic system hero-emissive P90 luminance is within the contract range"
+    },
+    {
+      "id": "view.host.quarter.semantic.hero-occlusion-proxy.present",
+      "code": "semantic-system",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": true,
+      "actual": true,
+      "message": "host view quarter semantic system hero-occlusion-proxy is present"
+    },
+    {
+      "id": "view.host.quarter.semantic.hero-occlusion-proxy.visibility",
+      "code": "semantic-visibility",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": false,
+      "actual": false,
+      "message": "host view quarter semantic system hero-occlusion-proxy visibility matches the contract"
+    },
+    {
+      "id": "view.host.quarter.semantic.hero-occlusion-proxy.coverage",
+      "code": "semantic-coverage",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": null,
+        "max": 0.12
+      },
+      "actual": 0.095,
+      "message": "host view quarter semantic system hero-occlusion-proxy coverage is within the contract range"
+    },
+    {
+      "id": "view.host.quarter.semantic.town.present",
+      "code": "semantic-system",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": true,
+      "actual": true,
+      "message": "host view quarter semantic system town is present"
+    },
+    {
+      "id": "view.host.quarter.semantic.town.visibility",
+      "code": "semantic-visibility",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": true,
+      "actual": true,
+      "message": "host view quarter semantic system town visibility matches the contract"
+    },
+    {
+      "id": "view.host.quarter.semantic.town.coverage",
+      "code": "semantic-coverage",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 0.18,
+        "max": 0.5
+      },
+      "actual": 0.3,
+      "message": "host view quarter semantic system town coverage is within the contract range"
+    },
+    {
+      "id": "view.host.quarter.semantic.town.luminance-p50",
+      "code": "semantic-luminance-p50",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 0.12,
+        "max": null
+      },
+      "actual": 0.21,
+      "message": "host view quarter semantic system town P50 luminance is within the contract range"
+    },
+    {
+      "id": "view.host.quarter.semantic.town.luminance-p90",
+      "code": "semantic-luminance-p90",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": null,
+        "max": 0.55
+      },
+      "actual": 0.42,
+      "message": "host view quarter semantic system town P90 luminance is within the contract range"
+    },
+    {
+      "id": "angle.standalone.back.black-frame",
+      "code": "black-frame",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": false,
+      "actual": false,
+      "message": "standalone view back black-frame flag matches the contract"
+    },
+    {
+      "id": "angle.standalone.back.clipping",
+      "code": "view-clipping",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": false,
+      "actual": false,
+      "message": "standalone view back clipping flag matches the contract"
+    },
+    {
+      "id": "angle.standalone.front.black-frame",
+      "code": "black-frame",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": false,
+      "actual": false,
+      "message": "standalone view front black-frame flag matches the contract"
+    },
+    {
+      "id": "angle.standalone.front.clipping",
+      "code": "view-clipping",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": false,
+      "actual": false,
+      "message": "standalone view front clipping flag matches the contract"
+    },
+    {
+      "id": "angle.standalone.quarter.black-frame",
+      "code": "black-frame",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": false,
+      "actual": false,
+      "message": "standalone view quarter black-frame flag matches the contract"
+    },
+    {
+      "id": "angle.standalone.quarter.clipping",
+      "code": "view-clipping",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": false,
+      "actual": false,
+      "message": "standalone view quarter clipping flag matches the contract"
+    },
+    {
+      "id": "angle.standalone.coverage-consistency",
+      "code": "angle-coverage-consistency",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 0.88
+      },
+      "actual": 0.975609756098,
+      "message": "standalone minimum coverage-to-median ratio meets the contract"
+    },
+    {
+      "id": "angle.standalone.p90-luminance-spread",
+      "code": "angle-luminance-spread",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "max": 0.1
+      },
+      "actual": 0.04,
+      "message": "standalone angle P90 luminance spread is within the contract"
+    },
+    {
+      "id": "angle.host.back.black-frame",
+      "code": "black-frame",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": false,
+      "actual": false,
+      "message": "host view back black-frame flag matches the contract"
+    },
+    {
+      "id": "angle.host.back.clipping",
+      "code": "view-clipping",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": false,
+      "actual": false,
+      "message": "host view back clipping flag matches the contract"
+    },
+    {
+      "id": "angle.host.front.black-frame",
+      "code": "black-frame",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": false,
+      "actual": false,
+      "message": "host view front black-frame flag matches the contract"
+    },
+    {
+      "id": "angle.host.front.clipping",
+      "code": "view-clipping",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": false,
+      "actual": false,
+      "message": "host view front clipping flag matches the contract"
+    },
+    {
+      "id": "angle.host.quarter.black-frame",
+      "code": "black-frame",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": false,
+      "actual": false,
+      "message": "host view quarter black-frame flag matches the contract"
+    },
+    {
+      "id": "angle.host.quarter.clipping",
+      "code": "view-clipping",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": false,
+      "actual": false,
+      "message": "host view quarter clipping flag matches the contract"
+    },
+    {
+      "id": "angle.host.coverage-consistency",
+      "code": "angle-coverage-consistency",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 0.88
+      },
+      "actual": 0.975,
+      "message": "host minimum coverage-to-median ratio meets the contract"
+    },
+    {
+      "id": "angle.host.p90-luminance-spread",
+      "code": "angle-luminance-spread",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "max": 0.1
+      },
+      "actual": 0.04,
+      "message": "host angle P90 luminance spread is within the contract"
+    },
+    {
+      "id": "town.cross.exposure-invariance",
+      "code": "town-exposure-invariance",
+      "scope": "cross-snapshot",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "max": 0.03
+      },
+      "actual": {
+        "maxDelta": 0.01,
+        "deltas": [
+          {
+            "viewId": "back",
+            "delta": 0.01
+          },
+          {
+            "viewId": "front",
+            "delta": 0.01
+          },
+          {
+            "viewId": "quarter",
+            "delta": 0.01
+          }
+        ]
+      },
+      "message": "town exposure is invariant within the contract"
+    },
+    {
+      "id": "performance.standalone.back.calls",
+      "code": "draw-calls",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "max": 180
+      },
+      "actual": 128,
+      "message": "standalone view back draw calls is within the contract maximum"
+    },
+    {
+      "id": "performance.standalone.back.triangles",
+      "code": "triangles",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "max": 900000
+      },
+      "actual": 655000,
+      "message": "standalone view back triangles is within the contract maximum"
+    },
+    {
+      "id": "performance.standalone.back.fps",
+      "code": "fps",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 50.0
+      },
+      "actual": 59.0,
+      "message": "standalone view back FPS meets the contract minimum"
+    },
+    {
+      "id": "performance.standalone.back.frame-time-p50",
+      "code": "frame-time-p50",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "max": 18.0
+      },
+      "actual": 13.7,
+      "message": "standalone view back P50 frame time is within the contract maximum"
+    },
+    {
+      "id": "performance.standalone.back.frame-time-p95",
+      "code": "frame-time-p95",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "max": 25.0
+      },
+      "actual": 18.4,
+      "message": "standalone view back P95 frame time is within the contract maximum"
+    },
+    {
+      "id": "performance.standalone.front.calls",
+      "code": "draw-calls",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "max": 180
+      },
+      "actual": 126,
+      "message": "standalone view front draw calls is within the contract maximum"
+    },
+    {
+      "id": "performance.standalone.front.triangles",
+      "code": "triangles",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "max": 900000
+      },
+      "actual": 640000,
+      "message": "standalone view front triangles is within the contract maximum"
+    },
+    {
+      "id": "performance.standalone.front.fps",
+      "code": "fps",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 50.0
+      },
+      "actual": 60.0,
+      "message": "standalone view front FPS meets the contract minimum"
+    },
+    {
+      "id": "performance.standalone.front.frame-time-p50",
+      "code": "frame-time-p50",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "max": 18.0
+      },
+      "actual": 13.2,
+      "message": "standalone view front P50 frame time is within the contract maximum"
+    },
+    {
+      "id": "performance.standalone.front.frame-time-p95",
+      "code": "frame-time-p95",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "max": 25.0
+      },
+      "actual": 17.8,
+      "message": "standalone view front P95 frame time is within the contract maximum"
+    },
+    {
+      "id": "performance.standalone.quarter.calls",
+      "code": "draw-calls",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "max": 180
+      },
+      "actual": 132,
+      "message": "standalone view quarter draw calls is within the contract maximum"
+    },
+    {
+      "id": "performance.standalone.quarter.triangles",
+      "code": "triangles",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "max": 900000
+      },
+      "actual": 680000,
+      "message": "standalone view quarter triangles is within the contract maximum"
+    },
+    {
+      "id": "performance.standalone.quarter.fps",
+      "code": "fps",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 50.0
+      },
+      "actual": 58.0,
+      "message": "standalone view quarter FPS meets the contract minimum"
+    },
+    {
+      "id": "performance.standalone.quarter.frame-time-p50",
+      "code": "frame-time-p50",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "max": 18.0
+      },
+      "actual": 14.1,
+      "message": "standalone view quarter P50 frame time is within the contract maximum"
+    },
+    {
+      "id": "performance.standalone.quarter.frame-time-p95",
+      "code": "frame-time-p95",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "max": 25.0
+      },
+      "actual": 19.0,
+      "message": "standalone view quarter P95 frame time is within the contract maximum"
+    },
+    {
+      "id": "performance.standalone.direction-calls-spread",
+      "code": "camera-direction-calls-spread",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "max": 20
+      },
+      "actual": 6,
+      "message": "standalone camera-direction calls spread is within the contract"
+    },
+    {
+      "id": "performance.standalone.direction-triangles-spread",
+      "code": "camera-direction-triangles-spread",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "max": 100000
+      },
+      "actual": 40000,
+      "message": "standalone camera-direction triangles spread is within the contract"
+    },
+    {
+      "id": "performance.standalone.direction-frameTimeP95Ms-spread",
+      "code": "camera-direction-frame-time-p95-spread",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "max": 4.0
+      },
+      "actual": 1.2,
+      "message": "standalone camera-direction frameTimeP95Ms spread is within the contract"
+    },
+    {
+      "id": "performance.host.back.calls",
+      "code": "draw-calls",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "max": 180
+      },
+      "actual": 154,
+      "message": "host view back draw calls is within the contract maximum"
+    },
+    {
+      "id": "performance.host.back.triangles",
+      "code": "triangles",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "max": 900000
+      },
+      "actual": 790000,
+      "message": "host view back triangles is within the contract maximum"
+    },
+    {
+      "id": "performance.host.back.fps",
+      "code": "fps",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 50.0
+      },
+      "actual": 53.0,
+      "message": "host view back FPS meets the contract minimum"
+    },
+    {
+      "id": "performance.host.back.frame-time-p50",
+      "code": "frame-time-p50",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "max": 18.0
+      },
+      "actual": 16.8,
+      "message": "host view back P50 frame time is within the contract maximum"
+    },
+    {
+      "id": "performance.host.back.frame-time-p95",
+      "code": "frame-time-p95",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "max": 25.0
+      },
+      "actual": 22.9,
+      "message": "host view back P95 frame time is within the contract maximum"
+    },
+    {
+      "id": "performance.host.front.calls",
+      "code": "draw-calls",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "max": 180
+      },
+      "actual": 150,
+      "message": "host view front draw calls is within the contract maximum"
+    },
+    {
+      "id": "performance.host.front.triangles",
+      "code": "triangles",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "max": 900000
+      },
+      "actual": 760000,
+      "message": "host view front triangles is within the contract maximum"
+    },
+    {
+      "id": "performance.host.front.fps",
+      "code": "fps",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 50.0
+      },
+      "actual": 54.0,
+      "message": "host view front FPS meets the contract minimum"
+    },
+    {
+      "id": "performance.host.front.frame-time-p50",
+      "code": "frame-time-p50",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "max": 18.0
+      },
+      "actual": 16.0,
+      "message": "host view front P50 frame time is within the contract maximum"
+    },
+    {
+      "id": "performance.host.front.frame-time-p95",
+      "code": "frame-time-p95",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "max": 25.0
+      },
+      "actual": 21.5,
+      "message": "host view front P95 frame time is within the contract maximum"
+    },
+    {
+      "id": "performance.host.quarter.calls",
+      "code": "draw-calls",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "max": 180
+      },
+      "actual": 158,
+      "message": "host view quarter draw calls is within the contract maximum"
+    },
+    {
+      "id": "performance.host.quarter.triangles",
+      "code": "triangles",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "max": 900000
+      },
+      "actual": 820000,
+      "message": "host view quarter triangles is within the contract maximum"
+    },
+    {
+      "id": "performance.host.quarter.fps",
+      "code": "fps",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "min": 50.0
+      },
+      "actual": 52.0,
+      "message": "host view quarter FPS meets the contract minimum"
+    },
+    {
+      "id": "performance.host.quarter.frame-time-p50",
+      "code": "frame-time-p50",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "max": 18.0
+      },
+      "actual": 17.2,
+      "message": "host view quarter P50 frame time is within the contract maximum"
+    },
+    {
+      "id": "performance.host.quarter.frame-time-p95",
+      "code": "frame-time-p95",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "max": 25.0
+      },
+      "actual": 23.6,
+      "message": "host view quarter P95 frame time is within the contract maximum"
+    },
+    {
+      "id": "performance.host.direction-calls-spread",
+      "code": "camera-direction-calls-spread",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "max": 20
+      },
+      "actual": 8,
+      "message": "host camera-direction calls spread is within the contract"
+    },
+    {
+      "id": "performance.host.direction-triangles-spread",
+      "code": "camera-direction-triangles-spread",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "max": 100000
+      },
+      "actual": 60000,
+      "message": "host camera-direction triangles spread is within the contract"
+    },
+    {
+      "id": "performance.host.direction-frameTimeP95Ms-spread",
+      "code": "camera-direction-frame-time-p95-spread",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "max": 4.0
+      },
+      "actual": 2.1,
+      "message": "host camera-direction frameTimeP95Ms spread is within the contract"
+    },
+    {
+      "id": "errors.standalone.console",
+      "code": "console-errors",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "max": 0
+      },
+      "actual": 0,
+      "message": "standalone console error count is within the contract maximum"
+    },
+    {
+      "id": "errors.standalone.network",
+      "code": "network-errors",
+      "scope": "standalone",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "max": 0
+      },
+      "actual": 0,
+      "message": "standalone network error count is within the contract maximum"
+    },
+    {
+      "id": "errors.host.console",
+      "code": "console-errors",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "max": 0
+      },
+      "actual": 0,
+      "message": "host console error count is within the contract maximum"
+    },
+    {
+      "id": "errors.host.network",
+      "code": "network-errors",
+      "scope": "host",
+      "required": true,
+      "status": "passing",
+      "expected": {
+        "max": 0
+      },
+      "actual": 0,
+      "message": "host network error count is within the contract maximum"
+    }
+  ],
+  "summary": {
+    "total": 211,
+    "missing": 0,
+    "stale": 0,
+    "passing": 211,
+    "failing": 0
+  }
+}

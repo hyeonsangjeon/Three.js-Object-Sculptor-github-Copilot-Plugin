@@ -52,6 +52,7 @@ These scripts live at the plugin root, not inside this skill folder. From this `
 - `python3 ../../scripts/sculpt_dna.py init object-sculpt-spec.json --in-place` adds conservative semantic variant controls after the base structure is meaningful.
 - `python3 ../../scripts/sculpt_dna.py generate object-sculpt-spec.json --out-dir variants --count 4 --seed 1337` creates deterministic, invariant-checked variant specs and resets inherited visual evidence.
 - `python3 ../../scripts/sculpt_dna.py curate object-sculpt-spec.json --out-dir curated --count 3 --pool-size 24 --seed 1337` selects a representative family with broad safe parameter-space coverage.
+- `python3 ../../scripts/render_integration_contract.py render-integration-contract.json standalone-snapshot.json host-snapshot.json --out integration-report.json --summary` verifies that a host app preserves renderer, target, layer/light, fixed-view, semantic, exposure, performance, and error contracts without treating diagnostic metrics as AI visual approval.
 
 Prefer this loop for implementation tasks:
 
@@ -65,7 +66,8 @@ Prefer this loop for implementation tasks:
 7. Hand-refine geometry, materials, animation anchors, and destruction anchors one pass at a time. Do not generate or implement a deeper pass until `sculpt_pass_orchestrator.py check` passes for that pass.
 8. After each visual pass, capture a browser screenshot, create one full reference/render comparison pair, inspect it once with AI vision, then update `reviewHistory` with overall, layer, and semantic feature scores.
 9. Run project typecheck/build and browser visual review; use the GitHub Copilot in-app Browser screenshot tool first. Do not install or download Playwright/Chromium just for this skill unless the user explicitly requests that route.
-10. When the user needs an asset family rather than one model, invoke the `sculpt-dna-variants` skill only after the base spec has meaningful semantic components.
+10. For a host/app target, finish optimization, capture standalone and host runtime snapshots from the same named cameras, and pass the Render Integration Contract before production acceptance.
+11. When the user needs an asset family rather than one model, invoke the `sculpt-dna-variants` skill only after the base spec has meaningful semantic components.
 
 ## 3D Terminology Discipline
 
@@ -328,6 +330,35 @@ Minimum gates:
 6. `interaction-pass`: screenshot or short render capture proves pivots, sockets, colliders, animation anchors, fracture seams, detachable fragments, and runtime metadata.
 7. `optimization-pass`: triangle budget, draw calls, instancing, LOD, and FPS target.
 
+### Host Integration Gate
+
+A standalone turntable is not sufficient production evidence for a model that
+will run inside another application. Rotation can eventually reveal an
+angle-sensitive emissive system even when the host's fixed camera never sees
+it. The host can also add a second output transform, change color space or
+exposure, multiply DPR/render-target cost, apply different bloom layers, spill
+hero lights into a town/background layer, or place an oversized occlusion proxy
+in front of the accepted silhouette.
+
+After `optimization-pass` and before production acceptance for a host/app
+target:
+
+1. Create a v1 render integration contract with immutable source/factory SHA
+   bindings and explicit renderer, target, selective layer/light, fixed-view,
+   semantic, angle, exposure, performance, and error policies.
+2. Capture one standalone and one host `render-runtime-snapshot` using the same
+   required named cameras and measurement method.
+3. Run `python3 ../../scripts/render_integration_contract.py render-integration-contract.json standalone-snapshot.json host-snapshot.json --out integration-report.json --summary`.
+4. Treat exit `1` as blocked production acceptance and exit `2` as invalid
+   telemetry. Fix the app or recapture current snapshots instead of suppressing
+   checks.
+5. Keep AI vision as final visual authority. Coverage/luminance metrics can
+   reject an integration but cannot grant a visual pass.
+
+Do not install a browser runtime for this gate. Consume snapshots from the
+host's existing debug hooks or browser tooling. See the
+[Render Integration Contract v1](references/render-integration-contract.md).
+
 ### Locked Build Pass Gate
 
 The construction loop is sequential. Copilot must not jump from a completed spec directly to a polished model.
@@ -414,6 +445,7 @@ Apply these hard-won patterns:
 - [Material and lighting realism](references/material-lighting-realism.md)
 - [Pre-spec assessment](references/pre-spec-assessment.md)
 - [Procedural Three.js patterns](references/procedural-patterns.md)
+- [Render Integration Contract v1](references/render-integration-contract.md)
 - [Self-correction loop](references/self-correction-loop.md)
 - [Image validation rubric](references/validation-rubric.md)
 

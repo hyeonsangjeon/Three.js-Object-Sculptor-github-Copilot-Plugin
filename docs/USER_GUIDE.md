@@ -105,6 +105,19 @@ Capture pass-by-pass evidence and save the reusable production factory
 separately from the demo page.
 ```
 
+### Verify the flagship inside a host app
+
+```text
+After optimization, create a Render Integration Contract v1 for this asset.
+Capture JSON snapshots from both the accepted standalone scene and the real
+host app using the same fixed named cameras.
+
+Gate tone mapping, output color space/pass count, exposure, DPR and render
+targets, selective layers/lights, town spill, semantic coverage/luminance,
+black/clipped frames, town exposure, calls/triangles/frame time/FPS, and
+console/network errors. Do not treat diagnostic metrics as AI visual approval.
+```
+
 ## 4. What Copilot should do
 
 The installed workflow should:
@@ -117,6 +130,7 @@ The installed workflow should:
 6. Preserve pivots, sockets, colliders, hierarchy, and destruction metadata.
 7. Reset review evidence whenever a variant changes visible geometry or materials.
 8. Use Coverage Curator for representative families instead of taking the first random samples.
+9. Verify optimized host/app targets against standalone behavior before production acceptance.
 
 Review history uses the latest entry for each pass as authoritative, so a stale
 superseded review cannot override a newer decision. Specs without
@@ -131,6 +145,13 @@ to define fixed viewpoints, pass bindings, expected render/comparison paths,
 and selected semantic targets. This is additive: no `ObjectSculptSpec` field is
 changed. The matrix verifies current reviews but does not render images or
 replace AI vision.
+
+Host/app targets use separate additive `render-integration-contract` and
+`render-runtime-snapshot` v1 documents. They do not add fields to
+`ObjectSculptSpec` or existing reviews. The host gate compares exact renderer
+state and explicit tolerances/budgets; it has no wildcard ignore list. A
+standalone rotating camera can hide a fixed host-camera, layer, or occlusion
+bug, so capture every required named view in both environments.
 
 ## 5. Useful commands
 
@@ -184,6 +205,24 @@ cells; exit `2` means the inputs are invalid. JSON remains on stdout or in
 `--out`, while `--summary` writes human-readable output to stderr. See the
 [matrix schema and migration note](../skills/sculpt-dna-variants/references/visual-regression-matrix.md).
 
+Verify an optimized model inside its host app:
+
+```bash
+python3 scripts/render_integration_contract.py \
+  render-integration-contract.json \
+  standalone-snapshot.json \
+  host-snapshot.json \
+  --out integration-report.json \
+  --summary
+```
+
+Exit `0` means all required integration checks pass. Exit `1` means the valid
+report contains missing, stale, or failing checks. Exit `2` means malformed,
+unsafe, non-finite, unsupported-schema, or identity-inconsistent input.
+Coverage and luminance remain diagnostic only; AI vision is final authority.
+See the
+[full contract, snapshot, report, and browser probe guide](../skills/object-to-threejs-procedural/references/render-integration-contract.md).
+
 ## 6. Update or uninstall
 
 Update:
@@ -236,6 +275,18 @@ Inspect each non-passing cell. Capture missing named viewpoints, restore or
 re-review stale SHA/path/camera bindings, and fix failed global, layer, or
 semantic AI-vision scores. Pixel metrics may help diagnose a mismatch but
 cannot approve the cell.
+
+### The host integration contract exits 1
+
+Inspect `checks` in stable report order. `tone-mapping-count` usually means a
+host composer added a second `OutputPass`; `town-light-spill` means a
+hero-owned light reaches the town layer or exceeds its contribution limit; and
+`view-coverage` usually points to the fixed camera, clipping, layer masks, or an
+oversized occlusion proxy. Recapture both snapshots after fixing the host.
+
+If the contract exits `2`, fix the JSON/schema/path/SHA/identity error first.
+Do not convert it to an allowed difference. Host-specific differences must fit
+an explicit contract value, range, delta, or budget.
 
 ### The reference is a crowded scene
 

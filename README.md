@@ -182,7 +182,7 @@ Then open `http://127.0.0.1:4173/?scene=tree`, replacing `tree` with `brick` or 
 - **Plugin:** `threejs-sculpt-dna`
 - **Skills:** `object-to-threejs-procedural` and `sculpt-dna-variants`
 - **Input:** an attached object image, reference screenshot, or local image path
-- **Output:** a procedural Three.js factory, versioned `ObjectSculptSpec`, deterministic variant family, and visual review evidence
+- **Output:** a procedural Three.js factory, versioned `ObjectSculptSpec`, deterministic variant family, visual review evidence, and optional host render-integration report
 - **Best for:** real-time props, hard-surface objects, botanical landmarks, product studies, and explicitly layered scene approximations
 - **Not for:** photogrammetry, exact mesh extraction, or guaranteed hidden-side reconstruction from one image
 
@@ -195,6 +195,7 @@ Then open `http://127.0.0.1:4173/?scene=tree`, replacing `tree` with `brick` or 
 - Reference/render comparison sheets and structured AI-vision review history.
 - Deterministic Sculpt DNA variant specs with mutation provenance and semantic invariant checks.
 - Coverage-curated representative families selected from larger safe candidate pools.
+- Versioned standalone/host render snapshots and deterministic integration checks.
 
 It is a code-native reconstruction workflow, not photogrammetry or exact mesh extraction.
 
@@ -268,6 +269,12 @@ technical probe -> pre-spec assessment -> ObjectSculptSpec
                                           |
                                           v
                           AI-vision quality/feature review
+                                         |
+                                         v
+                           optimization + host integration
+                                         |
+                                         v
+                    contract + standalone/host runtime snapshots
 ```
 
 ## Technology Analysis
@@ -276,7 +283,7 @@ technical probe -> pre-spec assessment -> ObjectSculptSpec
 | --- | --- | --- |
 | Copilot packaging | Root `plugin.json`, skill directories, `SKILL.md` YAML frontmatter | Native GitHub Copilot plugin discovery and task-triggered instructions |
 | Agent workflow | Markdown skills and focused reference documents | Keeps visual reasoning, quality gates, and implementation policy readable and editable |
-| Data contract | Versioned JSON `ObjectSculptSpec` | Separates observed design intent from generated renderer objects and supports iterative correction |
+| Data contracts | Versioned JSON `ObjectSculptSpec` plus additive render integration contract/snapshots | Separates observed design intent from generated renderer objects, then verifies that host integration preserves the accepted runtime assumptions |
 | Automation | Python 3.10+ standard library | Portable CLIs with no mandatory package installation |
 | CLI surface | `argparse`, `pathlib`, `json` | Predictable file-oriented commands and machine-readable output |
 | Image probing | Binary header parsing with `struct` | Reads PNG, JPEG, GIF, WebP, and BMP dimensions without Pillow |
@@ -287,6 +294,7 @@ technical probe -> pre-spec assessment -> ObjectSculptSpec
 | Materials | `MeshPhysicalMaterial`, emissive controls, deterministic Canvas textures, independent PBR channels | Keeps bark readable beneath glow, avoids flat-color placeholders, and prevents albedo reuse across unrelated PBR channels |
 | Runtime structure | `THREE.Group` pivots plus `userData.sculptRuntime` maps | Keeps nodes, meshes, sockets, collider proxies, and destruction groups addressable for animation and physics |
 | Visual QA | Browser screenshots, custom comparison sheets, semantic feature gates | Makes visual evidence—not code inspection—the acceptance authority |
+| Integration QA | Deterministic renderer/target/layer/view/performance snapshots | Detects host-only rendering regressions without adding a browser runtime dependency or manufacturing an AI pass |
 | Variant engine | `copy`, SHA-256 seed derivation, `random.Random`, rejection sampling | Creates reproducible variants and retries samples until constraints pass |
 | Verification | `unittest`, `tempfile`, `subprocess`, `compileall` | Tests both Python APIs and end-to-end CLI/factory generation without third-party test tools |
 
@@ -313,6 +321,7 @@ The browser, TypeScript compiler, bundler, and Three.js version belong to the ta
 | `sculpt_dna.py` | Initialize, validate, and generate deterministic constraint-safe variants |
 | `sculpt_dna_core.py` | Shared DNA schema, target resolver, constraints, invariants, sampling, and provenance |
 | `visual_regression_matrix.py` | Verify the deterministic base/variant viewpoint matrix against current SHA-bound latest-pass reviews |
+| `render_integration_contract.py` | Compare a versioned contract with standalone and host runtime snapshots using stable typed checks and explicit exit codes |
 
 ## Requirements
 
@@ -517,6 +526,179 @@ selection, sculpt-pass completion, layer thresholds, and semantic feature
 gates. It never converts pixel metrics into visual approval. See the
 [manifest, report, and additive migration schema](skills/sculpt-dna-variants/references/visual-regression-matrix.md).
 
+## Verify a model inside a host app
+
+A standalone turntable can look correct because rotation eventually reveals
+every emissive branch. A host app can still hide that branch from a fixed
+camera, exclude it from a selective bloom layer, place an oversized occlusion
+proxy in front of it, add a second output transform, or let hero lights spill
+into the town. Verify the exact standalone and host configurations after
+optimization and before production acceptance.
+
+Create three JSON files:
+
+1. `render-integration-contract.json` — stable IDs, renderer policy, required
+   targets/layers/lights/views/semantics, and budgets.
+2. `standalone-snapshot.json` — telemetry captured from the accepted standalone
+   scene.
+3. `host-snapshot.json` — the same telemetry captured inside the host app.
+
+This complete minimal v1 contract is copy/paste ready for the committed Repolis
+bindings. Replace its IDs, paths, hashes, and thresholds for your asset:
+
+```json
+{
+  "schemaVersion": "1.0",
+  "kind": "render-integration-contract",
+  "contractId": "repolis-host-minimal",
+  "asset": {
+    "assetId": "repolis-tree",
+    "profileId": "repolis-living-archive",
+    "source": {
+      "path": "examples/repolis-tree/object-sculpt-spec.json",
+      "sha256": "9556e708ace61dbd2a4128700e41ec8dac3d0c930f0e85e09cc2915013aa40d8"
+    },
+    "factory": {
+      "path": "examples/repolis-hero/repolis-output/createRepolisHero.js",
+      "sha256": "65bd7fc76013ee0f11898174095556d581be64ea8f15e76e090fb8955a17d0e3"
+    }
+  },
+  "renderer": {
+    "toneMapping": "ACESFilmicToneMapping",
+    "outputColorSpace": "SRGBColorSpace",
+    "standaloneExposure": 1.0,
+    "maxHostExposureDelta": 0.05,
+    "outputPassCount": 1,
+    "maxPixelRatio": 2.0
+  },
+  "renderTargets": [
+    {
+      "id": "hero-bloom",
+      "type": "HalfFloatType",
+      "colorSpace": "LinearSRGBColorSpace",
+      "depthBuffer": false,
+      "minScale": 0.5,
+      "maxScale": 1.0,
+      "maxPixels": 2073600
+    }
+  ],
+  "selectiveRendering": {
+    "layers": [
+      {
+        "id": "hero-bloom",
+        "index": 1,
+        "owner": "repolis-hero",
+        "requiredMembers": ["hero-emissive"],
+        "forbiddenMembers": ["town"]
+      }
+    ],
+    "lights": [
+      {
+        "id": "hero-energy-light",
+        "owner": "repolis-hero",
+        "requiredLayers": ["hero"],
+        "forbiddenLayers": ["town"],
+        "maxTownSpill": 0.01
+      }
+    ]
+  },
+  "views": [
+    {
+      "id": "front",
+      "cameraId": "repolis-front",
+      "minCoverage": 0.35,
+      "maxCoverage": 0.65,
+      "minP50Luminance": 0.2,
+      "maxP90Luminance": 0.9,
+      "requiredSystems": [
+        {
+          "id": "hero-emissive",
+          "mustBeVisible": true,
+          "minCoverage": 0.03,
+          "minP50Luminance": 0.2
+        },
+        {
+          "id": "hero-occlusion-proxy",
+          "mustBeVisible": false,
+          "maxCoverage": 0.12
+        },
+        {
+          "id": "town",
+          "mustBeVisible": true,
+          "minCoverage": 0.18,
+          "minP50Luminance": 0.12
+        }
+      ]
+    }
+  ],
+  "angleConsistency": {
+    "viewIds": ["front"],
+    "minCoverageToMedian": 0.88,
+    "maxP90LuminanceSpread": 0.1,
+    "forbidBlackFrames": true,
+    "forbidClipping": true
+  },
+  "townExposure": {
+    "semanticSystemId": "town",
+    "viewIds": ["front"],
+    "maxP50LuminanceDelta": 0.03
+  },
+  "performance": {
+    "maxCalls": 180,
+    "maxTriangles": 900000,
+    "minFps": 50.0,
+    "maxFrameTimeP50Ms": 18.0,
+    "maxFrameTimeP95Ms": 25.0,
+    "maxDirectionCallsSpread": 20,
+    "maxDirectionTrianglesSpread": 100000,
+    "maxDirectionFrameTimeP95SpreadMs": 4.0
+  },
+  "errors": {
+    "maxConsoleErrors": 0,
+    "maxNetworkErrors": 0
+  }
+}
+```
+
+Run the three-angle deterministic demonstration directly from the repository
+root. Its values are explicitly illustrative demonstration data, not claimed
+live measurements:
+
+```bash
+python3 scripts/render_integration_contract.py \
+  examples/render-integration-contract/render-integration-contract.json \
+  examples/render-integration-contract/standalone-snapshot.json \
+  examples/render-integration-contract/host-snapshot.json \
+  --out /tmp/integration-report.json \
+  --summary
+```
+
+The sample exits `0` and prints this summary to stderr; the full JSON is written
+to `/tmp/integration-report.json`:
+
+```text
+PASS
+checks: total=211 missing=0 stale=0 passing=211 failing=0
+```
+
+Exit `1` means the inputs were valid but at least one check is `missing`,
+`stale`, or `failing`. Exit `2` means malformed, unsafe, non-finite,
+unsupported-schema, or identity-inconsistent input. Without `--out`, the JSON
+report is printed to stdout.
+
+- `tone-mapping-count`: the host usually added a second `OutputPass` or nested
+  composer; keep exactly one output transform.
+- `town-light-spill`: a declared hero light targets the town layer or its
+  measured town contribution exceeds the contract; fix light ownership/layers.
+- `view-coverage`: a fixed host camera, layer mask, clipping plane, or occlusion
+  proxy pushed the hero/view coverage outside its declared range.
+
+Coverage and luminance are diagnostic gates. A passing integration report does
+not approve visual quality; AI vision remains the final visual authority. See
+the [full v1 schema and browser probe guide](skills/object-to-threejs-procedural/references/render-integration-contract.md)
+and the committed
+[`browser-snapshot-helper.js`](examples/render-integration-contract/browser-snapshot-helper.js).
+
 ## Quality Gates
 
 The workflow blocks progress when:
@@ -530,6 +712,7 @@ The workflow blocks progress when:
 - Sculpt DNA targets protected semantic fields
 - a variant violates declared constraints or invariants
 - a promoted base/variant viewpoint cell is missing, stale, or rejected by AI-vision layer or semantic gates
+- a host integration contract reports stale bindings, missing runtime telemetry, renderer/layer/view drift, performance regressions, or runtime errors
 
 ## Project Layout
 
@@ -543,16 +726,21 @@ skills/
     ├── SKILL.md
     └── references/
 scripts/
+├── render_integration_contract.py
 ├── sculpt_dna.py
 ├── sculpt_dna_core.py
 ├── visual_regression_matrix.py
 └── ...
 examples/
+├── render-integration-contract/
+│   ├── render-integration-contract.json
+│   ├── standalone-snapshot.json
+│   ├── host-snapshot.json
+│   └── expected-integration-report.json
 └── repolis-tree/
-    ├── assessment.json
-    ├── object-sculpt-spec.json
-    └── createRepolisTreeModel.ts
+    └── ...
 tests/
+├── test_render_integration_contract.py
 ├── test_sculpt_dna.py
 └── test_visual_regression_matrix.py
 ```
@@ -564,7 +752,7 @@ python3 -m compileall -q scripts tests
 python3 -m unittest discover -s tests -v
 ```
 
-The test suite covers DNA derivation, schema validation, immutable-target rejection, deterministic generation, evidence reset, manifest output, matrix ordering/classification/latest-review precedence, generated TypeScript metadata, release-image dimensions, file-size budgets, EXIF removal, and inherited-asset exclusion.
+The test suite covers DNA derivation, schema validation, immutable-target rejection, deterministic generation, evidence reset, manifest output, matrix ordering/classification/latest-review precedence, render-integration safety/classification/cwd determinism, generated TypeScript metadata, release-image dimensions, file-size budgets, EXIF removal, and inherited-asset exclusion.
 
 ## Limitations
 

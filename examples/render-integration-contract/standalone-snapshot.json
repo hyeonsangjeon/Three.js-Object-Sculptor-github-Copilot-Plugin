@@ -1,0 +1,207 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "render-runtime-snapshot",
+  "snapshotId": "repolis-standalone-demo",
+  "role": "standalone",
+  "dataClassification": "deterministic-demonstration-not-live-measurement",
+  "asset": {
+    "assetId": "repolis-tree",
+    "profileId": "repolis-living-archive",
+    "source": {
+      "path": "examples/repolis-tree/object-sculpt-spec.json",
+      "sha256": "9556e708ace61dbd2a4128700e41ec8dac3d0c930f0e85e09cc2915013aa40d8"
+    },
+    "factory": {
+      "path": "examples/repolis-hero/repolis-output/createRepolisHero.js",
+      "sha256": "65bd7fc76013ee0f11898174095556d581be64ea8f15e76e090fb8955a17d0e3"
+    }
+  },
+  "renderer": {
+    "toneMapping": "ACESFilmicToneMapping",
+    "outputColorSpace": "SRGBColorSpace",
+    "exposure": 1.0,
+    "outputPassCount": 1,
+    "pixelRatio": 2.0
+  },
+  "renderTargets": [
+    {
+      "id": "hero-bloom",
+      "type": "HalfFloatType",
+      "colorSpace": "LinearSRGBColorSpace",
+      "depthBuffer": false,
+      "scale": 1.0,
+      "width": 1440,
+      "height": 900,
+      "pixelCount": 1296000
+    }
+  ],
+  "selectiveRendering": {
+    "layers": [
+      {
+        "id": "hero-bloom",
+        "index": 1,
+        "owner": "repolis-hero",
+        "members": [
+          "hero-emissive"
+        ]
+      }
+    ],
+    "lights": [
+      {
+        "id": "hero-energy-light",
+        "owner": "repolis-hero",
+        "layers": [
+          "hero"
+        ],
+        "townSpill": 0.0
+      }
+    ]
+  },
+  "views": [
+    {
+      "id": "back",
+      "cameraId": "repolis-back",
+      "blackFrame": false,
+      "clipped": false,
+      "coverage": 0.4,
+      "luminance": {
+        "p50": 0.36,
+        "p90": 0.76
+      },
+      "semantics": [
+        {
+          "id": "hero-emissive",
+          "visible": true,
+          "coverage": 0.05,
+          "luminance": {
+            "p50": 0.47,
+            "p90": 0.72
+          }
+        },
+        {
+          "id": "hero-occlusion-proxy",
+          "visible": false,
+          "coverage": 0.08,
+          "luminance": {
+            "p50": 0.0,
+            "p90": 0.0
+          }
+        },
+        {
+          "id": "town",
+          "visible": true,
+          "coverage": 0.3,
+          "luminance": {
+            "p50": 0.21,
+            "p90": 0.4
+          }
+        }
+      ],
+      "performance": {
+        "calls": 128,
+        "triangles": 655000,
+        "fps": 59.0,
+        "frameTimeP50Ms": 13.7,
+        "frameTimeP95Ms": 18.4
+      }
+    },
+    {
+      "id": "front",
+      "cameraId": "repolis-front",
+      "blackFrame": false,
+      "clipped": false,
+      "coverage": 0.44,
+      "luminance": {
+        "p50": 0.38,
+        "p90": 0.77
+      },
+      "semantics": [
+        {
+          "id": "hero-emissive",
+          "visible": true,
+          "coverage": 0.07,
+          "luminance": {
+            "p50": 0.5,
+            "p90": 0.75
+          }
+        },
+        {
+          "id": "hero-occlusion-proxy",
+          "visible": false,
+          "coverage": 0.09,
+          "luminance": {
+            "p50": 0.0,
+            "p90": 0.0
+          }
+        },
+        {
+          "id": "town",
+          "visible": true,
+          "coverage": 0.28,
+          "luminance": {
+            "p50": 0.22,
+            "p90": 0.42
+          }
+        }
+      ],
+      "performance": {
+        "calls": 126,
+        "triangles": 640000,
+        "fps": 60.0,
+        "frameTimeP50Ms": 13.2,
+        "frameTimeP95Ms": 17.8
+      }
+    },
+    {
+      "id": "quarter",
+      "cameraId": "repolis-quarter",
+      "blackFrame": false,
+      "clipped": false,
+      "coverage": 0.41,
+      "luminance": {
+        "p50": 0.4,
+        "p90": 0.8
+      },
+      "semantics": [
+        {
+          "id": "hero-emissive",
+          "visible": true,
+          "coverage": 0.06,
+          "luminance": {
+            "p50": 0.52,
+            "p90": 0.77
+          }
+        },
+        {
+          "id": "hero-occlusion-proxy",
+          "visible": false,
+          "coverage": 0.08,
+          "luminance": {
+            "p50": 0.0,
+            "p90": 0.0
+          }
+        },
+        {
+          "id": "town",
+          "visible": true,
+          "coverage": 0.29,
+          "luminance": {
+            "p50": 0.2,
+            "p90": 0.41
+          }
+        }
+      ],
+      "performance": {
+        "calls": 132,
+        "triangles": 680000,
+        "fps": 58.0,
+        "frameTimeP50Ms": 14.1,
+        "frameTimeP95Ms": 19.0
+      }
+    }
+  ],
+  "errors": {
+    "console": 0,
+    "network": 0
+  }
+}

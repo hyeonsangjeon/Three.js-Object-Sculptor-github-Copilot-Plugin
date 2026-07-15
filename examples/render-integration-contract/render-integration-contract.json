@@ -1,0 +1,194 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "render-integration-contract",
+  "contractId": "repolis-host-integration-demo",
+  "dataClassification": "deterministic-demonstration-not-live-measurement",
+  "asset": {
+    "assetId": "repolis-tree",
+    "profileId": "repolis-living-archive",
+    "source": {
+      "path": "examples/repolis-tree/object-sculpt-spec.json",
+      "sha256": "9556e708ace61dbd2a4128700e41ec8dac3d0c930f0e85e09cc2915013aa40d8"
+    },
+    "factory": {
+      "path": "examples/repolis-hero/repolis-output/createRepolisHero.js",
+      "sha256": "65bd7fc76013ee0f11898174095556d581be64ea8f15e76e090fb8955a17d0e3"
+    }
+  },
+  "renderer": {
+    "toneMapping": "ACESFilmicToneMapping",
+    "outputColorSpace": "SRGBColorSpace",
+    "standaloneExposure": 1.0,
+    "maxHostExposureDelta": 0.05,
+    "outputPassCount": 1,
+    "maxPixelRatio": 2.0
+  },
+  "renderTargets": [
+    {
+      "id": "hero-bloom",
+      "type": "HalfFloatType",
+      "colorSpace": "LinearSRGBColorSpace",
+      "depthBuffer": false,
+      "minScale": 0.5,
+      "maxScale": 1.0,
+      "maxPixels": 2073600
+    }
+  ],
+  "selectiveRendering": {
+    "layers": [
+      {
+        "id": "hero-bloom",
+        "index": 1,
+        "owner": "repolis-hero",
+        "requiredMembers": [
+          "hero-emissive"
+        ],
+        "forbiddenMembers": [
+          "town"
+        ]
+      }
+    ],
+    "lights": [
+      {
+        "id": "hero-energy-light",
+        "owner": "repolis-hero",
+        "requiredLayers": [
+          "hero"
+        ],
+        "forbiddenLayers": [
+          "town"
+        ],
+        "maxTownSpill": 0.01
+      }
+    ]
+  },
+  "views": [
+    {
+      "id": "back",
+      "cameraId": "repolis-back",
+      "minCoverage": 0.35,
+      "maxCoverage": 0.65,
+      "minP50Luminance": 0.2,
+      "maxP90Luminance": 0.9,
+      "requiredSystems": [
+        {
+          "id": "hero-emissive",
+          "mustBeVisible": true,
+          "minCoverage": 0.03,
+          "maxCoverage": 0.12,
+          "minP50Luminance": 0.2,
+          "minP90Luminance": 0.45
+        },
+        {
+          "id": "hero-occlusion-proxy",
+          "mustBeVisible": false,
+          "maxCoverage": 0.12
+        },
+        {
+          "id": "town",
+          "mustBeVisible": true,
+          "minCoverage": 0.18,
+          "maxCoverage": 0.5,
+          "minP50Luminance": 0.12,
+          "maxP90Luminance": 0.55
+        }
+      ]
+    },
+    {
+      "id": "front",
+      "cameraId": "repolis-front",
+      "minCoverage": 0.35,
+      "maxCoverage": 0.65,
+      "minP50Luminance": 0.2,
+      "maxP90Luminance": 0.9,
+      "requiredSystems": [
+        {
+          "id": "hero-emissive",
+          "mustBeVisible": true,
+          "minCoverage": 0.03,
+          "maxCoverage": 0.12,
+          "minP50Luminance": 0.2,
+          "minP90Luminance": 0.45
+        },
+        {
+          "id": "hero-occlusion-proxy",
+          "mustBeVisible": false,
+          "maxCoverage": 0.12
+        },
+        {
+          "id": "town",
+          "mustBeVisible": true,
+          "minCoverage": 0.18,
+          "maxCoverage": 0.5,
+          "minP50Luminance": 0.12,
+          "maxP90Luminance": 0.55
+        }
+      ]
+    },
+    {
+      "id": "quarter",
+      "cameraId": "repolis-quarter",
+      "minCoverage": 0.35,
+      "maxCoverage": 0.65,
+      "minP50Luminance": 0.2,
+      "maxP90Luminance": 0.9,
+      "requiredSystems": [
+        {
+          "id": "hero-emissive",
+          "mustBeVisible": true,
+          "minCoverage": 0.03,
+          "maxCoverage": 0.12,
+          "minP50Luminance": 0.2,
+          "minP90Luminance": 0.45
+        },
+        {
+          "id": "hero-occlusion-proxy",
+          "mustBeVisible": false,
+          "maxCoverage": 0.12
+        },
+        {
+          "id": "town",
+          "mustBeVisible": true,
+          "minCoverage": 0.18,
+          "maxCoverage": 0.5,
+          "minP50Luminance": 0.12,
+          "maxP90Luminance": 0.55
+        }
+      ]
+    }
+  ],
+  "angleConsistency": {
+    "viewIds": [
+      "front",
+      "quarter",
+      "back"
+    ],
+    "minCoverageToMedian": 0.88,
+    "maxP90LuminanceSpread": 0.1,
+    "forbidBlackFrames": true,
+    "forbidClipping": true
+  },
+  "townExposure": {
+    "semanticSystemId": "town",
+    "viewIds": [
+      "front",
+      "quarter",
+      "back"
+    ],
+    "maxP50LuminanceDelta": 0.03
+  },
+  "performance": {
+    "maxCalls": 180,
+    "maxTriangles": 900000,
+    "minFps": 50.0,
+    "maxFrameTimeP50Ms": 18.0,
+    "maxFrameTimeP95Ms": 25.0,
+    "maxDirectionCallsSpread": 20,
+    "maxDirectionTrianglesSpread": 100000,
+    "maxDirectionFrameTimeP95SpreadMs": 4.0
+  },
+  "errors": {
+    "maxConsoleErrors": 0,
+    "maxNetworkErrors": 0
+  }
+}
