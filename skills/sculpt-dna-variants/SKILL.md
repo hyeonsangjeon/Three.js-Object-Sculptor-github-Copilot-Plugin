@@ -44,6 +44,7 @@ Scripts are relative to this skill directory:
 - `python3 ../../scripts/sculpt_dna.py curate object-sculpt-spec.json --out-dir curated --count 3 --pool-size 24 --seed 1337` generates a larger safe pool, then selects the most diverse representative family.
 - Add `--preview` only for non-promotable contact sheets before the base sculpt reaches `surface-pass`; preview provenance remains blocked pending per-variant visual review.
 - `python3 ../../scripts/validate_sculpt_spec.py variants/<variant>.json` validates each variant against the complete ObjectSculptSpec contract.
+- `python3 ../../scripts/visual_regression_matrix.py object-sculpt-spec.json variants/sculpt-dna-manifest.json --out variants/visual-regression-report.json --summary` verifies the deterministic base/variant viewpoint matrix without replacing AI vision.
 - `python3 ../../scripts/generate_threejs_factory.py variants/<variant>.json --out src/createVariantModel.ts` generates the currently unlocked pass for a selected variant.
 
 ## Required Workflow
@@ -56,8 +57,10 @@ Scripts are relative to this skill directory:
 6. Generate a safe candidate pool.
 7. Use Coverage Curator when the user needs a small contact sheet, README demo, or representative design family.
 8. Inspect the manifest to confirm seeds, mutations, invariant checks, selected candidate indexes, and coverage score.
-9. Render selected variants from consistent viewpoints.
-10. Re-run the normal screenshot comparison and AI-vision gates for every promoted variant.
+9. Define the required viewpoints using the [visual regression matrix schema](references/visual-regression-matrix.md).
+10. Render selected variants from every required viewpoint.
+11. Re-run the normal screenshot comparison and AI-vision gates for every promoted variant.
+12. Require a clean deterministic matrix before promotion.
 
 Production `generate` and `curate` commands must reject a base spec that has not completed `blockout` through `surface-pass`. `--preview` is the explicit exception for early design exploration and README contact sheets; never describe preview variants as accepted or production-ready.
 
@@ -83,6 +86,7 @@ A generated variant is acceptable only when:
 - Full ObjectSculptSpec validation passes.
 - The generated factory contains `root.userData.sculptDNA` and `root.userData.variantProvenance`.
 - Fresh visual evidence meets the same silhouette, component, material, lighting, and critical-feature thresholds as the base object.
+- Every required base/variant viewpoint cell passes the deterministic visual regression matrix using current SHA-bound evidence and latest-per-pass reviews.
 - A curated family records its candidate pool, selected indexes, normalized parameter-distance strategy, and coverage score.
 
 If valid samples cannot be produced within `maxAttemptsPerVariant`, refine the ranges or constraints. Do not silently relax the invariant contract.
@@ -90,3 +94,4 @@ If valid samples cannot be produced within `maxAttemptsPerVariant`, refine the r
 ## Reference
 
 - [Sculpt DNA schema, constraints, invariants, provenance, and Coverage Curator](references/sculpt-dna-schema.md)
+- [Deterministic visual regression matrix manifest and report schema](references/visual-regression-matrix.md)

@@ -16,6 +16,7 @@ Turn an object reference image into a quality-gated, action-ready procedural Thr
 - **Sculpt DNA, not random variants.** Named semantic controls vary proportions, material response, palette, and repetition systems while protecting component identity, attachment roots, sockets, fracture groups, and action-ready topology.
 - **Coverage Curator, not cherry-picked samples.** A deterministic centroid-extreme plus greedy max-min heuristic selects a broadly separated representative family from a larger constraint-safe candidate pool.
 - **Evidence-bound production gates.** Every locked sculpt pass requires browser screenshots, full reference/render comparisons, semantic AI-vision review, and local SHA-256 bindings. Overwritten or stale evidence automatically invalidates production readiness.
+- **Deterministic family regression matrix.** Promoted variants and their base are checked in stable asset/viewpoint order with every cell classified as missing, stale, passing, or failing; AI vision remains the final authority.
 - **Action-ready by construction.** Stable pivots, sockets, colliders, constraints, detachable groups, and runtime maps are part of the model contract rather than an animation retrofit.
 - **Code-native and reproducible.** Flagship factories use procedural geometry, generated independent PBR channels, deterministic capture, measured performance budgets, and zero imported meshes.
 
@@ -305,6 +306,7 @@ The browser, TypeScript compiler, bundler, and Three.js version belong to the ta
 | `append_sculpt_review.py` | Record AI-vision scores, mismatches, evidence, and correction decisions |
 | `sculpt_dna.py` | Initialize, validate, and generate deterministic constraint-safe variants |
 | `sculpt_dna_core.py` | Shared DNA schema, target resolver, constraints, invariants, sampling, and provenance |
+| `visual_regression_matrix.py` | Verify the deterministic base/variant viewpoint matrix against current SHA-bound latest-pass reviews |
 
 ## Requirements
 
@@ -483,6 +485,32 @@ python3 scripts/generate_threejs_factory.py variants/<target-id>-v001.json \
   --out src/createSelectedVariantModel.ts
 ```
 
+### Deterministic visual regression matrix
+
+Add the optional `visualRegressionMatrix` v1 block to the curated manifest to
+name required viewpoints, bind each one to an authoritative pass, record
+expected render/comparison path templates, and select semantic feature reviews.
+Then verify the base plus every promoted variant:
+
+```bash
+python3 scripts/visual_regression_matrix.py \
+  object-sculpt-spec.json \
+  variants/sculpt-dna-manifest.json \
+  --out variants/visual-regression-report.json \
+  --summary
+```
+
+For a one-off run without manifest configuration, repeat
+`--viewpoint VIEWPOINT_ID=PASS_ID`. The report is deterministic: base first,
+variant IDs and viewpoint IDs sorted, and summary keys ordered as `missing`,
+`stale`, `passing`, `failing`. Exit status is `0` only when every cell passes,
+`1` for a complete but non-passing matrix, and `2` for invalid input.
+
+The matrix reuses strict local SHA-256 evidence checks, latest-per-pass review
+selection, sculpt-pass completion, layer thresholds, and semantic feature
+gates. It never converts pixel metrics into visual approval. See the
+[manifest, report, and additive migration schema](skills/sculpt-dna-variants/references/visual-regression-matrix.md).
+
 ## Quality Gates
 
 The workflow blocks progress when:
@@ -495,6 +523,7 @@ The workflow blocks progress when:
 - the global visual score is acceptable but a critical semantic feature fails
 - Sculpt DNA targets protected semantic fields
 - a variant violates declared constraints or invariants
+- a promoted base/variant viewpoint cell is missing, stale, or rejected by AI-vision layer or semantic gates
 
 ## Project Layout
 
@@ -510,6 +539,7 @@ skills/
 scripts/
 ├── sculpt_dna.py
 ├── sculpt_dna_core.py
+├── visual_regression_matrix.py
 └── ...
 examples/
 └── repolis-tree/
@@ -517,7 +547,8 @@ examples/
     ├── object-sculpt-spec.json
     └── createRepolisTreeModel.ts
 tests/
-└── test_sculpt_dna.py
+├── test_sculpt_dna.py
+└── test_visual_regression_matrix.py
 ```
 
 ## Test
@@ -527,7 +558,7 @@ python3 -m compileall -q scripts tests
 python3 -m unittest discover -s tests -v
 ```
 
-The test suite covers DNA derivation, schema validation, immutable-target rejection, deterministic generation, evidence reset, manifest output, generated TypeScript metadata, release-image dimensions, file-size budgets, EXIF removal, and inherited-asset exclusion.
+The test suite covers DNA derivation, schema validation, immutable-target rejection, deterministic generation, evidence reset, manifest output, matrix ordering/classification/latest-review precedence, generated TypeScript metadata, release-image dimensions, file-size budgets, EXIF removal, and inherited-asset exclusion.
 
 ## Limitations
 

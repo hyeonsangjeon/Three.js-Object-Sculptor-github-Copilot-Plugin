@@ -14,16 +14,10 @@ The roadmap prioritizes reproducibility, visual evidence, action-ready hierarchy
 - action-ready pivots, sockets, collider proxies, and destruction groups
 - Sculpt DNA constraints, invariants, deterministic provenance, and preview mode
 - Coverage Curator
+- deterministic base/variant visual regression matrix with SHA-bound latest-review, layer, and semantic checks
 - Repolis Living Archive flagship and reproducible capture pipeline
 
 ## 0.5 — Reproducible quality
-
-### Visual regression matrix
-
-- render promoted variants from fixed cameras
-- compare geometry, material, lighting, and semantic feature layers
-- store thresholds and failures in machine-readable reports
-- support CPU/GPU-tolerant image review without making pixel diff the final authority
 
 ### Region-aware reference extraction
 

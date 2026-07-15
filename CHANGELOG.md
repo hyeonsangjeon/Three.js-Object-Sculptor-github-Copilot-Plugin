@@ -2,6 +2,19 @@
 
 All notable changes to `threejs-sculpt-dna` are documented here.
 
+## [Unreleased]
+
+### Added
+
+- Dependency-free deterministic visual regression matrix for a base sculpt and
+  promoted curated variants, with fixed viewpoint plans, expected evidence
+  paths, SHA-256 freshness, latest-per-pass review precedence, required layer
+  scores, selected semantic feature gates, stable JSON classification, and
+  explicit CLI exit codes.
+- Additive manifest/report schema documentation that keeps AI vision as final
+  authority and leaves existing `ObjectSculptSpec`, production, release, and
+  evidence gates unchanged.
+
 ## [0.4.3] - 2026-07-12
 
 ### Added

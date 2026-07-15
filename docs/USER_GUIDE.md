@@ -126,6 +126,12 @@ Policy-v2 production reviews require local render and comparison files; all
 gates recompute their SHA-256 digests, and changed pixels invalidate completion.
 Remote or virtual evidence remains record-only.
 
+Promoted families can add the manifest-only `visualRegressionMatrix` v1 block
+to define fixed viewpoints, pass bindings, expected render/comparison paths,
+and selected semantic targets. This is additive: no `ObjectSculptSpec` field is
+changed. The matrix verifies current reviews but does not render images or
+replace AI vision.
+
 ## 5. Useful commands
 
 Validate a spec:
@@ -160,6 +166,23 @@ python3 scripts/sculpt_dna.py curate object-sculpt-spec.json \
   --seed 1337 \
   --preview
 ```
+
+Verify every required viewpoint for the base and promoted family:
+
+```bash
+python3 scripts/visual_regression_matrix.py \
+  object-sculpt-spec.json \
+  variants/sculpt-dna-manifest.json \
+  --out variants/visual-regression-report.json \
+  --summary
+```
+
+Without a manifest block, pass one or more
+`--viewpoint VIEWPOINT_ID=PASS_ID` options. Exit `0` means every cell passes;
+exit `1` means the deterministic report contains missing, stale, or failing
+cells; exit `2` means the inputs are invalid. JSON remains on stdout or in
+`--out`, while `--summary` writes human-readable output to stderr. See the
+[matrix schema and migration note](../skills/sculpt-dna-variants/references/visual-regression-matrix.md).
 
 ## 6. Update or uninstall
 
@@ -206,6 +229,13 @@ This is intentional. Complete evidence-backed reviews through `surface-pass`, en
 ```bash
 python3 scripts/sculpt_pass_orchestrator.py sync object-sculpt-spec.json --in-place
 ```
+
+### The visual regression matrix exits 1
+
+Inspect each non-passing cell. Capture missing named viewpoints, restore or
+re-review stale SHA/path/camera bindings, and fix failed global, layer, or
+semantic AI-vision scores. Pixel metrics may help diagnose a mismatch but
+cannot approve the cell.
 
 ### The reference is a crowded scene
 
