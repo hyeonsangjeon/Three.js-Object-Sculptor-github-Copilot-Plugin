@@ -11,6 +11,51 @@ Turn an object reference image into a quality-gated, action-ready procedural Thr
 
 `threejs-sculpt-dna` is an evidence-gated GitHub Copilot workflow, not a one-click image-to-mesh converter or a manifest-only port. It treats every reconstruction as a versioned production system: semantic topology, action contracts, deterministic variation, browser evidence, and release integrity advance together.
 
+> **Canonical repository:** [`hyeonsangjeon/threejs-sculpt-dna`](https://github.com/hyeonsangjeon/threejs-sculpt-dna). GitHub redirects the previous repository name here, but use this canonical path for installs, links, and clones.
+
+**Start here:** [Use the reconstruction Skill](skills/object-to-threejs-procedural/SKILL.md) · [Install the plugin](#quick-start) · [Run the 5-minute check](#5-minute-reproducible-check) · [Open the live flagships](https://hyeonsangjeon.github.io/threejs-sculpt-dna/)
+
+<sub>If this workflow saves you time, star the canonical repository so other GitHub Copilot users can find it.</sub>
+
+| You provide | The workflow produces |
+| --- | --- |
+| A reference image or URL, intended use, and target project | Suitability verdict, complexity assessment, versioned `ObjectSculptSpec`, and explicit fidelity limits |
+| Browser feedback during locked sculpt passes | Procedural Three.js factory, generated PBR channels, action-ready runtime maps, comparison evidence, and SHA-bound review history |
+| Optional bounded art-direction controls | Deterministic Sculpt DNA variants, curated family manifest, regression matrix, and host-integration report |
+
+### 5-minute reproducible check
+
+Clone the canonical repository and run the committed public sample through the same tools used by the production flagships:
+
+```bash
+git clone https://github.com/hyeonsangjeon/threejs-sculpt-dna.git
+cd threejs-sculpt-dna
+
+python3 scripts/probe_reference_image.py \
+  assets/brick-offroad-reference.jpeg
+
+python3 scripts/validate_sculpt_spec.py \
+  examples/repolis-tree/object-sculpt-spec.json \
+  --strict-quality
+
+python3 scripts/sculpt_pass_orchestrator.py status \
+  examples/repolis-tree/object-sculpt-spec.json
+```
+
+Expected result: the image probe reports `"technicalSuitability": "pass"`, strict validation prints `PASS`, and the committed flagship reports `currentPass: complete`.
+
+Then open GitHub Copilot, attach your own reference, and paste:
+
+```text
+Use the object-to-threejs-procedural Skill from threejs-sculpt-dna.
+
+Reconstruct this attached reference as a browser-real-time, action-ready
+procedural Three.js model. Validate the image, write the assessment and
+ObjectSculptSpec, follow the locked sculpt passes, compare browser screenshots,
+and keep generated geometry, materials, pivots, sockets, colliders, evidence,
+and runtime metadata in the target project. Do not use an imported mesh.
+```
+
 ## What Makes It Different
 
 - **Sculpt DNA, not random variants.** Named semantic controls vary proportions, material response, palette, and repetition systems while protecting component identity, attachment roots, sockets, fracture groups, and action-ready topology.

@@ -7,6 +7,47 @@ description: Use when the user provides or references an object image and wants 
 
 Use this skill when the user wants to turn a reference image of an object into a procedural Three.js model, visual spec, reconstruction plan, animation plan, destruction plan, or code implementation. This skill is for code-native reconstruction, not photogrammetry or exact mesh extraction.
 
+## Fast Path
+
+Ask for or infer these three inputs before implementation:
+
+1. a readable reference image, screenshot, URL, or local path
+2. the intended use, such as a browser prop, hero render, game object, articulated asset, destructible object, or scene layer
+3. the target project or output directory
+
+For a complete implementation, leave these reproducible outputs in the target project:
+
+- `assessment.json` with suitability, complexity, uncertainty, and the quality contract
+- `object-sculpt-spec.json` with geometry, materials, hierarchy, actions, evidence, and locked pass state
+- a reusable plain Three.js factory plus runtime node, mesh, socket, collider, and destruction maps
+- browser renders, reference/render comparison sheets, and SHA-bound `reviewHistory`
+- generated independent PBR channels when material fidelity requires them
+- optional Sculpt DNA variant specs, curated manifest, visual regression report, and host integration report
+
+Minimum successful prompt:
+
+```text
+Use the object-to-threejs-procedural Skill from threejs-sculpt-dna.
+
+Reconstruct this attached reference as a browser-real-time, action-ready
+procedural Three.js model. Validate the image, write the assessment and
+ObjectSculptSpec, follow the locked sculpt passes, compare browser screenshots,
+and preserve generated geometry, materials, pivots, sockets, colliders,
+evidence, and runtime metadata. Do not use an imported mesh.
+```
+
+The first executable steps for a local image are:
+
+```bash
+python3 ../../scripts/probe_reference_image.py <image>
+python3 ../../scripts/new_pre_spec_assessment.py "Object Name" \
+  --image <image> --complexity moderate --out assessment.json
+python3 ../../scripts/new_sculpt_spec.py "Object Name" \
+  --image <image> --assessment assessment.json --out object-sculpt-spec.json
+```
+
+These commands create scaffolds, not automatic production approval. Complete the observed fields and object-specific quality contract before strict validation or factory generation.
+
 ## Core Promise
 
 Treat the task like sculpting from a photo:

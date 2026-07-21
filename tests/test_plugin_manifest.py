@@ -49,6 +49,36 @@ class PluginManifestTests(unittest.TestCase):
             readme,
         )
 
+    def test_overview_links_canonical_repo_skill_and_reproducible_check(self) -> None:
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        skill = (
+            ROOT / "skills" / "object-to-threejs-procedural" / "SKILL.md"
+        ).read_text(encoding="utf-8")
+        overview = "\n".join(readme.splitlines()[:100])
+
+        for expected in (
+            "**Canonical repository:**",
+            "https://github.com/hyeonsangjeon/threejs-sculpt-dna",
+            "skills/object-to-threejs-procedural/SKILL.md",
+            "star the canonical repository",
+            "### 5-minute reproducible check",
+            "assets/brick-offroad-reference.jpeg",
+            "examples/repolis-tree/object-sculpt-spec.json",
+            '"technicalSuitability": "pass"',
+            "currentPass: complete",
+        ):
+            self.assertIn(expected, overview)
+
+        for expected in (
+            "## Fast Path",
+            "assessment.json",
+            "object-sculpt-spec.json",
+            "runtime node, mesh, socket, collider, and destruction maps",
+            "python3 ../../scripts/probe_reference_image.py <image>",
+            "Do not use an imported mesh.",
+        ):
+            self.assertIn(expected, skill)
+
     def test_release_changelog_matches_plugin_version(self) -> None:
         plugin = json.loads((ROOT / "plugin.json").read_text(encoding="utf-8"))
         changelog = (ROOT / "CHANGELOG.md").read_text(encoding="utf-8")
